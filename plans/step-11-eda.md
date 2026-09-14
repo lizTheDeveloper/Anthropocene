@@ -5,8 +5,13 @@ Acquisition is largely done; this is what the data is *for*.
 - [x] `scripts/verify_mirror.py` — checksum + structural validation + inventory
 - [x] `scripts/smoke_test.py` — every dataset opened, schema confirmed, sampled
 - [x] `scripts/parse_40cfr180.py` — tolerance table extracted and classified
-- [ ] Compound crosswalk: PNSP names ↔ CA PUR `chem_code` ↔ PDP/FDA residue codes ↔ CAS ↔ 40 CFR 180 section
-- [ ] County-year pesticide use panel (PNSP 1992–2018, California backfilled from PUR)
+- [x] Compound crosswalk: PNSP names ↔ CA PUR `chem_code` ↔ 40 CFR 180 section
+- [x] County-year pesticide use panel (PNSP 1992–2018), with comparability audit
+- [x] **Finding 01** — the published 2016→2018 decline is an artifact (California + double-counting)
+- [x] **Finding 02** — mass flat (+14.7%, or +2.3% fixed roster); composition transformed, glyphosate 17×
+- [x] **Finding 03** — WQP monitoring tracks 1992 use (ρ=+0.55, p=0.019), not 2018 use (p=0.58)
+- [x] **Finding 04** — 79% of applied mass has zero comparable acute soil-fauna endpoints in ECOTOX
+- [ ] California backfill from PUR for 2017–18, to restore a true 50-state series
 - [ ] PDP detection rates conditioned on commodity mix (the mix rotates annually)
 - [ ] FDA residue FY2014–2023 concatenated on the ReferenceFiles code tables
 - [ ] TDS residue + nutrient joint analysis on the FY2018–20 frame
@@ -14,6 +19,22 @@ Acquisition is largely done; this is what the data is *for*.
 - [ ] NHANES exposure ↔ biomarker analysis within individuals
 - [ ] NRI erosion trend from a single release
 - [ ] ECOTOX soil-organism endpoints for the top compounds by county use
+
+## Traps found during analysis (added to the smoke-test list)
+
+- **PNSP publishes AGGREGATE AND COMPONENT rows together from 2016.**
+  `METOLACHLOR & METOLACHLOR-S` and `DIMETHENAMID & DIMETHENAMID-P` appear
+  alongside their components, and the aggregate equals the component sum exactly
+  (ratio 1.000). Naive summation inflates 2016–18 national totals by 8–9%.
+- **2017–18 county files exclude California** (`noCA` / `NoDPR` in the filename).
+  California is 12–13% of national mass, so a 50-state year compared against a
+  49-state year manufactures a ~10% decline that is not real.
+- **ECOTOX `chemicals.txt` carries SYSTEMATIC names, not common ones** — glyphosate
+  is `N-(Phosphonomethyl)glycine`. Joining on name silently returns nothing; join
+  on CAS.
+- **ECOTOX `ecotox_group == "Worms"` includes marine polychaetes** (*Nereis*,
+  *Glycera*). Filtering on it alone puts saltwater ragworms in a soil analysis;
+  use `organism_habitat == "Soil"` with the standard soil-test families.
 
 ## Known schema traps found during the smoke test
 
