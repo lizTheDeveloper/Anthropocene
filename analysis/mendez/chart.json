@@ -61,7 +61,7 @@
     },
     {
       "type": "caption",
-      "text": "13 states have zero coverage (HI VT DE CT WV AK RI NV NH MD MA UT, plus NJ at 8.5%). Illinois 97%, Iowa 95%."
+      "text": "12 states have zero coverage (AK CT DE HI MA MD NH NV RI UT VT WV); WY 4.4%, NJ 8.5%. Illinois 97%, Iowa 95%."
     }
   ],
   "source_note": "USDA NASS QuickStats bulk, mirrored 2026-09-14: qs.environmental_20260912.txt.gz (Agricultural Chemical Use Program, SOURCE_DESC=SURVEY, DOMAIN_DESC~CHEMICAL, 1990-2025) and qs.census2022.txt.gz (2022 Census of Agriculture, SECTOR_DESC=CROPS). 2,951 counties with >=1,000 census crop acres, 302.1M acres = 98.8% of the national crop base. Coverage = a crop acre counts as measured only if NASS published a chemical-use estimate for that commodity in that county's own state. Computed by analysis/mendez/compute.py.",

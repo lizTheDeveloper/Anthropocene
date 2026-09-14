@@ -1,5 +1,8 @@
 # The shape of the state's field of vision
 
+> **CORRECTION (parent session):** Finding 2's "zero published chemical-use values" for hay is a join artifact — the Census says `HAY`, the Chemical Use Program says `HAY & HAYLAGE`. Hay does appear, in 3 of 36 years, but **only as aggregate `CHEMICAL: (TOTAL)` acres-treated with no named active ingredient, ever**. See `CORRECTION.md`. The corrected claim is stronger.
+
+
 **Lens:** agroecology as a transdisciplinary, participatory and action-oriented
 project, as developed by V. Ernesto Méndez and colleagues at the UVM Institute
 for Agroecology.
