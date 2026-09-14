@@ -1,0 +1,504 @@
+<title>What American Bodies Carry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Source+Sans+3:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  --paper:#faf9f7; --card:#ffffff; --sunk:#f2f1ed;
+  --ink:#1a1a19; --ink-2:#5e5c57; --ink-3:#8f8c85;
+  --rule:#e2e0da; --rule-2:#edebe5;
+  --adult:#2a78d6; --child:#eb6834;
+  --grad:#b0392c; --grad-bg:#fbefec;
+  --shadow:0 1px 2px rgba(26,26,25,.05),0 10px 30px -18px rgba(26,26,25,.18);
+}
+@media (prefers-color-scheme:dark){
+  :root:where(:not([data-theme="light"])){
+    color-scheme:dark;
+    --paper:#1a1b19; --card:#222420; --sunk:#282a26;
+    --ink:#f2f2ee; --ink-2:#adaca4; --ink-3:#7e7d76;
+    --rule:#33362f; --rule-2:#2b2e28;
+    --adult:#3987e5; --child:#d95926;
+    --grad:#e07a6d; --grad-bg:#2b201d;
+    --shadow:0 1px 2px rgba(0,0,0,.35),0 10px 30px -18px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#1a1b19; --card:#222420; --sunk:#282a26;
+  --ink:#f2f2ee; --ink-2:#adaca4; --ink-3:#7e7d76;
+  --rule:#33362f; --rule-2:#2b2e28;
+  --adult:#3987e5; --child:#d95926;
+  --grad:#e07a6d; --grad-bg:#2b201d;
+  --shadow:0 1px 2px rgba(0,0,0,.35),0 10px 30px -18px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:"Source Sans 3",system-ui,-apple-system,sans-serif;
+  font-size:17px;line-height:1.62;margin:0;
+  padding-block:0;padding-left:20px;padding-right:20px;-webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1080px;margin:0 auto}
+.measure{max-width:645px}
+
+header{padding-block:62px 0}
+.kicker{
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:26px;
+  display:flex;gap:16px;flex-wrap:wrap;
+}
+h1{
+  font-family:Newsreader,Georgia,serif;font-weight:500;
+  font-size:clamp(2.4rem,6vw,4.2rem);line-height:1.02;letter-spacing:-.02em;
+  margin:0 0 22px;text-wrap:balance;max-width:14ch;
+}
+.deck{
+  font-family:Newsreader,Georgia,serif;font-size:clamp(1.12rem,2.3vw,1.42rem);
+  line-height:1.5;color:var(--ink-2);max-width:60ch;margin:0 0 6px;
+}
+.deck em{color:var(--ink);font-style:italic}
+
+/* hero stat */
+.hero{
+  margin:44px 0 0;padding:32px 0 36px;border-top:2px solid var(--ink);border-bottom:1px solid var(--rule);
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);gap:38px;align-items:center;
+}
+.hero .big{
+  font-family:Newsreader,Georgia,serif;font-weight:500;
+  font-size:clamp(4.2rem,13vw,8rem);line-height:.86;letter-spacing:-.04em;
+  color:var(--child);font-variant-numeric:tabular-nums;
+}
+.hero .big span{font-size:.36em;letter-spacing:-.01em}
+.hero .cap{font-size:1.02rem;line-height:1.5;color:var(--ink-2)}
+.hero .cap b{color:var(--ink);font-weight:600}
+@media(max-width:720px){.hero{grid-template-columns:1fr;gap:18px}}
+
+section{padding-block:56px;border-bottom:1px solid var(--rule)}
+.tag{
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:14px;
+}
+.tag.shared{color:var(--adult)}
+.tag.split{color:var(--grad)}
+h2{
+  font-family:Newsreader,Georgia,serif;font-weight:500;
+  font-size:clamp(1.65rem,3.6vw,2.4rem);line-height:1.14;letter-spacing:-.014em;
+  margin:0 0 18px;text-wrap:balance;max-width:21ch;
+}
+p{margin:0 0 16px}
+.measure p:last-child{margin-bottom:0}
+strong{font-weight:600}
+code{font-family:"IBM Plex Mono",monospace;font-size:.86em;color:var(--ink-2)}
+
+.panel{
+  background:var(--card);border:1px solid var(--rule);border-radius:2px;
+  padding:26px 24px 20px;margin:32px 0 0;box-shadow:var(--shadow);
+}
+.ptitle{font-weight:600;font-size:1rem;margin:0 0 5px}
+.psub{font-size:13.5px;color:var(--ink-2);margin:0 0 20px;max-width:72ch}
+.chart-scroll{overflow-x:auto}
+svg{display:block;max-width:100%;height:auto}
+.legend{display:flex;gap:22px;flex-wrap:wrap;margin-top:15px;font-size:13px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:8px}
+.sw{width:12px;height:12px;border-radius:50%;flex:none}
+.sw.bar{width:14px;height:4px;border-radius:2px}
+
+.note{
+  border-left:2px solid var(--adult);padding:3px 0 3px 17px;margin:28px 0 0;
+  font-size:14.5px;color:var(--ink-2);max-width:62ch;
+}
+.note .h{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--adult);display:block;margin-bottom:6px;
+}
+.note.red{border-left-color:var(--grad)}
+.note.red .h{color:var(--grad)}
+
+details{margin-top:18px;font-size:13.5px}
+summary{
+  cursor:pointer;font-family:"IBM Plex Mono",monospace;font-size:11px;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);
+  padding:6px 0;list-style:none;
+}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"▸ ";color:var(--adult)}
+details[open] summary::before{content:"▾ "}
+.tscroll{overflow-x:auto;margin-top:8px}
+table{border-collapse:collapse;width:100%;min-width:400px;font-size:13px}
+th,td{text-align:right;padding:6px 14px 6px 0;border-bottom:1px solid var(--rule-2);white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:400;border-bottom:1px solid var(--rule);
+}
+td.n{font-variant-numeric:tabular-nums;font-family:"IBM Plex Mono",monospace}
+
+.tip{
+  position:fixed;pointer-events:none;z-index:60;opacity:0;transition:opacity .1s;
+  background:var(--ink);color:var(--paper);padding:8px 11px;border-radius:3px;
+  font-size:12px;font-family:"IBM Plex Mono",monospace;line-height:1.55;
+  box-shadow:0 4px 16px rgba(0,0,0,.28);white-space:nowrap;
+}
+.tip.on{opacity:1}
+
+footer{padding-block:46px 70px;font-size:13.5px;color:var(--ink-3);max-width:70ch}
+footer p{margin:0 0 12px}
+.src{font-family:"IBM Plex Mono",monospace;font-size:11.5px;line-height:1.9;margin-top:16px}
+@media(max-width:640px){header{padding-block:42px 0}section{padding-block:42px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+
+<header>
+  <div class="kicker"><span>NHANES 2013–2023</span><span>Survey-weighted</span><span>n ≈ 31,000</span></div>
+  <h1>What American bodies carry</h1>
+  <p class="deck">Federal health surveys measure pesticide exposure and nutritional status <em>in the same people.</em> Read that way, two things separate cleanly: what Americans share, and what they don't.</p>
+
+  <div class="hero">
+    <div class="big">1.9<span>×</span></div>
+    <div class="cap">Children aged 3–11 carry roughly <b>twice the adult body burden</b> of every pesticide measured — glyphosate, the chlorpyrifos metabolite TCPy, and 2,4-D. The gap holds after correcting for urine dilution. It is not an artifact of children's smaller bodies; correcting for that made it <b>larger.</b></div>
+  </div>
+</header>
+
+<!-- ===== 1. CHILDREN ===== -->
+<section>
+  <div class="measure">
+    <div class="tag">Finding 01 — Children</div>
+    <h2>The youngest bodies carry the most</h2>
+    <p>Urinary metabolite concentrations put children highest for all three compounds. That is exactly what a well-known artifact would produce: children have less muscle mass, excrete less creatinine, and so show higher concentrations of anything per millilitre of urine — regardless of what they actually took in.</p>
+    <p>So the finding was tested against its own most likely explanation. Dividing each measurement by urinary creatinine — the standard correction for urine dilution — <strong>widened the gap in every case</strong>: glyphosate from 1.54× to <strong>1.87×</strong>, TCPy from 1.36× to <strong>1.88×</strong>, 2,4-D from 1.44× to <strong>1.83×</strong>.</p>
+    <p>The skeptical test strengthened the result. Children are not producing more concentrated urine — they are carrying more.</p>
+  </div>
+
+  <div class="panel">
+    <p class="ptitle">Child and adult body burden, before and after dilution correction</p>
+    <p class="psub">Weighted median urinary concentration, children 3–11 against adults 40–59. Left of each pair: raw ng/mL. Right: micrograms per gram of creatinine, which removes the dilution effect. If the child bar shrank toward the adult bar after correction, the finding would be an artifact.</p>
+    <div class="chart-scroll"><svg id="c1" viewBox="0 0 880 400" role="img" aria-label="Paired bars comparing child and adult pesticide burden before and after creatinine correction"></svg></div>
+    <div class="legend">
+      <span><i class="sw" style="background:var(--child)"></i>Children 3–11</span>
+      <span><i class="sw" style="background:var(--adult)"></i>Adults 40–59</span>
+    </div>
+    <details><summary>Data table</summary><div class="tscroll"><table id="t1"></table></div></details>
+  </div>
+
+  <div class="panel">
+    <p class="ptitle">Body burden across the whole age range</p>
+    <p class="psub">Creatinine-corrected weighted medians, µg/g. The pattern is a J: highest in young children, lowest in working-age adults, rising again after 60.</p>
+    <div class="chart-scroll"><svg id="c2" viewBox="0 0 880 360" role="img" aria-label="Line chart of creatinine-corrected pesticide burden by age group"></svg></div>
+    <div class="legend" id="leg2"></div>
+  </div>
+
+  <div class="note red">
+    <span class="h">Why this is a policy fact, not just a number</span>
+    The Food Quality Protection Act of 1996 requires EPA to apply an <strong>additional tenfold safety factor</strong> for infants and children when setting pesticide tolerances, unless it has reliable data showing a smaller factor is safe. These measurements describe the population that provision exists to protect, and they show that population carrying the highest measured internal dose.
+  </div>
+
+  <div class="note">
+    <span class="h">What a urinary metabolite is and is not</span>
+    It is an internal dose marker covering roughly the last day or two — direct evidence that exposure occurred and that the compound entered the body. It is <strong>not</strong> a measure of harm, and nothing here establishes that any individual was injured. Detection is not toxicity.
+  </div>
+</section>
+
+<!-- ===== 2. SHARED ===== -->
+<section>
+  <div class="measure">
+    <div class="tag shared">Finding 02 — What is shared</div>
+    <h2>Exposure is nearly universal, and income buys no exit</h2>
+    <p>Glyphosate is detectable in <strong>77.6%</strong> of Americans tested. The chlorpyrifos metabolite TCPy is detectable in <strong>98.8%</strong> — effectively everyone. 2,4-D in <strong>81.8%</strong>.</p>
+    <p>And it is flat across the income distribution. Families below the federal poverty line and families at four times the poverty line differ by under three percentage points for glyphosate, and by less than two for TCPy. For 2,4-D the gradient runs slightly the <em>other</em> way — higher-income households show marginally more.</p>
+    <p>This is not a story about a contaminated underclass. Whatever pathway is delivering these compounds into people — diet, water, drift, household use — money does not meaningfully interrupt it.</p>
+  </div>
+
+  <div class="panel">
+    <p class="ptitle">Detection frequency by family income</p>
+    <p class="psub">Percent of people with the compound detectable in urine, by ratio of family income to the federal poverty line. Flat lines mean exposure does not sort by income.</p>
+    <div class="chart-scroll"><svg id="c3" viewBox="0 0 880 380" role="img" aria-label="Detection frequency by income showing flat lines across income groups"></svg></div>
+    <div class="legend" id="leg3"></div>
+    <details><summary>Data table</summary><div class="tscroll"><table id="t3"></table></div></details>
+  </div>
+</section>
+
+<!-- ===== 3. NOT SHARED ===== -->
+<section>
+  <div class="measure">
+    <div class="tag split">Finding 03 — What is not</div>
+    <h2>Nutrition sorts by income, steeply</h2>
+    <p>Run the same income breakdown on nutritional status and the flat lines become staircases.</p>
+    <p>Iron deficiency among women of reproductive age: <strong>19.2%</strong> below the poverty line against <strong>11.9%</strong> at four times it. Vitamin D deficiency among adults: <strong>34.7%</strong> against <strong>14.1%</strong> — a two-and-a-half-fold gap. Folate insufficiency: <strong>25.1%</strong> against <strong>12.9%</strong>.</p>
+    <p>Every gradient runs the same direction, monotonically, across all four income bands. By race and ethnicity the iron gap is as stark: <strong>21.6%</strong> of Mexican American women and <strong>21.1%</strong> of Black non-Hispanic women are iron deficient, against <strong>11.4%</strong> of white non-Hispanic women.</p>
+    <p>Put beside the previous chart, the shape of the problem is legible. <em>Contamination is shared. Nutrition is rationed.</em></p>
+  </div>
+
+  <div class="panel">
+    <p class="ptitle">Deficiency prevalence by family income</p>
+    <p class="psub">Same income bands as the chart above, same survey, same people. Iron deficiency is ferritin below 15 ng/mL in women 12–49; vitamin D deficiency is 25(OH)D below 50 nmol/L; folate insufficiency is RBC folate below 340 ng/mL. Adults 20+ except where noted.</p>
+    <div class="chart-scroll"><svg id="c4" viewBox="0 0 880 400" role="img" aria-label="Grouped bars showing deficiency prevalence rising as income falls"></svg></div>
+    <div class="legend" id="leg4"></div>
+    <details><summary>Data table</summary><div class="tscroll"><table id="t4"></table></div></details>
+  </div>
+
+  <div class="note red">
+    <span class="h">Ferritin undercounts</span>
+    Ferritin rises with inflammation, so the conventional 15 ng/mL threshold misses iron-deficient people who are also inflamed — a group that skews toward exactly the populations showing the highest rates here. These prevalences are floors, not central estimates.
+  </div>
+</section>
+
+<!-- ===== 4. THE NULL ===== -->
+<section>
+  <div class="measure">
+    <div class="tag">Finding 04 — A negative result</div>
+    <h2>Iron status is not getting worse over time</h2>
+    <p>A common argument holds that declining nutrient density in food should show up as worsening nutritional status in people. On iron, in this data, it does not.</p>
+    <p>Iron deficiency among American women aged 12–49 was <strong>14.0%</strong> in 2005–06 and <strong>14.6%</strong> in 2021–23 — flat across sixteen years, with no trend. Median ferritin actually <em>rose</em> 19%, from 33.0 to 39.2 ng/mL.</p>
+    <p>This is reported because it is true, not because it helps. Any argument that food has become less nourishing and that people are measurably worse off for it has to reckon with this series first. The distributional finding above is strong; the temporal one is absent.</p>
+  </div>
+
+  <div class="panel">
+    <p class="ptitle">Iron deficiency among US women 12–49, 2005–2023</p>
+    <p class="psub">Survey-weighted prevalence, ferritin below 15 ng/mL. Bands show 95% intervals that ignore the complex survey design and are therefore narrower than a correct interval — they indicate precision, and are not for formal testing.</p>
+    <div class="chart-scroll"><svg id="c5" viewBox="0 0 880 340" role="img" aria-label="Iron deficiency prevalence over time showing a flat trend"></svg></div>
+    <details><summary>Data table</summary><div class="tscroll"><table id="t5"></table></div></details>
+  </div>
+</section>
+
+<!-- ===== SO WHAT ===== -->
+<section>
+  <div class="measure">
+    <div class="tag">What follows</div>
+    <h2>Two problems, not one</h2>
+    <p>These findings do not combine into a single mechanism, and forcing them together would be the fastest way to lose the argument. Nothing here shows that pesticide exposure causes nutritional deficiency. The two distributions have different shapes precisely because they have different causes.</p>
+    <p>What the data supports is narrower and more useful. <strong>Pesticide exposure is a universal condition of American life</strong> — measurable in three-quarters to nearly all of the population, with children carrying roughly double the adult burden, and with no income gradient to suggest anyone has opted out. <strong>Nutritional deficiency is a distributional failure</strong> — stable nationally, concentrated sharply among the poor, and unchanged for two decades.</p>
+    <p>The first is an argument about a regulatory standard that already exists in statute and is not visibly binding. The second is an argument about food access, and it needs no new toxicology to make.</p>
+  </div>
+
+  <div class="note">
+    <span class="h">Limits worth stating before anyone else does</span>
+    These are cross-sectional associations from a complex survey; none of them establish causation. Confidence intervals here ignore the design effect. The pesticide panels are random subsamples with their own weights, correctly applied but smaller than the full sample. Income and race are entangled in the United States and are reported separately rather than disentangled. And detection of a metabolite is evidence of exposure, not of injury.
+  </div>
+</section>
+
+<footer>
+  <p><strong>Reproduce:</strong> <code>scripts/eda_12_iron_deficiency.py</code>, <code>eda_13_who_bears_it.py</code>, <code>eda_14_exposure_by_income.py</code>, <code>eda_15_children_exposure.py</code>. Every input is mirrored with a retrieval timestamp and SHA-256.</p>
+  <div class="src">
+    CDC / NCHS — National Health and Nutrition Examination Survey, cycles 2005–06 through 2021–23<br>
+    Laboratory: FERTIN, FOLATE, VID, SSGLYP, UPHOPM, ALB_CR · Demographics: DEMO (MEC weights, design variables)<br>
+    Thresholds: WHO/CDC ferritin &lt;15 ng/mL · 25(OH)D &lt;50 nmol/L · RBC folate &lt;340 ng/mL
+  </div>
+</footer>
+</div>
+<div class="tip" id="tip"></div>
+
+<script>
+const D={
+  pair:[
+    {c:"Glyphosate",  uc:0.451,ua:0.292, cc:0.633,ca:0.339},
+    {c:"TCPy",        uc:1.500,ua:1.100, cc:1.959,ca:1.045},
+    {c:"2,4-D",       uc:0.390,ua:0.270, cc:0.569,ca:0.310}
+  ],
+  ages:["3–11","12–19","20–39","40–59","60+"],
+  byage:{ "Glyphosate":[0.633,0.322,0.271,0.339,0.394],
+          "TCPy":[1.959,0.980,0.930,1.045,1.400],
+          "2,4-D":[0.569,0.263,0.243,0.310,0.375] },
+  income:["<1.0","1.0–1.99","2.0–3.99","4.0+"],
+  detect:{ "Glyphosate":[79.3,79.1,77.5,76.9],
+           "TCPy":[98.4,99.2,99.7,98.0],
+           "2,4-D":[79.4,80.1,82.9,83.5] },
+  defic:{ "Iron deficiency (women 12–49)":[19.2,17.8,14.6,11.9],
+          "Vitamin D deficiency":[34.7,26.2,21.1,14.1],
+          "Folate insufficiency":[25.1,18.5,14.4,12.9] },
+  iron:[["2005-2006",14.0,12.0,16.0],["2007-2008",15.5,13.4,17.5],["2009-2010",16.5,14.6,18.4],
+        ["2015-2016",16.8,14.7,19.0],["2017-2018",15.0,12.7,17.4],["2017-2020",14.8,12.8,16.7],
+        ["2021-2023",14.6,12.5,16.6]]
+};
+const NS="http://www.w3.org/2000/svg";
+const el=(n,a={})=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e;};
+const cs=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const tip=document.getElementById("tip");
+function show(e,h){tip.innerHTML=h;tip.classList.add("on");
+  const r=tip.getBoundingClientRect();let x=e.clientX+14,y=e.clientY-12;
+  if(x+r.width>innerWidth-8)x=e.clientX-r.width-14;
+  if(y<8)y=8;if(y+r.height>innerHeight-8)y=innerHeight-r.height-8;
+  tip.style.left=x+"px";tip.style.top=y+"px";}
+function hide(){tip.classList.remove("on");}
+function txt(s,x,y,t,o={}){
+  const n=el("text",{x,y,"text-anchor":o.a||"middle","font-size":o.s||11.5,
+    fill:o.f||cs("--ink-3"),"font-family":o.ff||'"IBM Plex Mono",monospace',
+    "font-weight":o.w||400});n.textContent=t;s.appendChild(n);return n;}
+
+/* 1 — paired before/after bars */
+function c1(){
+  const s=document.getElementById("c1");s.innerHTML="";
+  const W=880,H=400,T=44,B=66,L=52;
+  const groupW=(W-L-28)/3, barW=26, gap=6;
+  txt(s,L,22,"ratio of child to adult, shown above each pair","start",{a:"start",s:11,f:cs("--ink-3")});
+  D.pair.forEach((d,gi)=>{
+    const gx=L+gi*groupW;
+    const max=Math.max(d.uc,d.ua,d.cc,d.ca)*1.3;
+    const ys=v=>H-B-(H-T-B)*(v/max);
+    // two sub-pairs: uncorrected, corrected
+    [["uncorrected",d.uc,d.ua,0],["corrected",d.cc,d.ca,1]].forEach(([lbl,cv,av,k])=>{
+      const bx=gx+22+k*(barW*2+gap+34);
+      [[cv,cs("--child"),"Children 3–11",0],[av,cs("--adult"),"Adults 40–59",1]].forEach(([v,col,who,j])=>{
+        const x=bx+j*(barW+2);
+        const r=el("rect",{x,y:ys(v),width:barW,height:H-B-ys(v),fill:col,rx:3});
+        r.addEventListener("mousemove",e=>show(e,`<b>${d.c}</b> · ${lbl}<br>${who}<br>${v.toFixed(3)}`));
+        r.addEventListener("mouseleave",hide);
+        s.appendChild(r);
+      });
+      txt(s,bx+barW,H-B+18,lbl,{s:10.5});
+      const ratio=(cv/av);
+      txt(s,bx+barW,ys(Math.max(cv,av))-9,ratio.toFixed(2)+"×",
+        {s:12.5,f:k?cs("--child"):cs("--ink-3"),w:500});
+    });
+    txt(s,gx+groupW/2-8,H-B+42,d.c,{s:13.5,f:cs("--ink"),ff:'"Source Sans 3",sans-serif',w:600});
+    if(gi<2) s.appendChild(el("line",{x1:gx+groupW-6,x2:gx+groupW-6,y1:T-6,y2:H-B+4,
+      stroke:cs("--rule"),"stroke-width":1}));
+  });
+  s.appendChild(el("line",{x1:L-6,x2:W-14,y1:H-B,y2:H-B,stroke:cs("--rule"),"stroke-width":1}));
+  txt(s,L-10,H-B+4,"0","end",{a:"end"});
+}
+
+/* 2 — burden by age, 3 series, own scale each (normalized to the 20–39 trough) */
+function c2(){
+  const s=document.getElementById("c2");s.innerHTML="";
+  const W=880,H=360,L=62,R=118,T=28,B=52;
+  const keys=Object.keys(D.byage);
+  const xs=i=>L+(W-L-R)*i/(D.ages.length-1);
+  const max=2.1, ys=v=>T+(H-T-B)*(1-v/max);
+  for(let v=0;v<=2;v+=0.5){
+    s.appendChild(el("line",{x1:L,x2:W-R,y1:ys(v),y2:ys(v),stroke:cs("--rule-2"),"stroke-width":1}));
+    txt(s,L-10,ys(v)+4,v.toFixed(1),{a:"end"});
+  }
+  txt(s,L-10,ys(2)-14,"µg/g",{a:"end",s:10});
+  D.ages.forEach((a,i)=>txt(s,xs(i),H-B+20,a,{s:12}));
+  const cols=[cs("--child"),cs("--adult"),cs("--ink-2")];
+  const leg=document.getElementById("leg2");leg.innerHTML="";
+  keys.forEach((k,ki)=>{
+    const v=D.byage[k],col=cols[ki];
+    s.appendChild(el("path",{d:v.map((y,i)=>(i?"L":"M")+xs(i)+" "+ys(y)).join(" "),
+      fill:"none",stroke:col,"stroke-width":2,"stroke-linejoin":"round"}));
+    v.forEach((y,i)=>{
+      const c=el("circle",{cx:xs(i),cy:ys(y),r:5,fill:col,stroke:cs("--card"),"stroke-width":2});
+      c.addEventListener("mousemove",e=>show(e,`<b>${k}</b><br>age ${D.ages[i]}<br>${y.toFixed(3)} µg/g`));
+      c.addEventListener("mouseleave",hide);s.appendChild(c);
+    });
+    txt(s,xs(4)+12,ys(v[4])+4,k,{a:"start",s:12.5,f:col,ff:'"Source Sans 3",sans-serif',w:600});
+    leg.insertAdjacentHTML("beforeend",
+      `<span><i class="sw" style="background:${col}"></i>${k}</span>`);
+  });
+}
+
+/* 3 — detection by income (flat) */
+function c3(){
+  const s=document.getElementById("c3");s.innerHTML="";
+  const W=880,H=380,L=62,R=126,T=26,B=58;
+  const xs=i=>L+(W-L-R)*i/(D.income.length-1);
+  const ys=v=>T+(H-T-B)*(1-(v-60)/45);
+  for(let v=60;v<=100;v+=10){
+    s.appendChild(el("line",{x1:L,x2:W-R,y1:ys(v),y2:ys(v),stroke:cs("--rule-2"),"stroke-width":1}));
+    txt(s,L-10,ys(v)+4,v+"%",{a:"end"});
+  }
+  D.income.forEach((g,i)=>txt(s,xs(i),H-B+20,g,{s:12}));
+  txt(s,(L+W-R)/2,H-B+44,"family income ÷ federal poverty line",{s:11.5});
+  const cols=[cs("--child"),cs("--adult"),cs("--ink-2")];
+  const leg=document.getElementById("leg3");leg.innerHTML="";
+  Object.keys(D.detect).forEach((k,ki)=>{
+    const v=D.detect[k],col=cols[ki];
+    s.appendChild(el("path",{d:v.map((y,i)=>(i?"L":"M")+xs(i)+" "+ys(y)).join(" "),
+      fill:"none",stroke:col,"stroke-width":2}));
+    v.forEach((y,i)=>{
+      const c=el("circle",{cx:xs(i),cy:ys(y),r:5,fill:col,stroke:cs("--card"),"stroke-width":2});
+      c.addEventListener("mousemove",e=>show(e,`<b>${k}</b><br>income ${D.income[i]}<br>${y.toFixed(1)}% detected`));
+      c.addEventListener("mouseleave",hide);s.appendChild(c);
+    });
+    txt(s,xs(3)+12,ys(v[3])+4,k,{a:"start",s:12.5,f:col,ff:'"Source Sans 3",sans-serif',w:600});
+    leg.insertAdjacentHTML("beforeend",`<span><i class="sw" style="background:${col}"></i>${k}</span>`);
+  });
+}
+
+/* 4 — deficiency by income (steep) */
+function c4(){
+  const s=document.getElementById("c4");s.innerHTML="";
+  const W=880,H=400,L=62,R=24,T=30,B=76;
+  const keys=Object.keys(D.defic);
+  const gw=(W-L-R)/keys.length, bw=Math.min(40,(gw-40)/4);
+  const ys=v=>H-B-(H-T-B)*(v/40);
+  for(let v=0;v<=40;v+=10){
+    s.appendChild(el("line",{x1:L,x2:W-R,y1:ys(v),y2:ys(v),stroke:cs("--rule-2"),"stroke-width":1}));
+    txt(s,L-10,ys(v)+4,v+"%",{a:"end"});
+  }
+  const shades=[1,.78,.56,.36];
+  const leg=document.getElementById("leg4");leg.innerHTML="";
+  D.income.forEach((g,i)=>leg.insertAdjacentHTML("beforeend",
+    `<span><i class="sw bar" style="background:var(--grad);opacity:${shades[i]}"></i>income ${g}</span>`));
+  keys.forEach((k,ki)=>{
+    const gx=L+ki*gw+18;
+    D.defic[k].forEach((v,i)=>{
+      const x=gx+i*(bw+3);
+      const r=el("rect",{x,y:ys(v),width:bw,height:H-B-ys(v),fill:cs("--grad"),
+        opacity:shades[i],rx:3});
+      r.addEventListener("mousemove",e=>show(e,`<b>${k}</b><br>income ${D.income[i]}<br>${v.toFixed(1)}%`));
+      r.addEventListener("mouseleave",hide);s.appendChild(r);
+      txt(s,x+bw/2,ys(v)-7,v.toFixed(1),{s:11,f:cs("--ink-2")});
+    });
+    const ratio=(D.defic[k][0]/D.defic[k][3]).toFixed(2);
+    txt(s,gx+(bw+3)*2,H-B+22,k,{s:13,f:cs("--ink"),ff:'"Source Sans 3",sans-serif',w:600});
+    txt(s,gx+(bw+3)*2,H-B+42,`poorest ${ratio}× richest`,{s:11.5,f:cs("--grad"),w:500});
+  });
+  s.appendChild(el("line",{x1:L,x2:W-R,y1:H-B,y2:H-B,stroke:cs("--rule"),"stroke-width":1}));
+}
+
+/* 5 — iron over time (flat) */
+function c5(){
+  const s=document.getElementById("c5");s.innerHTML="";
+  const W=880,H=340,L=62,R=34,T=28,B=64;
+  const n=D.iron.length;
+  const xs=i=>L+(W-L-R)*i/(n-1);
+  const ys=v=>T+(H-T-B)*(1-(v-8)/16);
+  for(let v=8;v<=24;v+=4){
+    s.appendChild(el("line",{x1:L,x2:W-R,y1:ys(v),y2:ys(v),stroke:cs("--rule-2"),"stroke-width":1}));
+    txt(s,L-10,ys(v)+4,v+"%",{a:"end"});
+  }
+  // interval band
+  let band=D.iron.map((d,i)=>(i?"L":"M")+xs(i)+" "+ys(d[3])).join(" ");
+  for(let i=n-1;i>=0;i--) band+=" L"+xs(i)+" "+ys(D.iron[i][2]);
+  s.appendChild(el("path",{d:band+" Z",fill:cs("--adult"),opacity:.14}));
+  s.appendChild(el("path",{d:D.iron.map((d,i)=>(i?"L":"M")+xs(i)+" "+ys(d[1])).join(" "),
+    fill:"none",stroke:cs("--adult"),"stroke-width":2.5}));
+  D.iron.forEach((d,i)=>{
+    const c=el("circle",{cx:xs(i),cy:ys(d[1]),r:5,fill:cs("--adult"),stroke:cs("--card"),"stroke-width":2});
+    c.addEventListener("mousemove",e=>show(e,`<b>${d[0]}</b><br>${d[1].toFixed(1)}% deficient<br>95% CI ${d[2].toFixed(1)}–${d[3].toFixed(1)}`));
+    c.addEventListener("mouseleave",hide);s.appendChild(c);
+    txt(s,xs(i),H-B+20,d[0].slice(2,7),{s:10.5});
+    txt(s,xs(i),H-B+36,d[0].slice(-2),{s:10.5});
+  });
+  txt(s,xs(0),ys(D.iron[0][1])-16,"14.0%",{s:12,f:cs("--adult"),w:500});
+  txt(s,xs(n-1),ys(D.iron[n-1][1])-16,"14.6%",{s:12,f:cs("--adult"),w:500});
+}
+
+function tbl(id,head,rows){
+  const t=document.getElementById(id);if(!t)return;
+  t.innerHTML="<thead><tr>"+head.map(h=>`<th>${h}</th>`).join("")+"</tr></thead><tbody>"+
+    rows.map(r=>"<tr>"+r.map((c,i)=>i===0?`<td>${c}</td>`:`<td class="n">${c}</td>`).join("")+"</tr>").join("")+"</tbody>";
+}
+tbl("t1",["Compound","Child raw","Adult raw","Raw ratio","Child corr.","Adult corr.","Corr. ratio"],
+  D.pair.map(d=>[d.c,d.uc.toFixed(3),d.ua.toFixed(3),(d.uc/d.ua).toFixed(2)+"×",
+    d.cc.toFixed(3),d.ca.toFixed(3),(d.cc/d.ca).toFixed(2)+"×"]));
+tbl("t3",["Income ÷ poverty line","Glyphosate","TCPy","2,4-D"],
+  D.income.map((g,i)=>[g,D.detect.Glyphosate[i].toFixed(1)+"%",
+    D.detect.TCPy[i].toFixed(1)+"%",D.detect["2,4-D"][i].toFixed(1)+"%"]));
+tbl("t4",["Income ÷ poverty line","Iron (women 12–49)","Vitamin D","Folate"],
+  D.income.map((g,i)=>[g,D.defic["Iron deficiency (women 12–49)"][i].toFixed(1)+"%",
+    D.defic["Vitamin D deficiency"][i].toFixed(1)+"%",
+    D.defic["Folate insufficiency"][i].toFixed(1)+"%"]));
+tbl("t5",["Cycle","% deficient","95% CI low","95% CI high"],
+  D.iron.map(d=>[d[0],d[1].toFixed(1),d[2].toFixed(1),d[3].toFixed(1)]));
+
+function draw(){c1();c2();c3();c4();c5();}
+draw();
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change",draw);
+new MutationObserver(draw).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+addEventListener("resize",()=>{clearTimeout(window.__t);window.__t=setTimeout(draw,180);});
+</script>

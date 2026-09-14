@@ -1,0 +1,64 @@
+commodity,commod_code,cluster,n_samples,years_sampled,mean_residues_per_sample,pct_samples_with_any_detection
+Pears,PE,1,1340,2021|2022,2.776,90.8
+Apples,AP,1,981,2023|2024,2.722,95.4
+Tangerines,TA,1,1373,2019|2020|2021,1.667,92.8
+Oranges,OG,1,689,2024,1.518,90.0
+Baby Food - Pears,IP,2,527,2022|2023,1.793,87.3
+Almonds,AL,2,667,2023|2024,1.187,91.5
+Grapes,GR,3,1363,2022|2023,4.302,95.3
+Peaches,PC,3,904,2021|2022,3.384,98.1
+Plums,PU,3,1142,2021|2022|2023,1.916,93.3
+Sweet Bell Peppers,PP,4,1318,2019|2020|2021,2.89,82.3
+Cilantro,CL,4,166,2019,2.753,88.0
+Cucumbers,CU,4,661,2024,2.717,84.6
+Tomatoes,TO,4,1374,2022|2023,2.569,82.4
+Cherry Tomatoes,CT,4,492,2024,2.307,80.7
+Green Beans,GB,4,1314,2020|2021|2022,1.827,74.4
+Eggplant,EP,4,1327,2020|2021,1.587,71.3
+Winter Squash,WS,4,1244,2020|2021,1.556,70.9
+Summer Squash,SS,4,1313,2020|2021|2022,1.471,67.9
+Celery,CE,4,1316,2021|2022|2023,1.336,76.0
+Baby Food - Peaches,IH,4,679,2022|2023,1.289,46.1
+Cantaloupe,CN,4,1356,2019|2020|2021,1.271,70.6
+Broccoli,BR,4,1333,2020|2021,1.242,68.0
+Tomatillos,TT,4,851,2023|2024,1.139,60.0
+Potatoes,PO,4,1383,2022|2023|2024,0.836,47.7
+Rice,RI,4,519,2019,0.817,43.5
+Butter,BU,4,673,2021|2022,0.755,44.3
+Cauliflower,CF,4,1292,2019|2020|2021,0.627,51.7
+Baby Food - Applesauce,IA,4,570,2023,0.563,29.5
+Carrots,CR,4,1219,2020|2021|2022,0.554,35.8
+Radishes,RD,4,1330,2019|2020,0.505,32.0
+Mushrooms,MU,4,1341,2022|2023,0.503,46.9
+Baby Food - Green Beans,IG,4,702,2022|2023,0.473,42.0
+"Lettuce, Head",LH,4,657,2024,0.457,33.3
+Watermelon,WM,4,1367,2021|2022|2023,0.434,32.9
+"Peaches, Frozen",HZ,4,371,2021|2022,0.399,27.2
+"Sweet Peas, Frozen",PS,4,112,2019,0.375,33.9
+Baby Food - Carrots,IC,4,550,2023,0.369,35.8
+Orange Juice,OJ,4,642,2019|2020,0.357,31.2
+Cabbage,CG,4,291,2019,0.337,25.4
+Peanut Butter,PB,4,626,2022,0.321,31.6
+Onions,ON,4,847,2023|2024,0.29,25.0
+"Pumpkin, Canned",PK,4,592,2024,0.225,20.1
+Baby Food - Peas,IE,4,575,2023,0.183,18.3
+"Sweet Peas, Canned",SD,4,339,2019,0.171,16.8
+"Garbanzo Beans, Dried",ZD,4,584,2019,0.128,12.0
+Kiwi Fruit,KW,4,827,2019|2020,0.127,12.2
+Avocado,AV,4,840,2023|2024,0.126,11.9
+Baby Food - Sweet Potatoe,IS,4,570,2022|2023,0.112,11.2
+"Sweet Corn, Fresh",CB,4,749,2023|2024,0.072,6.8
+"Pineapple, Fresh",PN,4,634,2024,0.071,6.9
+Oats,OA,4,546,2019,0.048,4.6
+Asparagus,AS,4,287,2019,0.038,3.8
+"Sweet Corn, Frozen",CS,4,121,2023|2024,0.025,2.5
+Basil,BS,5,272,2019,5.026,93.4
+Collard Greens,GL,5,607,2019|2020,3.657,88.1
+Mustard Greens,MG,5,533,2019,3.538,81.8
+"Spinach, Frozen",SF,5,171,2019,2.743,90.1
+"Spinach, Canned",SC,5,375,2019,2.179,96.3
+"Lettuce, Leaf",LL,5,659,2024,2.02,82.5
+"Strawberries, Frozen",SZ,6,501,2019,5.244,94.8
+Tomato Paste,TP,6,614,2019|2020,3.635,91.7
+"Blackberries, Fresh",BK,6,885,2023|2024,3.22,86.1
+"Blueberries, Fresh",BB,6,1202,2020|2021|2022,2.74,84.5
