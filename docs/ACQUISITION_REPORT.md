@@ -1,7 +1,8 @@
 # Acquisition report — 2026-09-14
 
-**629 files, 10.6 GB, 13 datasets. All 629 checksums verified; no corrupt
-archives; every dataset opened and its schema confirmed.**
+**651 files, 12.4 GB, 14 datasets. All checksums verified; no corrupt archives;
+every dataset opened and its schema confirmed. Two truncated PDFs found and
+quarantined (see gap 3).**
 
 ## What landed
 
@@ -51,10 +52,18 @@ definitional rows (classified, not discarded).
 2. **FDA FY2014** — only the report and manual are archived; the five data
    archives are not.
 3. **2022 NRI Summary Report (Sept 2025)** — tables 15–18 are the erosion
-   backbone. Not in the Wayback index under any `nrcs.usda.gov/sites/default/
-   files/2025-*` path and NRCS blocks direct access. Needs a browser download.
-   The 2017 report is in custody as an interim — but see the back-updating
-   warning in `plans/step-04-soil.md` before using the two together.
+   backbone. **Correction to an earlier version of this report:** the file *is*
+   archived, at `.../sites/default/files/2026-02/2022 NRI Summary Report.pdf`;
+   the earlier claim that it was absent came from scanning only the `2025-*`
+   directories. However the single capture is **itself truncated at exactly
+   5 MiB** with no trailing `%%EOF`, and a Range request past that offset 404s,
+   so the bytes are not in the archive. `Historical-Changes-In-Soil-Erosion.pdf`
+   is truncated identically. Both are quarantined in `data/quarantine/`. Needs a
+   browser download. The 2017 report is in custody and intact as an interim —
+   see the back-updating warning in `plans/step-04-soil.md` first.
+
+   This is not a general Wayback limit: other captures here came through intact
+   at 8.1 MB and 10.5 MB.
 4. **TDS pesticide results FY2018+** — only elements and radionuclides are
    posted at the archived URLs. The interactive TDS tool and new data released
    2026-01-27 post-date the newest Wayback capture found (2025-02-08).

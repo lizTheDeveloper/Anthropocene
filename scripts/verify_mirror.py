@@ -35,6 +35,7 @@ def verify_checksums():
     return bad == 0 and missing == 0
 
 def validate_structure(sample_per_dir=3):
+    """PDFs are checked exhaustively; other formats are sampled per directory."""
     """Open a sample of archives/tables per directory and confirm they parse."""
     problems = []
     checked = 0
@@ -43,7 +44,10 @@ def validate_structure(sample_per_dir=3):
         if p.is_file() and p.stat().st_size > 0:
             by_dir[p.parent].append(p)
     for d, files in sorted(by_dir.items()):
-        for p in sorted(files)[:sample_per_dir]:
+        sample = sorted(files)[:sample_per_dir]
+        # Always include every PDF -- see the truncation note below.
+        sample += [f for f in sorted(files) if f.suffix.lower() == ".pdf" and f not in sample]
+        for p in sample:
             suf = p.suffix.lower()
             try:
                 if suf == ".zip":
@@ -66,12 +70,13 @@ def validate_structure(sample_per_dir=3):
                     b = p.read_bytes()
                     if b[:5] != b"%PDF-":
                         problems.append((p, "not a PDF")); continue
-                    # A truncated PDF still starts with %PDF-, so the header
-                    # alone proves nothing. Every complete PDF ends with %%EOF;
-                    # a capture cut mid-stream (observed at exactly 5 MiB on two
-                    # Wayback records) has none, and would otherwise pass.
+                    # A header-only check passes truncated PDFs. Two NRI files
+                    # arrived cut at exactly 5 MiB -- the Wayback captures are
+                    # themselves incomplete -- and looked fine until the missing
+                    # trailing %%EOF was checked. Size alone is not a signal
+                    # either; check the terminator.
                     if b"%%EOF" not in b[-4096:]:
-                        problems.append((p, f"TRUNCATED: no trailing %%EOF ({len(b):,} bytes)"))
+                        problems.append((p, f"truncated PDF: no trailing %%EOF ({len(b):,} bytes)"))
                         continue
                     checked += 1
             except Exception as e:
