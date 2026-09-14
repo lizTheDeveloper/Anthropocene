@@ -1,0 +1,569 @@
+<title>The Measurement Gap</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  color-scheme: light;
+  --ground:#f7f8f5; --surface:#ffffff; --surface-2:#f1f3ee;
+  --ink:#14171a; --ink-2:#575e58; --ink-3:#878e86;
+  --rule:#dde1da; --rule-2:#eaede6;
+  --accent:#2a78d6;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a;
+  --alert:#b8352c; --alert-bg:#fbeeec;
+  --shadow:0 1px 2px rgba(20,23,26,.05), 0 8px 24px -12px rgba(20,23,26,.12);
+}
+@media (prefers-color-scheme: dark){
+  :root:where(:not([data-theme="light"])){
+    color-scheme: dark;
+    --ground:#151816; --surface:#1d211e; --surface-2:#232823;
+    --ink:#f0f3ee; --ink-2:#a8b0a6; --ink-3:#7b837a;
+    --rule:#2e332f; --rule-2:#262b27;
+    --accent:#3987e5;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70;
+    --alert:#e66767; --alert-bg:#2a1f1e;
+    --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.5);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --ground:#151816; --surface:#1d211e; --surface-2:#232823;
+  --ink:#f0f3ee; --ink-2:#a8b0a6; --ink-3:#7b837a;
+  --rule:#2e332f; --rule-2:#262b27;
+  --accent:#3987e5;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70;
+  --alert:#e66767; --alert-bg:#2a1f1e;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px -12px rgba(0,0,0,.5);
+}
+
+*{box-sizing:border-box}
+body{
+  background:var(--ground); color:var(--ink);
+  font-family:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16px; line-height:1.65; margin:0;
+  padding-block:0; padding-left:20px; padding-right:20px;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1140px;margin:0 auto}
+.measure{max-width:660px}
+
+/* ---- masthead ---- */
+header{padding-block:56px 40px;border-bottom:2px solid var(--ink)}
+.eyebrow{
+  font-family:"IBM Plex Mono",ui-monospace,monospace; font-size:11px;
+  letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3);
+  display:flex; gap:14px; flex-wrap:wrap; margin-bottom:22px;
+}
+h1{
+  font-family:Spectral,Georgia,serif; font-weight:600;
+  font-size:clamp(2.3rem,5.4vw,3.9rem); line-height:1.04;
+  letter-spacing:-.018em; margin:0 0 18px; text-wrap:balance; max-width:16ch;
+}
+.standfirst{
+  font-family:Spectral,Georgia,serif; font-size:clamp(1.05rem,2.1vw,1.28rem);
+  line-height:1.55; color:var(--ink-2); max-width:62ch; margin:0;
+}
+.standfirst em{color:var(--ink);font-style:italic}
+
+/* ---- key figures ---- */
+.figures{
+  display:grid; grid-template-columns:repeat(auto-fit,minmax(178px,1fr));
+  gap:0; border-bottom:1px solid var(--rule); margin-bottom:8px;
+}
+.fig{padding:26px 22px 26px 0;border-right:1px solid var(--rule-2)}
+.fig:last-child{border-right:0}
+.fig .n{
+  font-family:"IBM Plex Mono",monospace; font-size:clamp(1.7rem,3.4vw,2.3rem);
+  font-weight:500; line-height:1; letter-spacing:-.02em;
+  font-variant-numeric:tabular-nums; display:block; margin-bottom:9px;
+}
+.fig .l{font-size:13px;line-height:1.45;color:var(--ink-2)}
+.fig.neg .n{color:var(--alert)}
+.fig.pos .n{color:var(--accent)}
+
+/* ---- findings ---- */
+section.finding{padding-block:52px;border-bottom:1px solid var(--rule)}
+.fnum{
+  font-family:"IBM Plex Mono",monospace; font-size:11px; letter-spacing:.14em;
+  text-transform:uppercase; color:var(--accent); margin-bottom:12px;
+}
+h2{
+  font-family:Spectral,Georgia,serif; font-weight:600;
+  font-size:clamp(1.5rem,3.1vw,2.05rem); line-height:1.16;
+  letter-spacing:-.012em; margin:0 0 16px; text-wrap:balance; max-width:22ch;
+}
+h3{
+  font-family:"IBM Plex Sans",sans-serif; font-weight:600; font-size:.95rem;
+  letter-spacing:.01em; margin:34px 0 10px;
+}
+p{margin:0 0 15px}
+.measure p:last-child{margin-bottom:0}
+strong{font-weight:600}
+code,.mono{font-family:"IBM Plex Mono",monospace;font-size:.88em}
+.num{font-variant-numeric:tabular-nums}
+
+/* ---- chart panel ---- */
+.panel{
+  background:var(--surface); border:1px solid var(--rule); border-radius:3px;
+  padding:24px 22px 18px; margin:30px 0 0; box-shadow:var(--shadow);
+}
+.panel-head{margin-bottom:18px}
+.panel-title{font-weight:600;font-size:.95rem;margin:0 0 4px}
+.panel-sub{font-size:13px;color:var(--ink-2);margin:0;max-width:70ch}
+.chart-scroll{overflow-x:auto}
+svg{display:block;max-width:100%;height:auto}
+.legend{
+  display:flex;gap:20px;flex-wrap:wrap;margin:14px 0 0;
+  font-size:12.5px;color:var(--ink-2);
+}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.swatch{width:13px;height:3px;border-radius:2px;flex:none}
+.swatch.dot{width:10px;height:10px;border-radius:50%}
+
+/* ---- caveat / margin note ---- */
+.caveat{
+  border-left:2px solid var(--accent); padding:2px 0 2px 16px;
+  margin:26px 0 0; font-size:14px; color:var(--ink-2); max-width:62ch;
+}
+.caveat .h{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--accent);display:block;margin-bottom:5px;
+}
+.caveat.warn{border-left-color:var(--alert)}
+.caveat.warn .h{color:var(--alert)}
+
+/* ---- tables ---- */
+details.tbl{margin:16px 0 0;font-size:13.5px}
+details.tbl summary{
+  cursor:pointer;font-family:"IBM Plex Mono",monospace;font-size:11px;
+  letter-spacing:.11em;text-transform:uppercase;color:var(--ink-3);
+  padding:6px 0;list-style:none;
+}
+details.tbl summary::-webkit-details-marker{display:none}
+details.tbl summary::before{content:"▸ ";color:var(--accent)}
+details.tbl[open] summary::before{content:"▾ "}
+.tscroll{overflow-x:auto;margin-top:6px}
+table{border-collapse:collapse;width:100%;min-width:440px;font-size:13px}
+th,td{text-align:right;padding:6px 12px 6px 0;border-bottom:1px solid var(--rule-2);white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:400;
+  border-bottom:1px solid var(--rule);
+}
+td.n{font-variant-numeric:tabular-nums;font-family:"IBM Plex Mono",monospace}
+td.zero{color:var(--alert)}
+
+/* ---- stats strip ---- */
+.stats{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:1px;background:var(--rule);border:1px solid var(--rule);
+  border-radius:3px;margin:24px 0 0;overflow:hidden;
+}
+.stat{background:var(--surface);padding:16px 18px}
+.stat .k{
+  font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:7px;
+}
+.stat .v{font-family:"IBM Plex Mono",monospace;font-size:1.02rem;font-variant-numeric:tabular-nums}
+.sig{color:var(--accent);font-weight:500}
+.nsig{color:var(--ink-3)}
+
+/* ---- tooltip ---- */
+.tip{
+  position:fixed;pointer-events:none;z-index:50;opacity:0;transition:opacity .1s;
+  background:var(--ink);color:var(--ground);padding:7px 10px;border-radius:3px;
+  font-size:12px;font-family:"IBM Plex Mono",monospace;line-height:1.5;
+  box-shadow:0 4px 14px rgba(0,0,0,.25);white-space:nowrap;
+}
+.tip.on{opacity:1}
+
+footer{padding-block:44px 64px;font-size:13px;color:var(--ink-3);max-width:70ch}
+footer a{color:var(--accent)}
+footer p{margin:0 0 10px}
+.prov{
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;line-height:1.85;
+  color:var(--ink-3);margin-top:18px;
+}
+@media (max-width:640px){
+  .fig{border-right:0;border-bottom:1px solid var(--rule-2);padding-right:0}
+  .fig:last-child{border-bottom:0}
+  header{padding-block:40px 30px}
+  section.finding{padding-block:40px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">
+    <span>Exploratory analysis</span><span>USGS PNSP · EPA/USGS WQP · EPA ECOTOX</span><span>14 Sep 2026</span>
+  </div>
+  <h1>The measurement gap</h1>
+  <p class="standfirst">Four findings from the federal pesticide record. Total applied mass in the United States has barely moved since 1992 — but what is applied has been transformed, and <em>the systems built to watch it never followed.</em> The strongest claim in this data is not about harm. It is about what the government has stopped being able to see.</p>
+</header>
+
+<div class="figures">
+  <div class="fig neg"><span class="n">−10.1%</span><span class="l">Apparent fall in national pesticide use, 2016→2018, as published</span></div>
+  <div class="fig pos"><span class="n">+0.8%</span><span class="l">The same change once California and double-counted rows are corrected</span></div>
+  <div class="fig"><span class="n">17×</span><span class="l">Growth in glyphosate application, 1992→2018, against flat total mass</span></div>
+  <div class="fig neg"><span class="n">79%</span><span class="l">Of applied mass from compounds with zero comparable soil-toxicity endpoints</span></div>
+</div>
+
+<!-- ============ FINDING 1 ============ -->
+<section class="finding">
+  <div class="measure">
+    <div class="fnum">Finding 01 — Data integrity</div>
+    <h2>The decline in the published series is an artifact</h2>
+    <p>Summed as distributed, USGS county-level estimates show national agricultural pesticide use falling <strong>10.1%</strong> between 2016 and 2018. That fall is not real. Two defects produce it.</p>
+    <p><strong>California disappears.</strong> The 2017 and 2018 files are published as <code>noCA</code> / <code>NoDPR</code> — USGS substitutes California's own full-census reporting there and omits the state. California is <strong>12–13%</strong> of national mass. Comparing a 50-state year to a 49-state year manufactures a decline.</p>
+    <p><strong>Rows are double-counted.</strong> From 2016 the files carry <code>METOLACHLOR &amp; METOLACHLOR-S</code> and <code>DIMETHENAMID &amp; DIMETHENAMID-P</code> <em>alongside</em> their components. The aggregate equals the component sum exactly — ratio 1.000 in all three years — so naive summation inflates 2016–18 by <strong>8–9%</strong>.</p>
+    <p>Drop California from every year and remove the aggregate rows, and the 2016→2018 change is <strong>+0.8%</strong>. Use did not fall.</p>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">
+      <p class="panel-title">National agricultural pesticide use, 1992–2018</p>
+      <p class="panel-sub">EPest high estimate, millions of kg of active ingredient. The published series and the corrected series diverge sharply after 2016 — the gap is California plus double-counting, not chemistry.</p>
+    </div>
+    <div class="chart-scroll"><svg id="c1" viewBox="0 0 880 380" role="img" aria-label="Line chart comparing published and corrected national pesticide use 1992 to 2018"></svg></div>
+    <div class="legend">
+      <span><i class="swatch" style="background:var(--s2)"></i>As published (all rows; California missing 2017–18)</span>
+      <span><i class="swatch" style="background:var(--s1)"></i>Corrected (California excluded every year; aggregates removed)</span>
+    </div>
+    <details class="tbl"><summary>Data table</summary><div class="tscroll"><table id="t1"></table></div></details>
+  </div>
+
+  <div class="caveat">
+    <span class="h">Standing caveat</span>
+    1992–2012 are <strong>final</strong> estimates; 2013–2018 are <strong>preliminary</strong> and subject to revision. USGS has said final 2018–22 figures will publish; until then the most recent usable county-level year is 2018, preliminary, and missing California in the source files.
+  </div>
+</section>
+
+<!-- ============ FINDING 2 ============ -->
+<section class="finding">
+  <div class="measure">
+    <div class="fnum">Finding 02 — Composition</div>
+    <h2>Mass is flat. The chemistry underneath it is not</h2>
+    <p>On the corrected basis, total applied mass rose <strong>14.7%</strong> across twenty-six years — and just <strong>2.3%</strong> if you hold the compound roster fixed. <em>An argument that America is using ever more pesticide by weight does not survive this data.</em> Say it anyway and the rebuttal is one chart.</p>
+    <p>The change is compositional. Glyphosate went from <strong>6.9</strong> million kg in 1992 to <strong>119.2</strong> million kg in 2018 — a 17-fold rise, from 1.8% of national mass to 26.6%. Everything else, summed, <em>fell</em> by 13.6 million kg over the same period.</p>
+    <p>One molecule replaced a large part of the American pesticide market. Methyl bromide fell 34.6 million kg, alachlor 25.7, cyanazine 15.7. The total held roughly steady because glyphosate grew into the space they left.</p>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">
+      <p class="panel-title">Glyphosate against everything else</p>
+      <p class="panel-sub">Millions of kg, California excluded from every year. The band heights sum to the national total — nearly flat — while the composition inverts beneath it.</p>
+    </div>
+    <div class="chart-scroll"><svg id="c2" viewBox="0 0 880 380" role="img" aria-label="Stacked area chart of glyphosate versus all other pesticides 1992 to 2018"></svg></div>
+    <div class="legend">
+      <span><i class="swatch" style="background:var(--s1)"></i>Glyphosate</span>
+      <span><i class="swatch" style="background:var(--s3)"></i>All other compounds</span>
+    </div>
+    <details class="tbl"><summary>Data table</summary><div class="tscroll"><table id="t2"></table></div></details>
+  </div>
+</section>
+
+<!-- ============ FINDING 3 ============ -->
+<section class="finding">
+  <div class="measure">
+    <div class="fnum">Finding 03 — Water monitoring</div>
+    <h2>The monitoring network measures the market of 1992</h2>
+    <p>If the chemistry changed, did the watching change with it? Across 18 compounds, the number of water-monitoring sites that ever tested for a compound correlates with its <strong>1992</strong> use — and not at all with its <strong>2018</strong> use.</p>
+    <p>Alachlor is the clearest case. Its use has collapsed to <strong>0.2</strong> million kg, a 99% fall. It is still monitored at <strong>32,893</strong> sites. Glyphosate, at <strong>119.2</strong> million kg, is monitored at <strong>7,305</strong> — 17% as many sites as atrazine, which it outsells nearly four to one.</p>
+    <p>The mechanism is analytical, not conspiratorial. Atrazine, metolachlor, simazine, alachlor and chlorpyrifos sit in the standard multi-residue GC-MS panels that most programs run; testing for them is nearly free once the panel runs. Glyphosate, glufosinate and paraquat each need a dedicated method. Compounds requiring one are monitored at a <strong>median 2,353 sites</strong> against <strong>28,365</strong> for panel compounds — a 12-fold gap, despite <em>higher</em> median use.</p>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">
+      <p class="panel-title">Application against monitoring effort</p>
+      <p class="panel-sub">Each point is one compound: 2018 application (log scale) against the count of distinct Water Quality Portal monitoring locations reporting it since 2000. If monitoring tracked use, points would rise to the right. They do not.</p>
+    </div>
+    <div class="chart-scroll"><svg id="c3" viewBox="0 0 880 440" role="img" aria-label="Scatter plot of 2018 pesticide use against number of water monitoring sites"></svg></div>
+    <div class="legend">
+      <span><i class="swatch dot" style="background:var(--s1)"></i>In standard multi-residue panel</span>
+      <span><i class="swatch dot" style="background:var(--s2)"></i>Requires a dedicated analytical method</span>
+    </div>
+    <details class="tbl"><summary>Data table</summary><div class="tscroll"><table id="t3"></table></div></details>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="k">Sites vs 1992 use</div><div class="v sig">ρ = +0.545 · p = 0.019</div></div>
+    <div class="stat"><div class="k">Sites vs 2018 use</div><div class="v nsig">ρ = −0.141 · p = 0.58</div></div>
+    <div class="stat"><div class="k">Dedicated vs panel method</div><div class="v sig">p = 0.0025 · 12.1× gap</div></div>
+  </div>
+
+  <div class="caveat warn">
+    <span class="h">What this does not say</span>
+    There is <strong>no</strong> significant relationship between current use and monitoring effort — ρ = −0.14, p = 0.58, n = 18. The claim "we monitor least what we use most" is <em>not</em> supported and should not be made. What is supported is narrower and stronger: monitoring tracks historical use and method availability, and a dedicated-method requirement predicts sparse coverage.
+  </div>
+
+  <div class="caveat">
+    <span class="h">Censoring</span>
+    Most WQP rows are non-detects carrying no numeric value — chlorpyrifos is 82% non-detect, glufosinate 98%. Dropping non-numeric rows selects on the outcome and biases any mean upward. Negative values appear in volume (simazine 17,408; alachlor 17,373) and are below-detection estimates, not concentrations. Analyse with censored methods.
+  </div>
+</section>
+
+<!-- ============ FINDING 4 ============ -->
+<section class="finding">
+  <div class="measure">
+    <div class="fnum">Finding 04 — Soil evidence</div>
+    <h2>Most of what is applied has no comparable soil-toxicity record</h2>
+    <p>Residue monitoring measures what is on food. It does not attempt to measure effects on the organisms that make soil work. EPA's ECOTOX knowledgebase is the federal record of that, and against application it is close to empty where it matters most.</p>
+    <p>Of 21 major compounds, <strong>16</strong> have <em>zero</em> comparable acute soil-fauna endpoints — no LC50, EC50 or LD50 in mg/kg soil for earthworms, springtails or potworms. Those 16 account for <strong>231.9 of 292.4</strong> million kg applied: <strong>79% of the mass</strong>.</p>
+    <p>Glyphosate — a quarter of all US agricultural pesticide mass — has <strong>106</strong> soil-fauna records in ECOTOX and <strong>zero</strong> comparable acute endpoints. The five most-applied compounds, 226 million kg a year between them, yield <strong>five</strong> comparable endpoints in total. The five least-applied yield <strong>65</strong>.</p>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head">
+      <p class="panel-title">Applied mass and the soil-toxicity record</p>
+      <p class="panel-sub">Bars are 2018 application. Red marks compounds with no comparable acute soil-fauna endpoint in ECOTOX at any duration or lifestage. The gap sits almost entirely at the top of the chart.</p>
+    </div>
+    <div class="chart-scroll"><svg id="c4" viewBox="0 0 880 560" role="img" aria-label="Bar chart of 2018 pesticide use showing which compounds lack soil toxicity endpoints"></svg></div>
+    <div class="legend">
+      <span><i class="swatch dot" style="background:var(--alert)"></i>No comparable acute soil endpoint</span>
+      <span><i class="swatch dot" style="background:var(--s1)"></i>Has comparable endpoints</span>
+    </div>
+    <details class="tbl"><summary>Data table</summary><div class="tscroll"><table id="t4"></table></div></details>
+  </div>
+
+  <div class="caveat warn">
+    <span class="h">What this does not say</span>
+    Absence of evidence is not evidence of safety, and it is not evidence of harm either. ECOTOX is a literature compilation: record counts track <strong>research effort</strong>, so a well-studied compound looks worse simply by being well studied. The rank correlation between use and endpoint count is <em>not</em> significant (ρ = −0.14, p = 0.55). The defensible claim is the coverage fact itself, which needs no correlation: most of what is applied has never been tested against soil fauna in a form anyone can compare.
+  </div>
+</section>
+
+<!-- ============ SYNTHESIS ============ -->
+<section class="finding">
+  <div class="measure">
+    <div class="fnum">Synthesis</div>
+    <h2>The argument this data will carry</h2>
+    <p>Three of these findings point the same way. The published use series understates what changed; the water network watches an obsolete market; the soil-toxicity record is thinnest for the compounds applied most. Each is a failure of <em>observation</em>, and each is demonstrable from the government's own files.</p>
+    <p>That matters because the alternative framings are weaker. Rising applied mass is not in this data. Residues above tolerance are not in this data — PDP's own headline is that over 99% of samples fall below EPA benchmarks. Soil carbon decline cannot be shown from RaCA, which is a single timepoint, or from SSURGO, which is not a time series.</p>
+    <p>What <em>can</em> be shown is that the American pesticide market was restructured between 1992 and 2018, and the federal instruments for observing its consequences did not follow. A petition does not have to prove harm to argue that. It has to prove that the agency cannot currently know — and that the not-knowing is concentrated precisely where the exposure is greatest.</p>
+  </div>
+
+  <div class="caveat">
+    <span class="h">Frames that do not join</span>
+    PNSP is modelled county-level use. WQP is opportunistic state and federal sampling. ECOTOX is a literature compilation. These share no sampling frame and no compound identifier — the crosswalk in this repository matches 205 of 389 PNSP compounds across sources, exactly and conservatively, leaving 84 visible for manual review. Any causal chain built across these frames is descriptive association unless an explicit causal design says otherwise.
+  </div>
+</section>
+
+<footer>
+  <p><strong>Reproduce:</strong> <code>scripts/eda_01_pnsp_panel.py</code> through <code>eda_08_evidence_gap.py</code>. All inputs are mirrored locally with retrieval timestamps and SHA-256 checksums; <code>scripts/verify_mirror.py</code> re-verifies the mirror and <code>smoke_test.py</code> confirms every dataset loads.</p>
+  <div class="prov">
+    USGS Pesticide National Synthesis Project — county estimates 1992–2018 (DOI 10.5066/F7NP22KM)<br>
+    EPA / USGS Water Quality Portal — 18 compounds, 2000–present, 2.0M result rows<br>
+    EPA ECOTOX Knowledgebase — ASCII release 2026-09-15<br>
+    eCFR 40 CFR Part 180 — issue date 2026-09-09, 15,416 tolerance rows
+  </div>
+</footer>
+</div>
+
+<div class="tip" id="tip"></div>
+
+<script>
+const D = {
+  years:[1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018],
+  corr:[390.8,339.1,418.5,441.1,478.1,421.4,379.2,382.0,379.4,380.0,365.3,363.8,387.6,364.5,347.0,369.3,353.5,370.0,371.7,384.9,416.5,419.1,421.1,420.9,444.7,466.1,448.4],
+  naive:[462.2,417.8,496.3,522.8,556.2,504.6,466.8,464.9,452.8,439.4,432.2,429.6,453.4,434.2,410.6,428.7,407.8,422.5,430.7,451.0,479.1,481.3,480.7,485.9,544.6,506.5,489.5],
+  glyp:[6.9,8.9,10.3,14.1,13.7,18.8,25.3,32.2,38.1,45.4,49.7,58.0,63.0,70.1,71.8,80.7,95.8,98.6,107.6,111.3,126.4,125.1,126.7,126.0,127.9,123.8,119.2],
+  oth:[383.9,330.2,408.1,426.9,464.4,402.6,354.0,349.9,341.4,334.5,315.6,305.8,324.6,294.3,275.2,288.6,257.7,271.5,264.1,273.7,290.1,294.0,294.5,294.9,316.8,342.3,329.2],
+  mon:[["Glyphosate",119.2,7305,6.9,1],["Atrazine",32.1,41917,38.3,0],["Acetochlor",24.4,31359,0.0,0],["2,4-D",21.5,23830,15.0,0],["Dicamba",12.3,17850,3.9,0],["Glufosinate",8.6,2353,0.0,1],["Paraquat",6.4,41,2.2,1],["Metolachlor",6.1,37515,29.4,0],["Pendimethalin",5.1,28365,10.8,0],["Chlorothalonil",4.0,10956,4.0,0],["Chlorpyrifos",3.3,31832,6.2,0],["Trifluralin",3.1,27201,11.9,0],["Metribuzin",2.7,32000,1.9,0],["Acephate",2.0,4675,0.8,0],["Simazine",1.7,32509,2.5,0],["Diuron",1.2,19806,2.4,0],["Imidacloprid",0.3,18396,0.0,0],["Alachlor",0.2,32893,25.9,0]],
+  gap:[["Glyphosate",119.2,106,0],["Atrazine",32.1,88,4],["Metam",29.0,0,0],["Acetochlor",24.4,34,1],["2,4-D",21.5,39,0],["Dicamba",12.3,6,0],["Chloropicrin",8.7,0,0],["Glufosinate",8.6,0,0],["Paraquat",6.4,7,0],["Metolachlor",6.1,84,0],["Pendimethalin",5.1,6,0],["Chlorothalonil",4.0,37,0],["Chlorpyrifos",3.3,386,13],["Trifluralin",3.1,2,0],["Metribuzin",2.7,0,0],["Acephate",2.0,19,0],["Simazine",1.7,0,0],["Diuron",1.2,24,0],["Imidacloprid",0.3,501,21],["Carbaryl",0.3,284,44],["Alachlor",0.2,0,0]]
+};
+
+const NS="http://www.w3.org/2000/svg";
+const el=(n,a={})=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e;};
+const cs=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const tip=document.getElementById("tip");
+function showTip(e,html){tip.innerHTML=html;tip.classList.add("on");
+  const r=tip.getBoundingClientRect();let x=e.clientX+14,y=e.clientY-10;
+  if(x+r.width>innerWidth-8)x=e.clientX-r.width-14;
+  if(y<8)y=8; if(y+r.height>innerHeight-8)y=innerHeight-r.height-8;
+  tip.style.left=x+"px";tip.style.top=y+"px";}
+function hideTip(){tip.classList.remove("on");}
+
+function axisText(s,x,y,t,anchor="middle",size=11){
+  const n=el("text",{x,y,"text-anchor":anchor,"font-size":size,fill:cs("--ink-3"),
+    "font-family":'"IBM Plex Mono",monospace'});n.textContent=t;s.appendChild(n);return n;}
+
+/* ---------- Chart 1: two lines ---------- */
+function chart1(){
+  const s=document.getElementById("c1");s.innerHTML="";
+  const W=880,H=380,L=56,R=150,T=18,B=40;
+  const xs=i=>L+(W-L-R)*i/(D.years.length-1);
+  const lo=300,hi=580,ys=v=>T+(H-T-B)*(1-(v-lo)/(hi-lo));
+  for(let v=300;v<=580;v+=40){
+    s.appendChild(el("line",{x1:L,x2:W-R,y1:ys(v),y2:ys(v),stroke:cs("--rule-2"),"stroke-width":1}));
+    axisText(s,L-10,ys(v)+4,v,"end");
+  }
+  axisText(s,L-10,ys(580)-12,"M kg","end",10);
+  D.years.forEach((y,i)=>{ if(y%4===0||y===2018) axisText(s,xs(i),H-B+20,y); });
+  const path=(arr)=>arr.map((v,i)=>(i?"L":"M")+xs(i)+" "+ys(v)).join(" ");
+  s.appendChild(el("path",{d:path(D.naive),fill:"none",stroke:cs("--s2"),"stroke-width":2,
+    "stroke-linejoin":"round","stroke-linecap":"round"}));
+  s.appendChild(el("path",{d:path(D.corr),fill:"none",stroke:cs("--s1"),"stroke-width":2,
+    "stroke-linejoin":"round","stroke-linecap":"round"}));
+  // direct labels at the right edge
+  const lab=(v,i,c,t1,t2)=>{
+    const n=el("text",{x:xs(i)+12,y:ys(v)+3,"font-size":12,fill:c,"font-weight":500,
+      "font-family":'"IBM Plex Sans",sans-serif'});n.textContent=t1;s.appendChild(n);
+    const m=el("text",{x:xs(i)+12,y:ys(v)+19,"font-size":11,fill:cs("--ink-3"),
+      "font-family":'"IBM Plex Mono",monospace'});m.textContent=t2;s.appendChild(m);};
+  const last=D.years.length-1;
+  lab(D.naive[last],last,cs("--s2"),"As published","489.5");
+  lab(D.corr[last],last,cs("--s1"),"Corrected","448.4");
+  // hover
+  D.years.forEach((y,i)=>{
+    const hit=el("rect",{x:xs(i)-((W-L-R)/(D.years.length-1))/2,y:T,
+      width:(W-L-R)/(D.years.length-1),height:H-T-B,fill:"transparent"});
+    hit.addEventListener("mousemove",e=>showTip(e,
+      `<b>${y}</b><br>published ${D.naive[i].toFixed(1)}<br>corrected ${D.corr[i].toFixed(1)}`));
+    hit.addEventListener("mouseleave",hideTip);
+    s.appendChild(hit);
+  });
+}
+
+/* ---------- Chart 2: stacked area ---------- */
+function chart2(){
+  const s=document.getElementById("c2");s.innerHTML="";
+  const W=880,H=380,L=56,R=132,T=18,B=40;
+  const xs=i=>L+(W-L-R)*i/(D.years.length-1);
+  const hi=600,ys=v=>T+(H-T-B)*(1-v/hi);
+  for(let v=0;v<=600;v+=100){
+    s.appendChild(el("line",{x1:L,x2:W-R,y1:ys(v),y2:ys(v),stroke:cs("--rule-2"),"stroke-width":1}));
+    axisText(s,L-10,ys(v)+4,v,"end");
+  }
+  axisText(s,L-10,ys(600)-12,"M kg","end",10);
+  D.years.forEach((y,i)=>{ if(y%4===0||y===2018) axisText(s,xs(i),H-B+20,y); });
+  const area=(base,top)=>{
+    let d=top.map((v,i)=>(i?"L":"M")+xs(i)+" "+ys(v)).join(" ");
+    for(let i=base.length-1;i>=0;i--) d+=" L"+xs(i)+" "+ys(base[i]);
+    return d+" Z";};
+  const zero=D.years.map(()=>0);
+  const tot=D.glyp.map((g,i)=>g+D.oth[i]);
+  s.appendChild(el("path",{d:area(D.glyp,tot),fill:cs("--s3"),opacity:.9}));
+  s.appendChild(el("path",{d:area(zero,D.glyp),fill:cs("--s1")}));
+  // 2px surface gap between the two fills
+  s.appendChild(el("path",{d:D.glyp.map((v,i)=>(i?"L":"M")+xs(i)+" "+ys(v)).join(" "),
+    fill:"none",stroke:cs("--surface"),"stroke-width":2}));
+  const last=D.years.length-1;
+  const l1=el("text",{x:xs(last)+12,y:ys(D.glyp[last]/2)+4,"font-size":12,fill:cs("--s1"),
+    "font-weight":500,"font-family":'"IBM Plex Sans",sans-serif'});
+  l1.textContent="Glyphosate";s.appendChild(l1);
+  const l1b=el("text",{x:xs(last)+12,y:ys(D.glyp[last]/2)+20,"font-size":11,fill:cs("--ink-3"),
+    "font-family":'"IBM Plex Mono",monospace'});l1b.textContent="119.2 · 26.6%";s.appendChild(l1b);
+  const l2=el("text",{x:xs(last)+12,y:ys(D.glyp[last]+D.oth[last]/2)+4,"font-size":12,
+    fill:cs("--ink-2"),"font-weight":500,"font-family":'"IBM Plex Sans",sans-serif'});
+  l2.textContent="All others";s.appendChild(l2);
+  const l2b=el("text",{x:xs(last)+12,y:ys(D.glyp[last]+D.oth[last]/2)+20,"font-size":11,
+    fill:cs("--ink-3"),"font-family":'"IBM Plex Mono",monospace'});
+  l2b.textContent="329.2";s.appendChild(l2b);
+  D.years.forEach((y,i)=>{
+    const hit=el("rect",{x:xs(i)-((W-L-R)/(D.years.length-1))/2,y:T,
+      width:(W-L-R)/(D.years.length-1),height:H-T-B,fill:"transparent"});
+    hit.addEventListener("mousemove",e=>showTip(e,
+      `<b>${y}</b><br>glyphosate ${D.glyp[i].toFixed(1)} (${(100*D.glyp[i]/(D.glyp[i]+D.oth[i])).toFixed(1)}%)<br>others ${D.oth[i].toFixed(1)}<br>total ${(D.glyp[i]+D.oth[i]).toFixed(1)}`));
+    hit.addEventListener("mouseleave",hideTip);
+    s.appendChild(hit);
+  });
+}
+
+/* ---------- Chart 3: scatter ---------- */
+function chart3(){
+  const s=document.getElementById("c3");s.innerHTML="";
+  const W=880,H=440,L=64,R=26,T=24,B=52;
+  const lx=v=>Math.log10(Math.max(v,0.15));
+  const x0=lx(0.15),x1=lx(140);
+  const xs=v=>L+(W-L-R)*(lx(v)-x0)/(x1-x0);
+  const ys=v=>T+(H-T-B)*(1-v/45000);
+  for(let v=0;v<=45000;v+=9000){
+    s.appendChild(el("line",{x1:L,x2:W-R,y1:ys(v),y2:ys(v),stroke:cs("--rule-2"),"stroke-width":1}));
+    axisText(s,L-10,ys(v)+4,(v/1000)+"k","end");
+  }
+  axisText(s,L-10,ys(45000)-12,"sites","end",10);
+  [0.2,1,10,100].forEach(v=>axisText(s,xs(v),H-B+20,v<1?v:v+""));
+  axisText(s,(L+W-R)/2,H-B+42,"2018 application, million kg (log scale)","middle",11.5);
+  D.mon.forEach(([n,use,sites,u92,ded])=>{
+    const c=ded?cs("--s2"):cs("--s1");
+    const g=el("g");
+    g.appendChild(el("circle",{cx:xs(use),cy:ys(sites),r:7,fill:c,
+      stroke:cs("--surface"),"stroke-width":2}));
+    g.addEventListener("mousemove",e=>showTip(e,
+      `<b>${n}</b><br>2018 use ${use} M kg<br>1992 use ${u92} M kg<br>${sites.toLocaleString()} sites`));
+    g.addEventListener("mouseleave",hideTip);
+    s.appendChild(g);
+  });
+  // label the compounds that carry the argument
+  const LBL={"Glyphosate":[14,5],"Alachlor":[-12,-14],"Paraquat":[14,5],"Atrazine":[-12,-14],
+             "Glufosinate":[14,4],"Chlorpyrifos":[-12,18],"Metolachlor":[12,-12]};
+  D.mon.forEach(([n,use,sites])=>{
+    if(!LBL[n])return;
+    const [dx,dy]=LBL[n];
+    const t=el("text",{x:xs(use)+dx,y:ys(sites)+dy,"font-size":11.5,
+      "text-anchor":dx<0?"end":"start",fill:cs("--ink-2"),"font-weight":500,
+      "font-family":'"IBM Plex Sans",sans-serif'});
+    t.textContent=n;s.appendChild(t);
+  });
+}
+
+/* ---------- Chart 4: horizontal bars ---------- */
+function chart4(){
+  const s=document.getElementById("c4");s.innerHTML="";
+  const rows=D.gap;
+  const W=880,L=128,R=118,T=28,B=34;
+  const bh=18,gap=6,H=T+B+rows.length*(bh+gap);
+  s.setAttribute("viewBox",`0 0 ${W} ${H}`);
+  const max=125,xs=v=>(W-L-R)*v/max;
+  for(let v=0;v<=125;v+=25){
+    s.appendChild(el("line",{x1:L+xs(v),x2:L+xs(v),y1:T-8,y2:H-B+4,
+      stroke:cs("--rule-2"),"stroke-width":1}));
+    axisText(s,L+xs(v),T-14,v);
+  }
+  axisText(s,L+xs(0),H-B+22,"2018 application, million kg","start",11.5);
+  rows.forEach((r,i)=>{
+    const [n,use,recs,cmp]=r;
+    const y=T+i*(bh+gap);
+    const c=cmp===0?cs("--alert"):cs("--s1");
+    const g=el("g");
+    const w=Math.max(xs(use),2);
+    g.appendChild(el("rect",{x:L,y,width:w,height:bh,fill:c,rx:3}));
+    const lt=el("text",{x:L-12,y:y+bh-5,"text-anchor":"end","font-size":12,
+      fill:cs("--ink-2"),"font-family":'"IBM Plex Sans",sans-serif'});
+    lt.textContent=n;g.appendChild(lt);
+    const vt=el("text",{x:L+w+10,y:y+bh-5,"font-size":11,fill:cs("--ink-3"),
+      "font-family":'"IBM Plex Mono",monospace'});
+    vt.textContent=cmp===0?`${use} · none`:`${use} · ${cmp} pts`;
+    g.appendChild(vt);
+    g.addEventListener("mousemove",e=>showTip(e,
+      `<b>${n}</b><br>${use} M kg applied<br>${recs} soil-fauna records<br>${cmp} comparable endpoints`));
+    g.addEventListener("mouseleave",hideTip);
+    s.appendChild(g);
+  });
+}
+
+/* ---------- tables (relief for low-contrast marks) ---------- */
+function table(id,head,rows){
+  const t=document.getElementById(id);
+  t.innerHTML="<thead><tr>"+head.map(h=>`<th>${h}</th>`).join("")+"</tr></thead><tbody>"+
+    rows.map(r=>"<tr>"+r.map((c,i)=>i===0?`<td>${c}</td>`
+      :`<td class="n${c==="none"?" zero":""}">${c}</td>`).join("")+"</tr>").join("")+"</tbody>";
+}
+table("t1",["Year","As published","Corrected","Difference"],
+  D.years.map((y,i)=>[y,D.naive[i].toFixed(1),D.corr[i].toFixed(1),(D.naive[i]-D.corr[i]).toFixed(1)]));
+table("t2",["Year","Glyphosate","All others","Total","Glyphosate %"],
+  D.years.map((y,i)=>[y,D.glyp[i].toFixed(1),D.oth[i].toFixed(1),
+    (D.glyp[i]+D.oth[i]).toFixed(1),(100*D.glyp[i]/(D.glyp[i]+D.oth[i])).toFixed(1)+"%"]));
+table("t3",["Compound","1992 M kg","2018 M kg","WQP sites","Method"],
+  D.mon.map(([n,u,s2,u92,d])=>[n,u92.toFixed(1),u.toFixed(1),s2.toLocaleString(),d?"dedicated":"panel"]));
+table("t4",["Compound","2018 M kg","Soil records","Comparable endpoints"],
+  D.gap.map(([n,u,r,c])=>[n,u.toFixed(1),r.toLocaleString(),c===0?"none":c]));
+
+function drawAll(){chart1();chart2();chart3();chart4();}
+drawAll();
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change",drawAll);
+new MutationObserver(drawAll).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+addEventListener("resize",()=>{clearTimeout(window.__rt);window.__rt=setTimeout(drawAll,180);});
+</script>
