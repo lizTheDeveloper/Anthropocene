@@ -51,6 +51,7 @@ that the clustering is trying to find.
 """
 from pathlib import Path
 import subprocess
+import tempfile
 import numpy as np
 import pandas as pd
 from scipy.cluster.hierarchy import linkage, fcluster
@@ -127,8 +128,7 @@ def reference_names():
     "Blueberries, Fresh" in 2023), so read every year and let later overwrite.
     """
     commod, pest = {}, {}
-    tmp = Path("/tmp/pdp_refs")
-    tmp.mkdir(exist_ok=True)
+    tmp = Path(tempfile.mkdtemp(prefix="pdp_refs_"))
     for y in YEARS:
         subprocess.run(["unzip", "-o", "-j", str(_zip_for(y)),
                         f"PDP ReferenceTables {y}.xls*", "-d", str(tmp)],
