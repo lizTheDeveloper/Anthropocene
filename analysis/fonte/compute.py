@@ -197,9 +197,19 @@ def scan_nri():
         return re.findall(r"-?\d+\.?\d*|--", l.strip())[k]
     nat_1982 = float(col(tail[0], 5))    # 0=year,1=cult est,2=cult med,3=noncult est,4=med,5=total cropland est
     nat_2022 = float(col(tail[-1], 5))
+    # Entity labels sit on the margin-of-error line, not the year line.
+    labs = set()
+    for l in body:
+        m = re.match(r"^\s*([A-Z][A-Za-z\.\' ]{2,26}?)\s{2,}[±\d\-]", l)
+        if m:
+            labs.add(m.group(1).strip())
+    labs -= {"Estimate", "Median", "Total"}
+    labs = {x for x in labs if not x.startswith("State")}
     return {"n_units": n_blocks - 1,      # blocks minus the national Total
             "years": years,
             "n_rows": len(rows),
+            "entity_labels_seen": sorted(labs),
+            "alaska_present": any("Alaska" in x for x in labs),
             "national_1982_t_ac_yr": nat_1982,
             "national_2022_t_ac_yr": nat_2022}
 
@@ -226,7 +236,11 @@ def scan_raca():
             "sites_in_table2": total_sites,
             "n_lulc_classes": 6,
             "single_point_in_time": single_point,
-            "campaign_years": [2010, 2011]}   # NRCS RaCA field campaign
+            # One national campaign, field seasons 2010-2011. It is ONE timepoint,
+            # not two: RaCA states its purpose as capturing CONUS carbon "at a
+            # single point in time". Placed at 2011 in the grid.
+            "campaign_field_seasons": [2010, 2011],
+            "campaign_years": [2011]}
 
 
 # ---------------------------------------------------------------------------
@@ -384,7 +398,8 @@ def main():
         d = 1 if y in raca_years else 0
         add("Carbon sequestration", 5, y, d, "RaCA region" if d else "",
             raca["n_regions"] if d else 0,
-            "one-time field campaign; most SOC values predicted from VNIR spectra",
+            "single national campaign (field seasons 2010-2011); satellite-pedon "
+            "SOC predicted from VNIR spectra",
             "NRCS Rapid Carbon Assessment (RaCA)")
 
         # --- 6. Pest regulation ---------------------------------------------

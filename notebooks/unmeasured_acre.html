@@ -1,0 +1,648 @@
+<title>The Unmeasured Acre</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --ground:#f3f5ef; --panel:#fbfcf9; --ink:#15180f; --ink-2:#4c5142; --ink-3:#7c8271;
+  --rule:#dde0d4; --rule-2:#c7ccba; --accent:#2f6b4f; --accent-soft:#e4ede6;
+  --void:#e8ebe1; --void-ink:#8d9380;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100; --s5:#e87ba4; --s6:#008300; --s7:#4a3aa7; --s8:#e34948;
+  --crit:#d03b3b;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --ground:#101208; --panel:#181b12; --ink:#f2f4ea; --ink-2:#c0c5b2; --ink-3:#8d9380;
+  --rule:#2a2e21; --rule-2:#3b4030; --accent:#7fc0a0; --accent-soft:#1c2a22;
+  --void:#1e2217; --void-ink:#6f7562;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --s6:#008300; --s7:#9085e9; --s8:#e66767;
+  --crit:#e66767;
+}}
+:root[data-theme="dark"]{
+  --ground:#101208; --panel:#181b12; --ink:#f2f4ea; --ink-2:#c0c5b2; --ink-3:#8d9380;
+  --rule:#2a2e21; --rule-2:#3b4030; --accent:#7fc0a0; --accent-soft:#1c2a22;
+  --void:#1e2217; --void-ink:#6f7562;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500; --s5:#d55181; --s6:#008300; --s7:#9085e9; --s8:#e66767;
+  --crit:#e66767;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);
+  font-family:"IBM Plex Sans",system-ui,-apple-system,sans-serif;line-height:1.6;
+  -webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding-inline:20px;padding-block:0}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace}
+h1,h2,h3{font-family:"IBM Plex Serif",Georgia,serif;font-weight:600;text-wrap:balance;margin:0}
+a{color:var(--accent)}
+
+header{border-bottom:1px solid var(--rule-2);padding-block:56px 34px;margin-bottom:8px}
+.eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:18px}
+h1{font-size:clamp(34px,6.2vw,60px);line-height:1.04;letter-spacing:-.018em;max-width:16ch}
+.standfirst{margin-top:20px;font-size:clamp(16px,2.1vw,19px);color:var(--ink-2);max-width:62ch}
+.standfirst strong{color:var(--ink);font-weight:600}
+.meta{display:flex;flex-wrap:wrap;gap:8px 26px;margin-top:26px;
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink-3)}
+.meta b{color:var(--ink-2);font-weight:500}
+
+.thesis{background:var(--accent-soft);border:1px solid var(--rule-2);border-left:3px solid var(--accent);
+  padding:22px 24px;margin-block:34px;max-width:70ch}
+.thesis p{margin:0;font-size:16.5px;color:var(--ink)}
+.thesis p+p{margin-top:12px}
+
+.lens{border-top:1px solid var(--rule-2);padding-block:44px}
+.lens-head{display:grid;grid-template-columns:172px 1fr;gap:28px;align-items:start}
+.spine{font-family:"IBM Plex Mono",monospace;font-size:11.5px;line-height:1.5;color:var(--ink-3);
+  border-right:1px solid var(--rule);padding-right:18px;position:sticky;top:18px}
+.spine .who{color:var(--ink);font-size:14px;font-weight:500;display:block;margin-bottom:6px;
+  font-family:"IBM Plex Sans",sans-serif}
+.spine .frame{color:var(--ink-2);display:block;margin-bottom:12px;font-family:"IBM Plex Sans",sans-serif;
+  font-size:12.5px;line-height:1.45}
+.spine .cite{display:block;font-size:10.5px;color:var(--ink-3);border-top:1px solid var(--rule);padding-top:9px}
+.lens h2{font-size:clamp(22px,3.3vw,29px);line-height:1.18;letter-spacing:-.012em;max-width:22ch}
+.claim{margin-top:14px;font-size:16.5px;color:var(--ink-2);max-width:60ch}
+.claim b{color:var(--ink);font-weight:600}
+
+figure{margin:26px 0 0}
+.plot{background:var(--panel);border:1px solid var(--rule);padding:18px 16px 12px;overflow-x:auto}
+svg{display:block;max-width:100%;height:auto}
+.ttl{font-size:12.5px;color:var(--ink-2);font-family:"IBM Plex Mono",monospace;margin-bottom:12px}
+figcaption{margin-top:12px;font-size:13px;color:var(--ink-3);max-width:74ch;line-height:1.55}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;margin:0 0 12px;
+  font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.sw{width:11px;height:11px;border-radius:2px;flex:none}
+.sw.line{height:3px;width:16px;border-radius:0}
+
+details{margin-top:14px;border-top:1px solid var(--rule)}
+summary{cursor:pointer;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--ink-3);padding-top:11px;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"+ ";color:var(--accent)}
+details[open] summary::before{content:"– "}
+summary:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+.tw{overflow-x:auto;margin-top:12px}
+table{border-collapse:collapse;font-family:"IBM Plex Mono",monospace;font-size:11.5px;min-width:100%}
+th,td{border-bottom:1px solid var(--rule);padding:6px 12px 6px 0;text-align:right;
+  font-variant-numeric:tabular-nums;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{color:var(--ink-3);font-weight:500;border-bottom-color:var(--rule-2)}
+
+.caveat{margin-top:18px;border-left:2px solid var(--rule-2);padding:2px 0 2px 16px;
+  font-size:13.5px;color:var(--ink-3);max-width:66ch}
+.caveat b{color:var(--ink-2);font-weight:500}
+
+footer{border-top:1px solid var(--rule-2);margin-top:12px;padding-block:40px 64px}
+footer h2{font-size:23px;margin-bottom:16px}
+footer p{max-width:66ch;color:var(--ink-2);font-size:15.5px}
+.prov{margin-top:26px;font-family:"IBM Plex Mono",monospace;font-size:11px;color:var(--ink-3);
+  line-height:1.75;border-top:1px solid var(--rule);padding-top:16px;max-width:74ch}
+@media(max-width:760px){
+  .lens-head{grid-template-columns:1fr;gap:16px}
+  .spine{position:static;border-right:0;border-bottom:1px solid var(--rule);
+    padding-right:0;padding-bottom:14px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+<div class="wrap">
+<header>
+  <div class="eyebrow">Eight analytical frameworks · one federal data mirror</div>
+  <h1>The Unmeasured Acre</h1>
+  <p class="standfirst">Eight soil-science and food-sovereignty frameworks were applied independently to the same
+  12.4&nbsp;GB mirror of federal agricultural data. They were given different questions and no knowledge of each
+  other's work. <strong>Seven of the eight arrived at a version of the same finding:</strong> the federal record is
+  an instrument with a narrow shape, and most of American agriculture falls outside it.</p>
+  <div class="meta">
+    <span><b>669</b> files, 12.4 GB</span>
+    <span><b>669</b> checksums verified</span>
+    <span><b>0</b> mismatched</span>
+    <span>USGS · USDA · FDA · EPA · CDC · NRCS</span>
+    <span>retrieved 2026-09-14</span>
+  </div>
+</header>
+
+<div class="thesis">
+  <p>Each panel below is a reading taken with a different instrument. The analyses apply each scholar's
+  <em>published analytical framework</em> to data none of them collected; nothing here is written in anyone's voice,
+  and no position is attributed to any living person.</p>
+  <p>Where a framework asked a question the data cannot answer, that is reported as the finding rather than
+  replaced with a weaker chart. Three of the eight resolve that way — and they are the most consequential.</p>
+</div>
+
+<section class="lens" id="fonte">
+  <div class="lens-head">
+    <div class="spine"><span class="who">Steven Fonte</span>
+      <span class="frame">Soil health, livelihoods and ecosystem services measured as one bundle — never a single number.</span>
+      <span class="cite">Lavelle et al. 2014 · Fonte et al. 2012, 2023</span></div>
+    <div>
+      <h2>Four of the seven outcomes have never been measured at all</h2>
+      <p class="claim">Of 287 outcome-years, <b>56 are filled — and 41 of those are yield</b>. Yield is observed
+      at 6,410 times the density of soil carbon. The bundle requirement fails outright: only
+      <b>4 of 21 outcome pairs</b> can be observed in the same place in the same year, and never more than three at once.</p>
+    </div>
+  </div>
+  <figure><div class="plot"><div class="ttl">Direct national measurement by outcome, 1982–2022 · filled cell = measured that year</div>
+    <div id="c-fonte"></div></div>
+    <figcaption>Nutrient cycling, pest regulation, water capture and soil macrofauna have no national measurement
+    series at any point in forty-one years. A mandate justified on soil carbon rests on the single thinnest row in
+    the record, while the four outcomes that would reveal a trade-off cannot register a loss because they are not
+    measured.</figcaption>
+    <details><summary>Table view</summary><div class="tw" id="t-fonte"></div></details>
+  </figure>
+  <p class="caveat"><b>What this is not.</b> A count of whether joins are possible, deliberately performing none.
+  Absence of measurement is not evidence of absence of effect.</p>
+</section>
+
+<section class="lens" id="scow">
+  <div class="lens-head">
+    <div class="spine"><span class="who">Kate Scow</span>
+      <span class="frame">Mechanistic soil biology established in long-term replicated field experiments — the antidote to “microbes fix everything”.</span>
+      <span class="cite">Russell Ranch LTRAS · Tautges et al. 2019</span></div>
+    <div>
+      <h2>The soil-biology evidence ladder has almost no rungs</h2>
+      <p class="claim">Sorted by the strongest study design that exists anywhere in EPA's ECOTOX archive,
+      <b>98.8% of the 448 million kg applied in 2018 has no record of any kind</b> — not one laboratory test — on
+      soil bacteria or protozoa. Glyphosate, at 26.6% of all applied mass, has zero bacterial records.</p>
+    </div>
+  </div>
+  <figure><div class="plot"><div class="ttl">Share of 2018 applied pesticide mass by strongest available study design</div>
+    <div id="c-scow"></div></div>
+    <figcaption>The mechanism is statutory, not scientific. <b>40 CFR 158.630</b>, the table of non-target organism
+    data requirements for pesticide registration, names honey bees, birds and fish — and mentions earthworms, soil
+    microorganisms, Collembola and mycorrhizae exactly zero times. The EU requires OECD 222, 232 and 216. The
+    federal record is empty because the federal requirement does not exist.</figcaption>
+    <details><summary>Table view</summary><div class="tw" id="t-scow"></div></details>
+  </figure>
+  <p class="caveat"><b>Cuts both ways.</b> Neither “glyphosate sterilises soil” nor “glyphosate is harmless to
+  microbes” is federally evidenced. Requiring two independent studies rather than one drops apparent field earthworm
+  coverage from 41.4% of mass to 2.5%.</p>
+</section>
+
+<section class="lens" id="altieri">
+  <div class="lens-head">
+    <div class="spine"><span class="who">Miguel Altieri</span>
+      <span class="frame">Agroecosystem redesign versus input substitution — the transition's deep step against its shallow one.</span>
+      <span class="cite">Agroecology: The Science of Sustainable Agriculture</span></div>
+    <div>
+      <h2>Substitution, not redesign</h2>
+      <p class="claim">Counties did not stop using many pesticides — the median county still applies
+      <b>89 different compounds</b>. The mass simply collapsed onto a handful. Effective compounds per county fell
+      from 9.0 to 4.8 while glyphosate took a third of all applied mass.</p>
+    </div>
+  </div>
+  <figure><div class="plot"><div class="ttl">Concentration of the applied mixture, 1992–2018 · two measures, two panels, one time axis</div>
+    <div id="c-altieri"></div></div>
+    <figcaption>Counties where glyphosate alone exceeds a quarter of all applied mass rose from
+    <b>1.1% to 58.5%</b>. Meanwhile cover crops reached 4.7% of cropland — at the realised rate of expansion,
+    half of US cropland would be covered in roughly 225 years. What moved at scale was tillage reduction: the
+    weed-control operation that herbicide substitutes for.</figcaption>
+    <details><summary>Table view</summary><div class="tw" id="t-altieri"></div></details>
+  </figure>
+  <p class="caveat"><b>Drawn as two panels, not two axes.</b> A dual-axis chart lets an author manufacture or erase a
+  crossing by choosing scales. The two series share only the time axis.</p>
+</section>
+
+<section class="lens" id="lal">
+  <div class="lens-head">
+    <div class="spine"><span class="who">Rattan Lal</span>
+      <span class="frame">Soil organic carbon, erosion and degraded-soil restoration — the empirical anchor, checked in both directions.</span>
+      <span class="cite">NASEM 2019 · NRCS 2022 NRI · RaCA</span></div>
+    <div>
+      <h2>Forty years of erosion data, one day of carbon data</h2>
+      <p class="claim">NRCS reports erosion fell 34% since 1982. True — but <b>89% of that decline was achieved by
+      1997</b>, sheet-and-rill erosion has risen since 2007, and <b>56.5 million acres still erode above the
+      tolerable rate</b>, 3.6 million more than in 2007. The 2022 NRI runs to 222 pages and contains the word
+      “carbon” zero times.</p>
+    </div>
+  </div>
+  <figure><div class="plot"><div class="ttl">Cultivated cropland erosion, tons per acre per year · 2022 NRI release</div>
+    <div id="c-lal"></div></div>
+    <figcaption>A rate requires two measurements. RaCA — 6,418 sites, the only national soil-carbon measurement ever
+    taken — describes itself as capture “at a single point in time”. The binding constraint is not sample size:
+    1,263 cropland pedons is the right order of magnitude for national change detection. It is that
+    <b>there was never a second visit</b>. NRCS began resampling in FY2030.</figcaption>
+    <details><summary>Table view</summary><div class="tw" id="t-lal"></div></details>
+  </figure>
+  <p class="caveat"><b>Single-release rule.</b> All nine years are taken from the 2022 release. NRI back-updates its
+  own history each cycle, so mixing releases manufactures trends that are artifacts of method revision.</p>
+</section>
+
+<section class="lens" id="mendez">
+  <div class="lens-head">
+    <div class="spine"><span class="who">V. Ernesto Méndez</span>
+      <span class="frame">Participatory action research — farmers as co-definers of the question, not subjects of it.</span>
+      <span class="cite">Méndez, Bacon &amp; Cohen 2013 · Gliessman et&nbsp;al. 2023</span></div>
+    <div>
+      <h2>Federal pesticide measurement is fitted to one farming system</h2>
+      <p class="claim">The programme measures 51 crops; Americans grow 156. Coverage against county crop diversity is
+      an <b>inverted U</b> — 5.8% at the least diverse, peaking at <b>92% exactly at the corn–soybean rotation</b>,
+      falling to 58.9% at the most diverse. The instrument is not biased against complexity in general. It is tuned
+      to one cropping system.</p>
+    </div>
+  </div>
+  <figure><div class="plot"><div class="ttl">Share of county cropland inside the published chemical-use survey frame, by crop diversity decile</div>
+    <div id="c-mendez"></div></div>
+    <figcaption>Hay is the most widely grown crop in the country by farm count — <b>612,946 farms, 32.3% of all US
+    farms</b> — and has never had a single named pesticide measured on it. It appears in the chemical-use record
+    three times in thirty-six years, always as an aggregate “acres treated with something”. Seven other commodities
+    share that status, all of them catch-all or perennial/forage categories.</figcaption>
+    <details><summary>Table view</summary><div class="tw" id="t-mendez"></div></details>
+  </figure>
+  <p class="caveat"><b>Resolution contrast.</b> The entire 2022 federal public pesticide-use survey record is 36,453
+  values across 21 crops. California's legally mandated reporting for the same year holds 4,281,466 individual
+  application records.</p>
+</section>
+
+<section class="lens" id="kremen">
+  <div class="lens-head">
+    <div class="spine"><span class="who">Claire Kremen</span>
+      <span class="frame">Diversified farming systems at landscape scale — outcomes governed by context beyond the farm edge.</span>
+      <span class="cite">Kremen &amp; Merenlender 2018 · Carlisle et al. 2022</span></div>
+    <div>
+      <h2>The result runs against the framework — and that is the finding</h2>
+      <p class="claim">More crop diversity predicts <b>more</b> insecticide per acre, not less (ρ&nbsp;=&nbsp;+0.413).
+      But among the 263 counties growing no high-input crops, the relationship <b>vanishes entirely</b>
+      (ρ&nbsp;=&nbsp;+0.057, p&nbsp;=&nbsp;0.36). The national line is crop identity, not landscape structure.</p>
+    </div>
+  </div>
+  <figure><div class="plot"><div class="ttl">Insecticide applied per harvested acre against county crop diversity · median with interquartile band</div>
+    <div id="c-kremen"></div></div>
+    <figcaption>The sharper point is circular: USGS builds each county pesticide estimate by multiplying Census
+    county crop acreage by district-level rates. <b>The pesticide number contains the crop composition and nothing
+    else</b> — no field size, no patch geometry, no edge density, no seminatural cover, at any scale. The record is
+    not merely coarse about landscape configuration; it is structurally incapable of representing it.</figcaption>
+    <details><summary>Table view</summary><div class="tw" id="t-kremen"></div></details>
+  </figure>
+  <p class="caveat"><b>The missing acquisition.</b> The NASS Cropland Data Layer — 30&nbsp;m annual crop raster,
+  2008–2023 — is the only source that would supply true configuration metrics. It is not in this mirror.</p>
+</section>
+
+<section class="lens" id="six">
+  <div class="lens-head">
+    <div class="spine"><span class="who">Johan Six</span>
+      <span class="frame">Better by which metric, compared with what, on which soil, over what time horizon?</span>
+      <span class="cite">Six et al. 2004 · Ellert &amp; Bettany 1995</span></div>
+    <div>
+      <h2>Same counties, same year, five different answers</h2>
+      <p class="claim">The no-till/herbicide trade-off estimated five times, changing only who counts as comparable.
+      For glyphosate: <b>+15.3% pooled, −2.3% within the same district and crop mix</b>. The sign flips. Crop mix
+      alone explains R²&nbsp;=&nbsp;0.535 of county herbicide intensity; no-till share explains 0.003.</p>
+    </div>
+  </div>
+  <figure><div class="plot"><div class="ttl">Difference in applied herbicide mass, 25th→75th percentile of county no-till share · 95% CI</div>
+    <div id="c-six"></div></div>
+    <figcaption>Run with cover crops instead of no-till, the apparent <em>benefit</em> of the regenerative practice
+    dies exactly the same way: −13.4% pooled becomes −0.9% adjusted. The apparent penalty and the apparent benefit
+    are the same artifact. Across 204 districts the median within-district correlation is −0.059, with 45 districts
+    above +0.3 and 60 below −0.3: <b>there is no national sign.</b></figcaption>
+    <details><summary>Table view</summary><div class="tw" id="t-six"></div></details>
+  </figure>
+  <p class="caveat"><b>Near-tautological by construction.</b> USGS generates county pesticide numbers from
+  district-level rate tables, so within-district estimates are close to a null by design and must not be read as
+  precisely estimated zeros. And tillage was asked in 2017 and 2022 only — one overlapping year with the use data,
+  so no county can be observed before and after a tillage change.</p>
+</section>
+
+<section class="lens" id="penniman">
+  <div class="lens-head">
+    <div class="spine"><span class="who">Leah Penniman<br>Soul Fire Farm</span>
+      <span class="frame">Land access as prior to agronomy — who owns the land, and whose knowledge counts.</span>
+      <span class="cite">Farming While Black (2018)</span></div>
+    <div>
+      <h2>Counted, but not landed</h2>
+      <p class="claim">Farms with at least one Black producer are <b>1.51% of US farms and hold 0.49% of US
+      farmland</b> — a land share 3.1× smaller than the farm-count share, essentially unmoved in twenty years.
+      150 acres against a national average of 463.</p>
+    </div>
+  </div>
+  <figure><div class="plot"><div class="ttl">Share of US farm operations against share of US farmland, 2022 Census of Agriculture · log scale</div>
+    <div id="c-penniman"></div></div>
+    <figcaption>Tenure <em>mix</em> is nearly identical to the national mix — 69.8/22.2/8.1 against 71.4/22.3/6.3
+    full owner, part owner, tenant. The entire gap is scale <em>within</em> each class: white-to-Black acres per
+    operation runs 2.2× for full owners and 4.3× for tenants. Producers enter the scaling channel at the national
+    rate and get a third as much land out of it.</figcaption>
+    <details><summary>Table view</summary><div class="tw" id="t-penniman"></div></details>
+  </figure>
+  <p class="caveat"><b>The denominator is a policy choice.</b> Farms above $50,000 in sales are 26.9% of US farms and
+  hold 76.9% of farmland; only 11.4% of Black-operated farms clear that bar. A per-acre instrument reaches 0.49% of
+  that land. A per-operation instrument reaches 1.51% of those farms. Choosing between them is a distributional
+  decision, and it is currently being made by default.</p>
+</section>
+
+<footer>
+  <h2>What seven of eight lenses found</h2>
+  <p>They were not asked the same question. One asked who defined the measurement, one whether the system was
+  redesigned or merely re-dosed, one what the soil biology actually establishes, one who owns the land. They
+  converged anyway: <strong>the federal agricultural record resolves row-crop monoculture in fine detail and
+  treats everything else as a residual.</strong> Hay, pasture, orchards, berries, vegetables and horticulture are
+  aggregate buckets. Soil organisms have no data requirement. Landscape structure has no representation. Four of
+  seven agroecosystem outcomes have never been measured nationally.</p>
+  <p style="margin-top:16px">For a petition, this reframes the ask. An argument that residues rose or that soil
+  carbon fell runs into a record that cannot adjudicate either. An argument that <em>the measurement regime
+  itself is the failure</em> is supported directly, by the agency's own files and by 40 CFR 158.630.</p>
+  <div class="prov">
+    Sources mirrored locally with SHA-256 provenance: USGS Pesticide National Synthesis Project (county estimates
+    1992–2018, corrected — California excluded from every year, aggregate double-count rows removed) ·
+    USDA NASS Quick Stats and Census of Agriculture 2002–2022 · USDA AMS Pesticide Data Program 1992–2024 ·
+    FDA Pesticide Residue Monitoring FY2014–23 and Total Diet Study · EPA ECOTOX ASCII release 2026-09-15 ·
+    NRCS 2022 National Resources Inventory Summary Report and Rapid Carbon Assessment · CDC NHANES ·
+    eCFR 40 CFR 180 and 158.<br>
+    Known discontinuity: USGS discontinued seed-treatment estimates beginning 2015, so neonicotinoid mass falls
+    85.3% across 2014–15 as a survey decision rather than a field change. Insecticide series are not compared
+    across that break.
+  </div>
+</footer>
+</div>
+
+<script>
+const D = {"altieri":{"years":[1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018],"eff_county":[9.040828969403378,9.653984572089378,9.773775847005341,10.53798042951009,9.479524821373623,9.558074188282237,9.01238084586056,9.412078528386475,8.600845406543689,7.8236542989325955,7.360851114360677,7.015715057284901,6.6447605952831115,6.363966804143367,5.9190494943893714,5.744281250784793,5.3099830799380445,5.456754506934967,5.123629104459777,5.228635089044634,4.841320347692225,5.037493555693495,5.281051850771337,5.18119904559508,5.31239544831856,6.056316078688199,5.418476107916729],"eff_nat":[23.801735583009442,26.15298421320068,26.37382015673999,26.84401972585383,26.574981377637712,24.96629257537173,25.54046615046801,22.842669555536236,23.170407008809462,21.434115737602696,18.299006666641027,16.70687019617847,16.376783799606194,14.241395953339097,13.486659323836651,12.851924111672744,9.925248279491207,10.216554800348234,9.41494619721682,9.304568255919882,8.765042013119084,8.89576974581141,8.958105342996946,8.903145771818378,9.408503123450577,10.700656570719778,10.374800082156966],"glyph_share":[1.767862858160343,2.621835739992459,2.4726983921956864,3.206591367371317,2.855984727830475,4.464076640187183,6.663480015306143,8.422974687185809,10.033718416113855,11.952480622307512,13.607537359947349,15.9401053590051,16.256932215682358,19.24674239180484,20.685835993534152,21.8486389924878,27.108831627968026,26.634075801928986,28.94082705384282,28.906125807794147,30.344311546342727,29.855494386716035,30.08034845800048,29.941102572935897,28.76046417168906,26.551828309154928,26.58873487729053],"metrics":["constill_pct_cropland","cover_crop_pct_cropland","eff_compounds_county_median","eff_compounds_national","fungicide_share_pct","glyphosate_share_pct","herbicide_share_pct","insecticide_share_pct","n_compounds_county_median","notill_pct_cropland","pct_counties_glyphosate_over_25pct","top1_compound_share_pct","total_applied_Mkg"]},"kremen":{"All counties":[{"x":1.15,"med":7.71,"p25":2.85,"p75":18.99,"n":284,"bin":"1.0-1.5","rho":0.413,"p":3.7515893772224246e-100},{"x":1.755,"med":14.42,"p25":6.35,"p75":29.1,"n":174,"bin":"1.5-2.0","rho":0.413,"p":3.7515893772224246e-100},{"x":2.269,"med":17.61,"p25":12.89,"p75":32.44,"n":402,"bin":"2.0-2.5","rho":0.413,"p":3.7515893772224246e-100},{"x":2.728,"med":18.46,"p25":12.91,"p75":37.4,"n":411,"bin":"2.5-3.0","rho":0.413,"p":3.7515893772224246e-100},{"x":3.243,"med":23.37,"p25":12.86,"p75":42.16,"n":410,"bin":"3.0-3.5","rho":0.413,"p":3.7515893772224246e-100},{"x":3.741,"med":36.0,"p25":17.14,"p75":72.53,"n":273,"bin":"3.5-4.0","rho":0.413,"p":3.7515893772224246e-100},{"x":4.36,"med":42.85,"p25":19.42,"p75":111.61,"n":325,"bin":"4.0-5.0","rho":0.413,"p":3.7515893772224246e-100},{"x":5.441,"med":66.82,"p25":18.91,"p75":178.43,"n":109,"bin":"5.0-6.0","rho":0.413,"p":3.7515893772224246e-100},{"x":6.318,"med":115.96,"p25":29.45,"p75":164.97,"n":28,"bin":"6.0+","rho":0.413,"p":3.7515893772224246e-100}],"Corn / soybean dominant":[{"x":2.293,"med":17.61,"p25":14.33,"p75":31.4,"n":262,"bin":"2.0-2.5","rho":0.292,"p":3.2887938492958763e-22},{"x":2.712,"med":17.5,"p25":13.78,"p75":31.44,"n":233,"bin":"2.5-3.0","rho":0.292,"p":3.2887938492958763e-22},{"x":3.208,"med":23.47,"p25":13.66,"p75":37.33,"n":223,"bin":"3.0-3.5","rho":0.292,"p":3.2887938492958763e-22},{"x":3.744,"med":33.18,"p25":16.94,"p75":60.59,"n":134,"bin":"3.5-4.0","rho":0.292,"p":3.2887938492958763e-22},{"x":4.381,"med":35.81,"p25":18.9,"p75":86.54,"n":153,"bin":"4.0-5.0","rho":0.292,"p":3.2887938492958763e-22},{"x":5.462,"med":66.82,"p25":23.11,"p75":157.19,"n":45,"bin":"5.0-6.0","rho":0.292,"p":3.2887938492958763e-22}],"No high-input crop grown":[{"x":1.059,"med":15.78,"p25":4.56,"p75":34.36,"n":32,"bin":"1.0-1.5","rho":0.057,"p":0.3562941610697067},{"x":2.306,"med":16.07,"p25":12.59,"p75":26.12,"n":39,"bin":"2.0-2.5","rho":0.057,"p":0.3562941610697067},{"x":2.726,"med":23.41,"p25":14.54,"p75":35.55,"n":34,"bin":"2.5-3.0","rho":0.057,"p":0.3562941610697067},{"x":3.232,"med":23.79,"p25":15.96,"p75":39.41,"n":47,"bin":"3.0-3.5","rho":0.057,"p":0.3562941610697067},{"x":3.742,"med":27.87,"p25":12.15,"p75":49.64,"n":34,"bin":"3.5-4.0","rho":0.057,"p":0.3562941610697067},{"x":4.366,"med":20.77,"p25":14.6,"p75":34.27,"n":43,"bin":"4.0-5.0","rho":0.057,"p":0.3562941610697067},{"x":5.578,"med":17.19,"p25":8.18,"p75":19.62,"n":16,"bin":"5.0-6.0","rho":0.057,"p":0.3562941610697067}]},"lal":[{"year":1982,"water":4.27,"wind":3.56,"total":7.83,"pct_above_T":25.42,"soc":0},{"year":1987,"water":3.9,"wind":3.51,"total":7.41,"pct_above_T":23.3,"soc":0},{"year":1992,"water":3.36,"wind":2.98,"total":6.34,"pct_above_T":20.32,"soc":0},{"year":1997,"water":3.02,"wind":2.59,"total":5.61,"pct_above_T":18.37,"soc":0},{"year":2002,"water":3.09,"wind":2.37,"total":5.46,"pct_above_T":18.49,"soc":0},{"year":2007,"water":2.93,"wind":2.33,"total":5.26,"pct_above_T":17.35,"soc":0},{"year":2012,"water":2.96,"wind":2.27,"total":5.23,"pct_above_T":17.75,"soc":0},{"year":2017,"water":2.99,"wind":2.31,"total":5.3,"pct_above_T":18.06,"soc":0},{"year":2022,"water":3.01,"wind":2.33,"total":5.34,"pct_above_T":18.04,"soc":0}],"mendez":[{"x":1.296934224881055,"cov":0.05787624028810613,"counties":296,"hay":0.9046955626140086,"decile":1},{"x":1.8646103713761302,"cov":0.5429461136433901,"counties":295,"hay":0.4178585224088579,"decile":2},{"x":2.226791413906288,"cov":0.9204853313464677,"counties":295,"hay":0.07060477283257235,"decile":3},{"x":2.544457847333646,"cov":0.8838864804279902,"counties":295,"hay":0.09784770840828214,"decile":4},{"x":2.8896874106703794,"cov":0.7844294089082839,"counties":295,"hay":0.16358020428154532,"decile":5},{"x":3.2785957230066463,"cov":0.7664901002699281,"counties":295,"hay":0.16286239356969406,"decile":6},{"x":3.682193540015628,"cov":0.7082611773607332,"counties":295,"hay":0.19141366816201727,"decile":7},{"x":4.144155157064665,"cov":0.6916658824124315,"counties":295,"hay":0.20694201304928336,"decile":8},{"x":4.691944759358356,"cov":0.6423795621430154,"counties":295,"hay":0.19440677980049167,"decile":9},{"x":5.974690961376583,"cov":0.5887178494510633,"counties":295,"hay":0.19042824494054736,"decile":10}],"penniman":[{"group":"White","ops":96.2621,"acres":93.6191,"apo":450.4,"ratio":0.973},{"group":"Hispanic (any race)","ops":4.3939,"acres":4.1889,"apo":441.5,"ratio":0.953},{"group":"American Indian or Alaska Native","ops":2.1374,"acres":6.3381,"apo":1373.2,"ratio":2.965},{"group":"Black or African American","ops":1.5113,"acres":0.4907,"apo":150.4,"ratio":0.325},{"group":"Multi-race","ops":1.3149,"acres":1.0978,"apo":386.6,"ratio":0.835},{"group":"Asian","ops":0.8457,"acres":0.2964,"apo":162.3,"ratio":0.35},{"group":"Native Hawaiian or Other Pacific Islander","ops":0.1462,"acres":0.0908,"apo":287.6,"ratio":0.621}],"scow":{"Earthworms & potworms":[{"tier":-1,"label":"CAS unresolved","pct":1.211,"n":51},{"tier":0,"label":"No record","pct":38.483,"n":226},{"tier":1,"label":"Lab, not in soil","pct":0.0,"n":0},{"tier":2,"label":"Lab, in soil, acute (<=14 d)","pct":2.281,"n":16},{"tier":3,"label":"Lab, in soil, chronic (>14 d)","pct":55.539,"n":30},{"tier":4,"label":"Field, single season (<1 yr)","pct":1.683,"n":5},{"tier":5,"label":"Field, >=1 year","pct":0.802,"n":2}],"Springtails & soil mites":[{"tier":-1,"label":"CAS unresolved","pct":1.211,"n":51},{"tier":0,"label":"No record","pct":65.107,"n":240},{"tier":1,"label":"Lab, not in soil","pct":0.76,"n":9},{"tier":2,"label":"Lab, in soil, acute (<=14 d)","pct":1.188,"n":4},{"tier":3,"label":"Lab, in soil, chronic (>14 d)","pct":1.396,"n":14},{"tier":4,"label":"Field, single season (<1 yr)","pct":29.535,"n":10},{"tier":5,"label":"Field, >=1 year","pct":0.803,"n":2}],"Mycorrhizal fungi":[{"tier":-1,"label":"CAS unresolved","pct":1.211,"n":51},{"tier":0,"label":"No record","pct":66.678,"n":267},{"tier":1,"label":"Lab, not in soil","pct":27.65,"n":3},{"tier":2,"label":"Lab, in soil, acute (<=14 d)","pct":1.157,"n":3},{"tier":3,"label":"Lab, in soil, chronic (>14 d)","pct":2.053,"n":4},{"tier":4,"label":"Field, single season (<1 yr)","pct":1.251,"n":2},{"tier":5,"label":"Field, >=1 year","pct":0.0,"n":0}],"Soil bacteria & protozoa":[{"tier":-1,"label":"CAS unresolved","pct":1.211,"n":51},{"tier":0,"label":"No record","pct":98.789,"n":279},{"tier":1,"label":"Lab, not in soil","pct":0.0,"n":0},{"tier":2,"label":"Lab, in soil, acute (<=14 d)","pct":0.0,"n":0},{"tier":3,"label":"Lab, in soil, chronic (>14 d)","pct":0.0,"n":0},{"tier":4,"label":"Field, single season (<1 yr)","pct":0.0,"n":0},{"tier":5,"label":"Field, >=1 year","pct":0.0,"n":0}]},"scow_tiers":["CAS unresolved","No record","Lab, not in soil","Lab, in soil, acute (<=14 d)","Lab, in soil, chronic (>14 d)","Field, single season (<1 yr)","Field, >=1 year"],"six":[{"outcome":"all herbicides","spec":"1. Pooled, no controls","est":7.1383,"lo":0.402,"hi":2.9244,"t":2.5937,"r2":0.0032},{"outcome":"all herbicides","spec":"2. + state fixed effects","est":-0.5016,"lo":-1.735,"hi":1.5222,"t":-0.144,"r2":0.0},{"outcome":"all herbicides","spec":"3. + Crop Reporting District FE","est":-1.253,"lo":-1.6669,"hi":1.0863,"t":-0.4262,"r2":0.0001},{"outcome":"all herbicides","spec":"4. + crop mix (10 shares)","est":16.3041,"lo":2.6459,"hi":4.688,"t":7.1565,"r2":0.5474},{"outcome":"all herbicides","spec":"5. + crop mix AND CRD FE","est":1.0239,"lo":-0.8089,"hi":1.3058,"t":0.4508,"r2":0.3719},{"outcome":"glyphosate","spec":"1. Pooled, no controls","est":15.2807,"lo":1.9752,"hi":4.9339,"t":4.6407,"r2":0.0089},{"outcome":"glyphosate","spec":"2. + state fixed effects","est":0.7302,"lo":-1.9426,"hi":2.3351,"t":0.159,"r2":0.0},{"outcome":"glyphosate","spec":"3. + Crop Reporting District FE","est":-1.5372,"lo":-2.0289,"hi":1.3207,"t":-0.4301,"r2":0.0001},{"outcome":"glyphosate","spec":"4. + crop mix (10 shares)","est":23.6915,"lo":4.057,"hi":6.3418,"t":9.1373,"r2":0.5561},{"outcome":"glyphosate","spec":"5. + crop mix AND CRD FE","est":-2.3254,"lo":-1.7381,"hi":0.6349,"t":-0.9203,"r2":0.4198},{"outcome":"burndown group","spec":"1. Pooled, no controls","est":18.7655,"lo":2.8378,"hi":5.5399,"t":6.1894,"r2":0.017},{"outcome":"burndown group","spec":"2. + state fixed effects","est":10.4006,"lo":0.5952,"hi":4.2046,"t":2.6199,"r2":0.0042},{"outcome":"burndown group","spec":"3. + Crop Reporting District FE","est":3.6597,"lo":-0.5174,"hi":2.2555,"t":1.2203,"r2":0.0011},{"outcome":"burndown group","spec":"4. + crop mix (10 shares)","est":22.3994,"lo":3.798,"hi":6.0753,"t":8.6929,"r2":0.4787},{"outcome":"burndown group","spec":"5. + crop mix AND CRD FE","est":2.5858,"lo":-0.4601,"hi":1.6911,"t":1.1145,"r2":0.336}],"fonte":{"outcomes":["Yield","Profitability","Erosion control","Nutrient cycling","Carbon sequestration","Pest regulation","Water capture","Soil macrofauna"],"years":[1982,1983,1984,1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021,2022],"cells":[{"o":"Yield","y":1982,"d":1,"n":2945,"s":"county"},{"o":"Profitability","y":1982,"d":0,"n":0,"s":""},{"o":"Erosion control","y":1982,"d":1,"n":50,"s":"state"},{"o":"Nutrient cycling","y":1982,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":1982,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":1982,"d":0,"n":0,"s":""},{"o":"Water capture","y":1982,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":1982,"d":0,"n":0,"s":""},{"o":"Yield","y":1983,"d":1,"n":2948,"s":"county"},{"o":"Profitability","y":1983,"d":0,"n":0,"s":""},{"o":"Erosion control","y":1983,"d":0,"n":0,"s":""},{"o":"Nutrient cycling","y":1983,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":1983,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":1983,"d":0,"n":0,"s":""},{"o":"Water capture","y":1983,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":1983,"d":0,"n":0,"s":""},{"o":"Yield","y":1984,"d":1,"n":2947,"s":"county"},{"o":"Profitability","y":1984,"d":0,"n":0,"s":""},{"o":"Erosion control","y":1984,"d":0,"n":0,"s":""},{"o":"Nutrient cycling","y":1984,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":1984,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":1984,"d":0,"n":0,"s":""},{"o":"Water capture","y":1984,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":1984,"d":0,"n":0,"s":""},{"o":"Yield","y":1985,"d":1,"n":2946,"s":"county"},{"o":"Profitability","y":1985,"d":0,"n":0,"s":""},{"o":"Erosion control","y":1985,"d":0,"n":0,"s":""},{"o":"Nutrient cycling","y":1985,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":1985,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":1985,"d":0,"n":0,"s":""},{"o":"Water capture","y":1985,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":1985,"d":0,"n":0,"s":""},{"o":"Yield","y":1986,"d":1,"n":2928,"s":"county"},{"o":"Profitability","y":1986,"d":0,"n":0,"s":""},{"o":"Erosion control","y":1986,"d":0,"n":0,"s":""},{"o":"Nutrient cycling","y":1986,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":1986,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":1986,"d":0,"n":0,"s":""},{"o":"Water capture","y":1986,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":1986,"d":0,"n":0,"s":""},{"o":"Yield","y":1987,"d":1,"n":2896,"s":"county"},{"o":"Profitability","y":1987,"d":0,"n":0,"s":""},{"o":"Erosion control","y":1987,"d":1,"n":50,"s":"state"},{"o":"Nutrient cycling","y":1987,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":1987,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":1987,"d":0,"n":0,"s":""},{"o":"Water capture","y":1987,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":1987,"d":0,"n":0,"s":""},{"o":"Yield","y":1988,"d":1,"n":2882,"s":"county"},{"o":"Profitability","y":1988,"d":0,"n":0,"s":""},{"o":"Erosion control","y":1988,"d":0,"n":0,"s":""},{"o":"Nutrient cycling","y":1988,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":1988,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":1988,"d":0,"n":0,"s":""},{"o":"Water capture","y":1988,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":1988,"d":0,"n":0,"s":""},{"o":"Yield","y":1989,"d":1,"n":2872,"s":"county"},{"o":"Profitability","y":1989,"d":0,"n":0,"s":""},{"o":"Erosion control","y":1989,"d":0,"n":0,"s":""},{"o":"Nutrient cycling","y":1989,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":1989,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":1989,"d":0,"n":0,"s":""},{"o":"Water capture","y":1989,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":1989,"d":0,"n":0,"s":""},{"o":"Yield","y":1990,"d":1,"n":2875,"s":"county"},{"o":"Profitability","y":1990,"d":0,"n":0,"s":""},{"o":"Erosion control","y":1990,"d":0,"n":0,"s":""},{"o":"Nutrient cycling","y":1990,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":1990,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":1990,"d":0,"n":0,"s":""},{"o":"Water capture","y":1990,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":1990,"d":0,"n":0,"s":""},{"o":"Yield","y":1991,"d":1,"n":2855,"s":"county"},{"o":"Profitability","y":1991,"d":0,"n":0,"s":""},{"o":"Erosion control","y":1991,"d":0,"n":0,"s":""},{"o":"Nutrient cycling","y":1991,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":1991,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":1991,"d":0,"n":0,"s":""},{"o":"Water capture","y":1991,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":1991,"d":0,"n":0,"s":""},{"o":"Yield","y":1992,"d":1,"n":2850,"s":"county"},{"o":"Profitability","y":1992,"d":0,"n":0,"s":""},{"o":"Erosion control","y":1992,"d":1,"n":50,"s":"state"},{"o":"Nutrient cycling","y":1992,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":1992,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":1992,"d":0,"n":0,"s":""},{"o":"Water capture","y":1992,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":1992,"d":0,"n":0,"s":""},{"o":"Yield","y":1993,"d":1,"n":2820,"s":"county"},{"o":"Profitability","y":1993,"d":0,"n":0,"s":""},{"o":"Erosion control","y":1993,"d":0,"n":0,"s":""},{"o":"Nutrient cycling","y":1993,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":1993,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":1993,"d":0,"n":0,"s":""},{"o":"Water capture","y":1993,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":1993,"d":0,"n":0,"s":""},{"o":"Yield","y":1994,"d":1,"n":2830,"s":"county"},{"o":"Profitability","y":1994,"d":0,"n":0,"s":""},{"o":"Erosion control","y":1994,"d":0,"n":0,"s":""},{"o":"Nutrient cycling","y":1994,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":1994,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":1994,"d":0,"n":0,"s":""},{"o":"Water capture","y":1994,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":1994,"d":0,"n":0,"s":""},{"o":"Yield","y":1995,"d":1,"n":2816,"s":"county"},{"o":"Profitability","y":1995,"d":0,"n":0,"s":""},{"o":"Erosion control","y":1995,"d":0,"n":0,"s":""},{"o":"Nutrient cycling","y":1995,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":1995,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":1995,"d":0,"n":0,"s":""},{"o":"Water capture","y":1995,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":1995,"d":0,"n":0,"s":""},{"o":"Yield","y":1996,"d":1,"n":2815,"s":"county"},{"o":"Profitability","y":1996,"d":0,"n":0,"s":""},{"o":"Erosion control","y":1996,"d":0,"n":0,"s":""},{"o":"Nutrient cycling","y":1996,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":1996,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":1996,"d":0,"n":0,"s":""},{"o":"Water capture","y":1996,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":1996,"d":0,"n":0,"s":""},{"o":"Yield","y":1997,"d":1,"n":2814,"s":"county"},{"o":"Profitability","y":1997,"d":0,"n":0,"s":""},{"o":"Erosion control","y":1997,"d":1,"n":50,"s":"state"},{"o":"Nutrient cycling","y":1997,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":1997,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":1997,"d":0,"n":0,"s":""},{"o":"Water capture","y":1997,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":1997,"d":0,"n":0,"s":""},{"o":"Yield","y":1998,"d":1,"n":2784,"s":"county"},{"o":"Profitability","y":1998,"d":0,"n":0,"s":""},{"o":"Erosion control","y":1998,"d":0,"n":0,"s":""},{"o":"Nutrient cycling","y":1998,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":1998,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":1998,"d":0,"n":0,"s":""},{"o":"Water capture","y":1998,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":1998,"d":0,"n":0,"s":""},{"o":"Yield","y":1999,"d":1,"n":2777,"s":"county"},{"o":"Profitability","y":1999,"d":0,"n":0,"s":""},{"o":"Erosion control","y":1999,"d":0,"n":0,"s":""},{"o":"Nutrient cycling","y":1999,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":1999,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":1999,"d":0,"n":0,"s":""},{"o":"Water capture","y":1999,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":1999,"d":0,"n":0,"s":""},{"o":"Yield","y":2000,"d":1,"n":2759,"s":"county"},{"o":"Profitability","y":2000,"d":0,"n":0,"s":""},{"o":"Erosion control","y":2000,"d":0,"n":0,"s":""},{"o":"Nutrient cycling","y":2000,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":2000,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":2000,"d":0,"n":0,"s":""},{"o":"Water capture","y":2000,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":2000,"d":0,"n":0,"s":""},{"o":"Yield","y":2001,"d":1,"n":2752,"s":"county"},{"o":"Profitability","y":2001,"d":0,"n":0,"s":""},{"o":"Erosion control","y":2001,"d":0,"n":0,"s":""},{"o":"Nutrient cycling","y":2001,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":2001,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":2001,"d":0,"n":0,"s":""},{"o":"Water capture","y":2001,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":2001,"d":0,"n":0,"s":""},{"o":"Yield","y":2002,"d":1,"n":2753,"s":"county"},{"o":"Profitability","y":2002,"d":1,"n":3041,"s":"county"},{"o":"Erosion control","y":2002,"d":1,"n":50,"s":"state"},{"o":"Nutrient cycling","y":2002,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":2002,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":2002,"d":0,"n":0,"s":""},{"o":"Water capture","y":2002,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":2002,"d":0,"n":0,"s":""},{"o":"Yield","y":2003,"d":1,"n":2742,"s":"county"},{"o":"Profitability","y":2003,"d":0,"n":0,"s":""},{"o":"Erosion control","y":2003,"d":0,"n":0,"s":""},{"o":"Nutrient cycling","y":2003,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":2003,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":2003,"d":0,"n":0,"s":""},{"o":"Water capture","y":2003,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":2003,"d":0,"n":0,"s":""},{"o":"Yield","y":2004,"d":1,"n":2758,"s":"county"},{"o":"Profitability","y":2004,"d":0,"n":0,"s":""},{"o":"Erosion control","y":2004,"d":0,"n":0,"s":""},{"o":"Nutrient cycling","y":2004,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":2004,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":2004,"d":0,"n":0,"s":""},{"o":"Water capture","y":2004,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":2004,"d":0,"n":0,"s":""},{"o":"Yield","y":2005,"d":1,"n":2720,"s":"county"},{"o":"Profitability","y":2005,"d":0,"n":0,"s":""},{"o":"Erosion control","y":2005,"d":0,"n":0,"s":""},{"o":"Nutrient cycling","y":2005,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":2005,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":2005,"d":0,"n":0,"s":""},{"o":"Water capture","y":2005,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":2005,"d":0,"n":0,"s":""},{"o":"Yield","y":2006,"d":1,"n":2726,"s":"county"},{"o":"Profitability","y":2006,"d":0,"n":0,"s":""},{"o":"Erosion control","y":2006,"d":0,"n":0,"s":""},{"o":"Nutrient cycling","y":2006,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":2006,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":2006,"d":0,"n":0,"s":""},{"o":"Water capture","y":2006,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":2006,"d":0,"n":0,"s":""},{"o":"Yield","y":2007,"d":1,"n":2649,"s":"county"},{"o":"Profitability","y":2007,"d":1,"n":3034,"s":"county"},{"o":"Erosion control","y":2007,"d":1,"n":50,"s":"state"},{"o":"Nutrient cycling","y":2007,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":2007,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":2007,"d":0,"n":0,"s":""},{"o":"Water capture","y":2007,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":2007,"d":0,"n":0,"s":""},{"o":"Yield","y":2008,"d":1,"n":2536,"s":"county"},{"o":"Profitability","y":2008,"d":0,"n":0,"s":""},{"o":"Erosion control","y":2008,"d":0,"n":0,"s":""},{"o":"Nutrient cycling","y":2008,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":2008,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":2008,"d":0,"n":0,"s":""},{"o":"Water capture","y":2008,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":2008,"d":0,"n":0,"s":""},{"o":"Yield","y":2009,"d":1,"n":2504,"s":"county"},{"o":"Profitability","y":2009,"d":0,"n":0,"s":""},{"o":"Erosion control","y":2009,"d":0,"n":0,"s":""},{"o":"Nutrient cycling","y":2009,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":2009,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":2009,"d":0,"n":0,"s":""},{"o":"Water capture","y":2009,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":2009,"d":0,"n":0,"s":""},{"o":"Yield","y":2010,"d":1,"n":2550,"s":"county"},{"o":"Profitability","y":2010,"d":0,"n":0,"s":""},{"o":"Erosion control","y":2010,"d":0,"n":0,"s":""},{"o":"Nutrient cycling","y":2010,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":2010,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":2010,"d":0,"n":0,"s":""},{"o":"Water capture","y":2010,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":2010,"d":0,"n":0,"s":""},{"o":"Yield","y":2011,"d":1,"n":2549,"s":"county"},{"o":"Profitability","y":2011,"d":0,"n":0,"s":""},{"o":"Erosion control","y":2011,"d":0,"n":0,"s":""},{"o":"Nutrient cycling","y":2011,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":2011,"d":1,"n":17,"s":"RaCA region"},{"o":"Pest regulation","y":2011,"d":0,"n":0,"s":""},{"o":"Water capture","y":2011,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":2011,"d":0,"n":0,"s":""},{"o":"Yield","y":2012,"d":1,"n":2538,"s":"county"},{"o":"Profitability","y":2012,"d":1,"n":3050,"s":"county"},{"o":"Erosion control","y":2012,"d":1,"n":50,"s":"state"},{"o":"Nutrient cycling","y":2012,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":2012,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":2012,"d":0,"n":0,"s":""},{"o":"Water capture","y":2012,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":2012,"d":0,"n":0,"s":""},{"o":"Yield","y":2013,"d":1,"n":2500,"s":"county"},{"o":"Profitability","y":2013,"d":0,"n":0,"s":""},{"o":"Erosion control","y":2013,"d":0,"n":0,"s":""},{"o":"Nutrient cycling","y":2013,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":2013,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":2013,"d":0,"n":0,"s":""},{"o":"Water capture","y":2013,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":2013,"d":0,"n":0,"s":""},{"o":"Yield","y":2014,"d":1,"n":2522,"s":"county"},{"o":"Profitability","y":2014,"d":0,"n":0,"s":""},{"o":"Erosion control","y":2014,"d":0,"n":0,"s":""},{"o":"Nutrient cycling","y":2014,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":2014,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":2014,"d":0,"n":0,"s":""},{"o":"Water capture","y":2014,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":2014,"d":0,"n":0,"s":""},{"o":"Yield","y":2015,"d":1,"n":2488,"s":"county"},{"o":"Profitability","y":2015,"d":0,"n":0,"s":""},{"o":"Erosion control","y":2015,"d":0,"n":0,"s":""},{"o":"Nutrient cycling","y":2015,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":2015,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":2015,"d":0,"n":0,"s":""},{"o":"Water capture","y":2015,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":2015,"d":0,"n":0,"s":""},{"o":"Yield","y":2016,"d":1,"n":2442,"s":"county"},{"o":"Profitability","y":2016,"d":0,"n":0,"s":""},{"o":"Erosion control","y":2016,"d":0,"n":0,"s":""},{"o":"Nutrient cycling","y":2016,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":2016,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":2016,"d":0,"n":0,"s":""},{"o":"Water capture","y":2016,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":2016,"d":0,"n":0,"s":""},{"o":"Yield","y":2017,"d":1,"n":2435,"s":"county"},{"o":"Profitability","y":2017,"d":1,"n":3043,"s":"county"},{"o":"Erosion control","y":2017,"d":1,"n":50,"s":"state"},{"o":"Nutrient cycling","y":2017,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":2017,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":2017,"d":0,"n":0,"s":""},{"o":"Water capture","y":2017,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":2017,"d":0,"n":0,"s":""},{"o":"Yield","y":2018,"d":1,"n":2346,"s":"county"},{"o":"Profitability","y":2018,"d":0,"n":0,"s":""},{"o":"Erosion control","y":2018,"d":0,"n":0,"s":""},{"o":"Nutrient cycling","y":2018,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":2018,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":2018,"d":0,"n":0,"s":""},{"o":"Water capture","y":2018,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":2018,"d":0,"n":0,"s":""},{"o":"Yield","y":2019,"d":1,"n":1916,"s":"county"},{"o":"Profitability","y":2019,"d":0,"n":0,"s":""},{"o":"Erosion control","y":2019,"d":0,"n":0,"s":""},{"o":"Nutrient cycling","y":2019,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":2019,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":2019,"d":0,"n":0,"s":""},{"o":"Water capture","y":2019,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":2019,"d":0,"n":0,"s":""},{"o":"Yield","y":2020,"d":1,"n":2123,"s":"county"},{"o":"Profitability","y":2020,"d":0,"n":0,"s":""},{"o":"Erosion control","y":2020,"d":0,"n":0,"s":""},{"o":"Nutrient cycling","y":2020,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":2020,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":2020,"d":0,"n":0,"s":""},{"o":"Water capture","y":2020,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":2020,"d":0,"n":0,"s":""},{"o":"Yield","y":2021,"d":1,"n":2035,"s":"county"},{"o":"Profitability","y":2021,"d":0,"n":0,"s":""},{"o":"Erosion control","y":2021,"d":0,"n":0,"s":""},{"o":"Nutrient cycling","y":2021,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":2021,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":2021,"d":0,"n":0,"s":""},{"o":"Water capture","y":2021,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":2021,"d":0,"n":0,"s":""},{"o":"Yield","y":2022,"d":1,"n":2027,"s":"county"},{"o":"Profitability","y":2022,"d":1,"n":3046,"s":"county"},{"o":"Erosion control","y":2022,"d":1,"n":50,"s":"state"},{"o":"Nutrient cycling","y":2022,"d":0,"n":0,"s":""},{"o":"Carbon sequestration","y":2022,"d":0,"n":0,"s":""},{"o":"Pest regulation","y":2022,"d":0,"n":0,"s":""},{"o":"Water capture","y":2022,"d":0,"n":0,"s":""},{"o":"Soil macrofauna","y":2022,"d":0,"n":0,"s":""}]}};
+const $ = (id)=>document.getElementById(id);
+const NS = "http://www.w3.org/2000/svg";
+const el = (n,a={})=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e;};
+const cssv = (n)=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const fmt = (v,d=1)=>Number(v).toLocaleString(undefined,{minimumFractionDigits:d,maximumFractionDigits:d});
+
+function svg(w,h){const s=el("svg",{viewBox:`0 0 ${w} ${h}`,width:w,height:h,role:"img"});return s;}
+function txt(s,x,y,t,o={}){const e=el("text",Object.assign({x,y,fill:o.fill||"var(--ink-3)",
+  "font-size":o.size||11,"font-family":'"IBM Plex Mono",monospace',"text-anchor":o.anchor||"start",
+  "dominant-baseline":o.base||"auto"},o.extra||{}));e.textContent=t;s.appendChild(e);return e;}
+function line(s,x1,y1,x2,y2,st,sw=1,o={}){s.appendChild(el("line",Object.assign({x1,y1,x2,y2,stroke:st,
+  "stroke-width":sw},o)));}
+function path(s,d,st,sw=2,fill="none",o={}){s.appendChild(el("path",Object.assign({d,stroke:st,"stroke-width":sw,
+  fill,"stroke-linejoin":"round","stroke-linecap":"round"},o)));}
+function rect(s,x,y,w,h,f,o={}){s.appendChild(el("rect",Object.assign({x,y,width:Math.max(0,w),
+  height:Math.max(0,h),fill:f},o)));}
+function circ(s,cx,cy,r,f,o={}){s.appendChild(el("circle",Object.assign({cx,cy,r,fill:f},o)));}
+function table(host,cols,rows){
+  const t=document.createElement("table");const th=document.createElement("tr");
+  cols.forEach(c=>{const e=document.createElement("th");e.textContent=c;th.appendChild(e);});
+  t.appendChild(th);
+  rows.forEach(r=>{const tr=document.createElement("tr");
+    r.forEach(v=>{const td=document.createElement("td");td.textContent=v;tr.appendChild(td);});
+    t.appendChild(tr);});
+  host.appendChild(t);
+}
+function legend(host,items){
+  const d=document.createElement("div");d.className="legend";
+  items.forEach(([c,l,isLine])=>{const s=document.createElement("span");
+    const sw=document.createElement("i");sw.className="sw"+(isLine?" line":"");sw.style.background=c;
+    s.appendChild(sw);s.appendChild(document.createTextNode(l));d.appendChild(s);});
+  host.parentNode.insertBefore(d,host);
+}
+
+/* ---------- FONTE: availability matrix ---------- */
+(function(){
+  const f=D.fonte,W=1000,padL=168,padT=30,padB=34,cw=(W-padL-14)/f.years.length,rh=26;
+  const H=padT+f.outcomes.length*rh+padB,s=svg(W,H);
+  const ink=cssv("--ink-2"),void_=cssv("--void"),acc=cssv("--s1");
+  f.years.forEach((y,i)=>{ if(y%5===0||y===f.years[f.years.length-1])
+    txt(s,padL+i*cw+cw/2,padT-9,String(y),{anchor:"middle",size:10}); });
+  f.outcomes.forEach((o,r)=>{
+    const y=padT+r*rh;
+    txt(s,padL-12,y+rh/2,o,{anchor:"end",base:"middle",size:11.5,fill:ink,
+      extra:{"font-family":'"IBM Plex Sans",sans-serif'}});
+    const cells=f.cells.filter(c=>c.o===o);
+    let filled=0;
+    f.years.forEach((yr,i)=>{
+      const c=cells.find(c=>c.y===yr),x=padL+i*cw;
+      if(c&&c.d===1){filled++;rect(s,x+0.8,y+4,cw-2.6,rh-9,acc,{rx:1.5});}
+      else rect(s,x+0.8,y+4,cw-2.6,rh-9,void_,{rx:1.5});
+    });
+    txt(s,W-8,y+rh/2,filled?String(filled):"0",{anchor:"end",base:"middle",size:10.5,
+      fill:filled?ink:cssv("--void-ink")});
+  });
+  txt(s,padL,H-12,"filled = direct national measurement that year · empty = none",{size:10.5});
+  txt(s,W-8,padT-9,"yrs",{anchor:"end",size:10});
+  $("c-fonte").appendChild(s);
+  table($("t-fonte"),["Outcome","Years measured","Spatial support","Basis"],
+    f.outcomes.map(o=>{const cs=f.cells.filter(c=>c.o===o&&c.d===1);
+      return [o,String(cs.length),cs.length?cs[0].s:"—",cs.length?"direct":"not measured"];}));
+})();
+
+/* ---------- SCOW: horizontal stacked bar ---------- */
+(function(){
+  const g=D.scow,groups=Object.keys(g),W=1000,padL=178,padR=16,padT=8,rh=54;
+  const H=padT+groups.length*rh+30,s=svg(W,H),plotW=W-padL-padR;
+  const cols={"No record":cssv("--void"),"CAS unresolved":cssv("--rule-2"),
+    "Lab, not in soil":cssv("--s4"),"Lab, in soil, acute (<=14 d)":cssv("--s1"),
+    "Lab, in soil, chronic (>14 d)":cssv("--s3"),"Field, single season (<1 yr)":cssv("--s7"),
+    "Field, >=1 year":cssv("--s6")};
+  groups.forEach((gr,r)=>{
+    const y=padT+r*rh;let x=padL;
+    txt(s,padL-12,y+16,gr,{anchor:"end",size:12,fill:cssv("--ink"),
+      extra:{"font-family":'"IBM Plex Sans",sans-serif'}});
+    const tiers=g[gr].slice().sort((a,b)=>a.tier-b.tier);
+    tiers.forEach(t=>{ const w=plotW*t.pct/100; if(w<=0)return;
+      rect(s,x,y+4,w-1.6,24,cols[t.label]||cssv("--rule-2"),{rx:1.5});
+      if(w>62) txt(s,x+7,y+16,fmt(t.pct,1)+"%",{base:"middle",size:10.5,
+        fill:t.label==="No record"?cssv("--void-ink"):"#fff"});
+      x+=w; });
+    const none=tiers.find(t=>t.label==="No record");
+    txt(s,padL,y+42,none?`${fmt(none.pct,1)}% of applied mass has no record of any kind`:"",
+      {size:10.5,fill:cssv("--ink-3")});
+  });
+  line(s,padL,padT,padL,padT+groups.length*rh,cssv("--rule-2"),1);
+  $("c-scow").appendChild(s);
+  legend($("c-scow"),Object.keys(cols).map(k=>[cols[k],k.replace("<=","≤").replace(">=","≥"),false]));
+  const tiers=D.scow_tiers;
+  table($("t-scow"),["Biota group"].concat(tiers.map(t=>t.replace("<=","≤").replace(">=","≥"))),
+    groups.map(gr=>[gr].concat(tiers.map(t=>{const x=g[gr].find(v=>v.label===t);
+      return x?fmt(x.pct,2)+"%":"0.00%";}))));
+})();
+
+/* ---------- ALTIERI: two stacked panels ---------- */
+(function(){
+  const a=D.altieri,W=1000,padL=64,padR=92,H1=150,H2=118,gap=40,padT=14;
+  const H=padT+H1+gap+H2+34,s=svg(W,H),pw=W-padL-padR;
+  const yrs=a.years,x=(y)=>padL+pw*(y-yrs[0])/(yrs[yrs.length-1]-yrs[0]);
+  function panel(top,h,vals,max,color,label,suffix){
+    const yy=(v)=>top+h-(h*v/max);
+    [0,max/2,max].forEach(v=>{line(s,padL,yy(v),padL+pw,yy(v),cssv("--rule"),1);
+      txt(s,padL-9,yy(v),fmt(v,v<10?1:0),{anchor:"end",base:"middle",size:10});});
+    let d="",first=true;
+    vals.forEach((v,i)=>{ if(v==null)return; d+=(first?"M":"L")+x(yrs[i])+" "+yy(v); first=false; });
+    path(s,d,color,2.4);
+    vals.forEach((v,i)=>{ if(v==null)return; if(yrs[i]%5===0||i===vals.length-1)
+      circ(s,x(yrs[i]),yy(v),3.2,color,{stroke:cssv("--panel"),"stroke-width":1.6}); });
+    const last=vals.filter(v=>v!=null).slice(-1)[0];
+    txt(s,padL+pw+9,yy(last),fmt(last,1)+suffix,{base:"middle",size:11.5,fill:color,
+      extra:{"font-weight":"500"}});
+    txt(s,padL,top-4,label,{size:11,fill:cssv("--ink-2"),
+      extra:{"font-family":'"IBM Plex Sans",sans-serif'}});
+  }
+  panel(padT+12,H1,a.eff_county,10,cssv("--s1"),
+    "Effective number of compounds, median county (inverse Simpson)","");
+  panel(padT+H1+gap+12,H2,a.glyph_share,30,cssv("--s2"),
+    "Glyphosate share of all applied mass (%)","%");
+  yrs.forEach(y=>{ if(y%5===0||y===yrs[yrs.length-1])
+    txt(s,x(y),H-14,String(y),{anchor:"middle",size:10}); });
+  line(s,padL,padT+H1+12,padL+pw,padT+H1+12,cssv("--rule-2"),1);
+  line(s,padL,padT+H1+gap+H2+12,padL+pw,padT+H1+gap+H2+12,cssv("--rule-2"),1);
+  $("c-altieri").appendChild(s);
+  table($("t-altieri"),["Year","Effective compounds (median county)","Glyphosate share of mass (%)"],
+    yrs.map((y,i)=>[String(y),a.eff_county[i]!=null?fmt(a.eff_county[i],2):"—",
+      a.glyph_share[i]!=null?fmt(a.glyph_share[i],1):"—"]));
+})();
+
+/* ---------- LAL: erosion lines + the single carbon point ---------- */
+(function(){
+  const L=D.lal,W=1000,padL=58,padR=150,padT=18,padB=42,H=330;
+  const s=svg(W,H),pw=W-padL-padR,ph=H-padT-padB;
+  const x=(y)=>padL+pw*(y-1982)/(2022-1982),max=9,yy=(v)=>padT+ph-(ph*v/max);
+  [0,2,4,6,8].forEach(v=>{line(s,padL,yy(v),padL+pw,yy(v),cssv("--rule"),1);
+    txt(s,padL-9,yy(v),String(v),{anchor:"end",base:"middle",size:10});});
+  rect(s,x(1982),padT,x(1997)-x(1982),ph,cssv("--accent-soft"),{opacity:.55});
+  txt(s,(x(1982)+x(1997))/2,padT+13,"89% of the 40-year decline",{anchor:"middle",size:10.5,
+    fill:cssv("--ink-2")});
+  txt(s,(x(1997)+x(2022))/2,padT+13,"1997–2022: flat",{anchor:"middle",size:10.5,fill:cssv("--ink-3")});
+  [["total",cssv("--s1"),"Combined"],["water",cssv("--s3"),"Water (sheet & rill)"],
+   ["wind",cssv("--s4"),"Wind"]].forEach(([k,c,lab])=>{
+    let d="";L.forEach((r,i)=>{d+=(i?"L":"M")+x(r.year)+" "+yy(r[k]);});
+    path(s,d,c,k==="total"?2.6:1.9,"none",k==="total"?{}:{"stroke-dasharray":"1 0"});
+    L.forEach(r=>circ(s,x(r.year),yy(r[k]),k==="total"?3.4:2.6,c,
+      {stroke:cssv("--panel"),"stroke-width":1.4}));
+    const last=L[L.length-1];
+    txt(s,padL+pw+9,yy(last[k]),lab+" "+fmt(last[k],2),{base:"middle",size:11,fill:c});
+  });
+  const soc=L.find(r=>r.soc>0);
+  if(soc){const cx=x(2011);line(s,cx,padT,cx,padT+ph,cssv("--crit"),1.4,{"stroke-dasharray":"4 3"});
+    circ(s,cx,padT+ph-10,5,cssv("--crit"));
+    txt(s,cx+8,padT+ph-26,"RaCA 2010–11",{size:10.5,fill:cssv("--crit"),extra:{"font-weight":"500"}});
+    txt(s,cx+8,padT+ph-13,"the only national soil-carbon",{size:10,fill:cssv("--ink-3")});
+    txt(s,cx+8,padT+ph-2,"measurement ever taken",{size:10,fill:cssv("--ink-3")});}
+  L.forEach(r=>txt(s,x(r.year),H-22,String(r.year),{anchor:"middle",size:10}));
+  txt(s,padL,H-6,"tons per acre per year · cultivated cropland",{size:10.5});
+  line(s,padL,padT+ph,padL+pw,padT+ph,cssv("--rule-2"),1);
+  $("c-lal").appendChild(s);
+  table($("t-lal"),["Year","Water","Wind","Combined","% acres above T (water)"],
+    L.map(r=>[String(r.year),fmt(r.water,2),fmt(r.wind,2),fmt(r.total,2),fmt(r.pct_above_T,1)+"%"]));
+})();
+
+/* ---------- MENDEZ: inverted U ---------- */
+(function(){
+  const m=D.mendez,W=1000,padL=58,padR=150,padT=22,padB=48,H=300;
+  const s=svg(W,H),pw=W-padL-padR,ph=H-padT-padB;
+  const xs=m.map(d=>d.x),x0=Math.min(...xs),x1=Math.max(...xs);
+  const x=(v)=>padL+pw*(v-x0)/(x1-x0),yy=(v)=>padT+ph-ph*v;
+  [0,.25,.5,.75,1].forEach(v=>{line(s,padL,yy(v),padL+pw,yy(v),cssv("--rule"),1);
+    txt(s,padL-9,yy(v),Math.round(v*100)+"%",{anchor:"end",base:"middle",size:10});});
+  let d="";m.forEach((p,i)=>{d+=(i?"L":"M")+x(p.x)+" "+yy(p.cov);});
+  path(s,d,cssv("--s1"),2.6);
+  m.forEach(p=>circ(s,x(p.x),yy(p.cov),4,cssv("--s1"),{stroke:cssv("--panel"),"stroke-width":1.6}));
+  const pk=m.reduce((a,b)=>b.cov>a.cov?b:a);
+  txt(s,x(pk.x),yy(pk.cov)-13,"92% — the corn–soybean rotation",{anchor:"middle",size:11,
+    fill:cssv("--ink"),extra:{"font-weight":"500"}});
+  const lo=m[0],hi=m[m.length-1];
+  txt(s,x(lo.x)+6,yy(lo.cov)-10,"5.8% — hay country",{size:10.5,fill:cssv("--ink-3")});
+  txt(s,padL+pw+9,yy(hi.cov),"58.9%",{base:"middle",size:11.5,fill:cssv("--s1")});
+  txt(s,padL+pw+9,yy(hi.cov)+14,"most diverse",{base:"middle",size:10,fill:cssv("--ink-3")});
+  m.forEach(p=>txt(s,x(p.x),H-26,fmt(p.x,1),{anchor:"middle",size:10}));
+  txt(s,padL,H-8,"effective number of crops in the county  →",{size:10.5});
+  line(s,padL,padT+ph,padL+pw,padT+ph,cssv("--rule-2"),1);
+  $("c-mendez").appendChild(s);
+  table($("t-mendez"),["Decile","Effective crops (median)","Counties","Coverage","Hay share"],
+    m.map(p=>[String(p.decile),fmt(p.x,2),String(p.counties),fmt(p.cov*100,1)+"%",
+      fmt(p.hay*100,1)+"%"]));
+})();
+
+/* ---------- KREMEN: line + IQR band ---------- */
+(function(){
+  const K=D.kremen,names=Object.keys(K),W=1000,padL=64,padR=176,padT=18,padB=48,H=320;
+  const s=svg(W,H),pw=W-padL-padR,ph=H-padT-padB;
+  const all=names.flatMap(n=>K[n]);
+  const x0=Math.min(...all.map(d=>d.x)),x1=Math.max(...all.map(d=>d.x));
+  const ymax=Math.max(...all.map(d=>d.p75));
+  const x=(v)=>padL+pw*(v-x0)/(x1-x0),yy=(v)=>padT+ph-ph*Math.min(v,ymax)/ymax;
+  [0,50,100,150,200].filter(v=>v<=ymax).forEach(v=>{line(s,padL,yy(v),padL+pw,yy(v),cssv("--rule"),1);
+    txt(s,padL-9,yy(v),String(v),{anchor:"end",base:"middle",size:10});});
+  const cols=[cssv("--s1"),cssv("--s2")];
+  names.forEach((n,i)=>{
+    const pts=K[n],c=cols[i%2];
+    let up="",dn="";
+    pts.forEach((p,j)=>{up+=(j?"L":"M")+x(p.x)+" "+yy(p.p75);});
+    for(let j=pts.length-1;j>=0;j--){dn+="L"+x(pts[j].x)+" "+yy(pts[j].p25);}
+    path(s,up+dn+"Z","none",0,c,{opacity:.13});
+    let d="";pts.forEach((p,j)=>{d+=(j?"L":"M")+x(p.x)+" "+yy(p.med);});
+    path(s,d,c,2.5);
+    pts.forEach(p=>circ(s,x(p.x),yy(p.med),3.4,c,{stroke:cssv("--panel"),"stroke-width":1.5}));
+    const last=pts[pts.length-1];
+    txt(s,padL+pw+9,yy(last.med),n,{base:"middle",size:11.5,fill:c,extra:{"font-weight":"500"}});
+    txt(s,padL+pw+9,yy(last.med)+14,"ρ = "+fmt(last.rho,3)+(last.p>0.05?" (n.s.)":""),
+      {base:"middle",size:10,fill:cssv("--ink-3")});
+  });
+  [1,2,3,4,5,6].forEach(v=>{ if(v>=x0&&v<=x1) txt(s,x(v),H-26,String(v),{anchor:"middle",size:10}); });
+  txt(s,padL,H-8,"effective number of crops in the county  →",{size:10.5});
+  txt(s,padL,padT-4,"grams of insecticide per harvested acre (median county, band = IQR)",
+    {size:10.5,fill:cssv("--ink-2")});
+  line(s,padL,padT+ph,padL+pw,padT+ph,cssv("--rule-2"),1);
+  $("c-kremen").appendChild(s);
+  table($("t-kremen"),["Series","Crop-diversity bin","Counties","Median g/acre","IQR"],
+    all.map(p=>{const n=names.find(n=>K[n].includes(p));
+      return [n,p.bin,String(p.n),fmt(p.med,1),fmt(p.p25,1)+"–"+fmt(p.p75,1)];}));
+})();
+
+/* ---------- SIX: dot + error bars ---------- */
+(function(){
+  const S=D.six,W=1000,padL=252,padR=64,padT=30,rh=30;
+  const specs=[...new Set(S.map(d=>d.spec))],outs=[...new Set(S.map(d=>d.outcome))];
+  const H=padT+specs.length*rh+52,s=svg(W,H),pw=W-padL-padR;
+  const lo=Math.min(...S.map(d=>d.lo)),hi=Math.max(...S.map(d=>d.hi));
+  const pad=(hi-lo)*.08,x=(v)=>padL+pw*(v-(lo-pad))/((hi+pad)-(lo-pad));
+  const cols=[cssv("--s1"),cssv("--s2"),cssv("--s3")];
+  line(s,x(0),padT-8,x(0),padT+specs.length*rh,cssv("--rule-2"),1.4,{"stroke-dasharray":"3 3"});
+  txt(s,x(0),padT-13,"no difference",{anchor:"middle",size:10,fill:cssv("--ink-3")});
+  specs.forEach((sp,r)=>{
+    const y=padT+r*rh+rh/2;
+    txt(s,padL-14,y,sp,{anchor:"end",base:"middle",size:11.5,fill:cssv("--ink-2"),
+      extra:{"font-family":'"IBM Plex Sans",sans-serif'}});
+    outs.forEach((o,k)=>{
+      const d=S.find(v=>v.spec===sp&&v.outcome===o);if(!d)return;
+      const off=(k-1)*7.5,c=cols[k];
+      line(s,x(d.lo),y+off,x(d.hi),y+off,c,1.6,{opacity:.55});
+      circ(s,x(d.est),y+off,4,c,{stroke:cssv("--panel"),"stroke-width":1.4});
+    });
+  });
+  const g=S.filter(d=>d.outcome==="glyphosate");
+  const f=g[0],l=g[g.length-1];
+  txt(s,x(f.est),padT+rh/2-15,fmt(f.est,1)+"%",{anchor:"middle",size:11,fill:cols[1],
+    extra:{"font-weight":"500"}});
+  txt(s,x(l.est),padT+(specs.length-1)*rh+rh/2+20,fmt(l.est,1)+"%",{anchor:"middle",size:11,
+    fill:cols[1],extra:{"font-weight":"500"}});
+  [-10,-5,0,5,10,15,20].filter(v=>v>=lo-pad&&v<=hi+pad).forEach(v=>
+    txt(s,x(v),H-26,(v>0?"+":"")+v+"%",{anchor:"middle",size:10}));
+  txt(s,padL,H-8,"difference in applied herbicide mass, 25th→75th percentile of no-till share",{size:10.5});
+  $("c-six").appendChild(s);
+  legend($("c-six"),outs.map((o,i)=>[cols[i],o,false]));
+  table($("t-six"),["Comparison group","Outcome","Estimate","95% CI","t","R²"],
+    S.map(d=>[d.spec,d.outcome,fmt(d.est,2)+"%",fmt(d.lo,2)+" to "+fmt(d.hi,2),fmt(d.t,2),
+      fmt(d.r2,3)]));
+})();
+
+/* ---------- PENNIMAN: dumbbell, log x ---------- */
+(function(){
+  const P=D.penniman.filter(d=>d.ops>0&&d.acres>0),W=1000,padL=256,padR=118,padT=26,rh=42;
+  const H=padT+P.length*rh+46,s=svg(W,H),pw=W-padL-padR;
+  const lg=(v)=>Math.log10(v),lo=lg(0.1),hi=lg(120);
+  const x=(v)=>padL+pw*(lg(v)-lo)/(hi-lo);
+  [0.1,0.3,1,3,10,30,100].forEach(v=>{line(s,x(v),padT-6,x(v),padT+P.length*rh,cssv("--rule"),1);
+    txt(s,x(v),H-26,v+"%",{anchor:"middle",size:10});});
+  const cOps=cssv("--s1"),cAc=cssv("--s2");
+  P.forEach((p,r)=>{
+    const y=padT+r*rh+rh/2-4;
+    txt(s,padL-16,y,p.group,{anchor:"end",base:"middle",size:12,fill:cssv("--ink"),
+      extra:{"font-family":'"IBM Plex Sans",sans-serif'}});
+    const a=x(p.ops),b=x(p.acres);
+    line(s,Math.min(a,b),y,Math.max(a,b),y,cssv("--rule-2"),2.4);
+    circ(s,a,y,5.4,cssv("--panel"),{stroke:cOps,"stroke-width":2.4});
+    circ(s,b,y,5.4,cAc);
+    txt(s,padL-16,y+15,fmt(p.apo,0)+" acres per farm",{anchor:"end",base:"middle",size:10,
+      fill:cssv("--ink-3")});
+    txt(s,W-padR+12,y,(p.ratio<1?"":"+")+fmt(p.ratio,2)+"×",{base:"middle",size:11.5,
+      fill:p.ratio<0.6?cssv("--crit"):cssv("--ink-2"),extra:{"font-weight":"500"}});
+  });
+  txt(s,W-padR+12,padT-12,"acres ÷ farms",{size:10,fill:cssv("--ink-3")});
+  txt(s,padL,H-8,"share of US total (log scale)",{size:10.5});
+  $("c-penniman").appendChild(s);
+  legend($("c-penniman"),[[cssv("--panel"),"Share of farm operations (ring)",false],
+    [cAc,"Share of farmland acres (solid)",false]]);
+  table($("t-penniman"),["Producer group","% of operations","% of farmland","Acres/operation","Ratio"],
+    P.map(p=>[p.group,fmt(p.ops,2)+"%",fmt(p.acres,2)+"%",fmt(p.apo,0),fmt(p.ratio,2)+"×"]));
+})();
+</script>
