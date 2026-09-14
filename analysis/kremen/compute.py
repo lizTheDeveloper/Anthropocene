@@ -192,6 +192,15 @@ INSECTICIDES = {
 NEONICS = {"IMIDACLOPRID", "THIAMETHOXAM", "CLOTHIANIDIN", "ACETAMIPRID",
            "DINOTEFURAN", "THIACLOPRID"}
 
+# Crop groups whose CRD-level insecticide application rates are an order of
+# magnitude above grain and forage. A county that grows any of these is a
+# high-insecticide county for reasons of crop identity, independent of any
+# landscape property.
+HIGH_INPUT_CROPS = {
+    "Cotton", "Vegetables", "Orchards (fruit & tree nuts)", "Berries",
+    "Tobacco", "Peanuts", "Rice", "Sugarbeets", "Sugarcane", "Hops",
+}
+
 # ----------------------------------------------------------------------------
 
 
@@ -307,8 +316,15 @@ def diversity_table(cen):
              .n_suppressed.sum()
              .rename(columns={"n_suppressed": "n_suppressed_crop_records"}))
 
+    hi = (pos[pos.crop_group.isin(HIGH_INPUT_CROPS)]
+          .groupby(["state_fips", "county_fips"], as_index=False)
+          .acres.sum().rename(columns={"acres": "high_input_acres"}))
+
     div = div.merge(hc, on=["state_fips", "county_fips"], how="left")
     div = div.merge(sup, on=["state_fips", "county_fips"], how="left")
+    div = div.merge(hi, on=["state_fips", "county_fips"], how="left")
+    div["high_input_acres"] = div.high_input_acres.fillna(0.0)
+    div["high_input_share"] = div.high_input_acres / div.group_acres
     div["coverage"] = div.group_acres / div.harvested_cropland_acres
     return div
 
@@ -357,6 +373,20 @@ def spearman(df, x, y):
     return float(rho), float(p), len(s)
 
 
+def partial_spearman(df, x, y, z):
+    """Spearman(x, y) with the rank of z linearly partialled out."""
+    s = df[[x, y, z]].dropna()
+    n = len(s)
+    if n < 20:
+        return np.nan, np.nan, n
+    rx, ry, rz = (stats.rankdata(s[c]) for c in (x, y, z))
+    Z = np.column_stack([np.ones(n), rz])
+    ex = rx - Z @ np.linalg.lstsq(Z, rx, rcond=None)[0]
+    ey = ry - Z @ np.linalg.lstsq(Z, ry, rcond=None)[0]
+    r, p = stats.pearsonr(ex, ey)
+    return float(r), float(p), n
+
+
 def assemble(census_year, pnsp_year):
     cen = read_census_county_acres(CENSUS_FILES[census_year], census_year)
     div = diversity_table(cen)
@@ -388,6 +418,26 @@ def report(df, label):
     rho, p, n = spearman(df, "top1_share", "insecticide_g_per_acre_high")
     print(f"  ALL   top1_share vs insecticide (high)      rho={rho:+.3f} "
           f"p={p:.2e} n={n}")
+    rho, p, n = spearman(df, "effective_n_crops", "high_input_share")
+    print(f"  ALL   ENC vs high_input_share              rho={rho:+.3f} "
+          f"p={p:.2e} n={n}")
+    rho, p, n = spearman(df, "high_input_share",
+                         "insecticide_g_per_acre_high")
+    print(f"  ALL   high_input_share vs insecticide      rho={rho:+.3f} "
+          f"p={p:.2e} n={n}")
+    rho, p, n = partial_spearman(df, "effective_n_crops",
+                                 "insecticide_g_per_acre_high",
+                                 "high_input_share")
+    print(f"  ALL   ENC vs insecticide | high_input_share "
+          f"rho={rho:+.3f} p={p:.2e} n={n}")
+
+    pure = df[df.high_input_acres == 0]
+    rho, p, n = spearman(pure, "effective_n_crops",
+                         "insecticide_g_per_acre_high")
+    print(f"  GRAIN/FORAGE-ONLY counties (no high-input crop acreage): "
+          f"n={n} median={pure.insecticide_g_per_acre_high.median():.1f} g/ac "
+          f"rho={rho:+.3f} p={p:.2e}")
+
     print("  --- within dominant-crop stratum (EPest-high) ---")
     for s, g in df.groupby("stratum"):
         rho, p, n = spearman(g, "effective_n_crops",
@@ -439,79 +489,77 @@ def main():
     # treatments beginning with the 2015 estimates) -- an in-data check
     dall = pd.read_parquet(DERIVED / "pnsp_county_panel_corrected.parquet")
     neo = (dall[dall.compound.isin(NEONICS)]
-           .groupby("year").high_kg.sum() / 1e6)
-    print("\nNeonicotinoid EPest-high national mass, M kg (CA excluded):")
+           .pivot_table(index="year", columns="compound", values="high_kg",
+                        aggfunc="sum") / 1e6)
+    neo["ALL NEONICS"] = neo.sum(axis=1)
+    neo["ROSTER INSECTICIDES"] = (
+        dall[dall.compound.isin(INSECTICIDES)]
+        .groupby("year").high_kg.sum() / 1e6)
+    print("\nEPest-high national mass, M kg (CA excluded), 2010-2018:")
     print(neo.loc[2010:2018].round(3).to_string())
+    a, b = neo.loc[2014, "ALL NEONICS"], neo.loc[2015, "ALL NEONICS"]
+    print(f"  neonicotinoid 2014 -> 2015 change: {a:.3f} -> {b:.3f} M kg "
+          f"({100*(b-a)/a:+.1f}%)")
+    for c in ("CLOTHIANIDIN", "THIAMETHOXAM", "IMIDACLOPRID"):
+        a, b = neo.loc[2014, c], neo.loc[2015, c]
+        print(f"    {c:14s} {a:.3f} -> {b:.3f} M kg ({100*(b-a)/a:+.1f}%)")
 
     # ---------------- chart table ----------------
     # decile of effective number of crops, within stratum, median insecticide
     # intensity. The chart claim: the pooled gradient is crop identity.
     df = main_df.copy()
-    df["enc_decile"] = pd.qcut(df.effective_n_crops, 10, labels=False) + 1
-    dec_edges = pd.qcut(df.effective_n_crops, 10).cat.categories
+    # Fixed bins on the effective number of crops, shared by every series, so
+    # the series are directly comparable on the x axis.
+    edges = [1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 5.0, 6.0, 12.0]
+    labels = ["1.0-1.5", "1.5-2.0", "2.0-2.5", "2.5-3.0", "3.0-3.5",
+              "3.5-4.0", "4.0-5.0", "5.0-6.0", "6.0+"]
+    df["enc_bin"] = pd.cut(df.effective_n_crops, bins=edges, labels=labels,
+                           right=False, include_lowest=True)
 
-    parts = []
-    allrows = (df.groupby("enc_decile")
+    samples = {
+        "All counties": df,
+        "Corn / soybean dominant": df[df.stratum == "Corn / soybean"],
+        "No high-input crop grown": df[df.high_input_acres == 0],
+    }
+
+    def agg(g):
+        return (g.groupby("enc_bin", observed=True)
                  .agg(n_counties=("effective_n_crops", "size"),
                       enc_median=("effective_n_crops", "median"),
-                      insecticide_g_per_acre_median=(
-                          "insecticide_g_per_acre_high", "median"),
                       insecticide_g_per_acre_p25=(
                           "insecticide_g_per_acre_high",
                           lambda s: s.quantile(.25)),
+                      insecticide_g_per_acre_median=(
+                          "insecticide_g_per_acre_high", "median"),
                       insecticide_g_per_acre_p75=(
                           "insecticide_g_per_acre_high",
                           lambda s: s.quantile(.75)),
+                      high_input_share_median=("high_input_share", "median"),
                       harvested_acres=("harvested_cropland_acres", "sum"))
                  .reset_index())
-    allrows["series"] = "All counties"
-    parts.append(allrows)
 
-    for s, g in df.groupby("stratum"):
-        if len(g) < 100:
-            continue
-        r = (g.groupby("enc_decile")
-              .agg(n_counties=("effective_n_crops", "size"),
-                   enc_median=("effective_n_crops", "median"),
-                   insecticide_g_per_acre_median=(
-                       "insecticide_g_per_acre_high", "median"),
-                   insecticide_g_per_acre_p25=(
-                       "insecticide_g_per_acre_high",
-                       lambda x: x.quantile(.25)),
-                   insecticide_g_per_acre_p75=(
-                       "insecticide_g_per_acre_high",
-                       lambda x: x.quantile(.75)),
-                   harvested_acres=("harvested_cropland_acres", "sum"))
-              .reset_index())
-        r["series"] = s
+    parts = []
+    for name, g in samples.items():
+        r = agg(g)
         r = r[r.n_counties >= 15]
+        r["series"] = name
+        rho, p, n = spearman(g, "effective_n_crops",
+                             "insecticide_g_per_acre_high")
+        r["series_spearman_rho"] = round(rho, 3)
+        r["series_spearman_p"] = p
+        r["series_n_counties"] = n
         parts.append(r)
 
     chart = pd.concat(parts, ignore_index=True)
-    chart["enc_decile_lo"] = chart.enc_decile.map(
-        lambda i: round(float(dec_edges[int(i) - 1].left), 3))
-    chart["enc_decile_hi"] = chart.enc_decile.map(
-        lambda i: round(float(dec_edges[int(i) - 1].right), 3))
-
-    # attach the within-series Spearman so the chart can annotate it
-    rho_map = {"All counties": spearman(df, "effective_n_crops",
-                                        "insecticide_g_per_acre_high")}
-    for s, g in df.groupby("stratum"):
-        rho_map[s] = spearman(g, "effective_n_crops",
-                              "insecticide_g_per_acre_high")
-    chart["series_spearman_rho"] = chart.series.map(lambda s: round(rho_map[s][0], 3))
-    chart["series_spearman_p"] = chart.series.map(lambda s: rho_map[s][1])
-    chart["series_n_counties"] = chart.series.map(lambda s: rho_map[s][2])
-
-    chart = chart[["series", "enc_decile", "enc_decile_lo", "enc_decile_hi",
-                   "enc_median", "n_counties", "harvested_acres",
-                   "insecticide_g_per_acre_p25",
+    chart = chart[["series", "enc_bin", "enc_median", "n_counties",
+                   "harvested_acres", "insecticide_g_per_acre_p25",
                    "insecticide_g_per_acre_median",
-                   "insecticide_g_per_acre_p75",
+                   "insecticide_g_per_acre_p75", "high_input_share_median",
                    "series_spearman_rho", "series_spearman_p",
                    "series_n_counties"]].round(
         {"enc_median": 3, "insecticide_g_per_acre_p25": 2,
-         "insecticide_g_per_acre_median": 2, "insecticide_g_per_acre_p75": 2})
+         "insecticide_g_per_acre_median": 2, "insecticide_g_per_acre_p75": 2,
+         "high_input_share_median": 4})
     out_chart = DERIVED / "lens_kremen_cropdiversity_vs_insecticide.csv"
     chart.to_csv(out_chart, index=False)
     print(f"\nwrote {out_chart}  ({len(chart)} rows)")
@@ -521,7 +569,8 @@ def main():
             "harvested_cropland_acres", "group_acres", "coverage",
             "n_crop_groups", "n_suppressed_crop_records", "shannon_H",
             "effective_n_crops", "top1_share", "top3_share", "dominant_crop",
-            "stratum", "total_kg_high", "insecticide_kg_high",
+            "stratum", "high_input_acres", "high_input_share",
+            "total_kg_high", "insecticide_kg_high",
             "neonic_kg_high", "insecticide_kg_low",
             "insecticide_g_per_acre_high", "insecticide_g_per_acre_low",
             "total_g_per_acre_high"]

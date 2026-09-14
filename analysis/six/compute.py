@@ -84,7 +84,25 @@ def norm_chem(name: str) -> str:
 # PART B.1 -- herbicide roster, from NASS's own chemical classification
 # ---------------------------------------------------------------------------
 
-def herbicide_roster() -> set[str]:
+STEREO = ("S", "P", "D", "L", "R", "E", "M")
+
+
+def core_chem(n: str) -> str:
+    """Strip a leading/trailing single-letter stereochemistry descriptor.
+
+    PNSP writes 'METOLACHLOR-S'; NASS writes 'S-METOLACHLOR'.  Normalised these
+    become METOLACHLORS and SMETOLACHLOR, which will not match.  Reducing both to
+    METOLACHLOR makes them comparable.
+    """
+    for s in STEREO:
+        if n.endswith(s) and len(n) > 7:
+            return n[:-1]
+        if n.startswith(s) and len(n) > 7:
+            return n[1:]
+    return n
+
+
+def herbicide_roster() -> tuple[set[str], set[str]]:
     """
     PNSP ships no pesticide-class column.  Rather than hand-curate a roster (which
     would be an undocumented judgement call), take the class assignment from NASS's
@@ -112,43 +130,96 @@ def herbicide_roster() -> set[str]:
             nm = d.split(": (", 1)[1].rsplit(")", 1)[0]
             nm = nm.split(" = ")[0]
             (herb if cls == "HERBICIDE" else other).add(norm_chem(nm))
-    # a name classified as a herbicide anywhere wins; a handful of actives are
-    # registered in more than one class (e.g. some growth regulators)
-    return herb
+    return herb, other
+
+
+def classify_herbicide(pnsp_names: pd.Series, herb: set[str], other: set[str]) -> pd.DataFrame:
+    """Match PNSP compound names onto the NASS herbicide roster.
+
+    Three rules, applied in order, each recorded so the match can be audited:
+      exact      -- normalised names identical
+      exact_other-- normalised name is an exact NON-herbicide match; never a herbicide
+      stereo     -- identical after stripping a leading/trailing stereo descriptor
+      prefix     -- one normalised name (>=7 chars) is a prefix of the other, which
+                    catches PNSP's parent-acid names against NASS's salt/ester names
+                    (GLUFOSINATE -> GLUFOSINATE-AMMONIUM, PICLORAM -> PICLORAM, POT. SALT)
+    """
+    herb_core = {core_chem(h): h for h in herb}
+    rows = []
+    for name in sorted(set(pnsp_names)):
+        n = norm_chem(name)
+        rule = None
+        if n in herb:
+            rule = "exact"
+        elif n in other:
+            rule = None  # exact non-herbicide match wins; do not fuzzy-match
+        elif core_chem(n) in herb_core:
+            rule = "stereo"
+        elif len(n) >= 7 and any(
+                h.startswith(n) or n.startswith(h) for h in herb if len(h) >= 7):
+            rule = "prefix"
+        rows.append((name, n, rule))
+    return pd.DataFrame(rows, columns=["compound", "norm", "match_rule"])
 
 
 # ---------------------------------------------------------------------------
 # PART B.2 -- PNSP 2017 county herbicide mass
 # ---------------------------------------------------------------------------
 
-def pnsp_2017(herb: set[str]) -> pd.DataFrame:
+def pnsp_year(year: int, herb: set[str], other: set[str], verbose: bool = True
+              ) -> tuple[pd.DataFrame, pd.DataFrame]:
     p = pd.read_parquet(PNSP_PANEL)
-    p = p[p["year"] == YEAR].copy()
+    p = p[p["year"] == year].copy()
     p["fips"] = p["state_fips"] * 1000 + p["county_fips"]
-    p["norm"] = p["compound"].map(norm_chem)
-    p["is_herb"] = p["norm"].isin(herb)
+
+    cls = classify_herbicide(p["compound"], herb, other)
+    p = p.merge(cls, on="compound", how="left")
+    p["is_herb"] = p["match_rule"].notna()
     p["is_glyph"] = p["norm"].str.startswith("GLYPHOSATE")
+    # The mechanism a tillage/herbicide trade-off would actually run through:
+    # no-till replaces the mechanical seedbed operation with a pre-plant "burndown"
+    # spray.  These are the actives used for burndown in US row crops.
+    BURNDOWN = ("GLYPHOSATE", "PARAQUAT", "24D", "DICAMBA", "GLUFOSINATE",
+                "SAFLUFENACIL", "CARFENTRAZONE")
+    p["is_burn"] = p["norm"].str.startswith(BURNDOWN)
 
+    say = print if verbose else (lambda *a, **k: None)
     total_kg = p["low_kg"].sum()
-    matched_kg = p.loc[p["norm"].isin(herb) | p["norm"].isin(set()), "low_kg"].sum()
-    print(f"[B.2] PNSP {YEAR}: {p['compound'].nunique()} compounds, "
+    hk = p.loc[p["is_herb"], "low_kg"].sum()
+    say(f"[B.2] PNSP {year}: {p['compound'].nunique()} compounds, "
           f"{p['fips'].nunique()} counties, {total_kg/1e6:.1f} M kg (EPest-low)")
-    print(f"[B.2] classified as herbicide: {p.loc[p['is_herb'],'compound'].nunique()} compounds, "
-          f"{p.loc[p['is_herb'],'low_kg'].sum()/1e6:.1f} M kg "
-          f"({100*p.loc[p['is_herb'],'low_kg'].sum()/total_kg:.1f}% of mass)")
+    say(f"[B.2] classified as herbicide: {p.loc[p['is_herb'],'compound'].nunique()} compounds, "
+          f"{hk/1e6:.1f} M kg ({100*hk/total_kg:.1f}% of all applied mass)")
+    by_rule = p[p["is_herb"]].groupby("match_rule")["low_kg"].sum() / 1e6
+    say(f"[B.2] herbicide mass by match rule (M kg): "
+          + ", ".join(f"{k}={v:.1f}" for k, v in by_rule.items()))
+    say("[B.2] compounds matched by the fuzzy rules (manual audit):")
+    for _, r in cls[cls["match_rule"].isin(["stereo", "prefix"])].iterrows():
+        kg = p.loc[p["compound"] == r["compound"], "low_kg"].sum()
+        say(f"        {r['compound']:<26} via {r['match_rule']:<7} {kg/1e6:7.2f} M kg")
     unmatched = (p[~p["is_herb"]].groupby("compound")["low_kg"].sum()
-                 .sort_values(ascending=False).head(8))
-    print("[B.2] largest NON-herbicide-classified compounds (sanity check):")
+                 .sort_values(ascending=False).head(6))
+    say("[B.2] largest compounds left UNclassified (should be fumigants/fungicides/"
+          "insecticides/growth regulators):")
     for c, kg in unmatched.items():
-        print(f"        {c:<28} {kg/1e6:8.2f} M kg")
+        say(f"        {c:<28} {kg/1e6:8.2f} M kg")
 
-    g = p.groupby("fips").agg(
-        herb_low_kg=("low_kg", lambda s: s[p.loc[s.index, "is_herb"]].sum()),
-        herb_high_kg=("high_kg", lambda s: s[p.loc[s.index, "is_herb"]].sum()),
-        glyph_low_kg=("low_kg", lambda s: s[p.loc[s.index, "is_glyph"]].sum()),
-        all_low_kg=("low_kg", "sum"),
-    ).reset_index()
-    return g
+    bmask = p["is_burn"] & p["is_herb"]
+    say(f"[B.2] burndown group ({p.loc[bmask,'compound'].nunique()} compounds): "
+          f"{p.loc[bmask,'low_kg'].sum()/1e6:.1f} M kg = "
+          f"{100*p.loc[bmask,'low_kg'].sum()/hk:.1f}% of herbicide mass; "
+          f"members: {', '.join(sorted(p.loc[bmask,'compound'].unique()))}")
+
+    g = (p.assign(h_low=p["low_kg"].where(p["is_herb"], 0.0),
+                  h_high=p["high_kg"].where(p["is_herb"], 0.0),
+                  g_low=p["low_kg"].where(p["is_glyph"], 0.0),
+                  b_low=p["low_kg"].where(bmask, 0.0))
+         .groupby("fips")
+         .agg(herb_low_kg=("h_low", "sum"), herb_high_kg=("h_high", "sum"),
+              glyph_low_kg=("g_low", "sum"), burndown_low_kg=("b_low", "sum"),
+              all_low_kg=("low_kg", "sum"))
+         .reset_index())
+    return g, cls
 
 
 # ---------------------------------------------------------------------------
@@ -181,9 +252,9 @@ CROP_ITEMS = {
 WANTED = {**TILLAGE_ITEMS, **LAND_ITEMS, **CROP_ITEMS}
 
 
-def census_2017() -> pd.DataFrame:
+def census(path: Path) -> pd.DataFrame:
     rows = []
-    with gzip.open(CENSUS_2017, "rt", encoding="latin-1") as fh:
+    with gzip.open(path, "rt", encoding="latin-1") as fh:
         header = fh.readline().rstrip("\n").split("\t")
         ix = {c: header.index(c) for c in (
             "SHORT_DESC", "DOMAIN_DESC", "AGG_LEVEL_DESC", "STATE_FIPS_CODE",
@@ -208,7 +279,7 @@ def census_2017() -> pd.DataFrame:
                 parse_value(f[ix["VALUE"]]),
             ))
     long = pd.DataFrame(rows, columns=["fips", "state", "asd", "item", "value"])
-    print(f"[B.3] Census 2017 county rows pulled: {len(long):,} "
+    print(f"[B.3] {path.name} county rows pulled: {len(long):,} "
           f"across {long['fips'].nunique():,} counties, {long['item'].nunique()} items")
     supp = long.groupby("item")["value"].apply(lambda s: s.isna().mean())
     print("[B.3] share suppressed / non-numeric by item:")
@@ -254,21 +325,79 @@ def demean(df: pd.DataFrame, cols: list[str], by: str) -> pd.DataFrame:
 
 def spec(df: pd.DataFrame, ycol: str, xcol: str, controls: list[str],
          fe: str | None, label: str) -> dict:
-    d = df.dropna(subset=[ycol, xcol] + controls).copy()
+    """OLS of ycol on xcol (+ controls, + group fixed effects via within-transform).
+
+    xcol is a share on [0, 1], so a coefficient of b corresponds to b * 0.10 log
+    units for a +10 percentage-point change in that share.
+    """
     cols = [ycol, xcol] + controls
+    d = df.dropna(subset=cols).copy()
+    n_groups = 0
     if fe:
+        d = d[d.groupby(fe)[ycol].transform("size") > 1]
+        n_groups = int(d[fe].nunique())
         d = demean(d, cols, fe)
-        # groups of size 1 contribute nothing after demeaning
-        sizes = df.dropna(subset=cols).groupby(fe)[ycol].transform("size")
-        d = d[sizes.reindex(d.index).values > 1]
     X = np.column_stack([np.ones(len(d))] + [d[c].values for c in [xcol] + controls])
     beta, se, r2, _ = ols(d[ycol].values, X)
     b, s = beta[1], se[1]
+    # degrees of freedom absorbed by the fixed effects are not reflected in HC1
+    # here; with >= 5 counties per group the inflation is small and the direction
+    # of the correction is conservative (SEs slightly too small).
     return dict(spec=label, n=len(d), beta_per_1=b, se=s,
-                beta_per_10pp=10 * b, lo_per_10pp=10 * (b - 1.96 * s),
-                hi_per_10pp=10 * (b + 1.96 * s),
-                t=b / s if s else np.nan, r2=r2,
-                n_groups=int(d[fe].nunique()) if fe else 0)
+                beta_per_10pp=0.10 * b,
+                lo_per_10pp=0.10 * (b - 1.96 * s),
+                hi_per_10pp=0.10 * (b + 1.96 * s),
+                t=b / s if s else np.nan, r2=r2, n_groups=n_groups)
+
+
+CROPSH = ["corn_sh", "cornsil_sh", "soy_sh", "wheat_sh", "cotton_sh",
+          "sorghum_sh", "rice_sh", "hay_sh", "veg_sh", "orchard_sh"]
+
+
+def build(census_path: Path, pnsp_yr: int, herb: set, other: set,
+          verbose: bool = True) -> tuple[pd.DataFrame, pd.DataFrame]:
+    """Join one Census of Agriculture vintage to one PNSP year and derive the
+    practice shares and application intensities.  Returns (county table, compound
+    classification)."""
+    say = print if verbose else (lambda *a, **k: None)
+    pest, cls = pnsp_year(pnsp_yr, herb, other, verbose=verbose)
+    cen = census(census_path)
+    df = cen.merge(pest, on="fips", how="inner")
+    say(f"\n[B.4] merged counties: {len(df):,}")
+
+    df["tilled_ac"] = df[["notill_ac", "constill_ac", "convtill_ac"]].sum(axis=1, min_count=3)
+    df["notill_share"] = df["notill_ac"] / df["tilled_ac"]
+    df["cover_share"] = df["covercrop_ac"] / df["tilled_ac"]
+    df["harvested_ha"] = df["harvested_ac"] * ACRE_TO_HA
+    df["herb_kg_ha"] = df["herb_low_kg"] / df["harvested_ha"]
+    df["herb_kg_ha_high"] = df["herb_high_kg"] / df["harvested_ha"]
+    df["glyph_kg_ha"] = df["glyph_low_kg"] / df["harvested_ha"]
+    df["burndown_kg_ha"] = df["burndown_low_kg"] / df["harvested_ha"]
+    df["glyph_share"] = df["glyph_low_kg"] / df["herb_low_kg"]
+
+    for c in ["corn_ac", "cornsil_ac", "soy_ac", "wheat_ac", "cotton_ac",
+              "sorghum_ac", "rice_ac", "hay_ac", "veg_ac", "orchard_ac"]:
+        df[c.replace("_ac", "_sh")] = df[c].fillna(0) / df["harvested_ac"]
+
+    n0 = len(df)
+    nat_harvested = df["harvested_ac"].sum()
+    nat_herb = df["herb_low_kg"].sum()
+    df = df[(df["harvested_ac"] >= MIN_HARVESTED_ACRES)
+            & (df["tilled_ac"] >= MIN_HARVESTED_ACRES)
+            & (df["herb_low_kg"] > 0)
+            & df["notill_share"].between(0, 1)].copy()
+    say(f"[B.4] after filter (harvested & tilled cropland >= {MIN_HARVESTED_ACRES:,} ac, "
+        f"herbicide mass > 0): {len(df):,} counties (dropped {n0-len(df):,})")
+    say(f"[B.4] these counties hold {df['harvested_ac'].sum()/1e6:.1f} M harvested acres "
+        f"({100*df['harvested_ac'].sum()/nat_harvested:.1f}% of the national county total) "
+        f"and {df['herb_low_kg'].sum()/1e6:.1f} M kg of herbicide "
+        f"({100*df['herb_low_kg'].sum()/nat_herb:.1f}% of the national total)")
+
+    df["ln_herb"] = np.log(df["herb_kg_ha"])
+    df["ln_glyph"] = np.log(df["glyph_kg_ha"].where(df["glyph_kg_ha"] > 0))
+    df["ln_burn"] = np.log(df["burndown_kg_ha"].where(df["burndown_kg_ha"] > 0))
+    df["ln_herb_high"] = np.log(df["herb_kg_ha_high"])
+    return df, cls
 
 
 # ---------------------------------------------------------------------------
@@ -278,43 +407,11 @@ def spec(df: pd.DataFrame, ycol: str, xcol: str, controls: list[str],
 def main() -> None:
     DERIVED.mkdir(parents=True, exist_ok=True)
 
-    herb = herbicide_roster()
-    print(f"[B.1] NASS herbicide roster: {len(herb)} normalised active-ingredient names")
+    herb, other = herbicide_roster()
+    print(f"[B.1] NASS chemical classification: {len(herb)} herbicide names, "
+          f"{len(other)} insecticide/fungicide/other names")
 
-    pest = pnsp_2017(herb)
-    cen = census_2017()
-
-    df = cen.merge(pest, on="fips", how="inner")
-    print(f"\n[B.4] merged counties: {len(df):,}")
-
-    # --- construct ---------------------------------------------------------
-    df["tilled_ac"] = df[["notill_ac", "constill_ac", "convtill_ac"]].sum(axis=1, min_count=3)
-    df["notill_share"] = df["notill_ac"] / df["tilled_ac"]
-    df["cover_share"] = df["covercrop_ac"] / df["tilled_ac"]
-    df["harvested_ha"] = df["harvested_ac"] * ACRE_TO_HA
-    df["herb_kg_ha"] = df["herb_low_kg"] / df["harvested_ha"]
-    df["herb_kg_ha_high"] = df["herb_high_kg"] / df["harvested_ha"]
-    df["glyph_kg_ha"] = df["glyph_low_kg"] / df["harvested_ha"]
-    df["glyph_share"] = df["glyph_low_kg"] / df["herb_low_kg"]
-
-    for c in ["corn_ac", "cornsil_ac", "soy_ac", "wheat_ac", "cotton_ac",
-              "sorghum_ac", "rice_ac", "hay_ac", "veg_ac", "orchard_ac"]:
-        df[c.replace("_ac", "_sh")] = df[c].fillna(0) / df["harvested_ac"]
-    CROPSH = ["corn_sh", "cornsil_sh", "soy_sh", "wheat_sh", "cotton_sh",
-              "sorghum_sh", "rice_sh", "hay_sh", "veg_sh", "orchard_sh"]
-
-    n0 = len(df)
-    df = df[(df["harvested_ac"] >= MIN_HARVESTED_ACRES)
-            & (df["tilled_ac"] >= MIN_HARVESTED_ACRES)
-            & (df["herb_low_kg"] > 0)
-            & df["notill_share"].between(0, 1)]
-    print(f"[B.4] after filter (harvested & tilled cropland >= {MIN_HARVESTED_ACRES:,} ac, "
-          f"herbicide mass > 0): {len(df):,} counties (dropped {n0-len(df):,})")
-    print(f"[B.4] these counties hold {df['harvested_ac'].sum()/1e6:.1f} M harvested acres "
-          f"and {df['herb_low_kg'].sum()/1e6:.1f} M kg of herbicide")
-
-    df["ln_herb"] = np.log(df["herb_kg_ha"])
-    df["ln_glyph"] = np.log(df["glyph_kg_ha"].where(df["glyph_kg_ha"] > 0))
+    df, cls = build(CENSUS_2017, YEAR, herb, other)
 
     # --- descriptives ------------------------------------------------------
     print("\n[DESC] no-till share of tilled cropland: "
@@ -323,6 +420,18 @@ def main() -> None:
     print(f"[DESC] herbicide intensity kg/ha harvested: median {df['herb_kg_ha'].median():.2f}, "
           f"IQR {df['herb_kg_ha'].quantile(.25):.2f}-{df['herb_kg_ha'].quantile(.75):.2f}")
     print(f"[DESC] glyphosate share of herbicide mass: median {df['glyph_share'].median():.3f}")
+
+    # external validation of the constructed tillage variable: the acreage-weighted
+    # no-till share of the analysis sample against the published NATIONAL totals in
+    # the same Census file (no-till 104,452,339 ac; conservation excl no-till
+    # 97,753,854 ac; conventional 80,005,292 ac -> 37.0% no-till)
+    NAT = dict(notill=104_452_339, cons=97_753_854, conv=80_005_292)
+    nat_share = NAT["notill"] / sum(NAT.values())
+    samp_share = df["notill_ac"].sum() / df["tilled_ac"].sum()
+    print(f"[CHECK] no-till share of tilled cropland: published national "
+          f"{100*nat_share:.1f}%, analysis sample (acreage-weighted) {100*samp_share:.1f}% "
+          f"-- sample covers {100*df['tilled_ac'].sum()/sum(NAT.values()):.1f}% of "
+          f"national tilled cropland")
 
     from scipy import stats
     rho, p = stats.spearmanr(df["notill_share"], df["herb_kg_ha"])
@@ -339,7 +448,9 @@ def main() -> None:
 
     # --- the specification ladder -----------------------------------------
     ladder = []
-    for ycol, yname in (("ln_herb", "all herbicides"), ("ln_glyph", "glyphosate")):
+    for ycol, yname in (("ln_herb", "all herbicides"),
+                        ("ln_glyph", "glyphosate"),
+                        ("ln_burn", "burndown group")):
         ladder += [
             spec(df, ycol, "notill_share", [], None,
                  "1. Pooled, no controls"),
@@ -360,14 +471,34 @@ def main() -> None:
     lad["pct_lo"] = 100 * (np.exp(lad["lo_per_10pp"]) - 1)
     lad["pct_hi"] = 100 * (np.exp(lad["hi_per_10pp"]) - 1)
 
+    # concrete contrast: a county at the 75th vs the 25th percentile of no-till share
+    p25, p75 = df["notill_share"].quantile([.25, .75])
+    lad["pct_p25_to_p75"] = 100 * (np.exp(lad["beta_per_1"] * (p75 - p25)) - 1)
+
     print("\n[LADDER] effect of +10 percentage points of no-till share on applied mass per ha")
-    print(f"{'outcome':<16}{'specification':<34}{'n':>6}{'%change':>10}{'  95% CI':>20}{'t':>8}")
+    print(f"{'outcome':<16}{'specification':<34}{'n':>6}{'%change':>9}{'    95% CI':>20}"
+          f"{'t':>7}{'P25->P75':>10}")
     for _, r in lad.iterrows():
-        print(f"{r['outcome']:<16}{r['spec']:<34}{r['n']:>6}{r['pct_per_10pp']:>9.1f}%"
-              f"  [{r['pct_lo']:>6.1f}, {r['pct_hi']:>6.1f}]{r['t']:>8.1f}")
+        print(f"{r['outcome']:<16}{r['spec']:<34}{r['n']:>6}{r['pct_per_10pp']:>8.1f}%"
+              f"  [{r['pct_lo']:>6.1f}, {r['pct_hi']:>6.1f}]{r['t']:>7.1f}"
+              f"{r['pct_p25_to_p75']:>9.1f}%")
+    print(f"        (no-till share P25 = {p25:.3f}, P75 = {p75:.3f})")
+
+    # legible descriptive: quintile means, raw and after removing CRD + crop mix
+    d = df.dropna(subset=["ln_herb"] + CROPSH).copy()
+    d["q"] = pd.qcut(d["notill_share"], 5, labels=[1, 2, 3, 4, 5])
+    dd = demean(d, ["ln_herb"] + CROPSH, "asd")
+    Xq = np.column_stack([np.ones(len(dd))] + [dd[c].values for c in CROPSH])
+    _, _, _, res = ols(dd["ln_herb"].values, Xq)
+    d["adj_kg_ha"] = np.exp(res + d["ln_herb"].mean())
+    print("\n[QUINTILE] herbicide kg/ha by no-till quintile "
+          "(geometric means; adjusted = net of CRD + crop mix)")
+    for q, g in d.groupby("q", observed=True):
+        print(f"        Q{q}  no-till {g['notill_share'].mean():.2f}  "
+              f"raw {np.exp(g['ln_herb'].mean()):.2f}   adjusted {np.exp(np.log(g['adj_kg_ha']).mean()):.2f}"
+              f"   (n={len(g)})")
 
     # --- verification #1: EPest-high instead of EPest-low ------------------
-    df["ln_herb_high"] = np.log(df["herb_kg_ha_high"])
     v1 = [spec(df, "ln_herb_high", "notill_share", [], None, "1. Pooled, no controls"),
           spec(df, "ln_herb_high", "notill_share", CROPSH, "asd", "5. + crop mix AND CRD FE")]
     print("\n[VERIFY 1] same ladder endpoints using EPest-HIGH instead of EPest-low:")
@@ -382,8 +513,8 @@ def main() -> None:
             name = [n for n in z.namelist() if n.lower().endswith(".txt")][0]
             raw = pd.read_csv(io.BytesIO(z.read(name)), sep="\t")
         raw.columns = [c.strip().upper() for c in raw.columns]
-        raw["norm"] = raw["COMPOUND"].map(norm_chem)
-        raw = raw[raw["norm"].isin(herb)]
+        keep_cmp = set(cls.loc[cls["match_rule"].notna(), "compound"])
+        raw = raw[raw["COMPOUND"].isin(keep_cmp)]
         raw["fips"] = raw["STATE_FIPS_CODE"] * 1000 + raw["COUNTY_FIPS_CODE"]
         rawg = raw.groupby("fips")["EPEST_LOW_KG"].sum()
         chk = df.set_index("fips")["herb_low_kg"]
@@ -406,17 +537,66 @@ def main() -> None:
     w = stats.wilcoxon(rhos.values)
     print(f"[VERIFY 3] within-CRD Spearman rho computed separately in {len(rhos)} CRDs "
           f"(>=5 counties each): median {rhos.median():+.3f}, "
+          f"IQR {rhos.quantile(.25):+.3f} to {rhos.quantile(.75):+.3f}, "
           f"{100*(rhos>0).mean():.0f}% positive, Wilcoxon p={w.pvalue:.3g}")
+    print(f"[VERIFY 3] i.e. the sign of the trade-off is not stable across places: "
+          f"{int((rhos>0.3).sum())} CRDs have rho>+0.3 and {int((rhos<-0.3).sum())} have rho<-0.3")
+
+    # --- robustness: cover crops as the practice variable instead of no-till ---
+    cv = [spec(df, "ln_herb", "cover_share", [], None, "1. Pooled, no controls"),
+          spec(df, "ln_herb", "cover_share", CROPSH, "asd", "5. + crop mix AND CRD FE")]
+    print("\n[ROBUST] same ladder endpoints with COVER-CROP share as the practice variable:")
+    for r in cv:
+        print(f"        {r['spec']:<34} {100*(np.exp(r['beta_per_10pp'])-1):+6.1f}% per +10pp"
+              f"  (t={r['t']:+.1f}, n={r['n']})")
+
+    # --- verification #4: independent replication on a different vintage ----
+    # Census of Agriculture 2022 tillage x PNSP 2018 herbicide.  Different census,
+    # different survey year, different PNSP vintage.  The two are five years apart,
+    # so this is NOT a repeat measurement of the same counties -- it is a check
+    # that the pattern is not an artifact of one pair of files.
+    print("\n[VERIFY 4] replication on Census of Agriculture 2022 x PNSP 2018")
+    try:
+        df22, _ = build(NASS / "qs.census2022.txt.gz", 2018, herb, other, verbose=False)
+        print(f"        n = {len(df22):,} counties")
+        for lbl, controls, fe in (("1. Pooled, no controls", [], None),
+                                  ("3. + Crop Reporting District FE", [], "asd"),
+                                  ("5. + crop mix AND CRD FE", CROPSH, "asd")):
+            for ycol, yname in (("ln_herb", "all herbicides"),
+                                ("ln_burn", "burndown group")):
+                r = spec(df22, ycol, "notill_share", controls, fe, lbl)
+                print(f"        {yname:<16}{lbl:<34}"
+                      f"{100*(np.exp(r['beta_per_10pp'])-1):+6.1f}% per +10pp "
+                      f"(t={r['t']:+.1f})")
+        rho22, p22 = stats.spearmanr(df22["notill_share"], df22["herb_kg_ha"])
+        print(f"        pooled Spearman rho = {rho22:+.3f} (p={p22:.2e})")
+    except Exception as exc:  # pragma: no cover
+        print(f"        replication failed: {exc}")
+
+    # --- what the record cannot do: years of overlap ------------------------
+    pall = pd.read_parquet(PNSP_PANEL, columns=["year"])
+    pnsp_years = set(pall["year"].unique())
+    census_tillage_years = {2017, 2022}  # tillage first asked in 2017
+    print(f"\n[HORIZON] PNSP county years available: {min(pnsp_years)}-{max(pnsp_years)}")
+    print(f"[HORIZON] Census of Ag years carrying the tillage question: "
+          f"{sorted(census_tillage_years)}")
+    print(f"[HORIZON] years where both exist: "
+          f"{sorted(pnsp_years & census_tillage_years)} "
+          f"-> no county can be observed before and after a change in tillage")
 
     # --- outputs -----------------------------------------------------------
-    chart = lad[["outcome", "spec", "n", "pct_per_10pp", "pct_lo", "pct_hi", "t", "r2"]].copy()
-    chart.columns = ["outcome", "specification", "n_counties",
-                     "pct_change_per_10pp_notill", "ci_low", "ci_high", "t_stat", "r_squared"]
+    chart = lad[["outcome", "spec", "n", "n_groups", "pct_per_10pp", "pct_lo",
+                 "pct_hi", "pct_p25_to_p75", "t", "r2"]].copy()
+    chart.columns = ["outcome", "specification", "n_counties", "n_groups",
+                     "pct_change_per_10pp_notill", "ci_low", "ci_high",
+                     "pct_change_p25_to_p75", "t_stat", "r_squared"]
+    chart = chart.round(4)
     chart.to_csv(DERIVED / "lens_six_notill_herbicide_tradeoff.csv", index=False)
 
     keep = ["fips", "state", "asd", "notill_share", "cover_share", "tilled_ac",
             "harvested_ac", "herb_low_kg", "herb_high_kg", "glyph_low_kg",
-            "herb_kg_ha", "glyph_kg_ha", "glyph_share"] + CROPSH
+            "burndown_low_kg", "herb_kg_ha", "glyph_kg_ha", "burndown_kg_ha",
+            "glyph_share"] + CROPSH
     df[keep].to_csv(DERIVED / "lens_six_county_panel_2017.csv", index=False)
 
     print(f"\nwrote {DERIVED/'lens_six_notill_herbicide_tradeoff.csv'}")

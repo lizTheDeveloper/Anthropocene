@@ -1,22 +1,29 @@
-biota_group,tier,tier_label,n_compounds,mass_2018_Mkg,mass_share_pct,mass_share_pct_low_basis
-Earthworms & potworms,-1,CAS unresolved,51,5.4311,1.211,0.777
-Earthworms & potworms,0,No record,183,132.9764,29.657,26.532
-Earthworms & potworms,1,"Lab, not in soil",2,0.211,0.047,0.037
-Earthworms & potworms,2,"Lab, in soil, acute (<=14 d)",28,19.4094,4.329,4.061
-Earthworms & potworms,3,"Lab, in soil, chronic (>14 d)",29,104.8513,23.384,24.757
-Earthworms & potworms,4,"Field, single season (<1 yr)",27,59.2066,13.204,12.748
-Earthworms & potworms,5,"Field, >=1 year",10,126.3005,28.168,31.088
-"Soil bacteria, fungi & protozoa",-1,CAS unresolved,51,5.4311,1.211,0.777
-"Soil bacteria, fungi & protozoa",0,No record,164,49.6376,11.07,10.929
-"Soil bacteria, fungi & protozoa",1,"Lab, not in soil",12,2.448,0.546,0.477
-"Soil bacteria, fungi & protozoa",2,"Lab, in soil, acute (<=14 d)",6,32.7863,7.312,7.415
-"Soil bacteria, fungi & protozoa",3,"Lab, in soil, chronic (>14 d)",24,19.7578,4.406,4.47
-"Soil bacteria, fungi & protozoa",4,"Field, single season (<1 yr)",58,115.2922,25.713,23.561
-"Soil bacteria, fungi & protozoa",5,"Field, >=1 year",15,223.0334,49.741,52.37
-Springtails & soil mites,-1,CAS unresolved,51,5.4311,1.211,0.777
-Springtails & soil mites,0,No record,217,212.1558,47.315,44.131
-Springtails & soil mites,1,"Lab, not in soil",2,21.5935,4.816,5.014
-Springtails & soil mites,2,"Lab, in soil, acute (<=14 d)",9,3.6138,0.806,0.688
-Springtails & soil mites,3,"Lab, in soil, chronic (>14 d)",15,39.5363,8.817,9.791
-Springtails & soil mites,4,"Field, single season (<1 yr)",28,149.0952,33.252,36.381
-Springtails & soil mites,5,"Field, >=1 year",8,16.9607,3.783,3.219
+biota_group,tier,tier_label,n_compounds,mass_2018_Mkg,mass_share_pct,mass_share_pct_low_basis,mass_share_pct_generous_1study
+Earthworms & potworms,0,No record,226,172.5543,38.483,34.896,29.657
+Earthworms & potworms,1,"Lab, not in soil",0,0.0,0.0,0.0,0.047
+Earthworms & potworms,2,"Lab, in soil, acute (<=14 d)",16,10.2289,2.281,2.059,4.329
+Earthworms & potworms,3,"Lab, in soil, chronic (>14 d)",30,249.03,55.539,60.385,23.384
+Earthworms & potworms,4,"Field, single season (<1 yr)",5,7.547,1.683,1.337,13.204
+Earthworms & potworms,5,"Field, >=1 year",2,3.5951,0.802,0.545,28.168
+Earthworms & potworms,-1,CAS unresolved,51,5.4311,1.211,0.777,1.211
+Springtails & soil mites,0,No record,240,291.9299,65.107,63.177,47.315
+Springtails & soil mites,1,"Lab, not in soil",9,3.406,0.76,0.696,4.816
+Springtails & soil mites,2,"Lab, in soil, acute (<=14 d)",4,5.329,1.188,0.86,0.806
+Springtails & soil mites,3,"Lab, in soil, chronic (>14 d)",14,6.258,1.396,1.508,8.817
+Springtails & soil mites,4,"Field, single season (<1 yr)",10,132.4324,29.535,32.419,33.252
+Springtails & soil mites,5,"Field, >=1 year",2,3.5999,0.803,0.564,3.783
+Springtails & soil mites,-1,CAS unresolved,51,5.4311,1.211,0.777,1.211
+Mycorrhizal fungi,0,No record,267,298.9751,66.678,64.052,63.876
+Mycorrhizal fungi,1,"Lab, not in soil",3,123.9786,27.65,30.748,0.005
+Mycorrhizal fungi,2,"Lab, in soil, acute (<=14 d)",3,5.1897,1.157,1.183,0.237
+Mycorrhizal fungi,3,"Lab, in soil, chronic (>14 d)",4,9.2032,2.053,1.827,5.837
+Mycorrhizal fungi,4,"Field, single season (<1 yr)",2,5.6087,1.251,1.413,28.454
+Mycorrhizal fungi,5,"Field, >=1 year",0,0.0,0.0,0.0,0.379
+Mycorrhizal fungi,-1,CAS unresolved,51,5.4311,1.211,0.777,1.211
+Soil bacteria & protozoa,0,No record,279,442.9552,98.789,99.223,92.634
+Soil bacteria & protozoa,1,"Lab, not in soil",0,0.0,0.0,0.0,0.667
+Soil bacteria & protozoa,2,"Lab, in soil, acute (<=14 d)",0,0.0,0.0,0.0,4.806
+Soil bacteria & protozoa,3,"Lab, in soil, chronic (>14 d)",0,0.0,0.0,0.0,0.0
+Soil bacteria & protozoa,4,"Field, single season (<1 yr)",0,0.0,0.0,0.0,0.0
+Soil bacteria & protozoa,5,"Field, >=1 year",0,0.0,0.0,0.0,0.682
+Soil bacteria & protozoa,-1,CAS unresolved,51,5.4311,1.211,0.777,1.211

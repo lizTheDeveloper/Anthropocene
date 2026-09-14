@@ -10,9 +10,9 @@ Run from repo root:
     python3 analysis/penniman/compute.py
 
 Outputs:
-    data/derived/lens_penniman_land_access_by_race.csv   (chart data)
-    data/derived/lens_penniman_tenure_scale_2022.csv     (supporting)
-    data/derived/lens_penniman_salesclass_2022.csv       (supporting)
+    data/derived/lens_penniman_land_access_by_race.csv          (chart data)
+    data/derived/lens_penniman_scale_and_tenure_2022.csv        (supporting)
+    data/derived/lens_penniman_black_farmland_by_state_2022.csv (supporting)
 
 Notes on the source format:
   * Files are tab-delimited, latin-1, gzipped, with a header row.
@@ -213,21 +213,30 @@ def tenure_want(year):
     return want
 
 
-def sales_want(year):
-    """FARM SALES cross-tab: people (producers/operators) by sales class."""
+def econ_want(year):
+    """
+    ECONOMIC CLASS cross-tab on an OPERATIONS basis.
+
+    For race groups NASS publishes 'OPERATIONS WITH RECEIPTS' (operations with
+    at least one producer of that group, by sales class); for the universe it
+    publishes 'FARM OPERATIONS - NUMBER OF OPERATIONS' and '- ACRES OPERATED'.
+    Both are used in the programme-reach section of FINDING.md.
+    """
     def want(row):
-        if row["AGG_LEVEL_DESC"] != "NATIONAL" or row["DOMAIN_DESC"] != "FARM SALES":
+        if row["AGG_LEVEL_DESC"] != "NATIONAL" or row["DOMAIN_DESC"] != "ECONOMIC CLASS":
             return None
         subject, measure = split_short_desc(row["SHORT_DESC"])
-        if measure not in ("NUMBER OF PRODUCERS", "NUMBER OF OPERATORS"):
-            return None
-        if subject in ("PRODUCERS", "OPERATORS"):
-            g = "__ALL__"
-        else:
-            g = classify_subject(subject, year)
-            if g is None:
+        if subject == "FARM OPERATIONS":
+            if measure not in ("NUMBER OF OPERATIONS", "ACRES OPERATED"):
                 return None
-        return (g, row["DOMAINCAT_DESC"])
+            return ("__ALL__", row["DOMAINCAT_DESC"],
+                    "operations" if measure == "NUMBER OF OPERATIONS" else "acres_operated")
+        if measure != "OPERATIONS WITH RECEIPTS":
+            return None
+        g = classify_subject(subject, year)
+        if g is None:
+            return None
+        return (g, row["DOMAINCAT_DESC"], "operations")
     return want
 
 
@@ -238,7 +247,7 @@ def combined_want(year):
         ("state", state_race_want(year)),
         ("area", area_class_want(year)),
         ("tenure", tenure_want(year)),
-        ("sales", sales_want(year)),
+        ("econ", econ_want(year)),
     ]
 
     def want(row):
@@ -255,9 +264,10 @@ def combined_want(year):
 def main():
     os.makedirs(OUT, exist_ok=True)
     all_rows = []
-    tenure_rows = []
-    sales_rows = []
+    scale_rows = []          # long form: tenure / size class / sales class
+    state_rows = []          # 2022 state geography
     checks = []
+    reach = {}               # 2022 programme-reach numbers, printed at the end
 
     for year in YEARS:
         sys.stderr.write(f"scanning census{year} ...\n")
@@ -267,7 +277,7 @@ def main():
         state = {k[1:]: v for k, v in data.items() if k[0] == "state"}
         area = {k[1:]: v for k, v in data.items() if k[0] == "area"}
         tenure = {k[1:]: v for k, v in data.items() if k[0] == "tenure"}
-        sales = {k[1:]: v for k, v in data.items() if k[0] == "sales"}
+        econ = {k[1:]: v for k, v in data.items() if k[0] == "econ"}
 
         us_ops = nat[("__ALL__", "operations")]
         us_acres = nat[("__ALL__", "acres_operated")]
@@ -292,6 +302,13 @@ def main():
                 "share_of_acres_pct": round(100 * acres / us_acres, 4),
                 "acres_per_operation": round(acres / ops, 1),
                 "us_acres_per_operation": round(us_acres / us_ops, 1),
+                # These last two columns are algebraically the same number --
+                #   (acres/ops) / (US acres/US ops)  ==  (acres/US acres) / (ops/US ops)
+                # -- kept separately because they carry two different readings:
+                # "how big is this group's average farm relative to the national
+                # average" and "how far does this group's land share fall short
+                # of its farm-count share". Both are emitted so a chart can use
+                # whichever framing it needs; they will always be equal.
                 "scale_vs_us_avg": round((acres / ops) / (us_acres / us_ops), 3),
                 "acres_share_over_ops_share": round((acres / us_acres) / (ops / us_ops), 3),
             })
@@ -332,17 +349,83 @@ def main():
                 checks.append((year, "area-class sum vs total", label, "operations",
                                tot, n_ops, round(100 * (tot - n_ops) / n_ops, 3)))
 
-        # ---- tenure (cross-section; concept differs pre/post 2017, see notes)
-        for (g, cat, m), v in tenure.items():
-            tenure_rows.append({"year": year, "producer_group": g,
-                                "tenure": cat.replace("TENURE: ", "").strip("()"),
-                                "measure": m, "value": int(v)})
+        # ---- independent check C: the three tenure classes are mutually
+        # exclusive and exhaustive, so they must reconstruct the TOTAL domain.
+        for label in ("Black or African American", "White", "__ALL__"):
+            for m, meas in (("operations", "operations"), ("acres_operated", "acres")):
+                cells = [v for (g, cat, mm), v in tenure.items()
+                         if g == label and mm == m]
+                n = nat.get((label, m))
+                if n and len(cells) == 3:
+                    s = sum(cells)
+                    checks.append((year, "tenure-class sum vs total", label, meas,
+                                   s, n, round(100 * (s - n) / n, 3)))
 
-        # ---- sales class
-        for (g, cat, ), v in ((k, v) for k, v in sales.items()):
-            sales_rows.append({"year": year, "producer_group": g,
-                               "sales_class": cat.replace("FARM SALES: ", "").strip("()"),
-                               "people": int(v)})
+        # ---- long-form scale table: tenure, size class, economic (sales) class
+        for (g, cat, m), v in tenure.items():
+            scale_rows.append({"year": year, "producer_group": g, "cut": "tenure",
+                               "category": cat.replace("TENURE: ", "").strip("()"),
+                               "measure": m, "value": int(v)})
+        for (g, cat), v in area.items():
+            scale_rows.append({"year": year, "producer_group": g, "cut": "area_operated",
+                               "category": cat.replace("AREA OPERATED: ", "").strip("()"),
+                               "measure": "operations", "value": int(v)})
+        for (g, cat, m), v in econ.items():
+            scale_rows.append({"year": year, "producer_group": g, "cut": "economic_class",
+                               "category": cat.replace("ECONOMIC CLASS: ", "").strip("()"),
+                               "measure": m, "value": int(v)})
+
+        # ---- 2022 state geography (FINDING.md sec 3.5)
+        if year == 2022:
+            states = sorted({st for (st, g, m) in state})
+            for st in states:
+                b_ac = state.get((st, "Black or African American", "acres_operated"))
+                b_op = state.get((st, "Black or African American", "operations"))
+                t_ac = state.get((st, "__ALL__", "acres_operated"))
+                t_op = state.get((st, "__ALL__", "operations"))
+                if not (b_ac and b_op and t_ac and t_op):
+                    continue
+                state_rows.append({
+                    "year": year, "state_alpha": st,
+                    "black_operations": int(b_op), "black_acres": int(b_ac),
+                    "state_operations": int(t_op), "state_acres": int(t_ac),
+                    "pct_of_state_farms": round(100 * b_op / t_op, 3),
+                    "pct_of_state_farmland": round(100 * b_ac / t_ac, 3),
+                    "black_acres_per_operation": round(b_ac / b_op, 1),
+                    "state_acres_per_operation": round(t_ac / t_op, 1),
+                })
+
+        # ---- 2022 programme-reach arithmetic (quoted in FINDING.md sec. 3.4)
+        if year == 2022:
+            small = ["LESS THAN 1,000 $", "1,000 TO 2,499 $", "2,500 TO 4,999 $",
+                     "5,000 TO 9,999 $"]
+            # NASS does not publish a single ">= $50,000" acreage cell for the
+            # universe; build it from the mutually exclusive fine classes.
+            fine_big = ["50,000 TO 99,999 $", "100,000 TO 249,999 $",
+                        "250,000 TO 499,999 $", "500,000 TO 999,999 $",
+                        "1,000,000 OR MORE $"]
+
+            def ecell(g, cat, m="operations"):
+                return econ.get((g, f"ECONOMIC CLASS: ({cat})", m))
+
+            all_acres_fine = [ecell("__ALL__", c, "acres_operated")
+                              for c in fine_big + small +
+                              ["10,000 TO 24,999 $", "25,000 TO 49,999 $"]]
+            reach["all_acres_partition_sum"] = sum(a for a in all_acres_fine if a)
+            reach["all_acres_ge50k"] = sum(ecell("__ALL__", c, "acres_operated") or 0
+                                           for c in fine_big)
+            reach["all_acres_lt10k"] = sum(ecell("__ALL__", c, "acres_operated") or 0
+                                           for c in small)
+            reach["all_ops_lt10k"] = sum(ecell("__ALL__", c) or 0 for c in small)
+            reach["all_ops_total"] = us_ops
+            reach["all_acres_total"] = us_acres
+            reach["all_ops_ge50k"] = us_ops - sum(
+                ecell("__ALL__", c) or 0
+                for c in small + ["10,000 TO 24,999 $", "25,000 TO 49,999 $"])
+            for g in ("Black or African American", "White"):
+                reach[f"{g}_ops_total"] = nat[(g, "operations")]
+                reach[f"{g}_ops_lt10k"] = sum(ecell(g, c) or 0 for c in small)
+                reach[f"{g}_ops_ge50k"] = ecell(g, "50,000 OR MORE $")
 
     # ------------------------------------------------------------------ write
     main_csv = os.path.join(OUT, "lens_penniman_land_access_by_race.csv")
@@ -351,20 +434,13 @@ def main():
         w.writeheader()
         w.writerows(sorted(all_rows, key=lambda r: (r["year"], -r["acres_operated"])))
 
-    ten_csv = os.path.join(OUT, "lens_penniman_tenure_scale_2022.csv")
-    ten = [r for r in tenure_rows if r["year"] in (2017, 2022)]
-    with open(ten_csv, "w", newline="") as fh:
-        w = csv.DictWriter(fh, fieldnames=list(ten[0].keys()))
+    sc_csv = os.path.join(OUT, "lens_penniman_scale_and_tenure_2022.csv")
+    sc = [r for r in scale_rows if r["year"] == 2022]
+    with open(sc_csv, "w", newline="") as fh:
+        w = csv.DictWriter(fh, fieldnames=list(sc[0].keys()))
         w.writeheader()
-        w.writerows(sorted(ten, key=lambda r: (r["year"], r["producer_group"],
-                                               r["tenure"], r["measure"])))
-
-    sal_csv = os.path.join(OUT, "lens_penniman_salesclass_2022.csv")
-    sal = [r for r in sales_rows if r["year"] == 2022]
-    with open(sal_csv, "w", newline="") as fh:
-        w = csv.DictWriter(fh, fieldnames=list(sal[0].keys()))
-        w.writeheader()
-        w.writerows(sorted(sal, key=lambda r: (r["producer_group"], r["sales_class"])))
+        w.writerows(sorted(sc, key=lambda r: (r["cut"], r["producer_group"],
+                                              r["category"], r["measure"])))
 
     # ------------------------------------------------------------- report out
     print("\n=== national land access by producer group ===")
@@ -383,8 +459,41 @@ def main():
         print(f"{c[0]:>5} {c[1]:<28} {c[2]:<28} {c[3]:>10} "
               f"{c[4]:>16,.0f} {c[5]:>16,.0f} {c[6]:>8.3f}")
 
+    st_csv = os.path.join(OUT, "lens_penniman_black_farmland_by_state_2022.csv")
+    with open(st_csv, "w", newline="") as fh:
+        w = csv.DictWriter(fh, fieldnames=list(state_rows[0].keys()))
+        w.writeheader()
+        w.writerows(sorted(state_rows, key=lambda r: -r["black_acres"]))
+
+    print("\n=== 2022 Black-operated farmland, top 10 states (FINDING.md sec 3.5) ===")
+    top = sorted(state_rows, key=lambda r: -r["black_acres"])[:10]
+    tot_b = sum(r["black_acres"] for r in state_rows)
+    print(f"{'st':>4} {'black acres':>13} {'%of state farms':>16} {'%of state land':>15} "
+          f"{'black ac/op':>12} {'state ac/op':>12}")
+    for r in top:
+        print(f"{r['state_alpha']:>4} {r['black_acres']:>13,} {r['pct_of_state_farms']:>16.2f} "
+              f"{r['pct_of_state_farmland']:>15.2f} {r['black_acres_per_operation']:>12.1f} "
+              f"{r['state_acres_per_operation']:>12.1f}")
+    print(f"  top-10 share of the 50-state Black acreage sum: "
+          f"{100*sum(r['black_acres'] for r in top)/tot_b:.1f}%")
+
+    print("\n=== 2022 programme-reach arithmetic (FINDING.md sec 3.4) ===")
+    ao, aa = reach["all_ops_total"], reach["all_acres_total"]
+    print(f"  ECONOMIC CLASS acreage partition sums to {reach['all_acres_partition_sum']:,.0f} "
+          f"vs published national {aa:,.0f}  (closed partition check)")
+    print(f"  all U.S. farms >= $50,000 sales: {reach['all_ops_ge50k']:,.0f} ops "
+          f"({100*reach['all_ops_ge50k']/ao:.1f}% of farms) operating "
+          f"{reach['all_acres_ge50k']:,.0f} acres ({100*reach['all_acres_ge50k']/aa:.1f}% of farmland)")
+    print(f"  all U.S. farms <  $10,000 sales: {reach['all_ops_lt10k']:,.0f} ops "
+          f"({100*reach['all_ops_lt10k']/ao:.1f}% of farms) operating "
+          f"{reach['all_acres_lt10k']:,.0f} acres ({100*reach['all_acres_lt10k']/aa:.1f}% of farmland)")
+    for g in ("Black or African American", "White"):
+        t = reach[f"{g}_ops_total"]
+        print(f"  {g}: {100*reach[f'{g}_ops_ge50k']/t:.1f}% of operations have "
+              f">= $50,000 sales; {100*reach[f'{g}_ops_lt10k']/t:.1f}% have < $10,000")
+
     print("\nwrote:")
-    for p in (main_csv, ten_csv, sal_csv):
+    for p in (main_csv, sc_csv, st_csv):
         print("  " + os.path.relpath(p, REPO))
 
 

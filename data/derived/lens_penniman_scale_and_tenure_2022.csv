@@ -1,0 +1,173 @@
+year,producer_group,cut,category,measure,value
+2022,American Indian or Alaska Native,area_operated,1.0 TO 9.9 ACRES,operations,11776
+2022,American Indian or Alaska Native,area_operated,10.0 TO 49.9 ACRES,operations,10119
+2022,American Indian or Alaska Native,area_operated,180 TO 499 ACRES,operations,4724
+2022,American Indian or Alaska Native,area_operated,50 TO 179 ACRES,operations,8082
+2022,American Indian or Alaska Native,area_operated,500 OR MORE ACRES,operations,5920
+2022,Asian,area_operated,1.0 TO 9.9 ACRES,operations,4835
+2022,Asian,area_operated,10.0 TO 49.9 ACRES,operations,5783
+2022,Asian,area_operated,180 TO 499 ACRES,operations,1168
+2022,Asian,area_operated,50 TO 179 ACRES,operations,3480
+2022,Asian,area_operated,500 OR MORE ACRES,operations,806
+2022,Black or African American,area_operated,1.0 TO 9.9 ACRES,operations,4444
+2022,Black or African American,area_operated,10.0 TO 49.9 ACRES,operations,10932
+2022,Black or African American,area_operated,180 TO 499 ACRES,operations,2851
+2022,Black or African American,area_operated,50 TO 179 ACRES,operations,8906
+2022,Black or African American,area_operated,500 OR MORE ACRES,operations,1590
+2022,Hispanic (any race),area_operated,1.0 TO 9.9 ACRES,operations,19522
+2022,Hispanic (any race),area_operated,10.0 TO 49.9 ACRES,operations,29293
+2022,Hispanic (any race),area_operated,180 TO 499 ACRES,operations,8350
+2022,Hispanic (any race),area_operated,50 TO 179 ACRES,operations,17671
+2022,Hispanic (any race),area_operated,500 OR MORE ACRES,operations,8669
+2022,Multi-race,area_operated,1.0 TO 9.9 ACRES,operations,4450
+2022,Multi-race,area_operated,10.0 TO 49.9 ACRES,operations,7733
+2022,Multi-race,area_operated,180 TO 499 ACRES,operations,3485
+2022,Multi-race,area_operated,50 TO 179 ACRES,operations,6225
+2022,Multi-race,area_operated,500 OR MORE ACRES,operations,3097
+2022,Native Hawaiian or Other Pacific Islander,area_operated,1.0 TO 9.9 ACRES,operations,866
+2022,Native Hawaiian or Other Pacific Islander,area_operated,10.0 TO 49.9 ACRES,operations,952
+2022,Native Hawaiian or Other Pacific Islander,area_operated,180 TO 499 ACRES,operations,221
+2022,Native Hawaiian or Other Pacific Islander,area_operated,50 TO 179 ACRES,operations,477
+2022,Native Hawaiian or Other Pacific Islander,area_operated,500 OR MORE ACRES,operations,263
+2022,White,area_operated,1.0 TO 9.9 ACRES,operations,216392
+2022,White,area_operated,10.0 TO 49.9 ACRES,operations,545048
+2022,White,area_operated,180 TO 499 ACRES,operations,281157
+2022,White,area_operated,50 TO 179 ACRES,operations,513494
+2022,White,area_operated,500 OR MORE ACRES,operations,273358
+2022,__ALL__,area_operated,"1,000 OR MORE ACRES",operations,159619
+2022,__ALL__,area_operated,"1,000 TO 1,999 ACRES",operations,76311
+2022,__ALL__,area_operated,1.0 TO 9.9 ACRES,operations,234592
+2022,__ALL__,area_operated,10.0 TO 49.9 ACRES,operations,566912
+2022,__ALL__,area_operated,100 TO 139 ACRES,operations,138398
+2022,__ALL__,area_operated,140 TO 179 ACRES,operations,108796
+2022,__ALL__,area_operated,180 TO 219 ACRES,operations,69602
+2022,__ALL__,area_operated,180 TO 499 ACRES,operations,288379
+2022,__ALL__,area_operated,"2,000 OR MORE ACRES",operations,83308
+2022,__ALL__,area_operated,"2,000 TO 4,999 ACRES",operations,56274
+2022,__ALL__,area_operated,220 TO 259 ACRES,operations,52177
+2022,__ALL__,area_operated,260 TO 499 ACRES,operations,166600
+2022,__ALL__,area_operated,"5,000 OR MORE ACRES",operations,27034
+2022,__ALL__,area_operated,50 TO 179 ACRES,operations,530529
+2022,__ALL__,area_operated,50.0 TO 69.9 ACRES,operations,130096
+2022,__ALL__,area_operated,500 OR MORE ACRES,operations,280075
+2022,__ALL__,area_operated,500 TO 999 ACRES,operations,120456
+2022,__ALL__,area_operated,70.0 TO 99.9 ACRES,operations,153239
+2022,American Indian or Alaska Native,economic_class,"1,000 TO 2,499 $",operations,5241
+2022,American Indian or Alaska Native,economic_class,"10,000 TO 24,999 $",operations,4793
+2022,American Indian or Alaska Native,economic_class,"2,500 TO 4,999 $",operations,4290
+2022,American Indian or Alaska Native,economic_class,"25,000 TO 49,999 $",operations,2756
+2022,American Indian or Alaska Native,economic_class,"5,000 TO 9,999 $",operations,4198
+2022,American Indian or Alaska Native,economic_class,"50,000 OR MORE $",operations,5838
+2022,American Indian or Alaska Native,economic_class,"LESS THAN 1,000 $",operations,13505
+2022,Asian,economic_class,"1,000 TO 2,499 $",operations,1553
+2022,Asian,economic_class,"10,000 TO 24,999 $",operations,2000
+2022,Asian,economic_class,"2,500 TO 4,999 $",operations,1357
+2022,Asian,economic_class,"25,000 TO 49,999 $",operations,1334
+2022,Asian,economic_class,"5,000 TO 9,999 $",operations,1634
+2022,Asian,economic_class,"50,000 OR MORE $",operations,5675
+2022,Asian,economic_class,"LESS THAN 1,000 $",operations,2519
+2022,Black or African American,economic_class,"1,000 TO 2,499 $",operations,3723
+2022,Black or African American,economic_class,"10,000 TO 24,999 $",operations,4009
+2022,Black or African American,economic_class,"2,500 TO 4,999 $",operations,3243
+2022,Black or African American,economic_class,"25,000 TO 49,999 $",operations,1826
+2022,Black or African American,economic_class,"5,000 TO 9,999 $",operations,3584
+2022,Black or African American,economic_class,"50,000 OR MORE $",operations,3281
+2022,Black or African American,economic_class,"LESS THAN 1,000 $",operations,9057
+2022,Hispanic (any race),economic_class,"1,000 TO 2,499 $",operations,10946
+2022,Hispanic (any race),economic_class,"10,000 TO 24,999 $",operations,10213
+2022,Hispanic (any race),economic_class,"2,500 TO 4,999 $",operations,9499
+2022,Hispanic (any race),economic_class,"25,000 TO 49,999 $",operations,5784
+2022,Hispanic (any race),economic_class,"5,000 TO 9,999 $",operations,9736
+2022,Hispanic (any race),economic_class,"50,000 OR MORE $",operations,16955
+2022,Hispanic (any race),economic_class,"LESS THAN 1,000 $",operations,20372
+2022,Multi-race,economic_class,"1,000 TO 2,499 $",operations,3140
+2022,Multi-race,economic_class,"10,000 TO 24,999 $",operations,3635
+2022,Multi-race,economic_class,"2,500 TO 4,999 $",operations,2669
+2022,Multi-race,economic_class,"25,000 TO 49,999 $",operations,2151
+2022,Multi-race,economic_class,"5,000 TO 9,999 $",operations,3068
+2022,Multi-race,economic_class,"50,000 OR MORE $",operations,5075
+2022,Multi-race,economic_class,"LESS THAN 1,000 $",operations,5252
+2022,Native Hawaiian or Other Pacific Islander,economic_class,"1,000 TO 2,499 $",operations,355
+2022,Native Hawaiian or Other Pacific Islander,economic_class,"10,000 TO 24,999 $",operations,396
+2022,Native Hawaiian or Other Pacific Islander,economic_class,"2,500 TO 4,999 $",operations,258
+2022,Native Hawaiian or Other Pacific Islander,economic_class,"25,000 TO 49,999 $",operations,192
+2022,Native Hawaiian or Other Pacific Islander,economic_class,"5,000 TO 9,999 $",operations,307
+2022,Native Hawaiian or Other Pacific Islander,economic_class,"50,000 OR MORE $",operations,644
+2022,Native Hawaiian or Other Pacific Islander,economic_class,"LESS THAN 1,000 $",operations,627
+2022,White,economic_class,"1,000 TO 2,499 $",operations,202341
+2022,White,economic_class,"10,000 TO 24,999 $",operations,233591
+2022,White,economic_class,"2,500 TO 4,999 $",operations,185427
+2022,White,economic_class,"25,000 TO 49,999 $",operations,148215
+2022,White,economic_class,"5,000 TO 9,999 $",operations,206863
+2022,White,economic_class,"50,000 OR MORE $",operations,499970
+2022,White,economic_class,"LESS THAN 1,000 $",operations,353042
+2022,__ALL__,economic_class,"1,000 TO 2,499 $",acres_operated,13249494
+2022,__ALL__,economic_class,"1,000 TO 2,499 $",operations,210874
+2022,__ALL__,economic_class,"1,000,000 OR MORE $",acres_operated,287398715
+2022,__ALL__,economic_class,"1,000,000 OR MORE $",operations,107952
+2022,__ALL__,economic_class,"10,000 TO 24,999 $",acres_operated,46078880
+2022,__ALL__,economic_class,"10,000 TO 24,999 $",operations,242254
+2022,__ALL__,economic_class,"100,000 TO 249,999 $",acres_operated,97937793
+2022,__ALL__,economic_class,"100,000 TO 249,999 $",operations,126351
+2022,__ALL__,economic_class,"2,500 TO 4,999 $",acres_operated,15289412
+2022,__ALL__,economic_class,"2,500 TO 4,999 $",operations,192850
+2022,__ALL__,economic_class,"25,000 TO 49,999 $",acres_operated,42314477
+2022,__ALL__,economic_class,"25,000 TO 49,999 $",operations,152852
+2022,__ALL__,economic_class,"250,000 TO 499,999 $",acres_operated,112851229
+2022,__ALL__,economic_class,"250,000 TO 499,999 $",operations,86739
+2022,__ALL__,economic_class,"5,000 TO 9,999 $",acres_operated,24126855
+2022,__ALL__,economic_class,"5,000 TO 9,999 $",operations,214568
+2022,__ALL__,economic_class,"50,000 TO 99,999 $",acres_operated,54339433
+2022,__ALL__,economic_class,"50,000 TO 99,999 $",operations,120990
+2022,__ALL__,economic_class,"500,000 TO 999,999 $",acres_operated,124294712
+2022,__ALL__,economic_class,"500,000 TO 999,999 $",operations,69645
+2022,__ALL__,economic_class,"LESS THAN 1,000 $",acres_operated,62219848
+2022,__ALL__,economic_class,"LESS THAN 1,000 $",operations,375412
+2022,American Indian or Alaska Native,tenure,FULL OWNER,acres_operated,41188143
+2022,American Indian or Alaska Native,tenure,FULL OWNER,operations,19435
+2022,American Indian or Alaska Native,tenure,PART OWNER,acres_operated,9330006
+2022,American Indian or Alaska Native,tenure,PART OWNER,operations,7416
+2022,American Indian or Alaska Native,tenure,TENANT,acres_operated,5263328
+2022,American Indian or Alaska Native,tenure,TENANT,operations,13770
+2022,Asian,tenure,FULL OWNER,acres_operated,1313677
+2022,Asian,tenure,FULL OWNER,operations,12936
+2022,Asian,tenure,PART OWNER,acres_operated,1078360
+2022,Asian,tenure,PART OWNER,operations,1408
+2022,Asian,tenure,TENANT,acres_operated,216364
+2022,Asian,tenure,TENANT,operations,1728
+2022,Black or African American,tenure,FULL OWNER,acres_operated,1840788
+2022,Black or African American,tenure,FULL OWNER,operations,20039
+2022,Black or African American,tenure,PART OWNER,acres_operated,2088261
+2022,Black or African American,tenure,PART OWNER,operations,6369
+2022,Black or African American,tenure,TENANT,acres_operated,389692
+2022,Black or African American,tenure,TENANT,operations,2315
+2022,Hispanic (any race),tenure,FULL OWNER,acres_operated,16481392
+2022,Hispanic (any race),tenure,FULL OWNER,operations,65496
+2022,Hispanic (any race),tenure,PART OWNER,acres_operated,16489948
+2022,Hispanic (any race),tenure,PART OWNER,operations,12750
+2022,Hispanic (any race),tenure,TENANT,acres_operated,3894923
+2022,Hispanic (any race),tenure,TENANT,operations,5259
+2022,Multi-race,tenure,FULL OWNER,acres_operated,3581993
+2022,Multi-race,tenure,FULL OWNER,operations,18218
+2022,Multi-race,tenure,PART OWNER,acres_operated,5037184
+2022,Multi-race,tenure,PART OWNER,operations,5178
+2022,Multi-race,tenure,TENANT,acres_operated,1042253
+2022,Multi-race,tenure,TENANT,operations,1594
+2022,Native Hawaiian or Other Pacific Islander,tenure,FULL OWNER,acres_operated,323659
+2022,Native Hawaiian or Other Pacific Islander,tenure,FULL OWNER,operations,2097
+2022,Native Hawaiian or Other Pacific Islander,tenure,PART OWNER,acres_operated,413731
+2022,Native Hawaiian or Other Pacific Islander,tenure,PART OWNER,operations,382
+2022,Native Hawaiian or Other Pacific Islander,tenure,TENANT,acres_operated,61761
+2022,Native Hawaiian or Other Pacific Islander,tenure,TENANT,operations,300
+2022,White,tenure,FULL OWNER,acres_operated,269626575
+2022,White,tenure,FULL OWNER,operations,1315779
+2022,White,tenure,PART OWNER,acres_operated,481019035
+2022,White,tenure,PART OWNER,operations,411216
+2022,White,tenure,TENANT,acres_operated,73297293
+2022,White,tenure,TENANT,operations,102454
+2022,__ALL__,tenure,FULL OWNER,acres_operated,311935837
+2022,__ALL__,tenure,FULL OWNER,operations,1356796
+2022,__ALL__,tenure,PART OWNER,acres_operated,489711406
+2022,__ALL__,tenure,PART OWNER,operations,423889
+2022,__ALL__,tenure,TENANT,acres_operated,78453605
+2022,__ALL__,tenure,TENANT,operations,119802

@@ -1,0 +1,60 @@
+{
+  "title": "The soil-biology evidence ladder has almost no rungs",
+  "subtitle": "Share of the 448.4 million kg of pesticide applied to US cropland in 2018, sorted by the strongest study design that exists anywhere in EPA's ECOTOX release for four non-target soil functional groups. A tier counts only if at least two independent published studies support it.",
+  "chart_type": "horizontal_stacked_bar",
+  "x": {
+    "field": "mass_share_pct",
+    "label": "Share of 2018 US applied pesticide mass (%)",
+    "domain": [0, 100],
+    "stack": true
+  },
+  "y": {
+    "field": "biota_group",
+    "label": null,
+    "order": [
+      "Earthworms & potworms",
+      "Springtails & soil mites",
+      "Mycorrhizal fungi",
+      "Soil bacteria & protozoa"
+    ]
+  },
+  "series": {
+    "field": "tier_label",
+    "label": "Strongest design available",
+    "order": [
+      "No record",
+      "CAS unresolved",
+      "Lab, not in soil",
+      "Lab, in soil, acute (<=14 d)",
+      "Lab, in soil, chronic (>14 d)",
+      "Field, single season (<1 yr)",
+      "Field, >=1 year"
+    ],
+    "encoding_note": "Ordered weakest to strongest. 'No record' and 'CAS unresolved' should read as absence (neutral grey, unresolved lighter/hatched); the two laboratory tiers as one cool hue ramping with design strength; the two field tiers as a distinct warm hue. The visual point is that the warm colours barely appear, and that the top two bars are almost entirely grey.",
+    "value_field_alternate": "mass_share_pct_generous_1study"
+  },
+  "annotations": [
+    {
+      "target": "Soil bacteria & protozoa",
+      "text": "98.8% of applied mass has no record of any kind. ECOTOX's entire soil bacteria and protozoa holding is 118 tests from 9 studies on 21 chemicals -- mostly rice-paddy cyanobacteria -- with one field test ever recorded."
+    },
+    {
+      "target": "Earthworms & potworms",
+      "text": "96.3% has no field-scale earthworm evidence. Requiring two independent studies instead of one drops the share with field evidence from 41% to 2.5%: a single unreplicated test row was carrying it."
+    },
+    {
+      "target": "Mycorrhizal fungi",
+      "text": "Glyphosate -- 26.6% of all applied mass -- has 8 test records from 2 studies on mycorrhizal fungi, and zero on soil bacteria."
+    },
+    {
+      "target": "chart",
+      "text": "No compound reaches multi-year field evidence for mycorrhizal fungi or soil bacteria. Only four compound x group cells reach it at all (chlorpyrifos, carbaryl, imidacloprid), together 0.87% of applied mass."
+    },
+    {
+      "target": "chart",
+      "text": "The soil-habitat record is not small: 137,463 tests from 11,457 studies. 94% of its field tests are on crop plants. EPA's data requirements table at 40 CFR 158.630 lists a honeybee test and no soil-organism test at all."
+    }
+  ],
+  "source_note": "EPA ECOTOX ASCII release 09/15/2026 (tests.txt, results.txt, validation/species.txt, validation/chemicals.txt) joined by CAS via DTXSID to USGS Pesticide National Synthesis Project county use, 2018, corrected basis (California excluded, aggregate rows removed). Computed by analysis/scow/compute.py.",
+  "data_file": "data/derived/lens_scow_soil_evidence_ladder.csv"
+}
