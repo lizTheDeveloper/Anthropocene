@@ -1,0 +1,433 @@
+<title>Which Petition Survives the Evidence</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Karla:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  --paper:#f7f6f3; --card:#fffefc; --sunk:#efeee9;
+  --ink:#1b1a18; --ink-2:#575450; --ink-3:#8a8680;
+  --rule:#e0ded7; --rule-2:#ebe9e3;
+  --accent:#3d4b9e;
+  --ok:#2f7d52; --ok-bg:#eaf3ed;
+  --weak:#a8761a; --weak-bg:#f7f0e2;
+  --no:#b3352c; --no-bg:#faece9;
+  --s1:#2a78d6; --s2:#eb6834;
+  --shadow:0 1px 2px rgba(27,26,24,.05),0 12px 30px -20px rgba(27,26,24,.22);
+}
+@media (prefers-color-scheme:dark){
+  :root:where(:not([data-theme="light"])){
+    color-scheme:dark;
+    --paper:#191a17; --card:#212320; --sunk:#272925;
+    --ink:#f1f1ec; --ink-2:#aaa8a1; --ink-3:#7d7b74;
+    --rule:#333630; --rule-2:#2a2d28;
+    --accent:#8e9bea;
+    --ok:#5fb383; --ok-bg:#1b2a21;
+    --weak:#d5a04a; --weak-bg:#2b2519;
+    --no:#e0685c; --no-bg:#2c1d1b;
+    --s1:#3987e5; --s2:#d95926;
+    --shadow:0 1px 2px rgba(0,0,0,.35),0 12px 30px -20px rgba(0,0,0,.65);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --paper:#191a17; --card:#212320; --sunk:#272925;
+  --ink:#f1f1ec; --ink-2:#aaa8a1; --ink-3:#7d7b74;
+  --rule:#333630; --rule-2:#2a2d28;
+  --accent:#8e9bea;
+  --ok:#5fb383; --ok-bg:#1b2a21;
+  --weak:#d5a04a; --weak-bg:#2b2519;
+  --no:#e0685c; --no-bg:#2c1d1b;
+  --s1:#3987e5; --s2:#d95926;
+  --shadow:0 1px 2px rgba(0,0,0,.35),0 12px 30px -20px rgba(0,0,0,.65);
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);
+  font-family:Karla,system-ui,-apple-system,sans-serif;font-size:16.5px;line-height:1.62;
+  margin:0;padding-block:0;padding-left:20px;padding-right:20px;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto}
+.measure{max-width:648px}
+header{padding-block:58px 0}
+.kick{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--ink-3);margin-bottom:24px;display:flex;gap:16px;flex-wrap:wrap}
+h1{font-family:Lora,Georgia,serif;font-weight:600;font-size:clamp(2.3rem,5.6vw,3.9rem);
+  line-height:1.05;letter-spacing:-.018em;margin:0 0 20px;text-wrap:balance;max-width:15ch}
+.deck{font-family:Lora,Georgia,serif;font-size:clamp(1.08rem,2.2vw,1.3rem);line-height:1.5;
+  color:var(--ink-2);max-width:61ch;margin:0}
+.deck em{color:var(--ink);font-style:italic}
+
+.verdict{margin:42px 0 0;padding:26px 28px;background:var(--no-bg);
+  border-left:3px solid var(--no);border-radius:2px}
+.verdict .h{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--no);margin-bottom:11px}
+.verdict p{margin:0;font-family:Lora,Georgia,serif;font-size:1.12rem;line-height:1.52;max-width:62ch}
+.verdict strong{font-weight:600}
+
+section{padding-block:52px;border-bottom:1px solid var(--rule)}
+section:first-of-type{border-top:1px solid var(--rule);margin-top:44px}
+.tag{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:13px}
+h2{font-family:Lora,Georgia,serif;font-weight:600;font-size:clamp(1.55rem,3.3vw,2.2rem);
+  line-height:1.15;letter-spacing:-.012em;margin:0 0 17px;text-wrap:balance;max-width:21ch}
+p{margin:0 0 15px}
+.measure p:last-child{margin-bottom:0}
+strong{font-weight:600}
+code{font-family:"IBM Plex Mono",monospace;font-size:.85em;color:var(--ink-2)}
+
+/* evidence ledger */
+.ledger{margin-top:30px;border:1px solid var(--rule);border-radius:2px;overflow:hidden;background:var(--card)}
+.lrow{display:grid;grid-template-columns:minmax(0,1.5fr) 118px minmax(0,1.6fr);
+  gap:0;border-bottom:1px solid var(--rule-2);align-items:start}
+.lrow:last-child{border-bottom:0}
+.lrow.head{background:var(--sunk);font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3)}
+.lrow>div{padding:14px 16px}
+.lrow.head>div{padding:9px 16px}
+.claim{font-weight:600;font-size:.95rem;line-height:1.42}
+.ev{font-size:13.5px;color:var(--ink-2);line-height:1.5}
+.badge{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10.5px;
+  letter-spacing:.08em;text-transform:uppercase;padding:4px 9px;border-radius:2px;white-space:nowrap}
+.badge.ok{background:var(--ok-bg);color:var(--ok)}
+.badge.weak{background:var(--weak-bg);color:var(--weak)}
+.badge.no{background:var(--no-bg);color:var(--no)}
+@media(max-width:700px){
+  .lrow{grid-template-columns:1fr}
+  .lrow>div{padding:10px 15px}
+  .lrow.head{display:none}
+  .lrow{border-bottom:1px solid var(--rule);padding-block:6px}
+}
+
+/* asks */
+.ask{background:var(--card);border:1px solid var(--rule);border-radius:2px;
+  padding:26px 26px 22px;margin-top:20px;box-shadow:var(--shadow);border-top:3px solid var(--accent)}
+.ask.rank1{border-top-color:var(--ok)}
+.ask .rank{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.13em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:9px}
+.ask h3{font-family:Lora,Georgia,serif;font-size:1.28rem;font-weight:600;margin:0 0 6px;line-height:1.26}
+.ask .to{font-family:"IBM Plex Mono",monospace;font-size:11.5px;color:var(--accent);margin-bottom:14px}
+.ask dl{margin:0;display:grid;grid-template-columns:132px minmax(0,1fr);gap:9px 16px;font-size:14.5px}
+.ask dt{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.09em;
+  text-transform:uppercase;color:var(--ink-3);padding-top:3px}
+.ask dd{margin:0;color:var(--ink-2);line-height:1.5}
+.ask dd b{color:var(--ink);font-weight:600}
+.ask dd.counter{color:var(--no)}
+@media(max-width:600px){.ask dl{grid-template-columns:1fr;gap:3px 0}.ask dt{padding-top:9px}}
+
+.panel{background:var(--card);border:1px solid var(--rule);border-radius:2px;
+  padding:24px 22px 18px;margin:30px 0 0;box-shadow:var(--shadow)}
+.ptitle{font-weight:700;font-size:.97rem;margin:0 0 5px}
+.psub{font-size:13.5px;color:var(--ink-2);margin:0 0 18px;max-width:72ch}
+.scroll{overflow-x:auto}
+svg{display:block;max-width:100%;height:auto}
+.legend{display:flex;gap:20px;flex-wrap:wrap;margin-top:13px;font-size:12.5px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.sw{width:14px;height:3px;border-radius:2px;flex:none}
+
+.note{border-left:2px solid var(--accent);padding:2px 0 2px 16px;margin:26px 0 0;
+  font-size:14.5px;color:var(--ink-2);max-width:62ch}
+.note .h{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--accent);display:block;margin-bottom:6px}
+.note.no{border-left-color:var(--no)}
+.note.no .h{color:var(--no)}
+
+details{margin-top:16px;font-size:13.5px}
+summary{cursor:pointer;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink-3);padding:6px 0;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"▸ ";color:var(--accent)}
+details[open] summary::before{content:"▾ "}
+table{border-collapse:collapse;width:100%;min-width:400px;font-size:13px;margin-top:8px}
+th,td{text-align:right;padding:6px 13px 6px 0;border-bottom:1px solid var(--rule-2);white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:400;border-bottom:1px solid var(--rule)}
+td.n{font-variant-numeric:tabular-nums;font-family:"IBM Plex Mono",monospace}
+.tscroll{overflow-x:auto}
+
+.tip{position:fixed;pointer-events:none;z-index:60;opacity:0;transition:opacity .1s;
+  background:var(--ink);color:var(--paper);padding:7px 10px;border-radius:3px;font-size:12px;
+  font-family:"IBM Plex Mono",monospace;line-height:1.55;box-shadow:0 4px 16px rgba(0,0,0,.28);white-space:nowrap}
+.tip.on{opacity:1}
+footer{padding-block:44px 68px;font-size:13.5px;color:var(--ink-3);max-width:70ch}
+.src{font-family:"IBM Plex Mono",monospace;font-size:11.5px;line-height:1.9;margin-top:14px}
+@media(max-width:640px){header{padding-block:40px 0}section{padding-block:40px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+
+<header>
+  <div class="kick"><span>Petition strategy</span><span>Evidence assessment</span><span>14 Sep 2026</span></div>
+  <h1>Which petition survives the evidence</h1>
+  <p class="deck">The original thesis was that nutritional, soil and toxicological data together show American soil being strip-mined — and that this justifies banning pesticides and mandating regenerative practice. <em>Tested against the federal record, the central claim does not hold.</em> Three narrower asks do, and one of them is strong.</p>
+
+  <div class="verdict">
+    <div class="h">Verdict on the original framing</div>
+    <p>Cropland eroding faster than soil forms fell from <strong>25.4% to 18.0%</strong> since 1982. Applied pesticide mass is <strong>flat</strong>. Iron status in American women has <strong>not worsened</strong> in sixteen years. A petition built on "it is getting worse" would be rebutted using the agencies' own data, in their own comment period.</p>
+  </div>
+</header>
+
+<!-- ===== THE LEDGER ===== -->
+<section>
+  <div class="measure">
+    <div class="tag">Step 01 — The evidence ledger</div>
+    <h2>Every claim in the thesis, and what the data says</h2>
+    <p>Each row is a proposition the original argument needs. The status column is what this project's analysis found, not what would be convenient.</p>
+  </div>
+
+  <div class="ledger">
+    <div class="lrow head"><div>Proposition</div><div>Status</div><div>What the record shows</div></div>
+
+    <div class="lrow">
+      <div class="claim">US soil is being strip-mined — erosion is accelerating</div>
+      <div><span class="badge no">Refuted</span></div>
+      <div class="ev">NRI 1982–2022: cropland eroding above T fell 25.4%→18.0% (water) and 21.4%→14.6% (wind). 41–43% fewer acres. Soil is eroding <em>less</em>.</div>
+    </div>
+
+    <div class="lrow">
+      <div class="claim">Americans apply ever more pesticide</div>
+      <div><span class="badge no">Refuted</span></div>
+      <div class="ev">PNSP 1992–2018: +2.3% on a fixed compound roster. The apparent recent 10% <em>fall</em> was a California artifact; the rise is not there either.</div>
+    </div>
+
+    <div class="lrow">
+      <div class="claim">Falling food nutrient density shows up in human nutritional status</div>
+      <div><span class="badge no">Refuted</span></div>
+      <div class="ev">NHANES: iron deficiency in women 12–49 flat at 14.0%→14.6% over sixteen years; median ferritin <em>rose</em> 19%.</div>
+    </div>
+
+    <div class="lrow">
+      <div class="claim">Soil depletion — not cultivar change — explains micronutrient decline</div>
+      <div><span class="badge weak">Untested</span></div>
+      <div class="ev">The dilution effect (selection for yield) is the standard explanation. Defeating it needs same-cultivar or archived-sample comparison. Not attempted here.</div>
+    </div>
+
+    <div class="lrow">
+      <div class="claim">A meaningful share of cropland is losing soil faster than it forms</div>
+      <div><span class="badge ok">Supported</span></div>
+      <div class="ev">56.5M acres — <b>one cultivated acre in six</b> — erode above T in 2022. Non-regenerative at that level, just not accelerating.</div>
+    </div>
+
+    <div class="lrow">
+      <div class="claim">Progress on soil loss has stalled</div>
+      <div><span class="badge ok">Supported</span></div>
+      <div class="ev">Water erosion bottomed at 17.4% in 2007 and has risen 0.7 points since. Wind bottomed 2012. Four decades of gains stopped.</div>
+    </div>
+
+    <div class="lrow">
+      <div class="claim">Children carry disproportionate pesticide exposure</div>
+      <div><span class="badge ok">Supported</span></div>
+      <div class="ev">NHANES: children 3–11 at 1.83–1.88× adult burden for glyphosate, TCPy and 2,4-D. Creatinine correction <em>widened</em> every gap.</div>
+    </div>
+
+    <div class="lrow">
+      <div class="claim">EPA lacks soil-ecotoxicity data on what it licenses</div>
+      <div><span class="badge ok">Supported</span></div>
+      <div class="ev">ECOTOX: 16 of 21 major compounds have zero comparable acute soil-fauna endpoints, covering <b>79% of applied mass</b>. Glyphosate: 106 records, none comparable.</div>
+    </div>
+
+    <div class="lrow">
+      <div class="claim">Pesticide exposure is concentrated among the poor</div>
+      <div><span class="badge no">Refuted</span></div>
+      <div class="ev">Detection is near-universal and flat across income (glyphosate 77.6%, TCPy 98.8%; spread under 3 points). Nutritional deficiency, by contrast, is steeply income-sorted.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== THE SOIL CHART ===== -->
+<section>
+  <div class="measure">
+    <div class="tag">Step 02 — What actually moved the soil</div>
+    <h2>The lever is land retirement, not chemistry</h2>
+    <p>Erosion improved sharply from 1982, then stopped improving around 2007. The variable that tracks that shape is not pesticide volume — which barely moved — but the acreage retired from production under the Conservation Reserve Program.</p>
+    <p>CRP went from zero in 1982 to <strong>33.3 million acres</strong> by 1992, held near that level through 2007, then <strong>collapsed 70% to 10.2 million</strong> by 2022. The erosion stall dates from the same period.</p>
+    <p>This is an association across two series, not a controlled comparison, and it should be presented as one. But it is a mechanism a regulator can act on, with a budget line attached — which "ban a compound" is not, because compound volume did not drive the trend in the first place.</p>
+  </div>
+
+  <div class="panel">
+    <p class="ptitle">Cropland eroding above the tolerable rate, and land retired from production</p>
+    <p class="psub">Two panels sharing a time axis — deliberately not a dual-axis chart. Top: percent of US cultivated cropland eroding faster than soil forms. Bottom: Conservation Reserve Program enrolment. NRI 2022 release throughout, since NRI back-updates prior years at each release.</p>
+    <div class="scroll"><svg id="c1" viewBox="0 0 880 520" role="img" aria-label="Erosion above tolerable rate and CRP acreage, 1982 to 2022"></svg></div>
+    <div class="legend">
+      <span><i class="sw" style="background:var(--s1)"></i>Water (sheet &amp; rill) erosion above T</span>
+      <span><i class="sw" style="background:var(--s2)"></i>Wind erosion above T</span>
+      <span><i class="sw" style="background:var(--ink-3)"></i>CRP acres enrolled</span>
+    </div>
+    <details><summary>Data table</summary><div class="tscroll"><table id="t1"></table></div></details>
+  </div>
+</section>
+
+<!-- ===== THE ASKS ===== -->
+<section>
+  <div class="measure">
+    <div class="tag">Step 03 — The asks</div>
+    <h2>Three petitions the evidence will carry</h2>
+    <p>Ranked by how much of the argument the data already does for you. Each names the statutory hook, because a petition without one is a letter.</p>
+  </div>
+
+  <div class="ask rank1">
+    <div class="rank">Ask 01 · strongest</div>
+    <h3>Enforce the children's safety factor that is already law</h3>
+    <div class="to">→ EPA, under FFDCA §408(b)(2)(C)</div>
+    <dl>
+      <dt>The claim</dt><dd>For compounds where children's measured internal dose runs roughly double adults', EPA has not demonstrated that the statutory additional tenfold safety factor for infants and children is being applied — or that the data supporting any smaller factor is reliable.</dd>
+      <dt>The evidence</dt><dd><b>1.83–1.88×</b> child-to-adult body burden, creatinine-corrected, across glyphosate, TCPy and 2,4-D. NHANES, survey-weighted, n≈7,000 and 5,850.</dd>
+      <dt>Why it wins</dt><dd>The duty already exists in statute. You are not asking for a new standard, only for the agency to show its work on one it must already meet. This is the chlorpyrifos shape: specific hook, measured evidence, narrow ask.</dd>
+      <dt>The rebuttal</dt><dd class="counter">"A urinary metabolite is exposure, not risk, and levels remain far below points of departure." Answer it by asking for the aggregate-exposure demonstration, not by claiming injury.</dd>
+    </dl>
+  </div>
+
+  <div class="ask">
+    <div class="rank">Ask 02 · unanswerable on the merits</div>
+    <h3>Require soil non-target toxicity data as a condition of registration review</h3>
+    <div class="to">→ EPA, under FIFRA §3(c)(2)(B) data call-in</div>
+    <dl>
+      <dt>The claim</dt><dd>EPA cannot evaluate effects on soil organisms for the majority of the mass it licenses, because the data does not exist in its own knowledgebase.</dd>
+      <dt>The evidence</dt><dd><b>16 of 21</b> major compounds have zero comparable acute soil-fauna endpoints in EPA's ECOTOX — <b>79% of applied mass</b>. Glyphosate, a quarter of all US agricultural pesticide mass, has 106 soil-fauna records and none comparable.</dd>
+      <dt>Why it wins</dt><dd>It asks for information rather than prohibition, which is procedurally cheap for the agency to grant and expensive to refuse on the record. A denial has to assert the data is unnecessary.</dd>
+      <dt>The rebuttal</dt><dd class="counter">"ECOTOX is a literature compilation; registrants submit guideline studies held separately." Pre-empt it by requesting the guideline study inventory in the same petition.</dd>
+    </dl>
+  </div>
+
+  <div class="ask">
+    <div class="rank">Ask 03 · the soil ask, reframed</div>
+    <h3>Restore conservation acreage and the capacity to deliver it</h3>
+    <div class="to">→ USDA / NRCS, via Farm Bill comment and appropriations record</div>
+    <dl>
+      <dt>The claim</dt><dd>Four decades of soil-loss improvement stalled when land retirement collapsed. 56.5 million acres still erode faster than soil forms.</dd>
+      <dt>The evidence</dt><dd>NRI 2022: erosion above T flat-to-rising since 2007. CRP down <b>70%</b> from its 33.3M-acre plateau. Both from the agency's own release.</dd>
+      <dt>Why it wins</dt><dd>It names a lever with a budget line and an existing programme, rather than a prohibition. The FY2026 NRCS justification proposing <b>−$776M and −2,546 staff years</b> from Conservation Technical Assistance is both the counterargument and your exhibit.</dd>
+      <dt>The rebuttal</dt><dd class="counter">"Erosion has improved 41% — the programme worked and the land is better than it was." True, and the answer is the level, the stall, and the one-acre-in-six figure. Do not claim acceleration.</dd>
+    </dl>
+  </div>
+
+  <div class="note no">
+    <span class="h">The ask to drop, or hold</span>
+    A blanket <strong>mandate for regenerative practice</strong> is the weakest item in the original framing — not because it is wrong, but because the federal evidence for it is model output. CEAP is simulation, not measurement. Until paired-treatment field data is in hand, a practice mandate rests on inference the agency can decline. See Step 04.
+  </div>
+</section>
+
+<!-- ===== WHAT WOULD CHANGE THE ANSWER ===== -->
+<section>
+  <div class="measure">
+    <div class="tag">Step 04 — What would rescue the original thesis</div>
+    <h2>Three acquisitions, in priority order</h2>
+    <p>The soil-depletion-causes-nutrient-decline chain is currently an assertion. These are the instruments that could turn it into a finding — and one of them is closer than expected.</p>
+
+    <h3 style="font-family:Karla,sans-serif;font-size:1rem;font-weight:700;margin:28px 0 8px">1. NCSS repeat-sampled pedons — <span style="color:var(--ok)">43 candidates already identified</span></h3>
+    <p>A scan of the Kellogg Soil Survey Laboratory record found <strong>43 locations sampled more than once</strong>, spanning 1953 to 2022. <strong>21 have a gap of 30 years or more</strong>; the longest is 50 years. This is the only federal path to a genuine multi-decade <em>measured</em> soil carbon comparison.</p>
+    <p>Caveats before anyone gets excited: these are co-located candidates, not confirmed repeat pedons. Each pair needs verification that it is the same soil series and horizon, and that the carbon method is comparable across the gap — a 1960s Walkley-Black figure and a modern dry-combustion figure are not the same measurement. n=43 is small, and the sites were not chosen to be representative. But 21 verified pairs would be more measured evidence on this question than the rest of the federal record contains.</p>
+
+    <h3 style="font-family:Karla,sans-serif;font-size:1rem;font-weight:700;margin:26px 0 8px">2. Same-cultivar nutrient comparison</h3>
+    <p>The dilution effect is the standard counter-explanation and it is a good one. Archived-sample reanalysis — the Rothamsted Broadbalk approach — is the instrument that separates cultivar change from soil change. Without it, any nutrient-decline claim concedes the point on first contact.</p>
+
+    <h3 style="font-family:Karla,sans-serif;font-size:1rem;font-weight:700;margin:26px 0 8px">3. ARS LTAR paired-treatment data</h3>
+    <p>The federal home of real regenerative-versus-conventional field comparison. Smaller n, far higher internal validity than CEAP's modelling. This is what would put the practice mandate back on the table.</p>
+  </div>
+
+  <div class="note">
+    <span class="h">The design constraint that governs all of it</span>
+    PNSP is modelled county-level use. PDP is a rotating commodity sample. NRI is a land-point panel. NHANES is a household probability sample. ECOTOX is a literature compilation. <strong>These share no sampling frame.</strong> A causal chain built across them is descriptive association unless an explicit causal design says otherwise — and asserting causation on a join of five incompatible frames would be the entire content of the opposing comment.
+  </div>
+</section>
+
+<footer>
+  <p><strong>Reproduce:</strong> <code>scripts/eda_16_nri_erosion.py</code> (erosion vs T), <code>eda_12</code>–<code>eda_15</code> (NHANES), <code>eda_08_evidence_gap.py</code> (ECOTOX coverage), <code>eda_04_corrected_series.py</code> (use trend). All inputs mirrored with retrieval timestamps and SHA-256.</p>
+  <div class="src">
+    NRCS — 2022 National Resources Inventory Summary Report, Tables 17 &amp; 18 (retrieved direct, 12.7 MB, 222 pp.)<br>
+    CDC/NCHS — NHANES 2013–2023, laboratory and demographic files with MEC weights<br>
+    USGS — Pesticide National Synthesis Project, county estimates 1992–2018<br>
+    EPA — ECOTOX Knowledgebase, ASCII release 2026-09-15<br>
+    Precedent: PANNA &amp; NRDC chlorpyrifos petition (2007) → 80 FR proposed revocation (2015) → final (2021) → partial vacatur (2023)
+  </div>
+</footer>
+</div>
+<div class="tip" id="tip"></div>
+
+<script>
+const D={"years":[1982,1987,1992,1997,2002,2007,2012,2017,2022],"water":[25.4,23.3,20.3,18.4,18.5,17.4,17.8,18.1,18.0],"wind":[21.4,21.9,18.6,16.1,15.4,15.2,14.3,14.5,14.6],"water_acres":[95.5,84.4,68.2,59.9,58.1,52.9,54.9,56.9,56.5],"crp":[0.0,13.8,33.3,32.7,31.7,32.8,23.5,15.8,10.2]};
+const NS="http://www.w3.org/2000/svg";
+const el=(n,a={})=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e;};
+const cs=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const tip=document.getElementById("tip");
+function show(e,h){tip.innerHTML=h;tip.classList.add("on");
+  const r=tip.getBoundingClientRect();let x=e.clientX+14,y=e.clientY-12;
+  if(x+r.width>innerWidth-8)x=e.clientX-r.width-14;
+  if(y<8)y=8;if(y+r.height>innerHeight-8)y=innerHeight-r.height-8;
+  tip.style.left=x+"px";tip.style.top=y+"px";}
+function hide(){tip.classList.remove("on");}
+function txt(s,x,y,t,o={}){
+  const n=el("text",{x,y,"text-anchor":o.a||"middle","font-size":o.s||11.5,fill:o.f||cs("--ink-3"),
+    "font-family":o.ff||'"IBM Plex Mono",monospace',"font-weight":o.w||400});
+  n.textContent=t;s.appendChild(n);return n;}
+
+function c1(){
+  const s=document.getElementById("c1");s.innerHTML="";
+  const W=880,L=62,R=150;
+  const T1=30,H1=210;              // top panel: erosion %
+  const T2=310,H2=150;             // bottom panel: CRP
+  const n=D.years.length;
+  const X=i=>L+(W-L-R)*i/(n-1);
+
+  // --- top: erosion % above T
+  const Y1=v=>T1+H1*(1-(v-10)/18);
+  for(let v=10;v<=28;v+=6){
+    s.appendChild(el("line",{x1:L,x2:W-R,y1:Y1(v),y2:Y1(v),stroke:cs("--rule-2"),"stroke-width":1}));
+    txt(s,L-10,Y1(v)+4,v+"%",{a:"end"});
+  }
+  txt(s,L-10,T1-12,"% of cropland",{a:"end",s:10.5});
+  [["water",cs("--s1"),"Water erosion > T"],["wind",cs("--s2"),"Wind erosion > T"]].forEach(([k,col,lab])=>{
+    const v=D[k];
+    s.appendChild(el("path",{d:v.map((y,i)=>(i?"L":"M")+X(i)+" "+Y1(y)).join(" "),
+      fill:"none",stroke:col,"stroke-width":2.5,"stroke-linejoin":"round"}));
+    v.forEach((y,i)=>{
+      const c=el("circle",{cx:X(i),cy:Y1(y),r:4.5,fill:col,stroke:cs("--card"),"stroke-width":2});
+      c.addEventListener("mousemove",e=>show(e,`<b>${D.years[i]}</b><br>${lab}<br>${y.toFixed(1)}% of cropland`));
+      c.addEventListener("mouseleave",hide);s.appendChild(c);
+    });
+    const t=el("text",{x:X(n-1)+12,y:Y1(v[n-1])+4,"font-size":12.5,fill:col,"font-weight":700,
+      "font-family":"Karla,sans-serif"});t.textContent=lab;s.appendChild(t);
+    txt(s,X(n-1)+12,Y1(v[n-1])+20,v[n-1].toFixed(1)+"%",{a:"start",s:11,f:cs("--ink-3")});
+  });
+  // stall marker
+  const iStall=D.years.indexOf(2007);
+  s.appendChild(el("line",{x1:X(iStall),x2:X(iStall),y1:T1-4,y2:T2+H2+6,
+    stroke:cs("--ink-3"),"stroke-width":1,"stroke-dasharray":"3 4"}));
+  txt(s,X(iStall),T1-12,"2007 — improvement stalls",{s:10.5,f:cs("--ink-2")});
+
+  // --- bottom: CRP acres
+  const Y2=v=>T2+H2*(1-v/36);
+  for(let v=0;v<=36;v+=12){
+    s.appendChild(el("line",{x1:L,x2:W-R,y1:Y2(v),y2:Y2(v),stroke:cs("--rule-2"),"stroke-width":1}));
+    txt(s,L-10,Y2(v)+4,v+"M",{a:"end"});
+  }
+  txt(s,L-10,T2-12,"CRP acres",{a:"end",s:10.5});
+  let area=D.crp.map((v,i)=>(i?"L":"M")+X(i)+" "+Y2(v)).join(" ");
+  area+=" L"+X(n-1)+" "+Y2(0)+" L"+X(0)+" "+Y2(0)+" Z";
+  s.appendChild(el("path",{d:area,fill:cs("--ink-3"),opacity:.2}));
+  s.appendChild(el("path",{d:D.crp.map((v,i)=>(i?"L":"M")+X(i)+" "+Y2(v)).join(" "),
+    fill:"none",stroke:cs("--ink-3"),"stroke-width":2.5}));
+  D.crp.forEach((v,i)=>{
+    const c=el("circle",{cx:X(i),cy:Y2(v),r:4.5,fill:cs("--ink-3"),stroke:cs("--card"),"stroke-width":2});
+    c.addEventListener("mousemove",e=>show(e,`<b>${D.years[i]}</b><br>CRP enrolled<br>${v.toFixed(1)}M acres`));
+    c.addEventListener("mouseleave",hide);s.appendChild(c);
+  });
+  const lt=el("text",{x:X(n-1)+12,y:Y2(D.crp[n-1])+4,"font-size":12.5,fill:cs("--ink-2"),
+    "font-weight":700,"font-family":"Karla,sans-serif"});lt.textContent="CRP enrolment";s.appendChild(lt);
+  txt(s,X(n-1)+12,Y2(D.crp[n-1])+20,D.crp[n-1].toFixed(1)+"M acres · −70%",{a:"start",s:11,f:cs("--no")});
+
+  D.years.forEach((y,i)=>txt(s,X(i),T2+H2+24,y,{s:11}));
+}
+
+(function t1(){
+  const t=document.getElementById("t1");
+  t.innerHTML="<thead><tr><th>Year</th><th>Water &gt; T</th><th>Wind &gt; T</th><th>Acres &gt; T (M)</th><th>CRP (M acres)</th></tr></thead><tbody>"+
+    D.years.map((y,i)=>`<tr><td>${y}</td><td class="n">${D.water[i].toFixed(1)}%</td><td class="n">${D.wind[i].toFixed(1)}%</td><td class="n">${D.water_acres[i].toFixed(1)}</td><td class="n">${D.crp[i].toFixed(1)}</td></tr>`).join("")+"</tbody>";
+})();
+
+function draw(){c1();}
+draw();
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change",draw);
+new MutationObserver(draw).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+addEventListener("resize",()=>{clearTimeout(window.__t);window.__t=setTimeout(draw,180);});
+</script>
