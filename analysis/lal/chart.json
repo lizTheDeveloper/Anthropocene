@@ -1,0 +1,80 @@
+{
+  "title": "Forty years of erosion data, one day of carbon data",
+  "subtitle": "US cultivated cropland, 2022 NRI release. The erosion panel stopped improving in 1997. The soil-carbon record has one timepoint and therefore no trend at all.",
+  "chart_type": "line",
+  "x": {
+    "field": "year",
+    "label": "NRI measurement year",
+    "scale": "linear",
+    "domain": [1980, 2024],
+    "ticks": [1982, 1987, 1992, 1997, 2002, 2007, 2012, 2017, 2022],
+    "note": "These nine years are the complete set of national NRI erosion estimates. All nine are taken from the 2022 release, which restates its own history; they must never be mixed with values published in the 2017 release."
+  },
+  "y": {
+    "field": "erosion_rate",
+    "label": "Average annual soil erosion (tons per acre per year)",
+    "scale": "linear",
+    "domain": [0, 8.5],
+    "zero": true
+  },
+  "series": [
+    {
+      "id": "total",
+      "label": "Combined (water + wind)",
+      "field": "total_erosion_t_per_ac_yr",
+      "emphasis": "primary",
+      "marker": "filled circle at every measured year"
+    },
+    {
+      "id": "water",
+      "label": "Sheet and rill (water)",
+      "field": "water_erosion_t_per_ac_yr",
+      "emphasis": "secondary",
+      "marker": "filled circle at every measured year"
+    },
+    {
+      "id": "wind",
+      "label": "Wind",
+      "field": "wind_erosion_t_per_ac_yr",
+      "emphasis": "secondary",
+      "marker": "filled circle at every measured year"
+    }
+  ],
+  "annotations": [
+    {
+      "type": "x_span",
+      "from": 1982,
+      "to": 1997,
+      "label": "1982-1997: 89% of the entire 40-year decline",
+      "detail": "Combined rate 7.83 -> 5.61 t/ac/yr."
+    },
+    {
+      "type": "x_span",
+      "from": 1997,
+      "to": 2022,
+      "label": "1997-2022: flat",
+      "detail": "Combined rate 5.61 -> 5.34 t/ac/yr, -4.8% in 25 years. Water erosion has risen 2.7% since 2007 (2.93 -> 3.01)."
+    },
+    {
+      "type": "x_rule",
+      "at": 2010.5,
+      "style": "vertical rule, distinct from the series; label may sit outside the plot",
+      "label": "RaCA, field seasons 2010-11",
+      "detail": "The only national measurement of soil organic carbon stocks the United States has ever made. 1,263 cropland sites; one lab-measured pedon each; one timepoint. Never repeated. No rate of change is computable from it."
+    },
+    {
+      "type": "point_label",
+      "series": "total",
+      "at_x": 2022,
+      "label": "2022: 56.5 M acres of cultivated cropland (18.0%) still erode above T, the tolerable-loss rate - 3.6 M acres more than in 2007"
+    },
+    {
+      "type": "footnote",
+      "label": "The 2022 NRI Summary Report runs to 222 pages and nine measurement years. The word 'carbon' does not appear in it once."
+    }
+  ],
+  "source_note": "USDA-NRCS, 2022 National Resources Inventory Summary Report (June 2026; complete 12,666,474-byte direct-from-agency copy, SHA-256 5aa1b976...c58c), Tables 10, 15, 16, 17 and 18. RaCA counts and stock from Soil Survey Staff and T. Loecke, 2016, Rapid Carbon Assessment: Methodology, Sampling, and Summary, S. Wills (ed.), USDA-NRCS, Tables 2 and 8. Erosion values are modelled (USLE / WEQ) estimates at NRI sample points, not field-measured soil loss.",
+  "data_file": "data/derived/lens_lal_soil_measurement_record.csv",
+  "data_filter": "land_use == 'Cultivated cropland'",
+  "one_claim": "The United States measures cropland erosion nine times over forty years and cropland soil carbon once - and the erosion it does measure stopped improving a quarter-century ago."
+}

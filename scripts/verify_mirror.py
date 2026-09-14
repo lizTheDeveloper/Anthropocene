@@ -87,26 +87,49 @@ def validate_structure(sample_per_dir=3):
     return problems
 
 def inventory():
+    """Summarise the mirror from the provenance ledger.
+
+    The ledger is append-only and may carry rows from more than one machine, so
+    counting rows over-reports: a file retrieved on two machines appears twice.
+    Identity here is the CONTENT (sha256), not the row.
+
+    Failures are likewise reported net. A file that failed on one route and
+    later succeeded on another -- NRCS via the archive, then direct via wget --
+    is not a gap, and counting it as one hides the real gaps behind noise.
+    """
     prov = ROOT / "data" / "provenance.csv"
-    stats = defaultdict(lambda: {"n": 0, "bytes": 0, "fail": 0, "wayback": 0})
+    ok_sha = defaultdict(dict)       # dataset -> sha -> bytes
+    ok_names = defaultdict(set)      # dataset -> filenames that ever succeeded
+    fail_names = defaultdict(set)    # dataset -> filenames that ever failed
+    wayback = defaultdict(set)       # dataset -> sha retrieved via the archive
+
     with open(prov) as fh:
         for row in csv.DictReader(fh):
-            k = f"{row['agency']}/{row['dataset']}"
-            s = stats[k]
-            if str(row["http_status"]) == "200":
-                s["n"] += 1; s["bytes"] += int(row["bytes"] or 0)
-                if "VIA_WAYBACK" in row["notes"]: s["wayback"] += 1
+            key = f"{row['agency']}/{row['dataset']}"
+            name = row.get("filename", "")
+            if str(row["http_status"]) == "200" and row.get("sha256"):
+                ok_sha[key][row["sha256"]] = int(row["bytes"] or 0)
+                ok_names[key].add(name)
+                if "VIA_WAYBACK" in row.get("notes", ""):
+                    wayback[key].add(row["sha256"])
             else:
-                s["fail"] += 1
-    print(f"\n{'dataset':<44} {'files':>7} {'size':>12} {'failed':>7} {'wayback':>8}")
+                fail_names[key].add(name)
+
+    print(f"\n{'dataset':<44} {'files':>7} {'size':>12} {'unmet':>7} {'archive':>8}")
     print("-" * 82)
     tn = tb = tf = 0
-    for k in sorted(stats):
-        s = stats[k]
-        tn += s["n"]; tb += s["bytes"]; tf += s["fail"]
-        print(f"{k:<44} {s['n']:>7,} {human(s['bytes']):>12} {s['fail']:>7} {s['wayback']:>8}")
+    for key in sorted(set(ok_sha) | set(fail_names)):
+        n = len(ok_sha[key])
+        b = sum(ok_sha[key].values())
+        # Only count a failure if that filename never succeeded by any route.
+        unmet = len(fail_names[key] - ok_names[key])
+        tn += n; tb += b; tf += unmet
+        print(f"{key:<44} {n:>7,} {human(b):>12} {unmet:>7} {len(wayback[key]):>8}")
     print("-" * 82)
     print(f"{'TOTAL':<44} {tn:>7,} {human(tb):>12} {tf:>7}")
+    print("\n(files/size are distinct by sha256; 'unmet' counts only filenames "
+          "that never succeeded by any route; 'archive' = retrieved via Internet Archive)")
+
 
 if __name__ == "__main__":
     inventory()

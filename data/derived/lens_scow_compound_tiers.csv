@@ -1,0 +1,991 @@
+compound,biota_group,use_2018_Mkg_high,use_2018_Mkg_low,n_soil_tests,tier,tier_label,cas_resolution,n_cas_matched
+GLYPHOSATE,Earthworms & potworms,119.220249,118.0522965,51.0,5.0,"Field, >=1 year",dtxsid+name_family(27),28
+GLYPHOSATE,Springtails & soil mites,119.220249,118.0522965,37.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(27),28
+GLYPHOSATE,"Soil bacteria, fungi & protozoa",119.220249,118.0522965,95.0,5.0,"Field, >=1 year",dtxsid+name_family(27),28
+ATRAZINE,Earthworms & potworms,32.105991,31.800603300000002,36.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(11),12
+ATRAZINE,Springtails & soil mites,32.105991,31.800603300000002,1.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(11),12
+ATRAZINE,"Soil bacteria, fungi & protozoa",32.105991,31.800603300000002,45.0,5.0,"Field, >=1 year",dtxsid+name_family(11),12
+METOLACHLOR-S,Earthworms & potworms,29.8589646,28.1689535,6.0,3.0,"Lab, in soil, chronic (>14 d)",manual+name_family(5),6
+METOLACHLOR-S,Springtails & soil mites,29.8589646,28.1689535,0.0,0.0,No record,manual+name_family(5),6
+METOLACHLOR-S,"Soil bacteria, fungi & protozoa",29.8589646,28.1689535,5.0,5.0,"Field, >=1 year",manual+name_family(5),6
+METAM,Earthworms & potworms,28.9749336,21.3206511,0.0,0.0,No record,dtxsid+manual+name_family(2),4
+METAM,Springtails & soil mites,28.9749336,21.3206511,0.0,0.0,No record,dtxsid+manual+name_family(2),4
+METAM,"Soil bacteria, fungi & protozoa",28.9749336,21.3206511,13.0,4.0,"Field, single season (<1 yr)",dtxsid+manual+name_family(2),4
+ACETOCHLOR,Earthworms & potworms,24.389790100000003,22.539156300000002,10.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(1),2
+ACETOCHLOR,Springtails & soil mites,24.389790100000003,22.539156300000002,0.0,0.0,No record,dtxsid+name_family(1),2
+ACETOCHLOR,"Soil bacteria, fungi & protozoa",24.389790100000003,22.539156300000002,11.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(1),2
+"2,4-D",Earthworms & potworms,21.5487568,19.742335899999997,7.0,4.0,"Field, single season (<1 yr)",manual+name_family(26),27
+"2,4-D",Springtails & soil mites,21.5487568,19.742335899999997,4.0,1.0,"Lab, not in soil",manual+name_family(26),27
+"2,4-D","Soil bacteria, fungi & protozoa",21.5487568,19.742335899999997,10.0,2.0,"Lab, in soil, acute (<=14 d)",manual+name_family(26),27
+DICHLOROPROPENE,Earthworms & potworms,21.4467313,13.796589700000002,0.0,0.0,No record,manual+name_family(11),12
+DICHLOROPROPENE,Springtails & soil mites,21.4467313,13.796589700000002,0.0,0.0,No record,manual+name_family(11),12
+DICHLOROPROPENE,"Soil bacteria, fungi & protozoa",21.4467313,13.796589700000002,19.0,5.0,"Field, >=1 year",manual+name_family(11),12
+PETROLEUM OIL,Earthworms & potworms,12.814821199999999,12.8646994,0.0,0.0,No record,dtxsid,1
+PETROLEUM OIL,Springtails & soil mites,12.814821199999999,12.8646994,0.0,0.0,No record,dtxsid,1
+PETROLEUM OIL,"Soil bacteria, fungi & protozoa",12.814821199999999,12.8646994,0.0,0.0,No record,dtxsid,1
+DICAMBA,Earthworms & potworms,12.2899791,11.6232005,2.0,4.0,"Field, single season (<1 yr)",dtxsid,1
+DICAMBA,Springtails & soil mites,12.2899791,11.6232005,2.0,4.0,"Field, single season (<1 yr)",dtxsid,1
+DICAMBA,"Soil bacteria, fungi & protozoa",12.2899791,11.6232005,5.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid,1
+METAM POTASSIUM,Earthworms & potworms,10.395211,9.266247300000002,0.0,0.0,No record,dtxsid+manual,1
+METAM POTASSIUM,Springtails & soil mites,10.395211,9.266247300000002,0.0,0.0,No record,dtxsid+manual,1
+METAM POTASSIUM,"Soil bacteria, fungi & protozoa",10.395211,9.266247300000002,3.0,4.0,"Field, single season (<1 yr)",dtxsid+manual,1
+CHLOROPICRIN,Earthworms & potworms,8.6786609,6.0933762,0.0,0.0,No record,manual+name_family(11),12
+CHLOROPICRIN,Springtails & soil mites,8.6786609,6.0933762,0.0,0.0,No record,manual+name_family(11),12
+CHLOROPICRIN,"Soil bacteria, fungi & protozoa",8.6786609,6.0933762,42.0,5.0,"Field, >=1 year",manual+name_family(11),12
+GLUFOSINATE,Earthworms & potworms,8.6320406,7.5412567,1.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid+name_family(3),4
+GLUFOSINATE,Springtails & soil mites,8.6320406,7.5412567,0.0,0.0,No record,dtxsid+name_family(3),4
+GLUFOSINATE,"Soil bacteria, fungi & protozoa",8.6320406,7.5412567,32.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid+name_family(3),4
+PARAQUAT,Earthworms & potworms,6.448555099999999,4.5579163,23.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(11),12
+PARAQUAT,Springtails & soil mites,6.448555099999999,4.5579163,48.0,5.0,"Field, >=1 year",dtxsid+name_family(11),12
+PARAQUAT,"Soil bacteria, fungi & protozoa",6.448555099999999,4.5579163,67.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(11),12
+METOLACHLOR,Earthworms & potworms,6.075506900000001,3.9389645,5.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(7),8
+METOLACHLOR,Springtails & soil mites,6.075506900000001,3.9389645,0.0,0.0,No record,dtxsid+name_family(7),8
+METOLACHLOR,"Soil bacteria, fungi & protozoa",6.075506900000001,3.9389645,28.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(7),8
+SULFUR,Earthworms & potworms,5.3861774,5.316881700000001,0.0,0.0,No record,dtxsid,1
+SULFUR,Springtails & soil mites,5.3861774,5.316881700000001,3.0,5.0,"Field, >=1 year",dtxsid,1
+SULFUR,"Soil bacteria, fungi & protozoa",5.3861774,5.316881700000001,7.0,4.0,"Field, single season (<1 yr)",dtxsid,1
+DIMETHENAMID-P,Earthworms & potworms,5.1132158,3.7098177000000003,0.0,0.0,No record,dtxsid+name_family(1),2
+DIMETHENAMID-P,Springtails & soil mites,5.1132158,3.7098177000000003,0.0,0.0,No record,dtxsid+name_family(1),2
+DIMETHENAMID-P,"Soil bacteria, fungi & protozoa",5.1132158,3.7098177000000003,0.0,0.0,No record,dtxsid+name_family(1),2
+PENDIMETHALIN,Earthworms & potworms,5.0759611,3.1698265,2.0,4.0,"Field, single season (<1 yr)",dtxsid,1
+PENDIMETHALIN,Springtails & soil mites,5.0759611,3.1698265,5.0,4.0,"Field, single season (<1 yr)",dtxsid,1
+PENDIMETHALIN,"Soil bacteria, fungi & protozoa",5.0759611,3.1698265,49.0,4.0,"Field, single season (<1 yr)",dtxsid,1
+ETHEPHON,Earthworms & potworms,4.9026476,4.873489,0.0,0.0,No record,dtxsid+name_family(4),5
+ETHEPHON,Springtails & soil mites,4.9026476,4.873489,0.0,0.0,No record,dtxsid+name_family(4),5
+ETHEPHON,"Soil bacteria, fungi & protozoa",4.9026476,4.873489,0.0,0.0,No record,dtxsid+name_family(4),5
+CHLOROTHALONIL,Earthworms & potworms,3.9943849,3.6785987,7.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(13),14
+CHLOROTHALONIL,Springtails & soil mites,3.9943849,3.6785987,7.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(13),14
+CHLOROTHALONIL,"Soil bacteria, fungi & protozoa",3.9943849,3.6785987,34.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(13),14
+CHLORPYRIFOS,Earthworms & potworms,3.2755482999999996,1.9760518999999999,144.0,5.0,"Field, >=1 year",dtxsid+name_family(2),3
+CHLORPYRIFOS,Springtails & soil mites,3.2755482999999996,1.9760518999999999,135.0,5.0,"Field, >=1 year",dtxsid+name_family(2),3
+CHLORPYRIFOS,"Soil bacteria, fungi & protozoa",3.2755482999999996,1.9760518999999999,11.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(2),3
+BACILLUS AMYLOLIQUIFACIEN,Earthworms & potworms,3.2517156000000003,1.7323446999999998,,,CAS unresolved,unresolved,0
+BACILLUS AMYLOLIQUIFACIEN,Springtails & soil mites,3.2517156000000003,1.7323446999999998,,,CAS unresolved,unresolved,0
+BACILLUS AMYLOLIQUIFACIEN,"Soil bacteria, fungi & protozoa",3.2517156000000003,1.7323446999999998,,,CAS unresolved,unresolved,0
+TRIFLURALIN,Earthworms & potworms,3.0577351,2.1443087999999997,2.0,5.0,"Field, >=1 year",dtxsid+name_family(10),11
+TRIFLURALIN,Springtails & soil mites,3.0577351,2.1443087999999997,0.0,0.0,No record,dtxsid+name_family(10),11
+TRIFLURALIN,"Soil bacteria, fungi & protozoa",3.0577351,2.1443087999999997,39.0,5.0,"Field, >=1 year",dtxsid+name_family(10),11
+FOMESAFEN,Earthworms & potworms,2.8088598,2.6014942000000003,1.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(2),3
+FOMESAFEN,Springtails & soil mites,2.8088598,2.6014942000000003,0.0,0.0,No record,dtxsid+name_family(2),3
+FOMESAFEN,"Soil bacteria, fungi & protozoa",2.8088598,2.6014942000000003,0.0,0.0,No record,dtxsid+name_family(2),3
+METRIBUZIN,Earthworms & potworms,2.7462115,2.4124306,0.0,0.0,No record,dtxsid,1
+METRIBUZIN,Springtails & soil mites,2.7462115,2.4124306,0.0,0.0,No record,dtxsid,1
+METRIBUZIN,"Soil bacteria, fungi & protozoa",2.7462115,2.4124306,14.0,4.0,"Field, single season (<1 yr)",dtxsid,1
+SULFURIC ACID,Earthworms & potworms,2.6537885,2.5646356999999997,182.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(104),105
+SULFURIC ACID,Springtails & soil mites,2.6537885,2.5646356999999997,35.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(104),105
+SULFURIC ACID,"Soil bacteria, fungi & protozoa",2.6537885,2.5646356999999997,35.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(104),105
+MANCOZEB,Earthworms & potworms,2.5672492,2.5573097000000002,38.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(2),3
+MANCOZEB,Springtails & soil mites,2.5672492,2.5573097000000002,10.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(2),3
+MANCOZEB,"Soil bacteria, fungi & protozoa",2.5672492,2.5573097000000002,20.0,5.0,"Field, >=1 year",dtxsid+name_family(2),3
+MESOTRIONE,Earthworms & potworms,2.1223615,2.0707245,1.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid+name_family(7),8
+MESOTRIONE,Springtails & soil mites,2.1223615,2.0707245,0.0,0.0,No record,dtxsid+name_family(7),8
+MESOTRIONE,"Soil bacteria, fungi & protozoa",2.1223615,2.0707245,4.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(7),8
+ACEPHATE,Earthworms & potworms,2.0407398,1.7302281000000002,4.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid,1
+ACEPHATE,Springtails & soil mites,2.0407398,1.7302281000000002,4.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid,1
+ACEPHATE,"Soil bacteria, fungi & protozoa",2.0407398,1.7302281000000002,0.0,0.0,No record,dtxsid,1
+SIMAZINE,Earthworms & potworms,1.7005978,1.0843177,0.0,0.0,No record,dtxsid+name_family(9),10
+SIMAZINE,Springtails & soil mites,1.7005978,1.0843177,0.0,0.0,No record,dtxsid+name_family(9),10
+SIMAZINE,"Soil bacteria, fungi & protozoa",1.7005978,1.0843177,23.0,5.0,"Field, >=1 year",dtxsid+name_family(9),10
+SULFENTRAZONE,Earthworms & potworms,1.6561879,1.5399186999999999,0.0,0.0,No record,dtxsid+name_family(2),3
+SULFENTRAZONE,Springtails & soil mites,1.6561879,1.5399186999999999,0.0,0.0,No record,dtxsid+name_family(2),3
+SULFENTRAZONE,"Soil bacteria, fungi & protozoa",1.6561879,1.5399186999999999,0.0,0.0,No record,dtxsid+name_family(2),3
+TRIBUFOS,Earthworms & potworms,1.5171922,1.4006977,0.0,0.0,No record,dtxsid,1
+TRIBUFOS,Springtails & soil mites,1.5171922,1.4006977,0.0,0.0,No record,dtxsid,1
+TRIBUFOS,"Soil bacteria, fungi & protozoa",1.5171922,1.4006977,0.0,0.0,No record,dtxsid,1
+BROMOXYNIL,Earthworms & potworms,1.3398143,1.2140434,2.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid+name_family(10),11
+BROMOXYNIL,Springtails & soil mites,1.3398143,1.2140434,0.0,0.0,No record,dtxsid+name_family(10),11
+BROMOXYNIL,"Soil bacteria, fungi & protozoa",1.3398143,1.2140434,17.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(10),11
+SODIUM CHLORATE,Earthworms & potworms,1.2417463999999998,0.7238215,2.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid+name_family(1),2
+SODIUM CHLORATE,Springtails & soil mites,1.2417463999999998,0.7238215,0.0,0.0,No record,dtxsid+name_family(1),2
+SODIUM CHLORATE,"Soil bacteria, fungi & protozoa",1.2417463999999998,0.7238215,0.0,0.0,No record,dtxsid+name_family(1),2
+DIURON,Earthworms & potworms,1.2403278,1.0118705,8.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(8),9
+DIURON,Springtails & soil mites,1.2403278,1.0118705,1.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(8),9
+DIURON,"Soil bacteria, fungi & protozoa",1.2403278,1.0118705,18.0,5.0,"Field, >=1 year",dtxsid+name_family(8),9
+PROPANIL,Earthworms & potworms,1.2341529,1.1800549,0.0,0.0,No record,dtxsid+name_family(10),11
+PROPANIL,Springtails & soil mites,1.2341529,1.1800549,0.0,0.0,No record,dtxsid+name_family(10),11
+PROPANIL,"Soil bacteria, fungi & protozoa",1.2341529,1.1800549,2.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(10),11
+PROPARGITE,Earthworms & potworms,1.1910077,0.7554202,0.0,0.0,No record,dtxsid,1
+PROPARGITE,Springtails & soil mites,1.1910077,0.7554202,0.0,0.0,No record,dtxsid,1
+PROPARGITE,"Soil bacteria, fungi & protozoa",1.1910077,0.7554202,0.0,0.0,No record,dtxsid,1
+DECAN-1-OL,Earthworms & potworms,1.1608593,1.1305016,0.0,0.0,No record,dtxsid,1
+DECAN-1-OL,Springtails & soil mites,1.1608593,1.1305016,0.0,0.0,No record,dtxsid,1
+DECAN-1-OL,"Soil bacteria, fungi & protozoa",1.1608593,1.1305016,0.0,0.0,No record,dtxsid,1
+AZOXYSTROBIN,Earthworms & potworms,1.156951,0.9472855,5.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(3),4
+AZOXYSTROBIN,Springtails & soil mites,1.156951,0.9472855,1.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(3),4
+AZOXYSTROBIN,"Soil bacteria, fungi & protozoa",1.156951,0.9472855,28.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(3),4
+CALCIUM POLYSULFIDE,Earthworms & potworms,1.1546948000000001,1.177748,0.0,0.0,No record,dtxsid,1
+CALCIUM POLYSULFIDE,Springtails & soil mites,1.1546948000000001,1.177748,0.0,0.0,No record,dtxsid,1
+CALCIUM POLYSULFIDE,"Soil bacteria, fungi & protozoa",1.1546948000000001,1.177748,0.0,0.0,No record,dtxsid,1
+MCPA,Earthworms & potworms,1.113908,0.9554565,1.0,2.0,"Lab, in soil, acute (<=14 d)",manual+name_family(24),25
+MCPA,Springtails & soil mites,1.113908,0.9554565,3.0,4.0,"Field, single season (<1 yr)",manual+name_family(24),25
+MCPA,"Soil bacteria, fungi & protozoa",1.113908,0.9554565,2.0,4.0,"Field, single season (<1 yr)",manual+name_family(24),25
+BENTAZONE,Earthworms & potworms,1.0981187,0.7039574000000001,0.0,0.0,No record,dtxsid+name_family(13),14
+BENTAZONE,Springtails & soil mites,1.0981187,0.7039574000000001,0.0,0.0,No record,dtxsid+name_family(13),14
+BENTAZONE,"Soil bacteria, fungi & protozoa",1.0981187,0.7039574000000001,8.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(13),14
+CAPTAN,Earthworms & potworms,1.0771167,1.2731266,6.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid,1
+CAPTAN,Springtails & soil mites,1.0771167,1.2731266,2.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid,1
+CAPTAN,"Soil bacteria, fungi & protozoa",1.0771167,1.2731266,34.0,4.0,"Field, single season (<1 yr)",dtxsid,1
+COPPER HYDROXIDE,Earthworms & potworms,1.0709991,0.9285377,0.0,0.0,No record,manual+name_family(4),5
+COPPER HYDROXIDE,Springtails & soil mites,1.0709991,0.9285377,0.0,0.0,No record,manual+name_family(4),5
+COPPER HYDROXIDE,"Soil bacteria, fungi & protozoa",1.0709991,0.9285377,1.0,4.0,"Field, single season (<1 yr)",manual+name_family(4),5
+PROPICONAZOLE,Earthworms & potworms,1.0644751000000001,0.9051481,9.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(14),15
+PROPICONAZOLE,Springtails & soil mites,1.0644751000000001,0.9051481,4.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(14),15
+PROPICONAZOLE,"Soil bacteria, fungi & protozoa",1.0644751000000001,0.9051481,37.0,5.0,"Field, >=1 year",dtxsid+name_family(14),15
+CLETHODIM,Earthworms & potworms,1.047642,0.8904456,1.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid,1
+CLETHODIM,Springtails & soil mites,1.047642,0.8904456,0.0,0.0,No record,dtxsid,1
+CLETHODIM,"Soil bacteria, fungi & protozoa",1.047642,0.8904456,1.0,1.0,"Lab, not in soil",dtxsid,1
+PYRACLOSTROBIN,Earthworms & potworms,1.0200058,0.8193237,0.0,0.0,No record,dtxsid+name_family(1),2
+PYRACLOSTROBIN,Springtails & soil mites,1.0200058,0.8193237,0.0,0.0,No record,dtxsid+name_family(1),2
+PYRACLOSTROBIN,"Soil bacteria, fungi & protozoa",1.0200058,0.8193237,7.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid+name_family(1),2
+EPTC,Earthworms & potworms,1.0146463000000001,0.6126668000000001,0.0,0.0,No record,dtxsid+name_family(1),2
+EPTC,Springtails & soil mites,1.0146463000000001,0.6126668000000001,0.0,0.0,No record,dtxsid+name_family(1),2
+EPTC,"Soil bacteria, fungi & protozoa",1.0146463000000001,0.6126668000000001,14.0,5.0,"Field, >=1 year",dtxsid+name_family(1),2
+CLOPYRALID,Earthworms & potworms,0.9819526999999999,0.8728731,1.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid+name_family(17),18
+CLOPYRALID,Springtails & soil mites,0.9819526999999999,0.8728731,0.0,0.0,No record,dtxsid+name_family(17),18
+CLOPYRALID,"Soil bacteria, fungi & protozoa",0.9819526999999999,0.8728731,2.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(17),18
+KAOLIN CLAY,Earthworms & potworms,0.9009657,0.9672477,0.0,0.0,No record,dtxsid,1
+KAOLIN CLAY,Springtails & soil mites,0.9009657,0.9672477,0.0,0.0,No record,dtxsid,1
+KAOLIN CLAY,"Soil bacteria, fungi & protozoa",0.9009657,0.9672477,0.0,0.0,No record,dtxsid,1
+ETHALFLURALIN,Earthworms & potworms,0.8962164,0.5767688,0.0,0.0,No record,dtxsid,1
+ETHALFLURALIN,Springtails & soil mites,0.8962164,0.5767688,0.0,0.0,No record,dtxsid,1
+ETHALFLURALIN,"Soil bacteria, fungi & protozoa",0.8962164,0.5767688,1.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid,1
+TRICLOPYR,Earthworms & potworms,0.8860371,0.4931272,2.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(2),3
+TRICLOPYR,Springtails & soil mites,0.8860371,0.4931272,2.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(2),3
+TRICLOPYR,"Soil bacteria, fungi & protozoa",0.8860371,0.4931272,0.0,0.0,No record,dtxsid+name_family(2),3
+PYROXASULFONE,Earthworms & potworms,0.8609005,0.6993758,0.0,0.0,No record,dtxsid,1
+PYROXASULFONE,Springtails & soil mites,0.8609005,0.6993758,0.0,0.0,No record,dtxsid,1
+PYROXASULFONE,"Soil bacteria, fungi & protozoa",0.8609005,0.6993758,0.0,0.0,No record,dtxsid,1
+TEBUCONAZOLE,Earthworms & potworms,0.8205093,0.6037596999999999,14.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(20),21
+TEBUCONAZOLE,Springtails & soil mites,0.8205093,0.6037596999999999,2.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(20),21
+TEBUCONAZOLE,"Soil bacteria, fungi & protozoa",0.8205093,0.6037596999999999,33.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(20),21
+THIOPHANATE-METHYL,Earthworms & potworms,0.7883926,0.5470992,20.0,4.0,"Field, single season (<1 yr)",dtxsid,1
+THIOPHANATE-METHYL,Springtails & soil mites,0.7883926,0.5470992,0.0,0.0,No record,dtxsid,1
+THIOPHANATE-METHYL,"Soil bacteria, fungi & protozoa",0.7883926,0.5470992,12.0,4.0,"Field, single season (<1 yr)",dtxsid,1
+FLUROXYPYR,Earthworms & potworms,0.7640587,0.598755,0.0,0.0,No record,dtxsid+name_family(5),6
+FLUROXYPYR,Springtails & soil mites,0.7640587,0.598755,0.0,0.0,No record,dtxsid+name_family(5),6
+FLUROXYPYR,"Soil bacteria, fungi & protozoa",0.7640587,0.598755,1.0,1.0,"Lab, not in soil",dtxsid+name_family(5),6
+FLUMIOXAZIN,Earthworms & potworms,0.6862482,0.5663802,0.0,0.0,No record,dtxsid,1
+FLUMIOXAZIN,Springtails & soil mites,0.6862482,0.5663802,0.0,0.0,No record,dtxsid,1
+FLUMIOXAZIN,"Soil bacteria, fungi & protozoa",0.6862482,0.5663802,4.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid,1
+BIFENTHRIN,Earthworms & potworms,0.6567933,0.5061159000000001,4.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(2),3
+BIFENTHRIN,Springtails & soil mites,0.6567933,0.5061159000000001,9.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(2),3
+BIFENTHRIN,"Soil bacteria, fungi & protozoa",0.6567933,0.5061159000000001,1.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(2),3
+DIMETHYL DISULFIDE,Earthworms & potworms,0.6506855,0.5389999,0.0,0.0,No record,dtxsid+name_family(2),3
+DIMETHYL DISULFIDE,Springtails & soil mites,0.6506855,0.5389999,0.0,0.0,No record,dtxsid+name_family(2),3
+DIMETHYL DISULFIDE,"Soil bacteria, fungi & protozoa",0.6506855,0.5389999,0.0,0.0,No record,dtxsid+name_family(2),3
+PHORATE,Earthworms & potworms,0.6407265,0.1850309,2.0,4.0,"Field, single season (<1 yr)",dtxsid,1
+PHORATE,Springtails & soil mites,0.6407265,0.1850309,9.0,5.0,"Field, >=1 year",dtxsid,1
+PHORATE,"Soil bacteria, fungi & protozoa",0.6407265,0.1850309,4.0,5.0,"Field, >=1 year",dtxsid,1
+TERBUFOS,Earthworms & potworms,0.6237768,0.1917053,2.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid,1
+TERBUFOS,Springtails & soil mites,0.6237768,0.1917053,3.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid,1
+TERBUFOS,"Soil bacteria, fungi & protozoa",0.6237768,0.1917053,0.0,0.0,No record,dtxsid,1
+FLUOMETURON,Earthworms & potworms,0.6206573,0.3043655,0.0,0.0,No record,dtxsid+name_family(1),2
+FLUOMETURON,Springtails & soil mites,0.6206573,0.3043655,0.0,0.0,No record,dtxsid+name_family(1),2
+FLUOMETURON,"Soil bacteria, fungi & protozoa",0.6206573,0.3043655,42.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(1),2
+COPPER,Earthworms & potworms,0.6180814,0.600394,10.0,4.0,"Field, single season (<1 yr)",dtxsid,1
+COPPER,Springtails & soil mites,0.6180814,0.600394,8.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid,1
+COPPER,"Soil bacteria, fungi & protozoa",0.6180814,0.600394,0.0,0.0,No record,dtxsid,1
+FATTY ALCOHOLS,Earthworms & potworms,0.586376,0.3490264,,,CAS unresolved,unresolved,0
+FATTY ALCOHOLS,Springtails & soil mites,0.586376,0.3490264,,,CAS unresolved,unresolved,0
+FATTY ALCOHOLS,"Soil bacteria, fungi & protozoa",0.586376,0.3490264,,,CAS unresolved,unresolved,0
+CLOMAZONE,Earthworms & potworms,0.5120769000000001,0.4823035,0.0,0.0,No record,dtxsid,1
+CLOMAZONE,Springtails & soil mites,0.5120769000000001,0.4823035,0.0,0.0,No record,dtxsid,1
+CLOMAZONE,"Soil bacteria, fungi & protozoa",0.5120769000000001,0.4823035,0.0,0.0,No record,dtxsid,1
+THIOBENCARB,Earthworms & potworms,0.4713941,0.3719511,0.0,0.0,No record,dtxsid+name_family(1),2
+THIOBENCARB,Springtails & soil mites,0.4713941,0.3719511,0.0,0.0,No record,dtxsid+name_family(1),2
+THIOBENCARB,"Soil bacteria, fungi & protozoa",0.4713941,0.3719511,4.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(1),2
+PHOSPHORIC ACID,Earthworms & potworms,0.4689595,0.3451945,7.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(168),169
+PHOSPHORIC ACID,Springtails & soil mites,0.4689595,0.3451945,4.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(168),169
+PHOSPHORIC ACID,"Soil bacteria, fungi & protozoa",0.4689595,0.3451945,7.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(168),169
+PROMETRYN,Earthworms & potworms,0.4652088,0.4023514,0.0,0.0,No record,dtxsid+name_family(1),2
+PROMETRYN,Springtails & soil mites,0.4652088,0.4023514,0.0,0.0,No record,dtxsid+name_family(1),2
+PROMETRYN,"Soil bacteria, fungi & protozoa",0.4652088,0.4023514,30.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(1),2
+ACIFLUORFEN,Earthworms & potworms,0.4620655,0.2512896,1.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid+name_family(8),9
+ACIFLUORFEN,Springtails & soil mites,0.4620655,0.2512896,0.0,0.0,No record,dtxsid+name_family(8),9
+ACIFLUORFEN,"Soil bacteria, fungi & protozoa",0.4620655,0.2512896,30.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(8),9
+PROTHIOCONAZOLE,Earthworms & potworms,0.43720790000000004,0.3498469,0.0,0.0,No record,dtxsid+name_family(6),7
+PROTHIOCONAZOLE,Springtails & soil mites,0.43720790000000004,0.3498469,0.0,0.0,No record,dtxsid+name_family(6),7
+PROTHIOCONAZOLE,"Soil bacteria, fungi & protozoa",0.43720790000000004,0.3498469,22.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(6),7
+DIMETHOATE,Earthworms & potworms,0.4350716,0.15838929999999998,80.0,4.0,"Field, single season (<1 yr)",dtxsid,1
+DIMETHOATE,Springtails & soil mites,0.4350716,0.15838929999999998,43.0,5.0,"Field, >=1 year",dtxsid,1
+DIMETHOATE,"Soil bacteria, fungi & protozoa",0.4350716,0.15838929999999998,7.0,4.0,"Field, single season (<1 yr)",dtxsid,1
+DICROTOPHOS,Earthworms & potworms,0.4319737,0.4117657,0.0,0.0,No record,dtxsid,1
+DICROTOPHOS,Springtails & soil mites,0.4319737,0.4117657,0.0,0.0,No record,dtxsid,1
+DICROTOPHOS,"Soil bacteria, fungi & protozoa",0.4319737,0.4117657,0.0,0.0,No record,dtxsid,1
+IMAZETHAPYR,Earthworms & potworms,0.38914129999999997,0.32656759999999996,0.0,0.0,No record,dtxsid+name_family(5),6
+IMAZETHAPYR,Springtails & soil mites,0.38914129999999997,0.32656759999999996,0.0,0.0,No record,dtxsid+name_family(5),6
+IMAZETHAPYR,"Soil bacteria, fungi & protozoa",0.38914129999999997,0.32656759999999996,7.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(5),6
+PICLORAM,Earthworms & potworms,0.3700624,0.2683351,0.0,0.0,No record,dtxsid+name_family(17),18
+PICLORAM,Springtails & soil mites,0.3700624,0.2683351,0.0,0.0,No record,dtxsid+name_family(17),18
+PICLORAM,"Soil bacteria, fungi & protozoa",0.3700624,0.2683351,0.0,0.0,No record,dtxsid+name_family(17),18
+METHYL BROMIDE,Earthworms & potworms,0.367409,0.1201899,0.0,0.0,No record,dtxsid+name_family(6),7
+METHYL BROMIDE,Springtails & soil mites,0.367409,0.1201899,0.0,0.0,No record,dtxsid+name_family(6),7
+METHYL BROMIDE,"Soil bacteria, fungi & protozoa",0.367409,0.1201899,22.0,5.0,"Field, >=1 year",dtxsid+name_family(6),7
+TRIFLOXYSTROBIN,Earthworms & potworms,0.36068890000000003,0.2352431,1.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid,1
+TRIFLOXYSTROBIN,Springtails & soil mites,0.36068890000000003,0.2352431,0.0,0.0,No record,dtxsid,1
+TRIFLOXYSTROBIN,"Soil bacteria, fungi & protozoa",0.36068890000000003,0.2352431,4.0,4.0,"Field, single season (<1 yr)",dtxsid,1
+MSMA,Earthworms & potworms,0.3542546,0.18230929999999998,0.0,0.0,No record,dtxsid,1
+MSMA,Springtails & soil mites,0.3542546,0.18230929999999998,0.0,0.0,No record,dtxsid,1
+MSMA,"Soil bacteria, fungi & protozoa",0.3542546,0.18230929999999998,9.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid,1
+LACTOFEN,Earthworms & potworms,0.34836009999999995,0.142322,0.0,0.0,No record,dtxsid,1
+LACTOFEN,Springtails & soil mites,0.34836009999999995,0.142322,0.0,0.0,No record,dtxsid,1
+LACTOFEN,"Soil bacteria, fungi & protozoa",0.34836009999999995,0.142322,6.0,4.0,"Field, single season (<1 yr)",dtxsid,1
+CYHALOTHRIN-LAMBDA,Earthworms & potworms,0.3441317,0.2550175,29.0,4.0,"Field, single season (<1 yr)",dtxsid,1
+CYHALOTHRIN-LAMBDA,Springtails & soil mites,0.3441317,0.2550175,7.0,4.0,"Field, single season (<1 yr)",dtxsid,1
+CYHALOTHRIN-LAMBDA,"Soil bacteria, fungi & protozoa",0.3441317,0.2550175,1.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid,1
+SAFLUFENACIL,Earthworms & potworms,0.3375224,0.2500446,0.0,0.0,No record,dtxsid,1
+SAFLUFENACIL,Springtails & soil mites,0.3375224,0.2500446,0.0,0.0,No record,dtxsid,1
+SAFLUFENACIL,"Soil bacteria, fungi & protozoa",0.3375224,0.2500446,0.0,0.0,No record,dtxsid,1
+COPPER SULFATE,Earthworms & potworms,0.33710759999999995,0.3200424,128.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(2),3
+COPPER SULFATE,Springtails & soil mites,0.33710759999999995,0.3200424,31.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(2),3
+COPPER SULFATE,"Soil bacteria, fungi & protozoa",0.33710759999999995,0.3200424,17.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(2),3
+IMIDACLOPRID,Earthworms & potworms,0.32430640000000005,0.24714370000000002,114.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(20),21
+IMIDACLOPRID,Springtails & soil mites,0.32430640000000005,0.24714370000000002,117.0,5.0,"Field, >=1 year",dtxsid+name_family(20),21
+IMIDACLOPRID,"Soil bacteria, fungi & protozoa",0.32430640000000005,0.24714370000000002,11.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(20),21
+CARBARYL,Earthworms & potworms,0.31953859999999995,0.17337660000000002,162.0,5.0,"Field, >=1 year",dtxsid+name_family(2),3
+CARBARYL,Springtails & soil mites,0.31953859999999995,0.17337660000000002,66.0,5.0,"Field, >=1 year",dtxsid+name_family(2),3
+CARBARYL,"Soil bacteria, fungi & protozoa",0.31953859999999995,0.17337660000000002,1.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(2),3
+PHOSMET,Earthworms & potworms,0.3098186,0.34478179999999997,0.0,0.0,No record,dtxsid,1
+PHOSMET,Springtails & soil mites,0.3098186,0.34478179999999997,0.0,0.0,No record,dtxsid,1
+PHOSMET,"Soil bacteria, fungi & protozoa",0.3098186,0.34478179999999997,0.0,0.0,No record,dtxsid,1
+FLUTOLANIL,Earthworms & potworms,0.30831379999999997,0.2480661,1.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid+name_family(1),2
+FLUTOLANIL,Springtails & soil mites,0.30831379999999997,0.2480661,0.0,0.0,No record,dtxsid+name_family(1),2
+FLUTOLANIL,"Soil bacteria, fungi & protozoa",0.30831379999999997,0.2480661,4.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(1),2
+MEPIQUAT,Earthworms & potworms,0.3010162,0.3008079,0.0,0.0,No record,dtxsid+name_family(7),8
+MEPIQUAT,Springtails & soil mites,0.3010162,0.3008079,0.0,0.0,No record,dtxsid+name_family(7),8
+MEPIQUAT,"Soil bacteria, fungi & protozoa",0.3010162,0.3008079,0.0,0.0,No record,dtxsid+name_family(7),8
+FLUXAPYROXAD,Earthworms & potworms,0.298705,0.1981156,0.0,0.0,No record,dtxsid+name_family(1),2
+FLUXAPYROXAD,Springtails & soil mites,0.298705,0.1981156,0.0,0.0,No record,dtxsid+name_family(1),2
+FLUXAPYROXAD,"Soil bacteria, fungi & protozoa",0.298705,0.1981156,0.0,0.0,No record,dtxsid+name_family(1),2
+ISOXAFLUTOLE,Earthworms & potworms,0.29866529999999997,0.2488551,0.0,0.0,No record,dtxsid+name_family(2),3
+ISOXAFLUTOLE,Springtails & soil mites,0.29866529999999997,0.2488551,0.0,0.0,No record,dtxsid+name_family(2),3
+ISOXAFLUTOLE,"Soil bacteria, fungi & protozoa",0.29866529999999997,0.2488551,3.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(2),3
+BACILLUS THURINGIENSIS,Earthworms & potworms,0.2880418,0.1864387,,,CAS unresolved,unresolved,0
+BACILLUS THURINGIENSIS,Springtails & soil mites,0.2880418,0.1864387,,,CAS unresolved,unresolved,0
+BACILLUS THURINGIENSIS,"Soil bacteria, fungi & protozoa",0.2880418,0.1864387,,,CAS unresolved,unresolved,0
+QUINCLORAC,Earthworms & potworms,0.2658547,0.239816,0.0,0.0,No record,dtxsid,1
+QUINCLORAC,Springtails & soil mites,0.2658547,0.239816,0.0,0.0,No record,dtxsid,1
+QUINCLORAC,"Soil bacteria, fungi & protozoa",0.2658547,0.239816,0.0,0.0,No record,dtxsid,1
+TEMBOTRIONE,Earthworms & potworms,0.262019,0.21822870000000003,2.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid,1
+TEMBOTRIONE,Springtails & soil mites,0.262019,0.21822870000000003,0.0,0.0,No record,dtxsid,1
+TEMBOTRIONE,"Soil bacteria, fungi & protozoa",0.262019,0.21822870000000003,0.0,0.0,No record,dtxsid,1
+MALEIC HYDRAZIDE,Earthworms & potworms,0.2576523,0.2040304,0.0,0.0,No record,dtxsid+name_family(19),20
+MALEIC HYDRAZIDE,Springtails & soil mites,0.2576523,0.2040304,0.0,0.0,No record,dtxsid+name_family(19),20
+MALEIC HYDRAZIDE,"Soil bacteria, fungi & protozoa",0.2576523,0.2040304,0.0,0.0,No record,dtxsid+name_family(19),20
+AMINOPYRALID,Earthworms & potworms,0.2435926,0.2075059,0.0,0.0,No record,dtxsid,1
+AMINOPYRALID,Springtails & soil mites,0.2435926,0.2075059,0.0,0.0,No record,dtxsid,1
+AMINOPYRALID,"Soil bacteria, fungi & protozoa",0.2435926,0.2075059,0.0,0.0,No record,dtxsid,1
+PERMETHRIN,Earthworms & potworms,0.2343635,0.0773866,0.0,0.0,No record,dtxsid+name_family(4),5
+PERMETHRIN,Springtails & soil mites,0.2343635,0.0773866,0.0,0.0,No record,dtxsid+name_family(4),5
+PERMETHRIN,"Soil bacteria, fungi & protozoa",0.2343635,0.0773866,2.0,1.0,"Lab, not in soil",dtxsid+name_family(4),5
+ZIRAM,Earthworms & potworms,0.2225095,0.2584817,0.0,0.0,No record,dtxsid,1
+ZIRAM,Springtails & soil mites,0.2225095,0.2584817,0.0,0.0,No record,dtxsid,1
+ZIRAM,"Soil bacteria, fungi & protozoa",0.2225095,0.2584817,13.0,4.0,"Field, single season (<1 yr)",dtxsid,1
+"2,4-DB",Earthworms & potworms,0.2221371,0.1594754,0.0,0.0,No record,dtxsid+name_family(4),5
+"2,4-DB",Springtails & soil mites,0.2221371,0.1594754,3.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(4),5
+"2,4-DB","Soil bacteria, fungi & protozoa",0.2221371,0.1594754,0.0,0.0,No record,dtxsid+name_family(4),5
+ALACHLOR,Earthworms & potworms,0.2107614,0.0289321,0.0,0.0,No record,dtxsid+name_family(1),2
+ALACHLOR,Springtails & soil mites,0.2107614,0.0289321,0.0,0.0,No record,dtxsid+name_family(1),2
+ALACHLOR,"Soil bacteria, fungi & protozoa",0.2107614,0.0289321,8.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(1),2
+DIFENOCONAZOLE,Earthworms & potworms,0.2077424,0.1475868,1.0,1.0,"Lab, not in soil",dtxsid,1
+DIFENOCONAZOLE,Springtails & soil mites,0.2077424,0.1475868,0.0,0.0,No record,dtxsid,1
+DIFENOCONAZOLE,"Soil bacteria, fungi & protozoa",0.2077424,0.1475868,0.0,0.0,No record,dtxsid,1
+PICOXYSTROBIN,Earthworms & potworms,0.2045052,0.0731714,,,CAS unresolved,unresolved,0
+PICOXYSTROBIN,Springtails & soil mites,0.2045052,0.0731714,,,CAS unresolved,unresolved,0
+PICOXYSTROBIN,"Soil bacteria, fungi & protozoa",0.2045052,0.0731714,,,CAS unresolved,unresolved,0
+METHOMYL,Earthworms & potworms,0.2007317,0.2064633,10.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid+name_family(6),7
+METHOMYL,Springtails & soil mites,0.2007317,0.2064633,15.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(6),7
+METHOMYL,"Soil bacteria, fungi & protozoa",0.2007317,0.2064633,0.0,0.0,No record,dtxsid+name_family(6),7
+DODINE,Earthworms & potworms,0.2006093,0.20335229999999999,0.0,0.0,No record,dtxsid,1
+DODINE,Springtails & soil mites,0.2006093,0.20335229999999999,0.0,0.0,No record,dtxsid,1
+DODINE,"Soil bacteria, fungi & protozoa",0.2006093,0.20335229999999999,0.0,0.0,No record,dtxsid,1
+HEXAZINONE,Earthworms & potworms,0.19450420000000002,0.0790912,0.0,0.0,No record,dtxsid,1
+HEXAZINONE,Springtails & soil mites,0.19450420000000002,0.0790912,0.0,0.0,No record,dtxsid,1
+HEXAZINONE,"Soil bacteria, fungi & protozoa",0.19450420000000002,0.0790912,27.0,4.0,"Field, single season (<1 yr)",dtxsid,1
+CHLORANTRANILIPROLE,Earthworms & potworms,0.1941753,0.1222408,4.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid+name_family(3),4
+CHLORANTRANILIPROLE,Springtails & soil mites,0.1941753,0.1222408,2.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(3),4
+CHLORANTRANILIPROLE,"Soil bacteria, fungi & protozoa",0.1941753,0.1222408,0.0,0.0,No record,dtxsid+name_family(3),4
+THIDIAZURON,Earthworms & potworms,0.1914641,0.1881159,0.0,0.0,No record,dtxsid,1
+THIDIAZURON,Springtails & soil mites,0.1914641,0.1881159,0.0,0.0,No record,dtxsid,1
+THIDIAZURON,"Soil bacteria, fungi & protozoa",0.1914641,0.1881159,0.0,0.0,No record,dtxsid,1
+METCONAZOLE,Earthworms & potworms,0.1888844,0.1171335,0.0,0.0,No record,dtxsid+name_family(1),2
+METCONAZOLE,Springtails & soil mites,0.1888844,0.1171335,0.0,0.0,No record,dtxsid+name_family(1),2
+METCONAZOLE,"Soil bacteria, fungi & protozoa",0.1888844,0.1171335,10.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(1),2
+BURKHOLDERIA SPP,Earthworms & potworms,0.180118,0.0714938,,,CAS unresolved,unresolved,0
+BURKHOLDERIA SPP,Springtails & soil mites,0.180118,0.0714938,,,CAS unresolved,unresolved,0
+BURKHOLDERIA SPP,"Soil bacteria, fungi & protozoa",0.180118,0.0714938,,,CAS unresolved,unresolved,0
+OXAMYL,Earthworms & potworms,0.1778547,0.1326812,1.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid,1
+OXAMYL,Springtails & soil mites,0.1778547,0.1326812,14.0,4.0,"Field, single season (<1 yr)",dtxsid,1
+OXAMYL,"Soil bacteria, fungi & protozoa",0.1778547,0.1326812,5.0,4.0,"Field, single season (<1 yr)",dtxsid,1
+MALATHION,Earthworms & potworms,0.177664,0.120234,25.0,4.0,"Field, single season (<1 yr)",dtxsid,1
+MALATHION,Springtails & soil mites,0.177664,0.120234,1.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid,1
+MALATHION,"Soil bacteria, fungi & protozoa",0.177664,0.120234,2.0,1.0,"Lab, not in soil",dtxsid,1
+NORFLURAZON,Earthworms & potworms,0.16957229999999998,0.0962079,0.0,0.0,No record,dtxsid,1
+NORFLURAZON,Springtails & soil mites,0.16957229999999998,0.0962079,0.0,0.0,No record,dtxsid,1
+NORFLURAZON,"Soil bacteria, fungi & protozoa",0.16957229999999998,0.0962079,1.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid,1
+QUINTOZENE,Earthworms & potworms,0.1616315,0.06445569999999999,0.0,0.0,No record,dtxsid+name_family(2),3
+QUINTOZENE,Springtails & soil mites,0.1616315,0.06445569999999999,0.0,0.0,No record,dtxsid+name_family(2),3
+QUINTOZENE,"Soil bacteria, fungi & protozoa",0.1616315,0.06445569999999999,35.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(2),3
+FENTIN,Earthworms & potworms,0.1613828,0.15078339999999998,,,CAS unresolved,unresolved,0
+FENTIN,Springtails & soil mites,0.1613828,0.15078339999999998,,,CAS unresolved,unresolved,0
+FENTIN,"Soil bacteria, fungi & protozoa",0.1613828,0.15078339999999998,,,CAS unresolved,unresolved,0
+FLUMETSULAM,Earthworms & potworms,0.16049770000000002,0.1336794,0.0,0.0,No record,dtxsid+name_family(1),2
+FLUMETSULAM,Springtails & soil mites,0.16049770000000002,0.1336794,0.0,0.0,No record,dtxsid+name_family(1),2
+FLUMETSULAM,"Soil bacteria, fungi & protozoa",0.16049770000000002,0.1336794,0.0,0.0,No record,dtxsid+name_family(1),2
+FLUAZIFOP,Earthworms & potworms,0.15898189999999998,0.095922,6.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid+name_family(3),4
+FLUAZIFOP,Springtails & soil mites,0.15898189999999998,0.095922,0.0,0.0,No record,dtxsid+name_family(3),4
+FLUAZIFOP,"Soil bacteria, fungi & protozoa",0.15898189999999998,0.095922,0.0,0.0,No record,dtxsid+name_family(3),4
+BICYCLOPYRONE,Earthworms & potworms,0.1549425,0.1260304,,,CAS unresolved,unresolved,0
+BICYCLOPYRONE,Springtails & soil mites,0.1549425,0.1260304,,,CAS unresolved,unresolved,0
+BICYCLOPYRONE,"Soil bacteria, fungi & protozoa",0.1549425,0.1260304,,,CAS unresolved,unresolved,0
+BOSCALID,Earthworms & potworms,0.1514452,0.1173337,0.0,0.0,No record,dtxsid+name_family(4),5
+BOSCALID,Springtails & soil mites,0.1514452,0.1173337,0.0,0.0,No record,dtxsid+name_family(4),5
+BOSCALID,"Soil bacteria, fungi & protozoa",0.1514452,0.1173337,14.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(4),5
+ETHOPROPHOS,Earthworms & potworms,0.145999,0.0554752,7.0,5.0,"Field, >=1 year",dtxsid+name_family(1),2
+ETHOPROPHOS,Springtails & soil mites,0.145999,0.0554752,7.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(1),2
+ETHOPROPHOS,"Soil bacteria, fungi & protozoa",0.145999,0.0554752,4.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(1),2
+DICHLORPROP,Earthworms & potworms,0.1443794,0.043586,0.0,0.0,No record,dtxsid+name_family(26),27
+DICHLORPROP,Springtails & soil mites,0.1443794,0.043586,6.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(26),27
+DICHLORPROP,"Soil bacteria, fungi & protozoa",0.1443794,0.043586,0.0,0.0,No record,dtxsid+name_family(26),27
+FERBAM,Earthworms & potworms,0.1434936,0.034070699999999995,0.0,0.0,No record,dtxsid,1
+FERBAM,Springtails & soil mites,0.1434936,0.034070699999999995,0.0,0.0,No record,dtxsid,1
+FERBAM,"Soil bacteria, fungi & protozoa",0.1434936,0.034070699999999995,0.0,0.0,No record,dtxsid,1
+BENZOVIDIFLUPYR,Earthworms & potworms,0.1350784,0.08812919999999999,,,CAS unresolved,unresolved,0
+BENZOVIDIFLUPYR,Springtails & soil mites,0.1350784,0.08812919999999999,,,CAS unresolved,unresolved,0
+BENZOVIDIFLUPYR,"Soil bacteria, fungi & protozoa",0.1350784,0.08812919999999999,,,CAS unresolved,unresolved,0
+FLUTRIAFOL,Earthworms & potworms,0.1322712,0.0476315,0.0,0.0,No record,dtxsid+name_family(8),9
+FLUTRIAFOL,Springtails & soil mites,0.1322712,0.0476315,0.0,0.0,No record,dtxsid+name_family(8),9
+FLUTRIAFOL,"Soil bacteria, fungi & protozoa",0.1322712,0.0476315,25.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(8),9
+ALDICARB,Earthworms & potworms,0.1308087,0.0812917,36.0,5.0,"Field, >=1 year",dtxsid+name_family(1),2
+ALDICARB,Springtails & soil mites,0.1308087,0.0812917,29.0,5.0,"Field, >=1 year",dtxsid+name_family(1),2
+ALDICARB,"Soil bacteria, fungi & protozoa",0.1308087,0.0812917,19.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(1),2
+DIFLUFENZOPYR,Earthworms & potworms,0.129951,0.0967994,0.0,0.0,No record,dtxsid+name_family(1),2
+DIFLUFENZOPYR,Springtails & soil mites,0.129951,0.0967994,0.0,0.0,No record,dtxsid+name_family(1),2
+DIFLUFENZOPYR,"Soil bacteria, fungi & protozoa",0.129951,0.0967994,0.0,0.0,No record,dtxsid+name_family(1),2
+SULFCARBAMIDE,Earthworms & potworms,0.1293852,0.0586994,,,CAS unresolved,unresolved,0
+SULFCARBAMIDE,Springtails & soil mites,0.1293852,0.0586994,,,CAS unresolved,unresolved,0
+SULFCARBAMIDE,"Soil bacteria, fungi & protozoa",0.1293852,0.0586994,,,CAS unresolved,unresolved,0
+FLUFENACET,Earthworms & potworms,0.129138,0.0338107,0.0,0.0,No record,dtxsid+name_family(4),5
+FLUFENACET,Springtails & soil mites,0.129138,0.0338107,0.0,0.0,No record,dtxsid+name_family(4),5
+FLUFENACET,"Soil bacteria, fungi & protozoa",0.129138,0.0338107,0.0,0.0,No record,dtxsid+name_family(4),5
+DIQUAT,Earthworms & potworms,0.1285358,0.12011359999999999,0.0,0.0,No record,dtxsid,1
+DIQUAT,Springtails & soil mites,0.1285358,0.12011359999999999,0.0,0.0,No record,dtxsid,1
+DIQUAT,"Soil bacteria, fungi & protozoa",0.1285358,0.12011359999999999,2.0,1.0,"Lab, not in soil",dtxsid,1
+COPPER OXYCHLORIDE,Earthworms & potworms,0.1255809,0.0930615,10.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(1),2
+COPPER OXYCHLORIDE,Springtails & soil mites,0.1255809,0.0930615,0.0,0.0,No record,dtxsid+name_family(1),2
+COPPER OXYCHLORIDE,"Soil bacteria, fungi & protozoa",0.1255809,0.0930615,0.0,0.0,No record,dtxsid+name_family(1),2
+LINURON,Earthworms & potworms,0.1168151,0.0736855,0.0,0.0,No record,dtxsid+name_family(5),6
+LINURON,Springtails & soil mites,0.1168151,0.0736855,0.0,0.0,No record,dtxsid+name_family(5),6
+LINURON,"Soil bacteria, fungi & protozoa",0.1168151,0.0736855,6.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(5),6
+CLORANSULAM-METHYL,Earthworms & potworms,0.1102703,0.0899331,0.0,0.0,No record,dtxsid,1
+CLORANSULAM-METHYL,Springtails & soil mites,0.1102703,0.0899331,0.0,0.0,No record,dtxsid,1
+CLORANSULAM-METHYL,"Soil bacteria, fungi & protozoa",0.1102703,0.0899331,0.0,0.0,No record,dtxsid,1
+TETRACONAZOLE,Earthworms & potworms,0.10985439999999999,0.0387562,0.0,0.0,No record,dtxsid+name_family(1),2
+TETRACONAZOLE,Springtails & soil mites,0.10985439999999999,0.0387562,0.0,0.0,No record,dtxsid+name_family(1),2
+TETRACONAZOLE,"Soil bacteria, fungi & protozoa",0.10985439999999999,0.0387562,9.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(1),2
+MEFENOXAM,Earthworms & potworms,0.1092807,0.08435469999999999,0.0,0.0,No record,dtxsid,1
+MEFENOXAM,Springtails & soil mites,0.1092807,0.08435469999999999,0.0,0.0,No record,dtxsid,1
+MEFENOXAM,"Soil bacteria, fungi & protozoa",0.1092807,0.08435469999999999,0.0,0.0,No record,dtxsid,1
+CHLORIMURON,Earthworms & potworms,0.10425,0.0932562,0.0,0.0,No record,dtxsid+name_family(2),3
+CHLORIMURON,Springtails & soil mites,0.10425,0.0932562,0.0,0.0,No record,dtxsid+name_family(2),3
+CHLORIMURON,"Soil bacteria, fungi & protozoa",0.10425,0.0932562,1.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(2),3
+OXYFLUORFEN,Earthworms & potworms,0.1033902,0.0386248,0.0,0.0,No record,dtxsid+name_family(3),4
+OXYFLUORFEN,Springtails & soil mites,0.1033902,0.0386248,0.0,0.0,No record,dtxsid+name_family(3),4
+OXYFLUORFEN,"Soil bacteria, fungi & protozoa",0.1033902,0.0386248,4.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(3),4
+THIAMETHOXAM,Earthworms & potworms,0.10155660000000001,0.0618817,3.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(11),12
+THIAMETHOXAM,Springtails & soil mites,0.10155660000000001,0.0618817,13.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(11),12
+THIAMETHOXAM,"Soil bacteria, fungi & protozoa",0.10155660000000001,0.0618817,0.0,0.0,No record,dtxsid+name_family(11),12
+THIENCARBAZONE-METHYL,Earthworms & potworms,0.0984154,0.08213480000000001,0.0,0.0,No record,dtxsid+name_family(1),2
+THIENCARBAZONE-METHYL,Springtails & soil mites,0.0984154,0.08213480000000001,0.0,0.0,No record,dtxsid+name_family(1),2
+THIENCARBAZONE-METHYL,"Soil bacteria, fungi & protozoa",0.0984154,0.08213480000000001,0.0,0.0,No record,dtxsid+name_family(1),2
+CYFLUTHRIN,Earthworms & potworms,0.09762610000000001,0.0475509,6.0,4.0,"Field, single season (<1 yr)",dtxsid,1
+CYFLUTHRIN,Springtails & soil mites,0.09762610000000001,0.0475509,0.0,0.0,No record,dtxsid,1
+CYFLUTHRIN,"Soil bacteria, fungi & protozoa",0.09762610000000001,0.0475509,0.0,0.0,No record,dtxsid,1
+DCPA,Earthworms & potworms,0.0974774,0.0719882,0.0,0.0,No record,dtxsid+name_family(1),2
+DCPA,Springtails & soil mites,0.0974774,0.0719882,0.0,0.0,No record,dtxsid+name_family(1),2
+DCPA,"Soil bacteria, fungi & protozoa",0.0974774,0.0719882,0.0,0.0,No record,dtxsid+name_family(1),2
+TEFLUTHRIN,Earthworms & potworms,0.09393539999999999,0.0449556,1.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid+name_family(1),2
+TEFLUTHRIN,Springtails & soil mites,0.09393539999999999,0.0449556,0.0,0.0,No record,dtxsid+name_family(1),2
+TEFLUTHRIN,"Soil bacteria, fungi & protozoa",0.09393539999999999,0.0449556,0.0,0.0,No record,dtxsid+name_family(1),2
+SETHOXYDIM,Earthworms & potworms,0.0928755,0.0327855,0.0,0.0,No record,dtxsid,1
+SETHOXYDIM,Springtails & soil mites,0.0928755,0.0327855,0.0,0.0,No record,dtxsid,1
+SETHOXYDIM,"Soil bacteria, fungi & protozoa",0.0928755,0.0327855,2.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid,1
+PINOXADEN,Earthworms & potworms,0.09215910000000001,0.0784347,0.0,0.0,No record,dtxsid,1
+PINOXADEN,Springtails & soil mites,0.09215910000000001,0.0784347,0.0,0.0,No record,dtxsid,1
+PINOXADEN,"Soil bacteria, fungi & protozoa",0.09215910000000001,0.0784347,0.0,0.0,No record,dtxsid,1
+METHOXYFENOZIDE,Earthworms & potworms,0.088632,0.0620148,0.0,0.0,No record,dtxsid,1
+METHOXYFENOZIDE,Springtails & soil mites,0.088632,0.0620148,0.0,0.0,No record,dtxsid,1
+METHOXYFENOZIDE,"Soil bacteria, fungi & protozoa",0.088632,0.0620148,0.0,0.0,No record,dtxsid,1
+CYPROCONAZOLE,Earthworms & potworms,0.0846778,0.0278382,3.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(8),9
+CYPROCONAZOLE,Springtails & soil mites,0.0846778,0.0278382,0.0,0.0,No record,dtxsid+name_family(8),9
+CYPROCONAZOLE,"Soil bacteria, fungi & protozoa",0.0846778,0.0278382,2.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(8),9
+ZETA-CYPERMETHRIN,Earthworms & potworms,0.0837972,0.045136699999999995,0.0,0.0,No record,dtxsid+name_family(4),5
+ZETA-CYPERMETHRIN,Springtails & soil mites,0.0837972,0.045136699999999995,6.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid+name_family(4),5
+ZETA-CYPERMETHRIN,"Soil bacteria, fungi & protozoa",0.0837972,0.045136699999999995,0.0,0.0,No record,dtxsid+name_family(4),5
+FLUOXASTROBIN,Earthworms & potworms,0.0811064,0.023932,1.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(1),2
+FLUOXASTROBIN,Springtails & soil mites,0.0811064,0.023932,0.0,0.0,No record,dtxsid+name_family(1),2
+FLUOXASTROBIN,"Soil bacteria, fungi & protozoa",0.0811064,0.023932,0.0,0.0,No record,dtxsid+name_family(1),2
+THIFENSULFURON,Earthworms & potworms,0.0805743,0.0624287,0.0,0.0,No record,dtxsid,1
+THIFENSULFURON,Springtails & soil mites,0.0805743,0.0624287,0.0,0.0,No record,dtxsid,1
+THIFENSULFURON,"Soil bacteria, fungi & protozoa",0.0805743,0.0624287,0.0,0.0,No record,dtxsid,1
+PYRASULFOTOLE,Earthworms & potworms,0.0804943,0.06986980000000001,0.0,0.0,No record,dtxsid+name_family(1),2
+PYRASULFOTOLE,Springtails & soil mites,0.0804943,0.06986980000000001,0.0,0.0,No record,dtxsid+name_family(1),2
+PYRASULFOTOLE,"Soil bacteria, fungi & protozoa",0.0804943,0.06986980000000001,0.0,0.0,No record,dtxsid+name_family(1),2
+PYRIMETHANIL,Earthworms & potworms,0.0803572,0.0675371,0.0,0.0,No record,dtxsid+name_family(2),3
+PYRIMETHANIL,Springtails & soil mites,0.0803572,0.0675371,0.0,0.0,No record,dtxsid+name_family(2),3
+PYRIMETHANIL,"Soil bacteria, fungi & protozoa",0.0803572,0.0675371,0.0,0.0,No record,dtxsid+name_family(2),3
+MCPB,Earthworms & potworms,0.0802841,0.0117376,0.0,0.0,No record,dtxsid+name_family(9),10
+MCPB,Springtails & soil mites,0.0802841,0.0117376,0.0,0.0,No record,dtxsid+name_family(9),10
+MCPB,"Soil bacteria, fungi & protozoa",0.0802841,0.0117376,0.0,0.0,No record,dtxsid+name_family(9),10
+POTASSIUM BICARBONATE,Earthworms & potworms,0.0797012,0.05502989999999999,0.0,0.0,No record,dtxsid,1
+POTASSIUM BICARBONATE,Springtails & soil mites,0.0797012,0.05502989999999999,0.0,0.0,No record,dtxsid,1
+POTASSIUM BICARBONATE,"Soil bacteria, fungi & protozoa",0.0797012,0.05502989999999999,0.0,0.0,No record,dtxsid,1
+NICOSULFURON,Earthworms & potworms,0.0768099,0.0165231,0.0,0.0,No record,dtxsid+name_family(2),3
+NICOSULFURON,Springtails & soil mites,0.0768099,0.0165231,0.0,0.0,No record,dtxsid+name_family(2),3
+NICOSULFURON,"Soil bacteria, fungi & protozoa",0.0768099,0.0165231,0.0,0.0,No record,dtxsid+name_family(2),3
+SPIROMESIFEN,Earthworms & potworms,0.0752902,0.022852,0.0,0.0,No record,dtxsid,1
+SPIROMESIFEN,Springtails & soil mites,0.0752902,0.022852,0.0,0.0,No record,dtxsid,1
+SPIROMESIFEN,"Soil bacteria, fungi & protozoa",0.0752902,0.022852,0.0,0.0,No record,dtxsid,1
+FLUOPYRAM,Earthworms & potworms,0.07410560000000001,0.0571025,0.0,0.0,No record,dtxsid+name_family(1),2
+FLUOPYRAM,Springtails & soil mites,0.07410560000000001,0.0571025,0.0,0.0,No record,dtxsid+name_family(1),2
+FLUOPYRAM,"Soil bacteria, fungi & protozoa",0.07410560000000001,0.0571025,0.0,0.0,No record,dtxsid+name_family(1),2
+IMAZAMOX,Earthworms & potworms,0.07215680000000001,0.0428661,0.0,0.0,No record,dtxsid+name_family(2),3
+IMAZAMOX,Springtails & soil mites,0.07215680000000001,0.0428661,0.0,0.0,No record,dtxsid+name_family(2),3
+IMAZAMOX,"Soil bacteria, fungi & protozoa",0.07215680000000001,0.0428661,0.0,0.0,No record,dtxsid+name_family(2),3
+BENSULIDE,Earthworms & potworms,0.0717176,0.0710453,1.0,5.0,"Field, >=1 year",dtxsid+name_family(1),2
+BENSULIDE,Springtails & soil mites,0.0717176,0.0710453,0.0,0.0,No record,dtxsid+name_family(1),2
+BENSULIDE,"Soil bacteria, fungi & protozoa",0.0717176,0.0710453,2.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(1),2
+ETHOFUMESATE,Earthworms & potworms,0.0710498,0.0641191,0.0,0.0,No record,dtxsid,1
+ETHOFUMESATE,Springtails & soil mites,0.0710498,0.0641191,3.0,4.0,"Field, single season (<1 yr)",dtxsid,1
+ETHOFUMESATE,"Soil bacteria, fungi & protozoa",0.0710498,0.0641191,0.0,0.0,No record,dtxsid,1
+TEBUPIRIMPHOS,Earthworms & potworms,0.0683747,0.0396306,1.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid,1
+TEBUPIRIMPHOS,Springtails & soil mites,0.0683747,0.0396306,0.0,0.0,No record,dtxsid,1
+TEBUPIRIMPHOS,"Soil bacteria, fungi & protozoa",0.0683747,0.0396306,0.0,0.0,No record,dtxsid,1
+FLUMETRALIN,Earthworms & potworms,0.0656258,0.0624565,0.0,0.0,No record,dtxsid,1
+FLUMETRALIN,Springtails & soil mites,0.0656258,0.0624565,0.0,0.0,No record,dtxsid,1
+FLUMETRALIN,"Soil bacteria, fungi & protozoa",0.0656258,0.0624565,0.0,0.0,No record,dtxsid,1
+PENTHIOPYRAD,Earthworms & potworms,0.064963,0.0450212,0.0,0.0,No record,dtxsid,1
+PENTHIOPYRAD,Springtails & soil mites,0.064963,0.0450212,0.0,0.0,No record,dtxsid,1
+PENTHIOPYRAD,"Soil bacteria, fungi & protozoa",0.064963,0.0450212,0.0,0.0,No record,dtxsid,1
+RIMSULFURON,Earthworms & potworms,0.0629225,0.0391159,1.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid,1
+RIMSULFURON,Springtails & soil mites,0.0629225,0.0391159,0.0,0.0,No record,dtxsid,1
+RIMSULFURON,"Soil bacteria, fungi & protozoa",0.0629225,0.0391159,0.0,0.0,No record,dtxsid,1
+PROPAMOCARB HCL,Earthworms & potworms,0.0627807,0.044257300000000006,0.0,0.0,No record,dtxsid+name_family(2),3
+PROPAMOCARB HCL,Springtails & soil mites,0.0627807,0.044257300000000006,0.0,0.0,No record,dtxsid+name_family(2),3
+PROPAMOCARB HCL,"Soil bacteria, fungi & protozoa",0.0627807,0.044257300000000006,4.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(2),3
+FLUAZINAM,Earthworms & potworms,0.0617599,0.0445976,0.0,0.0,No record,dtxsid,1
+FLUAZINAM,Springtails & soil mites,0.0617599,0.0445976,0.0,0.0,No record,dtxsid,1
+FLUAZINAM,"Soil bacteria, fungi & protozoa",0.0617599,0.0445976,10.0,4.0,"Field, single season (<1 yr)",dtxsid,1
+TOPRAMEZONE,Earthworms & potworms,0.0579328,0.0464741,0.0,0.0,No record,dtxsid,1
+TOPRAMEZONE,Springtails & soil mites,0.0579328,0.0464741,0.0,0.0,No record,dtxsid,1
+TOPRAMEZONE,"Soil bacteria, fungi & protozoa",0.0579328,0.0464741,0.0,0.0,No record,dtxsid,1
+CARFENTRAZONE-ETHYL,Earthworms & potworms,0.0575332,0.0345798,0.0,0.0,No record,dtxsid,1
+CARFENTRAZONE-ETHYL,Springtails & soil mites,0.0575332,0.0345798,0.0,0.0,No record,dtxsid,1
+CARFENTRAZONE-ETHYL,"Soil bacteria, fungi & protozoa",0.0575332,0.0345798,0.0,0.0,No record,dtxsid,1
+QUIZALOFOP,Earthworms & potworms,0.056891199999999996,0.025980700000000002,5.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid+name_family(5),6
+QUIZALOFOP,Springtails & soil mites,0.056891199999999996,0.025980700000000002,0.0,0.0,No record,dtxsid+name_family(5),6
+QUIZALOFOP,"Soil bacteria, fungi & protozoa",0.056891199999999996,0.025980700000000002,5.0,5.0,"Field, >=1 year",dtxsid+name_family(5),6
+IMAZAQUIN,Earthworms & potworms,0.0557314,0.0117275,0.0,0.0,No record,dtxsid+name_family(3),4
+IMAZAQUIN,Springtails & soil mites,0.0557314,0.0117275,0.0,0.0,No record,dtxsid+name_family(3),4
+IMAZAQUIN,"Soil bacteria, fungi & protozoa",0.0557314,0.0117275,1.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(3),4
+CYPRODINIL,Earthworms & potworms,0.050783699999999994,0.049136,0.0,0.0,No record,dtxsid+name_family(2),3
+CYPRODINIL,Springtails & soil mites,0.050783699999999994,0.049136,0.0,0.0,No record,dtxsid+name_family(2),3
+CYPRODINIL,"Soil bacteria, fungi & protozoa",0.050783699999999994,0.049136,0.0,0.0,No record,dtxsid+name_family(2),3
+SULFOXAFLOR,Earthworms & potworms,0.0494501,0.0332977,0.0,0.0,No record,dtxsid,1
+SULFOXAFLOR,Springtails & soil mites,0.0494501,0.0332977,0.0,0.0,No record,dtxsid,1
+SULFOXAFLOR,"Soil bacteria, fungi & protozoa",0.0494501,0.0332977,0.0,0.0,No record,dtxsid,1
+NAPROPAMIDE,Earthworms & potworms,0.0487777,0.0381241,0.0,0.0,No record,dtxsid+name_family(3),4
+NAPROPAMIDE,Springtails & soil mites,0.0487777,0.0381241,0.0,0.0,No record,dtxsid+name_family(3),4
+NAPROPAMIDE,"Soil bacteria, fungi & protozoa",0.0487777,0.0381241,2.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(3),4
+SPINETORAM,Earthworms & potworms,0.044706,0.0339697,0.0,0.0,No record,dtxsid+name_family(1),2
+SPINETORAM,Springtails & soil mites,0.044706,0.0339697,5.0,1.0,"Lab, not in soil",dtxsid+name_family(1),2
+SPINETORAM,"Soil bacteria, fungi & protozoa",0.044706,0.0339697,0.0,0.0,No record,dtxsid+name_family(1),2
+DIMETHENAMID,Earthworms & potworms,0.0447037,0.0136229,0.0,0.0,No record,dtxsid+name_family(1),2
+DIMETHENAMID,Springtails & soil mites,0.0447037,0.0136229,0.0,0.0,No record,dtxsid+name_family(1),2
+DIMETHENAMID,"Soil bacteria, fungi & protozoa",0.0447037,0.0136229,0.0,0.0,No record,dtxsid+name_family(1),2
+CYCLANILIDE,Earthworms & potworms,0.0431431,0.036130800000000005,0.0,0.0,No record,dtxsid,1
+CYCLANILIDE,Springtails & soil mites,0.0431431,0.036130800000000005,0.0,0.0,No record,dtxsid,1
+CYCLANILIDE,"Soil bacteria, fungi & protozoa",0.0431431,0.036130800000000005,0.0,0.0,No record,dtxsid,1
+SPIROTETRAMAT,Earthworms & potworms,0.039859,0.036655,0.0,0.0,No record,dtxsid+name_family(1),2
+SPIROTETRAMAT,Springtails & soil mites,0.039859,0.036655,0.0,0.0,No record,dtxsid+name_family(1),2
+SPIROTETRAMAT,"Soil bacteria, fungi & protozoa",0.039859,0.036655,0.0,0.0,No record,dtxsid+name_family(1),2
+TRI-ALLATE,Earthworms & potworms,0.039476800000000006,0.0159643,0.0,0.0,No record,dtxsid,1
+TRI-ALLATE,Springtails & soil mites,0.039476800000000006,0.0159643,0.0,0.0,No record,dtxsid,1
+TRI-ALLATE,"Soil bacteria, fungi & protozoa",0.039476800000000006,0.0159643,2.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid,1
+TRIBENURON METHYL,Earthworms & potworms,0.038622,0.0317454,3.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(1),2
+TRIBENURON METHYL,Springtails & soil mites,0.038622,0.0317454,0.0,0.0,No record,dtxsid+name_family(1),2
+TRIBENURON METHYL,"Soil bacteria, fungi & protozoa",0.038622,0.0317454,2.0,1.0,"Lab, not in soil",dtxsid+name_family(1),2
+METSULFURON,Earthworms & potworms,0.037253800000000004,0.0290505,1.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid+name_family(5),6
+METSULFURON,Springtails & soil mites,0.037253800000000004,0.0290505,0.0,0.0,No record,dtxsid+name_family(5),6
+METSULFURON,"Soil bacteria, fungi & protozoa",0.037253800000000004,0.0290505,0.0,0.0,No record,dtxsid+name_family(5),6
+ALPHA CYPERMETHRIN,Earthworms & potworms,0.036833199999999996,0.0092747,,,CAS unresolved,unresolved,0
+ALPHA CYPERMETHRIN,Springtails & soil mites,0.036833199999999996,0.0092747,,,CAS unresolved,unresolved,0
+ALPHA CYPERMETHRIN,"Soil bacteria, fungi & protozoa",0.036833199999999996,0.0092747,,,CAS unresolved,unresolved,0
+ESFENVALERATE,Earthworms & potworms,0.0365756,0.014921799999999999,1.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid,1
+ESFENVALERATE,Springtails & soil mites,0.0365756,0.014921799999999999,4.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid,1
+ESFENVALERATE,"Soil bacteria, fungi & protozoa",0.0365756,0.014921799999999999,0.0,0.0,No record,dtxsid,1
+FENOXAPROP,Earthworms & potworms,0.0365037,0.0253898,1.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid+name_family(6),7
+FENOXAPROP,Springtails & soil mites,0.0365037,0.0253898,0.0,0.0,No record,dtxsid+name_family(6),7
+FENOXAPROP,"Soil bacteria, fungi & protozoa",0.0365037,0.0253898,0.0,0.0,No record,dtxsid+name_family(6),7
+CYHALOFOP,Earthworms & potworms,0.0364694,0.035339699999999995,0.0,0.0,No record,dtxsid+name_family(1),2
+CYHALOFOP,Springtails & soil mites,0.0364694,0.035339699999999995,0.0,0.0,No record,dtxsid+name_family(1),2
+CYHALOFOP,"Soil bacteria, fungi & protozoa",0.0364694,0.035339699999999995,0.0,0.0,No record,dtxsid+name_family(1),2
+ZINC,Earthworms & potworms,0.0353642,0.009508899999999999,7.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid,1
+ZINC,Springtails & soil mites,0.0353642,0.009508899999999999,2.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid,1
+ZINC,"Soil bacteria, fungi & protozoa",0.0353642,0.009508899999999999,0.0,0.0,No record,dtxsid,1
+BROMACIL,Earthworms & potworms,0.0350566,0.027543899999999996,0.0,0.0,No record,dtxsid+name_family(3),4
+BROMACIL,Springtails & soil mites,0.0350566,0.027543899999999996,0.0,0.0,No record,dtxsid+name_family(3),4
+BROMACIL,"Soil bacteria, fungi & protozoa",0.0350566,0.027543899999999996,0.0,0.0,No record,dtxsid+name_family(3),4
+FLUCARBAZONE,Earthworms & potworms,0.0339455,0.025607599999999998,0.0,0.0,No record,dtxsid+name_family(2),3
+FLUCARBAZONE,Springtails & soil mites,0.0339455,0.025607599999999998,0.0,0.0,No record,dtxsid+name_family(2),3
+FLUCARBAZONE,"Soil bacteria, fungi & protozoa",0.0339455,0.025607599999999998,0.0,0.0,No record,dtxsid+name_family(2),3
+DIAZINON,Earthworms & potworms,0.033203699999999996,0.033418,39.0,5.0,"Field, >=1 year",dtxsid,1
+DIAZINON,Springtails & soil mites,0.033203699999999996,0.033418,4.0,4.0,"Field, single season (<1 yr)",dtxsid,1
+DIAZINON,"Soil bacteria, fungi & protozoa",0.033203699999999996,0.033418,3.0,4.0,"Field, single season (<1 yr)",dtxsid,1
+STREPTOMYCIN,Earthworms & potworms,0.0329622,0.0303348,,,CAS unresolved,unresolved,0
+STREPTOMYCIN,Springtails & soil mites,0.0329622,0.0303348,,,CAS unresolved,unresolved,0
+STREPTOMYCIN,"Soil bacteria, fungi & protozoa",0.0329622,0.0303348,,,CAS unresolved,unresolved,0
+DIFLUBENZURON,Earthworms & potworms,0.0326195,0.0253836,2.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(2),3
+DIFLUBENZURON,Springtails & soil mites,0.0326195,0.0253836,13.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(2),3
+DIFLUBENZURON,"Soil bacteria, fungi & protozoa",0.0326195,0.0253836,3.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(2),3
+TRIASULFURON,Earthworms & potworms,0.0319271,0.014693,0.0,0.0,No record,dtxsid+name_family(3),4
+TRIASULFURON,Springtails & soil mites,0.0319271,0.014693,0.0,0.0,No record,dtxsid+name_family(3),4
+TRIASULFURON,"Soil bacteria, fungi & protozoa",0.0319271,0.014693,0.0,0.0,No record,dtxsid+name_family(3),4
+FLUPYRADIFURONE,Earthworms & potworms,0.0318234,0.0253055,,,CAS unresolved,unresolved,0
+FLUPYRADIFURONE,Springtails & soil mites,0.0318234,0.0253055,,,CAS unresolved,unresolved,0
+FLUPYRADIFURONE,"Soil bacteria, fungi & protozoa",0.0318234,0.0253055,,,CAS unresolved,unresolved,0
+SPIRODICLOFEN,Earthworms & potworms,0.0317115,0.019633900000000003,1.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid,1
+SPIRODICLOFEN,Springtails & soil mites,0.0317115,0.019633900000000003,0.0,0.0,No record,dtxsid,1
+SPIRODICLOFEN,"Soil bacteria, fungi & protozoa",0.0317115,0.019633900000000003,0.0,0.0,No record,dtxsid,1
+TRIFLUMIZOLE,Earthworms & potworms,0.0312058,0.0323251,0.0,0.0,No record,dtxsid+name_family(1),2
+TRIFLUMIZOLE,Springtails & soil mites,0.0312058,0.0323251,0.0,0.0,No record,dtxsid+name_family(1),2
+TRIFLUMIZOLE,"Soil bacteria, fungi & protozoa",0.0312058,0.0323251,0.0,0.0,No record,dtxsid+name_family(1),2
+IPRODIONE,Earthworms & potworms,0.030931200000000002,0.022528700000000002,2.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(4),5
+IPRODIONE,Springtails & soil mites,0.030931200000000002,0.022528700000000002,0.0,0.0,No record,dtxsid+name_family(4),5
+IPRODIONE,"Soil bacteria, fungi & protozoa",0.030931200000000002,0.022528700000000002,8.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(4),5
+METIRAM,Earthworms & potworms,0.030833100000000002,0.025091,0.0,0.0,No record,dtxsid,1
+METIRAM,Springtails & soil mites,0.030833100000000002,0.025091,0.0,0.0,No record,dtxsid,1
+METIRAM,"Soil bacteria, fungi & protozoa",0.030833100000000002,0.025091,0.0,0.0,No record,dtxsid,1
+ACETAMIPRID,Earthworms & potworms,0.0297455,0.0230253,22.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(9),10
+ACETAMIPRID,Springtails & soil mites,0.0297455,0.0230253,8.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(9),10
+ACETAMIPRID,"Soil bacteria, fungi & protozoa",0.0297455,0.0230253,0.0,0.0,No record,dtxsid+name_family(9),10
+HALOSULFURON,Earthworms & potworms,0.0293573,0.0218946,,,CAS unresolved,unresolved,0
+HALOSULFURON,Springtails & soil mites,0.0293573,0.0218946,,,CAS unresolved,unresolved,0
+HALOSULFURON,"Soil bacteria, fungi & protozoa",0.0293573,0.0218946,,,CAS unresolved,unresolved,0
+BUPROFEZIN,Earthworms & potworms,0.028919300000000002,0.0276883,5.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(4),5
+BUPROFEZIN,Springtails & soil mites,0.028919300000000002,0.0276883,1.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(4),5
+BUPROFEZIN,"Soil bacteria, fungi & protozoa",0.028919300000000002,0.0276883,0.0,0.0,No record,dtxsid+name_family(4),5
+HEXYTHIAZOX,Earthworms & potworms,0.028829900000000002,0.0109684,0.0,0.0,No record,dtxsid,1
+HEXYTHIAZOX,Springtails & soil mites,0.028829900000000002,0.0109684,0.0,0.0,No record,dtxsid,1
+HEXYTHIAZOX,"Soil bacteria, fungi & protozoa",0.028829900000000002,0.0109684,0.0,0.0,No record,dtxsid,1
+CHLORETHOXYFOS,Earthworms & potworms,0.02858,0.0062363,0.0,0.0,No record,dtxsid,1
+CHLORETHOXYFOS,Springtails & soil mites,0.02858,0.0062363,0.0,0.0,No record,dtxsid,1
+CHLORETHOXYFOS,"Soil bacteria, fungi & protozoa",0.02858,0.0062363,0.0,0.0,No record,dtxsid,1
+CLOTHIANIDIN,Earthworms & potworms,0.028486099999999997,0.0137843,20.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(6),7
+CLOTHIANIDIN,Springtails & soil mites,0.028486099999999997,0.0137843,15.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(6),7
+CLOTHIANIDIN,"Soil bacteria, fungi & protozoa",0.028486099999999997,0.0137843,0.0,0.0,No record,dtxsid+name_family(6),7
+CYMOXANIL,Earthworms & potworms,0.0281293,0.0215621,0.0,0.0,No record,dtxsid+name_family(14),15
+CYMOXANIL,Springtails & soil mites,0.0281293,0.0215621,0.0,0.0,No record,dtxsid+name_family(14),15
+CYMOXANIL,"Soil bacteria, fungi & protozoa",0.0281293,0.0215621,0.0,0.0,No record,dtxsid+name_family(14),15
+CHLORSULFURON,Earthworms & potworms,0.027562200000000002,0.0163924,1.0,5.0,"Field, >=1 year",dtxsid+name_family(1),2
+CHLORSULFURON,Springtails & soil mites,0.027562200000000002,0.0163924,0.0,0.0,No record,dtxsid+name_family(1),2
+CHLORSULFURON,"Soil bacteria, fungi & protozoa",0.027562200000000002,0.0163924,0.0,0.0,No record,dtxsid+name_family(1),2
+HYDROGEN PEROXIDE,Earthworms & potworms,0.027460099999999998,0.0031859,0.0,0.0,No record,dtxsid+name_family(5),6
+HYDROGEN PEROXIDE,Springtails & soil mites,0.027460099999999998,0.0031859,0.0,0.0,No record,dtxsid+name_family(5),6
+HYDROGEN PEROXIDE,"Soil bacteria, fungi & protozoa",0.027460099999999998,0.0031859,0.0,0.0,No record,dtxsid+name_family(5),6
+FENPROPATHRIN,Earthworms & potworms,0.026384,0.0259925,2.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid,1
+FENPROPATHRIN,Springtails & soil mites,0.026384,0.0259925,0.0,0.0,No record,dtxsid,1
+FENPROPATHRIN,"Soil bacteria, fungi & protozoa",0.026384,0.0259925,0.0,0.0,No record,dtxsid,1
+FLUMICLORAC,Earthworms & potworms,0.0260986,0.007155399999999999,0.0,0.0,No record,dtxsid+name_family(1),2
+FLUMICLORAC,Springtails & soil mites,0.0260986,0.007155399999999999,0.0,0.0,No record,dtxsid+name_family(1),2
+FLUMICLORAC,"Soil bacteria, fungi & protozoa",0.0260986,0.007155399999999999,0.0,0.0,No record,dtxsid+name_family(1),2
+THIRAM,Earthworms & potworms,0.0257212,0.0257212,0.0,0.0,No record,dtxsid+name_family(4),5
+THIRAM,Springtails & soil mites,0.0257212,0.0257212,0.0,0.0,No record,dtxsid+name_family(4),5
+THIRAM,"Soil bacteria, fungi & protozoa",0.0257212,0.0257212,19.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(4),5
+PYRIPROXYFEN,Earthworms & potworms,0.0243712,0.0076226,0.0,0.0,No record,dtxsid+name_family(7),8
+PYRIPROXYFEN,Springtails & soil mites,0.0243712,0.0076226,0.0,0.0,No record,dtxsid+name_family(7),8
+PYRIPROXYFEN,"Soil bacteria, fungi & protozoa",0.0243712,0.0076226,3.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(7),8
+SPINOSYN,Earthworms & potworms,0.023976900000000002,0.017975900000000003,,,CAS unresolved,unresolved,0
+SPINOSYN,Springtails & soil mites,0.023976900000000002,0.017975900000000003,,,CAS unresolved,unresolved,0
+SPINOSYN,"Soil bacteria, fungi & protozoa",0.023976900000000002,0.017975900000000003,,,CAS unresolved,unresolved,0
+PYROXSULAM,Earthworms & potworms,0.0232925,0.020748700000000002,0.0,0.0,No record,dtxsid,1
+PYROXSULAM,Springtails & soil mites,0.0232925,0.020748700000000002,0.0,0.0,No record,dtxsid,1
+PYROXSULAM,"Soil bacteria, fungi & protozoa",0.0232925,0.020748700000000002,0.0,0.0,No record,dtxsid,1
+PYRITHIOBAC-SODIUM,Earthworms & potworms,0.0231202,0.0162886,0.0,0.0,No record,dtxsid,1
+PYRITHIOBAC-SODIUM,Springtails & soil mites,0.0231202,0.0162886,0.0,0.0,No record,dtxsid,1
+PYRITHIOBAC-SODIUM,"Soil bacteria, fungi & protozoa",0.0231202,0.0162886,0.0,0.0,No record,dtxsid,1
+CYANTRANILIPROLE,Earthworms & potworms,0.0228527,0.020332299999999998,,,CAS unresolved,unresolved,0
+CYANTRANILIPROLE,Springtails & soil mites,0.0228527,0.020332299999999998,,,CAS unresolved,unresolved,0
+CYANTRANILIPROLE,"Soil bacteria, fungi & protozoa",0.0228527,0.020332299999999998,,,CAS unresolved,unresolved,0
+FOSETYL,Earthworms & potworms,0.0228038,0.0175021,0.0,0.0,No record,dtxsid+name_family(3),4
+FOSETYL,Springtails & soil mites,0.0228038,0.0175021,0.0,0.0,No record,dtxsid+name_family(3),4
+FOSETYL,"Soil bacteria, fungi & protozoa",0.0228038,0.0175021,2.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(3),4
+OXYTETRACYCLINE,Earthworms & potworms,0.0226388,0.020661,5.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(5),6
+OXYTETRACYCLINE,Springtails & soil mites,0.0226388,0.020661,2.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(5),6
+OXYTETRACYCLINE,"Soil bacteria, fungi & protozoa",0.0226388,0.020661,1.0,1.0,"Lab, not in soil",dtxsid+name_family(5),6
+CUPROUS OXIDE,Earthworms & potworms,0.0225676,0.0201158,0.0,0.0,No record,dtxsid+name_family(2),3
+CUPROUS OXIDE,Springtails & soil mites,0.0225676,0.0201158,0.0,0.0,No record,dtxsid+name_family(2),3
+CUPROUS OXIDE,"Soil bacteria, fungi & protozoa",0.0225676,0.0201158,0.0,0.0,No record,dtxsid+name_family(2),3
+IMAZAPIC,Earthworms & potworms,0.0212794,0.0193633,0.0,0.0,No record,dtxsid,1
+IMAZAPIC,Springtails & soil mites,0.0212794,0.0193633,0.0,0.0,No record,dtxsid,1
+IMAZAPIC,"Soil bacteria, fungi & protozoa",0.0212794,0.0193633,0.0,0.0,No record,dtxsid,1
+NOVALURON,Earthworms & potworms,0.020979,0.0137519,0.0,0.0,No record,dtxsid,1
+NOVALURON,Springtails & soil mites,0.020979,0.0137519,4.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid,1
+NOVALURON,"Soil bacteria, fungi & protozoa",0.020979,0.0137519,1.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid,1
+METHYL PARATHION,Earthworms & potworms,0.020969400000000003,0.0096119,0.0,0.0,No record,dtxsid,1
+METHYL PARATHION,Springtails & soil mites,0.020969400000000003,0.0096119,0.0,0.0,No record,dtxsid,1
+METHYL PARATHION,"Soil bacteria, fungi & protozoa",0.020969400000000003,0.0096119,0.0,0.0,No record,dtxsid,1
+MYCLOBUTANIL,Earthworms & potworms,0.020571,0.0196568,2.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(3),4
+MYCLOBUTANIL,Springtails & soil mites,0.020571,0.0196568,0.0,0.0,No record,dtxsid+name_family(3),4
+MYCLOBUTANIL,"Soil bacteria, fungi & protozoa",0.020571,0.0196568,2.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(3),4
+COPPER OXYCHLORIDE S,Earthworms & potworms,0.0204131,0.0148789,,,CAS unresolved,unresolved,0
+COPPER OXYCHLORIDE S,Springtails & soil mites,0.0204131,0.0148789,,,CAS unresolved,unresolved,0
+COPPER OXYCHLORIDE S,"Soil bacteria, fungi & protozoa",0.0204131,0.0148789,,,CAS unresolved,unresolved,0
+CYPERMETHRIN,Earthworms & potworms,0.019479,0.007864399999999999,14.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(11),12
+CYPERMETHRIN,Springtails & soil mites,0.019479,0.007864399999999999,6.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid+name_family(11),12
+CYPERMETHRIN,"Soil bacteria, fungi & protozoa",0.019479,0.007864399999999999,0.0,0.0,No record,dtxsid+name_family(11),12
+PROHEXADIONE,Earthworms & potworms,0.0190882,0.0139819,0.0,0.0,No record,dtxsid+name_family(1),2
+PROHEXADIONE,Springtails & soil mites,0.0190882,0.0139819,0.0,0.0,No record,dtxsid+name_family(1),2
+PROHEXADIONE,"Soil bacteria, fungi & protozoa",0.0190882,0.0139819,0.0,0.0,No record,dtxsid+name_family(1),2
+BUTRALIN,Earthworms & potworms,0.0188008,0.0129784,0.0,0.0,No record,dtxsid+name_family(2),3
+BUTRALIN,Springtails & soil mites,0.0188008,0.0129784,0.0,0.0,No record,dtxsid+name_family(2),3
+BUTRALIN,"Soil bacteria, fungi & protozoa",0.0188008,0.0129784,0.0,0.0,No record,dtxsid+name_family(2),3
+PYRIDABEN,Earthworms & potworms,0.0184934,0.0112572,1.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid,1
+PYRIDABEN,Springtails & soil mites,0.0184934,0.0112572,0.0,0.0,No record,dtxsid,1
+PYRIDABEN,"Soil bacteria, fungi & protozoa",0.0184934,0.0112572,0.0,0.0,No record,dtxsid,1
+BENFLURALIN,Earthworms & potworms,0.0181858,0.0181858,1.0,5.0,"Field, >=1 year",dtxsid+name_family(3),4
+BENFLURALIN,Springtails & soil mites,0.0181858,0.0181858,0.0,0.0,No record,dtxsid+name_family(3),4
+BENFLURALIN,"Soil bacteria, fungi & protozoa",0.0181858,0.0181858,2.0,1.0,"Lab, not in soil",dtxsid+name_family(3),4
+MANDIPROPAMID,Earthworms & potworms,0.018100599999999998,0.0154975,0.0,0.0,No record,dtxsid+name_family(1),2
+MANDIPROPAMID,Springtails & soil mites,0.018100599999999998,0.0154975,0.0,0.0,No record,dtxsid+name_family(1),2
+MANDIPROPAMID,"Soil bacteria, fungi & protozoa",0.018100599999999998,0.0154975,0.0,0.0,No record,dtxsid+name_family(1),2
+PROPOXYCARBAZONE,Earthworms & potworms,0.0179454,0.0117636,,,CAS unresolved,unresolved,0
+PROPOXYCARBAZONE,Springtails & soil mites,0.0179454,0.0117636,,,CAS unresolved,unresolved,0
+PROPOXYCARBAZONE,"Soil bacteria, fungi & protozoa",0.0179454,0.0117636,,,CAS unresolved,unresolved,0
+PROPYZAMIDE,Earthworms & potworms,0.017523199999999996,0.017523199999999996,0.0,0.0,No record,dtxsid+name_family(1),2
+PROPYZAMIDE,Springtails & soil mites,0.017523199999999996,0.017523199999999996,0.0,0.0,No record,dtxsid+name_family(1),2
+PROPYZAMIDE,"Soil bacteria, fungi & protozoa",0.017523199999999996,0.017523199999999996,0.0,0.0,No record,dtxsid+name_family(1),2
+FAMOXADONE,Earthworms & potworms,0.017079900000000002,0.0110449,0.0,0.0,No record,dtxsid+name_family(3),4
+FAMOXADONE,Springtails & soil mites,0.017079900000000002,0.0110449,0.0,0.0,No record,dtxsid+name_family(3),4
+FAMOXADONE,"Soil bacteria, fungi & protozoa",0.017079900000000002,0.0110449,0.0,0.0,No record,dtxsid+name_family(3),4
+DELTAMETHRIN,Earthworms & potworms,0.0169912,0.0052778,18.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid,1
+DELTAMETHRIN,Springtails & soil mites,0.0169912,0.0052778,14.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid,1
+DELTAMETHRIN,"Soil bacteria, fungi & protozoa",0.0169912,0.0052778,0.0,0.0,No record,dtxsid,1
+CYHALOTHRIN-GAMMA,Earthworms & potworms,0.0169512,0.0041221999999999995,,,CAS unresolved,unresolved,0
+CYHALOTHRIN-GAMMA,Springtails & soil mites,0.0169512,0.0041221999999999995,,,CAS unresolved,unresolved,0
+CYHALOTHRIN-GAMMA,"Soil bacteria, fungi & protozoa",0.0169512,0.0041221999999999995,,,CAS unresolved,unresolved,0
+ZOXAMIDE,Earthworms & potworms,0.016819599999999997,0.0110842,0.0,0.0,No record,dtxsid+name_family(1),2
+ZOXAMIDE,Springtails & soil mites,0.016819599999999997,0.0110842,0.0,0.0,No record,dtxsid+name_family(1),2
+ZOXAMIDE,"Soil bacteria, fungi & protozoa",0.016819599999999997,0.0110842,0.0,0.0,No record,dtxsid+name_family(1),2
+FENBUCONAZOLE,Earthworms & potworms,0.0165483,0.0161491,0.0,0.0,No record,dtxsid+name_family(2),3
+FENBUCONAZOLE,Springtails & soil mites,0.0165483,0.0161491,0.0,0.0,No record,dtxsid+name_family(2),3
+FENBUCONAZOLE,"Soil bacteria, fungi & protozoa",0.0165483,0.0161491,12.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(2),3
+DIMETHOMORPH,Earthworms & potworms,0.0162915,0.009548,0.0,0.0,No record,dtxsid+name_family(1),2
+DIMETHOMORPH,Springtails & soil mites,0.0162915,0.009548,0.0,0.0,No record,dtxsid+name_family(1),2
+DIMETHOMORPH,"Soil bacteria, fungi & protozoa",0.0162915,0.009548,0.0,0.0,No record,dtxsid+name_family(1),2
+ABAMECTIN,Earthworms & potworms,0.0150896,0.011562,20.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(14),15
+ABAMECTIN,Springtails & soil mites,0.0150896,0.011562,4.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(14),15
+ABAMECTIN,"Soil bacteria, fungi & protozoa",0.0150896,0.011562,2.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(14),15
+INDAZIFLAM,Earthworms & potworms,0.014478600000000001,0.0141015,0.0,0.0,No record,dtxsid,1
+INDAZIFLAM,Springtails & soil mites,0.014478600000000001,0.0141015,0.0,0.0,No record,dtxsid,1
+INDAZIFLAM,"Soil bacteria, fungi & protozoa",0.014478600000000001,0.0141015,0.0,0.0,No record,dtxsid,1
+CYANAMIDE,Earthworms & potworms,0.0144185,0.0105188,0.0,0.0,No record,dtxsid,1
+CYANAMIDE,Springtails & soil mites,0.0144185,0.0105188,0.0,0.0,No record,dtxsid,1
+CYANAMIDE,"Soil bacteria, fungi & protozoa",0.0144185,0.0105188,0.0,0.0,No record,dtxsid,1
+FLONICAMID,Earthworms & potworms,0.0143447,0.0069181,1.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid+name_family(1),2
+FLONICAMID,Springtails & soil mites,0.0143447,0.0069181,5.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid+name_family(1),2
+FLONICAMID,"Soil bacteria, fungi & protozoa",0.0143447,0.0069181,0.0,0.0,No record,dtxsid+name_family(1),2
+TOLFENPYRAD,Earthworms & potworms,0.0142214,0.010016200000000001,,,CAS unresolved,unresolved,0
+TOLFENPYRAD,Springtails & soil mites,0.0142214,0.010016200000000001,,,CAS unresolved,unresolved,0
+TOLFENPYRAD,"Soil bacteria, fungi & protozoa",0.0142214,0.010016200000000001,,,CAS unresolved,unresolved,0
+FLUTHIACET-METHYL,Earthworms & potworms,0.0141771,0.0072283,0.0,0.0,No record,dtxsid,1
+FLUTHIACET-METHYL,Springtails & soil mites,0.0141771,0.0072283,0.0,0.0,No record,dtxsid,1
+FLUTHIACET-METHYL,"Soil bacteria, fungi & protozoa",0.0141771,0.0072283,0.0,0.0,No record,dtxsid,1
+INDOXACARB,Earthworms & potworms,0.0135023,0.0084577,0.0,0.0,No record,dtxsid+name_family(1),2
+INDOXACARB,Springtails & soil mites,0.0135023,0.0084577,0.0,0.0,No record,dtxsid+name_family(1),2
+INDOXACARB,"Soil bacteria, fungi & protozoa",0.0135023,0.0084577,0.0,0.0,No record,dtxsid+name_family(1),2
+CLODINAFOP,Earthworms & potworms,0.013222600000000001,0.0062712,0.0,0.0,No record,dtxsid+name_family(2),3
+CLODINAFOP,Springtails & soil mites,0.013222600000000001,0.0062712,0.0,0.0,No record,dtxsid+name_family(2),3
+CLODINAFOP,"Soil bacteria, fungi & protozoa",0.013222600000000001,0.0062712,0.0,0.0,No record,dtxsid+name_family(2),3
+REYNOUTRIA SACHALINENSIS,Earthworms & potworms,0.0129905,0.0072562,,,CAS unresolved,unresolved,0
+REYNOUTRIA SACHALINENSIS,Springtails & soil mites,0.0129905,0.0072562,,,CAS unresolved,unresolved,0
+REYNOUTRIA SACHALINENSIS,"Soil bacteria, fungi & protozoa",0.0129905,0.0072562,,,CAS unresolved,unresolved,0
+TERBACIL,Earthworms & potworms,0.0127577,0.0073191,0.0,0.0,No record,dtxsid,1
+TERBACIL,Springtails & soil mites,0.0127577,0.0073191,0.0,0.0,No record,dtxsid,1
+TERBACIL,"Soil bacteria, fungi & protozoa",0.0127577,0.0073191,5.0,5.0,"Field, >=1 year",dtxsid,1
+DICLORAN,Earthworms & potworms,0.0118456,0.0079296,0.0,0.0,No record,dtxsid,1
+DICLORAN,Springtails & soil mites,0.0118456,0.0079296,0.0,0.0,No record,dtxsid,1
+DICLORAN,"Soil bacteria, fungi & protozoa",0.0118456,0.0079296,3.0,4.0,"Field, single season (<1 yr)",dtxsid,1
+PYMETROZINE,Earthworms & potworms,0.0112422,0.0039389,0.0,0.0,No record,dtxsid+name_family(1),2
+PYMETROZINE,Springtails & soil mites,0.0112422,0.0039389,2.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(1),2
+PYMETROZINE,"Soil bacteria, fungi & protozoa",0.0112422,0.0039389,0.0,0.0,No record,dtxsid+name_family(1),2
+FENPYROXIMATE,Earthworms & potworms,0.0108976,0.0074463,1.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid,1
+FENPYROXIMATE,Springtails & soil mites,0.0108976,0.0074463,0.0,0.0,No record,dtxsid,1
+FENPYROXIMATE,"Soil bacteria, fungi & protozoa",0.0108976,0.0074463,0.0,0.0,No record,dtxsid,1
+AMECTOCTRADIN,Earthworms & potworms,0.010557200000000001,0.0066357,,,CAS unresolved,unresolved,0
+AMECTOCTRADIN,Springtails & soil mites,0.010557200000000001,0.0066357,,,CAS unresolved,unresolved,0
+AMECTOCTRADIN,"Soil bacteria, fungi & protozoa",0.010557200000000001,0.0066357,,,CAS unresolved,unresolved,0
+PROPAZINE,Earthworms & potworms,0.0104934,0.0042211,0.0,0.0,No record,dtxsid,1
+PROPAZINE,Springtails & soil mites,0.0104934,0.0042211,0.0,0.0,No record,dtxsid,1
+PROPAZINE,"Soil bacteria, fungi & protozoa",0.0104934,0.0042211,3.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid,1
+TEBUTHIURON,Earthworms & potworms,0.0103608,0.0033205,0.0,0.0,No record,dtxsid,1
+TEBUTHIURON,Springtails & soil mites,0.0103608,0.0033205,0.0,0.0,No record,dtxsid,1
+TEBUTHIURON,"Soil bacteria, fungi & protozoa",0.0103608,0.0033205,2.0,4.0,"Field, single season (<1 yr)",dtxsid,1
+DINOTEFURAN,Earthworms & potworms,0.0101956,0.0085369,9.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid,1
+DINOTEFURAN,Springtails & soil mites,0.0101956,0.0085369,9.0,4.0,"Field, single season (<1 yr)",dtxsid,1
+DINOTEFURAN,"Soil bacteria, fungi & protozoa",0.0101956,0.0085369,0.0,0.0,No record,dtxsid,1
+AUREOBASIDIUM PULLULANS,Earthworms & potworms,0.009988700000000001,0.009929799999999999,,,CAS unresolved,unresolved,0
+AUREOBASIDIUM PULLULANS,Springtails & soil mites,0.009988700000000001,0.009929799999999999,,,CAS unresolved,unresolved,0
+AUREOBASIDIUM PULLULANS,"Soil bacteria, fungi & protozoa",0.009988700000000001,0.009929799999999999,,,CAS unresolved,unresolved,0
+FLURIDONE,Earthworms & potworms,0.009775,0.0037565,0.0,0.0,No record,dtxsid,1
+FLURIDONE,Springtails & soil mites,0.009775,0.0037565,0.0,0.0,No record,dtxsid,1
+FLURIDONE,"Soil bacteria, fungi & protozoa",0.009775,0.0037565,0.0,0.0,No record,dtxsid,1
+SULFOSULFURON,Earthworms & potworms,0.0093681,0.0031669000000000003,0.0,0.0,No record,dtxsid,1
+SULFOSULFURON,Springtails & soil mites,0.0093681,0.0031669000000000003,0.0,0.0,No record,dtxsid,1
+SULFOSULFURON,"Soil bacteria, fungi & protozoa",0.0093681,0.0031669000000000003,0.0,0.0,No record,dtxsid,1
+BACILLUS SUBTILIS,Earthworms & potworms,0.008881,0.008765700000000001,,,CAS unresolved,unresolved,0
+BACILLUS SUBTILIS,Springtails & soil mites,0.008881,0.008765700000000001,,,CAS unresolved,unresolved,0
+BACILLUS SUBTILIS,"Soil bacteria, fungi & protozoa",0.008881,0.008765700000000001,,,CAS unresolved,unresolved,0
+FLUOPICOLIDE,Earthworms & potworms,0.0085893,0.0065761000000000005,0.0,0.0,No record,dtxsid+name_family(1),2
+FLUOPICOLIDE,Springtails & soil mites,0.0085893,0.0065761000000000005,0.0,0.0,No record,dtxsid+name_family(1),2
+FLUOPICOLIDE,"Soil bacteria, fungi & protozoa",0.0085893,0.0065761000000000005,0.0,0.0,No record,dtxsid+name_family(1),2
+PROSULFURON,Earthworms & potworms,0.0085695,0.0029621,0.0,0.0,No record,dtxsid,1
+PROSULFURON,Springtails & soil mites,0.0085695,0.0029621,0.0,0.0,No record,dtxsid,1
+PROSULFURON,"Soil bacteria, fungi & protozoa",0.0085695,0.0029621,0.0,0.0,No record,dtxsid,1
+CYAZOFAMID,Earthworms & potworms,0.008351299999999999,0.008035,1.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid,1
+CYAZOFAMID,Springtails & soil mites,0.008351299999999999,0.008035,0.0,0.0,No record,dtxsid,1
+CYAZOFAMID,"Soil bacteria, fungi & protozoa",0.008351299999999999,0.008035,0.0,0.0,No record,dtxsid,1
+FENBUTATIN OXIDE,Earthworms & potworms,0.0080006,0.007052900000000001,0.0,0.0,No record,dtxsid,1
+FENBUTATIN OXIDE,Springtails & soil mites,0.0080006,0.007052900000000001,0.0,0.0,No record,dtxsid,1
+FENBUTATIN OXIDE,"Soil bacteria, fungi & protozoa",0.0080006,0.007052900000000001,0.0,0.0,No record,dtxsid,1
+KRESOXIM-METHYL,Earthworms & potworms,0.0077511,0.00638,0.0,0.0,No record,dtxsid+name_family(5),6
+KRESOXIM-METHYL,Springtails & soil mites,0.0077511,0.00638,0.0,0.0,No record,dtxsid+name_family(5),6
+KRESOXIM-METHYL,"Soil bacteria, fungi & protozoa",0.0077511,0.00638,1.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(5),6
+FLORASULAM,Earthworms & potworms,0.0074572,0.004630899999999999,0.0,0.0,No record,dtxsid,1
+FLORASULAM,Springtails & soil mites,0.0074572,0.004630899999999999,0.0,0.0,No record,dtxsid,1
+FLORASULAM,"Soil bacteria, fungi & protozoa",0.0074572,0.004630899999999999,0.0,0.0,No record,dtxsid,1
+BACILLUS MYCOIDES,Earthworms & potworms,0.0072338,0.0045258,,,CAS unresolved,unresolved,0
+BACILLUS MYCOIDES,Springtails & soil mites,0.0072338,0.0045258,,,CAS unresolved,unresolved,0
+BACILLUS MYCOIDES,"Soil bacteria, fungi & protozoa",0.0072338,0.0045258,,,CAS unresolved,unresolved,0
+QUINOXYFEN,Earthworms & potworms,0.0070996,0.0066847,0.0,0.0,No record,dtxsid+name_family(1),2
+QUINOXYFEN,Springtails & soil mites,0.0070996,0.0066847,0.0,0.0,No record,dtxsid+name_family(1),2
+QUINOXYFEN,"Soil bacteria, fungi & protozoa",0.0070996,0.0066847,0.0,0.0,No record,dtxsid+name_family(1),2
+ORYZALIN,Earthworms & potworms,0.0069721,0.0065767,0.0,0.0,No record,dtxsid+name_family(5),6
+ORYZALIN,Springtails & soil mites,0.0069721,0.0065767,0.0,0.0,No record,dtxsid+name_family(5),6
+ORYZALIN,"Soil bacteria, fungi & protozoa",0.0069721,0.0065767,0.0,0.0,No record,dtxsid+name_family(5),6
+EMAMECTIN,Earthworms & potworms,0.006593,0.0004764,2.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid+name_family(3),4
+EMAMECTIN,Springtails & soil mites,0.006593,0.0004764,0.0,0.0,No record,dtxsid+name_family(3),4
+EMAMECTIN,"Soil bacteria, fungi & protozoa",0.006593,0.0004764,1.0,1.0,"Lab, not in soil",dtxsid+name_family(3),4
+NALED,Earthworms & potworms,0.0064156000000000005,0.0055705,0.0,0.0,No record,dtxsid,1
+NALED,Springtails & soil mites,0.0064156000000000005,0.0055705,0.0,0.0,No record,dtxsid,1
+NALED,"Soil bacteria, fungi & protozoa",0.0064156000000000005,0.0055705,0.0,0.0,No record,dtxsid,1
+IMAZOSULFURON,Earthworms & potworms,0.0061855,0.0009194000000000001,0.0,0.0,No record,dtxsid,1
+IMAZOSULFURON,Springtails & soil mites,0.0061855,0.0009194000000000001,0.0,0.0,No record,dtxsid,1
+IMAZOSULFURON,"Soil bacteria, fungi & protozoa",0.0061855,0.0009194000000000001,0.0,0.0,No record,dtxsid,1
+FLUBENDIAMIDE,Earthworms & potworms,0.0061091,0.0027521,0.0,0.0,No record,dtxsid+name_family(4),5
+FLUBENDIAMIDE,Springtails & soil mites,0.0061091,0.0027521,3.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(4),5
+FLUBENDIAMIDE,"Soil bacteria, fungi & protozoa",0.0061091,0.0027521,1.0,1.0,"Lab, not in soil",dtxsid+name_family(4),5
+BLADPROTEIN,Earthworms & potworms,0.0060867000000000004,0.0014253,,,CAS unresolved,unresolved,0
+BLADPROTEIN,Springtails & soil mites,0.0060867000000000004,0.0014253,,,CAS unresolved,unresolved,0
+BLADPROTEIN,"Soil bacteria, fungi & protozoa",0.0060867000000000004,0.0014253,,,CAS unresolved,unresolved,0
+AVIGLYCINE,Earthworms & potworms,0.0060162,0.005977099999999999,0.0,0.0,No record,dtxsid+name_family(1),2
+AVIGLYCINE,Springtails & soil mites,0.0060162,0.005977099999999999,0.0,0.0,No record,dtxsid+name_family(1),2
+AVIGLYCINE,"Soil bacteria, fungi & protozoa",0.0060162,0.005977099999999999,0.0,0.0,No record,dtxsid+name_family(1),2
+PRIMISULFURON,Earthworms & potworms,0.005803,0.0012636,0.0,0.0,No record,dtxsid+name_family(2),3
+PRIMISULFURON,Springtails & soil mites,0.005803,0.0012636,0.0,0.0,No record,dtxsid+name_family(2),3
+PRIMISULFURON,"Soil bacteria, fungi & protozoa",0.005803,0.0012636,0.0,0.0,No record,dtxsid+name_family(2),3
+MESOSULFURON,Earthworms & potworms,0.0054794,0.002801,0.0,0.0,No record,dtxsid+name_family(1),2
+MESOSULFURON,Springtails & soil mites,0.0054794,0.002801,0.0,0.0,No record,dtxsid+name_family(1),2
+MESOSULFURON,"Soil bacteria, fungi & protozoa",0.0054794,0.002801,0.0,0.0,No record,dtxsid+name_family(1),2
+ETHABOXAM,Earthworms & potworms,0.0048888000000000004,0.0044072,,,CAS unresolved,unresolved,0
+ETHABOXAM,Springtails & soil mites,0.0048888000000000004,0.0044072,,,CAS unresolved,unresolved,0
+ETHABOXAM,"Soil bacteria, fungi & protozoa",0.0048888000000000004,0.0044072,,,CAS unresolved,unresolved,0
+HALAUXIFEN,Earthworms & potworms,0.0047858,0.002077,,,CAS unresolved,unresolved,0
+HALAUXIFEN,Springtails & soil mites,0.0047858,0.002077,,,CAS unresolved,unresolved,0
+HALAUXIFEN,"Soil bacteria, fungi & protozoa",0.0047858,0.002077,,,CAS unresolved,unresolved,0
+NEEM OIL,Earthworms & potworms,0.0046869,0.0046869,0.0,0.0,No record,dtxsid,1
+NEEM OIL,Springtails & soil mites,0.0046869,0.0046869,0.0,0.0,No record,dtxsid,1
+NEEM OIL,"Soil bacteria, fungi & protozoa",0.0046869,0.0046869,2.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid,1
+CYDIA POMONELLA,Earthworms & potworms,0.004471,0.0045675,,,CAS unresolved,unresolved,0
+CYDIA POMONELLA,Springtails & soil mites,0.004471,0.0045675,,,CAS unresolved,unresolved,0
+CYDIA POMONELLA,"Soil bacteria, fungi & protozoa",0.004471,0.0045675,,,CAS unresolved,unresolved,0
+METALAXYL,Earthworms & potworms,0.004229,0.0026894,4.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(3),4
+METALAXYL,Springtails & soil mites,0.004229,0.0026894,0.0,0.0,No record,dtxsid+name_family(3),4
+METALAXYL,"Soil bacteria, fungi & protozoa",0.004229,0.0026894,8.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(3),4
+ETOXAZOLE,Earthworms & potworms,0.004192100000000001,0.0029785,0.0,0.0,No record,dtxsid,1
+ETOXAZOLE,Springtails & soil mites,0.004192100000000001,0.0029785,0.0,0.0,No record,dtxsid,1
+ETOXAZOLE,"Soil bacteria, fungi & protozoa",0.004192100000000001,0.0029785,0.0,0.0,No record,dtxsid,1
+FLUDIOXONIL,Earthworms & potworms,0.0041147,0.0023273,0.0,0.0,No record,dtxsid+name_family(10),11
+FLUDIOXONIL,Springtails & soil mites,0.0041147,0.0023273,0.0,0.0,No record,dtxsid+name_family(10),11
+FLUDIOXONIL,"Soil bacteria, fungi & protozoa",0.0041147,0.0023273,5.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(10),11
+FENAMIDONE,Earthworms & potworms,0.0040301,0.0024705,0.0,0.0,No record,dtxsid+name_family(2),3
+FENAMIDONE,Springtails & soil mites,0.0040301,0.0024705,0.0,0.0,No record,dtxsid+name_family(2),3
+FENAMIDONE,"Soil bacteria, fungi & protozoa",0.0040301,0.0024705,0.0,0.0,No record,dtxsid+name_family(2),3
+FENHEXAMID,Earthworms & potworms,0.0039051000000000003,0.0038691000000000003,0.0,0.0,No record,dtxsid,1
+FENHEXAMID,Springtails & soil mites,0.0039051000000000003,0.0038691000000000003,0.0,0.0,No record,dtxsid,1
+FENHEXAMID,"Soil bacteria, fungi & protozoa",0.0039051000000000003,0.0038691000000000003,0.0,0.0,No record,dtxsid,1
+FLORPYRAUXIFEN,Earthworms & potworms,0.0038972,0.0034684,,,CAS unresolved,unresolved,0
+FLORPYRAUXIFEN,Springtails & soil mites,0.0038972,0.0034684,,,CAS unresolved,unresolved,0
+FLORPYRAUXIFEN,"Soil bacteria, fungi & protozoa",0.0038972,0.0034684,,,CAS unresolved,unresolved,0
+TRALKOXYDIM,Earthworms & potworms,0.003448,0.0005578,0.0,0.0,No record,dtxsid,1
+TRALKOXYDIM,Springtails & soil mites,0.003448,0.0005578,0.0,0.0,No record,dtxsid,1
+TRALKOXYDIM,"Soil bacteria, fungi & protozoa",0.003448,0.0005578,0.0,0.0,No record,dtxsid,1
+NAPHTHYLACETIC ACID,Earthworms & potworms,0.0033879,0.0036304,0.0,0.0,No record,dtxsid+name_family(7),8
+NAPHTHYLACETIC ACID,Springtails & soil mites,0.0033879,0.0036304,0.0,0.0,No record,dtxsid+name_family(7),8
+NAPHTHYLACETIC ACID,"Soil bacteria, fungi & protozoa",0.0033879,0.0036304,0.0,0.0,No record,dtxsid+name_family(7),8
+CYCLOATE,Earthworms & potworms,0.0032274,3e-07,1.0,1.0,"Lab, not in soil",dtxsid,1
+CYCLOATE,Springtails & soil mites,0.0032274,3e-07,0.0,0.0,No record,dtxsid,1
+CYCLOATE,"Soil bacteria, fungi & protozoa",0.0032274,3e-07,0.0,0.0,No record,dtxsid,1
+FIPRONIL,Earthworms & potworms,0.0032099,0.0018517,3.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(5),6
+FIPRONIL,Springtails & soil mites,0.0032099,0.0018517,5.0,4.0,"Field, single season (<1 yr)",dtxsid+name_family(5),6
+FIPRONIL,"Soil bacteria, fungi & protozoa",0.0032099,0.0018517,4.0,1.0,"Lab, not in soil",dtxsid+name_family(5),6
+GIBBERELLIC ACID,Earthworms & potworms,0.0031785,0.0032581,0.0,0.0,No record,dtxsid+name_family(1),2
+GIBBERELLIC ACID,Springtails & soil mites,0.0031785,0.0032581,0.0,0.0,No record,dtxsid+name_family(1),2
+GIBBERELLIC ACID,"Soil bacteria, fungi & protozoa",0.0031785,0.0032581,0.0,0.0,No record,dtxsid+name_family(1),2
+DESMEDIPHAM,Earthworms & potworms,0.0031334,0.0025719000000000002,0.0,0.0,No record,dtxsid,1
+DESMEDIPHAM,Springtails & soil mites,0.0031334,0.0025719000000000002,0.0,0.0,No record,dtxsid,1
+DESMEDIPHAM,"Soil bacteria, fungi & protozoa",0.0031334,0.0025719000000000002,0.0,0.0,No record,dtxsid,1
+PHENMEDIPHAM,Earthworms & potworms,0.0031334,0.0025719000000000002,26.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(1),2
+PHENMEDIPHAM,Springtails & soil mites,0.0031334,0.0025719000000000002,10.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(1),2
+PHENMEDIPHAM,"Soil bacteria, fungi & protozoa",0.0031334,0.0025719000000000002,1.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid+name_family(1),2
+DICLOSULAM,Earthworms & potworms,0.0029985,0.0027945,0.0,0.0,No record,dtxsid,1
+DICLOSULAM,Springtails & soil mites,0.0029985,0.0027945,0.0,0.0,No record,dtxsid,1
+DICLOSULAM,"Soil bacteria, fungi & protozoa",0.0029985,0.0027945,3.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid,1
+CHROMOBACTERIUM SUBTSUGAE,Earthworms & potworms,0.0027432,0.0005242000000000001,,,CAS unresolved,unresolved,0
+CHROMOBACTERIUM SUBTSUGAE,Springtails & soil mites,0.0027432,0.0005242000000000001,,,CAS unresolved,unresolved,0
+CHROMOBACTERIUM SUBTSUGAE,"Soil bacteria, fungi & protozoa",0.0027432,0.0005242000000000001,,,CAS unresolved,unresolved,0
+BENSULFURON,Earthworms & potworms,0.0027312,0.0017456,0.0,0.0,No record,dtxsid+name_family(2),3
+BENSULFURON,Springtails & soil mites,0.0027312,0.0017456,0.0,0.0,No record,dtxsid+name_family(2),3
+BENSULFURON,"Soil bacteria, fungi & protozoa",0.0027312,0.0017456,0.0,0.0,No record,dtxsid+name_family(2),3
+BISPYRIBAC,Earthworms & potworms,0.0026782,0.0021654,0.0,0.0,No record,dtxsid+name_family(1),2
+BISPYRIBAC,Springtails & soil mites,0.0026782,0.0021654,0.0,0.0,No record,dtxsid+name_family(1),2
+BISPYRIBAC,"Soil bacteria, fungi & protozoa",0.0026782,0.0021654,0.0,0.0,No record,dtxsid+name_family(1),2
+PENOXSULAM,Earthworms & potworms,0.0025339,0.0020986,0.0,0.0,No record,dtxsid,1
+PENOXSULAM,Springtails & soil mites,0.0025339,0.0020986,0.0,0.0,No record,dtxsid,1
+PENOXSULAM,"Soil bacteria, fungi & protozoa",0.0025339,0.0020986,0.0,0.0,No record,dtxsid,1
+PYRAFLUFEN ETHYL,Earthworms & potworms,0.0024274,0.000676,1.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid,1
+PYRAFLUFEN ETHYL,Springtails & soil mites,0.0024274,0.000676,0.0,0.0,No record,dtxsid,1
+PYRAFLUFEN ETHYL,"Soil bacteria, fungi & protozoa",0.0024274,0.000676,0.0,0.0,No record,dtxsid,1
+PYDIFLUMETOFEN,Earthworms & potworms,0.0022093,0.0016266,,,CAS unresolved,unresolved,0
+PYDIFLUMETOFEN,Springtails & soil mites,0.0022093,0.0016266,,,CAS unresolved,unresolved,0
+PYDIFLUMETOFEN,"Soil bacteria, fungi & protozoa",0.0022093,0.0016266,,,CAS unresolved,unresolved,0
+BIFENAZATE,Earthworms & potworms,0.0021611,0.0011764,0.0,0.0,No record,dtxsid,1
+BIFENAZATE,Springtails & soil mites,0.0021611,0.0011764,0.0,0.0,No record,dtxsid,1
+BIFENAZATE,"Soil bacteria, fungi & protozoa",0.0021611,0.0011764,0.0,0.0,No record,dtxsid,1
+PAECILOMYCES LILACINUS,Earthworms & potworms,0.0021275,0.0019578,,,CAS unresolved,unresolved,0
+PAECILOMYCES LILACINUS,Springtails & soil mites,0.0021275,0.0019578,,,CAS unresolved,unresolved,0
+PAECILOMYCES LILACINUS,"Soil bacteria, fungi & protozoa",0.0021275,0.0019578,,,CAS unresolved,unresolved,0
+CYFLUMETOFEN,Earthworms & potworms,0.0021255,0.0018835,,,CAS unresolved,unresolved,0
+CYFLUMETOFEN,Springtails & soil mites,0.0021255,0.0018835,,,CAS unresolved,unresolved,0
+CYFLUMETOFEN,"Soil bacteria, fungi & protozoa",0.0021255,0.0018835,,,CAS unresolved,unresolved,0
+ORTHOSULFAMURON,Earthworms & potworms,0.0020616,0.0010145,0.0,0.0,No record,dtxsid,1
+ORTHOSULFAMURON,Springtails & soil mites,0.0020616,0.0010145,0.0,0.0,No record,dtxsid,1
+ORTHOSULFAMURON,"Soil bacteria, fungi & protozoa",0.0020616,0.0010145,0.0,0.0,No record,dtxsid,1
+OXATHIAPIPROLIN,Earthworms & potworms,0.0020553000000000004,0.0012986,,,CAS unresolved,unresolved,0
+OXATHIAPIPROLIN,Springtails & soil mites,0.0020553000000000004,0.0012986,,,CAS unresolved,unresolved,0
+OXATHIAPIPROLIN,"Soil bacteria, fungi & protozoa",0.0020553000000000004,0.0012986,,,CAS unresolved,unresolved,0
+6-BENZYLADENINE,Earthworms & potworms,0.0020337,0.0020758,0.0,0.0,No record,dtxsid+name_family(1),2
+6-BENZYLADENINE,Springtails & soil mites,0.0020337,0.0020758,0.0,0.0,No record,dtxsid+name_family(1),2
+6-BENZYLADENINE,"Soil bacteria, fungi & protozoa",0.0020337,0.0020758,0.0,0.0,No record,dtxsid+name_family(1),2
+POLYHEDROSIS VIRUS,Earthworms & potworms,0.0019738,0.0007036999999999999,,,CAS unresolved,unresolved,0
+POLYHEDROSIS VIRUS,Springtails & soil mites,0.0019738,0.0007036999999999999,,,CAS unresolved,unresolved,0
+POLYHEDROSIS VIRUS,"Soil bacteria, fungi & protozoa",0.0019738,0.0007036999999999999,,,CAS unresolved,unresolved,0
+IODOSULFURON,Earthworms & potworms,0.001308,0.0003298,0.0,0.0,No record,dtxsid,1
+IODOSULFURON,Springtails & soil mites,0.001308,0.0003298,0.0,0.0,No record,dtxsid,1
+IODOSULFURON,"Soil bacteria, fungi & protozoa",0.001308,0.0003298,0.0,0.0,No record,dtxsid,1
+POLYOXORIM,Earthworms & potworms,0.0011724,0.0010425999999999999,0.0,0.0,No record,dtxsid,1
+POLYOXORIM,Springtails & soil mites,0.0011724,0.0010425999999999999,0.0,0.0,No record,dtxsid,1
+POLYOXORIM,"Soil bacteria, fungi & protozoa",0.0011724,0.0010425999999999999,0.0,0.0,No record,dtxsid,1
+ISOXABEN,Earthworms & potworms,0.0011294,0.00029360000000000003,2.0,4.0,"Field, single season (<1 yr)",dtxsid,1
+ISOXABEN,Springtails & soil mites,0.0011294,0.00029360000000000003,0.0,0.0,No record,dtxsid,1
+ISOXABEN,"Soil bacteria, fungi & protozoa",0.0011294,0.00029360000000000003,0.0,0.0,No record,dtxsid,1
+CYFLUFENAMID,Earthworms & potworms,0.0010912,0.0009179,0.0,0.0,No record,dtxsid,1
+CYFLUFENAMID,Springtails & soil mites,0.0010912,0.0009179,0.0,0.0,No record,dtxsid,1
+CYFLUFENAMID,"Soil bacteria, fungi & protozoa",0.0010912,0.0009179,0.0,0.0,No record,dtxsid,1
+KASUGAMYCIN,Earthworms & potworms,0.0010641,0.000904,,,CAS unresolved,unresolved,0
+KASUGAMYCIN,Springtails & soil mites,0.0010641,0.000904,,,CAS unresolved,unresolved,0
+KASUGAMYCIN,"Soil bacteria, fungi & protozoa",0.0010641,0.000904,,,CAS unresolved,unresolved,0
+TRIFLOXYSULFURON,Earthworms & potworms,0.0009957,0.00014069999999999998,,,CAS unresolved,unresolved,0
+TRIFLOXYSULFURON,Springtails & soil mites,0.0009957,0.00014069999999999998,,,CAS unresolved,unresolved,0
+TRIFLOXYSULFURON,"Soil bacteria, fungi & protozoa",0.0009957,0.00014069999999999998,,,CAS unresolved,unresolved,0
+CYTOKININ,Earthworms & potworms,0.0008428999999999999,0.0005202999999999999,0.0,0.0,No record,dtxsid,1
+CYTOKININ,Springtails & soil mites,0.0008428999999999999,0.0005202999999999999,0.0,0.0,No record,dtxsid,1
+CYTOKININ,"Soil bacteria, fungi & protozoa",0.0008428999999999999,0.0005202999999999999,0.0,0.0,No record,dtxsid,1
+METRAFENONE,Earthworms & potworms,0.000803,0.0006524,0.0,0.0,No record,dtxsid,1
+METRAFENONE,Springtails & soil mites,0.000803,0.0006524,0.0,0.0,No record,dtxsid,1
+METRAFENONE,"Soil bacteria, fungi & protozoa",0.000803,0.0006524,0.0,0.0,No record,dtxsid,1
+IMAZAMETHABENZ,Earthworms & potworms,0.0007654,4.4e-05,,,CAS unresolved,unresolved,0
+IMAZAMETHABENZ,Springtails & soil mites,0.0007654,4.4e-05,,,CAS unresolved,unresolved,0
+IMAZAMETHABENZ,"Soil bacteria, fungi & protozoa",0.0007654,4.4e-05,,,CAS unresolved,unresolved,0
+IBA,Earthworms & potworms,0.0005562000000000001,6.92e-05,0.0,0.0,No record,dtxsid+name_family(2),3
+IBA,Springtails & soil mites,0.0005562000000000001,6.92e-05,0.0,0.0,No record,dtxsid+name_family(2),3
+IBA,"Soil bacteria, fungi & protozoa",0.0005562000000000001,6.92e-05,0.0,0.0,No record,dtxsid+name_family(2),3
+ACIBENZOLAR,Earthworms & potworms,0.0005472000000000001,0.0004671,,,CAS unresolved,unresolved,0
+ACIBENZOLAR,Springtails & soil mites,0.0005472000000000001,0.0004671,,,CAS unresolved,unresolved,0
+ACIBENZOLAR,"Soil bacteria, fungi & protozoa",0.0005472000000000001,0.0004671,,,CAS unresolved,unresolved,0
+PYRETHRINS,Earthworms & potworms,0.0005399000000000001,0.000492,0.0,0.0,No record,dtxsid,1
+PYRETHRINS,Springtails & soil mites,0.0005399000000000001,0.000492,2.0,2.0,"Lab, in soil, acute (<=14 d)",dtxsid,1
+PYRETHRINS,"Soil bacteria, fungi & protozoa",0.0005399000000000001,0.000492,0.0,0.0,No record,dtxsid,1
+MYROTHECIUM VERRUCARIA,Earthworms & potworms,0.0005287,0.0005287,,,CAS unresolved,unresolved,0
+MYROTHECIUM VERRUCARIA,Springtails & soil mites,0.0005287,0.0005287,,,CAS unresolved,unresolved,0
+MYROTHECIUM VERRUCARIA,"Soil bacteria, fungi & protozoa",0.0005287,0.0005287,,,CAS unresolved,unresolved,0
+CRYOLITE,Earthworms & potworms,0.00036760000000000004,0.00036760000000000004,0.0,0.0,No record,dtxsid,1
+CRYOLITE,Springtails & soil mites,0.00036760000000000004,0.00036760000000000004,0.0,0.0,No record,dtxsid,1
+CRYOLITE,"Soil bacteria, fungi & protozoa",0.00036760000000000004,0.00036760000000000004,0.0,0.0,No record,dtxsid,1
+AZADIRACHTIN,Earthworms & potworms,0.00035810000000000003,0.0003101,2.0,4.0,"Field, single season (<1 yr)",dtxsid,1
+AZADIRACHTIN,Springtails & soil mites,0.00035810000000000003,0.0003101,2.0,4.0,"Field, single season (<1 yr)",dtxsid,1
+AZADIRACHTIN,"Soil bacteria, fungi & protozoa",0.00035810000000000003,0.0003101,2.0,1.0,"Lab, not in soil",dtxsid,1
+CYCLANILIPROLE,Earthworms & potworms,0.0003041,0.0002835,,,CAS unresolved,unresolved,0
+CYCLANILIPROLE,Springtails & soil mites,0.0003041,0.0002835,,,CAS unresolved,unresolved,0
+CYCLANILIPROLE,"Soil bacteria, fungi & protozoa",0.0003041,0.0002835,,,CAS unresolved,unresolved,0
+BACILLUS PUMILIS,Earthworms & potworms,0.000252,0.0001179,,,CAS unresolved,unresolved,0
+BACILLUS PUMILIS,Springtails & soil mites,0.000252,0.0001179,,,CAS unresolved,unresolved,0
+BACILLUS PUMILIS,"Soil bacteria, fungi & protozoa",0.000252,0.0001179,,,CAS unresolved,unresolved,0
+NAPHTHYLACETAMIDE,Earthworms & potworms,0.00016759999999999998,6.65e-05,,,CAS unresolved,unresolved,0
+NAPHTHYLACETAMIDE,Springtails & soil mites,0.00016759999999999998,6.65e-05,,,CAS unresolved,unresolved,0
+NAPHTHYLACETAMIDE,"Soil bacteria, fungi & protozoa",0.00016759999999999998,6.65e-05,,,CAS unresolved,unresolved,0
+COPPER OCTANOATE,Earthworms & potworms,0.00016759999999999998,9.09e-05,0.0,0.0,No record,dtxsid+name_family(1),2
+COPPER OCTANOATE,Springtails & soil mites,0.00016759999999999998,9.09e-05,0.0,0.0,No record,dtxsid+name_family(1),2
+COPPER OCTANOATE,"Soil bacteria, fungi & protozoa",0.00016759999999999998,9.09e-05,0.0,0.0,No record,dtxsid+name_family(1),2
+THIACLOPRID,Earthworms & potworms,0.000164,0.00010659999999999999,22.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid,1
+THIACLOPRID,Springtails & soil mites,0.000164,0.00010659999999999999,11.0,3.0,"Lab, in soil, chronic (>14 d)",dtxsid,1
+THIACLOPRID,"Soil bacteria, fungi & protozoa",0.000164,0.00010659999999999999,0.0,0.0,No record,dtxsid,1
+TRIFLUSULFURON,Earthworms & potworms,0.0001628,0.0001436,,,CAS unresolved,unresolved,0
+TRIFLUSULFURON,Springtails & soil mites,0.0001628,0.0001436,,,CAS unresolved,unresolved,0
+TRIFLUSULFURON,"Soil bacteria, fungi & protozoa",0.0001628,0.0001436,,,CAS unresolved,unresolved,0
+1-METHYL CYCLOPROPENE,Earthworms & potworms,0.00015240000000000002,0.0001138,,,CAS unresolved,unresolved,0
+1-METHYL CYCLOPROPENE,Springtails & soil mites,0.00015240000000000002,0.0001138,,,CAS unresolved,unresolved,0
+1-METHYL CYCLOPROPENE,"Soil bacteria, fungi & protozoa",0.00015240000000000002,0.0001138,,,CAS unresolved,unresolved,0
+ASPERGILLUS FLAVUS,Earthworms & potworms,0.0001374,2.3100000000000002e-05,,,CAS unresolved,unresolved,0
+ASPERGILLUS FLAVUS,Springtails & soil mites,0.0001374,2.3100000000000002e-05,,,CAS unresolved,unresolved,0
+ASPERGILLUS FLAVUS,"Soil bacteria, fungi & protozoa",0.0001374,2.3100000000000002e-05,,,CAS unresolved,unresolved,0
+POTASSIUM OLEATE,Earthworms & potworms,7.27e-05,7.27e-05,0.0,0.0,No record,dtxsid,1
+POTASSIUM OLEATE,Springtails & soil mites,7.27e-05,7.27e-05,0.0,0.0,No record,dtxsid,1
+POTASSIUM OLEATE,"Soil bacteria, fungi & protozoa",7.27e-05,7.27e-05,0.0,0.0,No record,dtxsid,1
+BACILLUS CEREUS,Earthworms & potworms,6.48e-05,3.3600000000000004e-05,,,CAS unresolved,unresolved,0
+BACILLUS CEREUS,Springtails & soil mites,6.48e-05,3.3600000000000004e-05,,,CAS unresolved,unresolved,0
+BACILLUS CEREUS,"Soil bacteria, fungi & protozoa",6.48e-05,3.3600000000000004e-05,,,CAS unresolved,unresolved,0
+CONIOTHYRIUM MINITANS,Earthworms & potworms,6.36e-05,3.09e-05,,,CAS unresolved,unresolved,0
+CONIOTHYRIUM MINITANS,Springtails & soil mites,6.36e-05,3.09e-05,,,CAS unresolved,unresolved,0
+CONIOTHYRIUM MINITANS,"Soil bacteria, fungi & protozoa",6.36e-05,3.09e-05,,,CAS unresolved,unresolved,0
+CYROMAZINE,Earthworms & potworms,2.4e-05,2.4e-05,0.0,0.0,No record,dtxsid,1
+CYROMAZINE,Springtails & soil mites,2.4e-05,2.4e-05,0.0,0.0,No record,dtxsid,1
+CYROMAZINE,"Soil bacteria, fungi & protozoa",2.4e-05,2.4e-05,0.0,0.0,No record,dtxsid,1
+CPPU,Earthworms & potworms,1.1400000000000001e-05,1.12e-05,0.0,0.0,No record,dtxsid,1
+CPPU,Springtails & soil mites,1.1400000000000001e-05,1.12e-05,0.0,0.0,No record,dtxsid,1
+CPPU,"Soil bacteria, fungi & protozoa",1.1400000000000001e-05,1.12e-05,0.0,0.0,No record,dtxsid,1
+PYRIOFENONE,Earthworms & potworms,3.1e-06,3.1e-06,,,CAS unresolved,unresolved,0
+PYRIOFENONE,Springtails & soil mites,3.1e-06,3.1e-06,,,CAS unresolved,unresolved,0
+PYRIOFENONE,"Soil bacteria, fungi & protozoa",3.1e-06,3.1e-06,,,CAS unresolved,unresolved,0
+FLAZASULFURON,Earthworms & potworms,2.5e-06,2.5e-06,0.0,0.0,No record,dtxsid,1
+FLAZASULFURON,Springtails & soil mites,2.5e-06,2.5e-06,0.0,0.0,No record,dtxsid,1
+FLAZASULFURON,"Soil bacteria, fungi & protozoa",2.5e-06,2.5e-06,0.0,0.0,No record,dtxsid,1
+STREPTOMYCES LYDICUS,Earthworms & potworms,1.3e-06,1.3e-06,,,CAS unresolved,unresolved,0
+STREPTOMYCES LYDICUS,Springtails & soil mites,1.3e-06,1.3e-06,,,CAS unresolved,unresolved,0
+STREPTOMYCES LYDICUS,"Soil bacteria, fungi & protozoa",1.3e-06,1.3e-06,,,CAS unresolved,unresolved,0
+HARPIN PROTEIN,Earthworms & potworms,6.000000000000001e-07,4.0000000000000003e-07,,,CAS unresolved,unresolved,0
+HARPIN PROTEIN,Springtails & soil mites,6.000000000000001e-07,4.0000000000000003e-07,,,CAS unresolved,unresolved,0
+HARPIN PROTEIN,"Soil bacteria, fungi & protozoa",6.000000000000001e-07,4.0000000000000003e-07,,,CAS unresolved,unresolved,0
+ACEQUINOCYL,Earthworms & potworms,6e-07,6e-07,0.0,0.0,No record,dtxsid,1
+ACEQUINOCYL,Springtails & soil mites,6e-07,6e-07,0.0,0.0,No record,dtxsid,1
+ACEQUINOCYL,"Soil bacteria, fungi & protozoa",6e-07,6e-07,0.0,0.0,No record,dtxsid,1
