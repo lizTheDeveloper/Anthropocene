@@ -63,8 +63,16 @@ def validate_structure(sample_per_dir=3):
                         problems.append((p, "HTML error page saved as data")); continue
                     checked += 1
                 elif suf == ".pdf":
-                    if p.read_bytes()[:5] != b"%PDF-":
+                    b = p.read_bytes()
+                    if b[:5] != b"%PDF-":
                         problems.append((p, "not a PDF")); continue
+                    # A truncated PDF still starts with %PDF-, so the header
+                    # alone proves nothing. Every complete PDF ends with %%EOF;
+                    # a capture cut mid-stream (observed at exactly 5 MiB on two
+                    # Wayback records) has none, and would otherwise pass.
+                    if b"%%EOF" not in b[-4096:]:
+                        problems.append((p, f"TRUNCATED: no trailing %%EOF ({len(b):,} bytes)"))
+                        continue
                     checked += 1
             except Exception as e:
                 problems.append((p, f"{type(e).__name__}: {e}"))

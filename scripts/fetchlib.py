@@ -231,24 +231,52 @@ def fetch_all(items, agency, dataset, *, pause=0.7, **kw):
 CDX = "https://web.archive.org/cdx/search/cdx"
 
 
+class CDXLookupFailed(Exception):
+    """The capture index could not be consulted -- distinct from 'no captures exist'.
+
+    Conflating the two is how a transient rate-limit gets written into the
+    provenance ledger as a permanent 'NO_SNAPSHOT', which reads as 'the archive
+    does not have this file' and is simply false. The distinction has to survive
+    all the way to the ledger.
+    """
+
+
 def wayback_snapshots(url: str, sess: requests.Session | None = None,
-                      limit: int = 40) -> list[dict]:
-    """Return successful captures of `url`, newest first."""
+                      limit: int = 40, retries: int = 5) -> list[dict]:
+    """Return successful captures of `url`, newest first.
+
+    Returns [] only when the index was successfully consulted and genuinely has
+    no 200-status captures. Raises CDXLookupFailed if the index could not be
+    reached -- archive.org rate-limits aggressively under parallel load and
+    answers with 4xx/5xx or a dropped connection.
+    """
     sess = sess or session()
-    try:
-        r = sess.get(CDX, params={
-            "url": url, "output": "json", "limit": limit,
-            "filter": "statuscode:200", "collapse": "digest",
-        }, timeout=120)
-        rows = r.json()
-    except Exception:
-        return []
-    if not rows or len(rows) < 2:
-        return []
-    cols = rows[0]
-    snaps = [dict(zip(cols, row)) for row in rows[1:]]
-    snaps.sort(key=lambda d: d.get("timestamp", ""), reverse=True)
-    return snaps
+    last = ""
+    for attempt in range(retries):
+        try:
+            r = sess.get(CDX, params={
+                "url": url, "output": "json", "limit": limit,
+                "filter": "statuscode:200", "collapse": "digest",
+            }, timeout=180)
+            if r.status_code != 200:
+                last = f"HTTP {r.status_code}"
+                time.sleep(4 * (attempt + 1))
+                continue
+            body = r.text.strip()
+            if not body:
+                return []          # consulted successfully; nothing indexed
+            rows = r.json()
+        except Exception as e:
+            last = f"{type(e).__name__}: {e}"
+            time.sleep(4 * (attempt + 1))
+            continue
+        if not rows or len(rows) < 2:
+            return []
+        cols = rows[0]
+        snaps = [dict(zip(cols, row)) for row in rows[1:]]
+        snaps.sort(key=lambda d: d.get("timestamp", ""), reverse=True)
+        return snaps
+    raise CDXLookupFailed(f"CDX unreachable after {retries} attempts: {last}")
 
 
 def fetch_via_wayback(url: str, agency: str, dataset: str, *,
@@ -257,7 +285,18 @@ def fetch_via_wayback(url: str, agency: str, dataset: str, *,
                       timeout: int = 900, pause: float = 3.0, **kw) -> dict:
     """Fetch original bytes for `url` from the Internet Archive."""
     sess = sess or session()
-    snaps = wayback_snapshots(url, sess=sess)
+    try:
+        snaps = wayback_snapshots(url, sess=sess)
+    except CDXLookupFailed as e:
+        # Report the lookup failure as itself, never as "no capture exists".
+        record({
+            "url": url, "retrieved_at": utcstamp(), "sha256": "", "bytes": 0,
+            "agency": agency, "dataset": dataset, "filename": filename or "",
+            "content_type": "", "http_status": "CDX_LOOKUP_FAILED",
+            "license": "US Government Work (17 USC 105)",
+            "notes": f"RETRYABLE: capture index unreachable ({e}). {notes}".strip(),
+        })
+        return {"ok": False, "status": "CDX_LOOKUP_FAILED", "url": url, "path": None}
     if not snaps:
         record({
             "url": url, "retrieved_at": utcstamp(), "sha256": "", "bytes": 0,
