@@ -320,3 +320,70 @@ def fetch_via_wayback(url: str, agency: str, dataset: str, *,
             return res
         time.sleep(pause)
     return {"ok": False, "status": "ALL_SNAPSHOTS_FAILED", "url": url, "path": None}
+
+
+# ---------------------------------------------------------------------------
+# wget transport
+#
+# NRCS (www.nrcs.usda.gov) accepts wget but not curl or python-requests from
+# the same host and IP: curl's TLS handshake completes and the HTTP/2 stream
+# opens, then the connection dies, and requests times out reading the response.
+# Chrome succeeds too, so the discriminator is the TLS/ALPN fingerprint rather
+# than the address. wget presents a different one and is served normally.
+#
+# Worth having as a first-class transport rather than a one-off: it turns a set
+# of files we could otherwise only get as third-party archive copies into
+# direct-from-agency retrievals, which is a strictly stronger provenance claim.
+# ---------------------------------------------------------------------------
+
+import shutil
+import subprocess
+
+
+def fetch_via_wget(url: str, agency: str, dataset: str, *,
+                   filename: str | None = None, subdir: str = "",
+                   notes: str = "", timeout: int = 900, tries: int = 4,
+                   license: str = "US Government Work (17 USC 105), public domain unless noted",
+                   force: bool = False) -> dict:
+    """Download one URL with wget and record its provenance."""
+    if not shutil.which("wget"):
+        return {"ok": False, "status": "NO_WGET", "url": url, "path": None}
+
+    dest_dir = RAW / agency / dataset / today() / subdir if subdir else RAW / agency / dataset / today()
+    dest_dir.mkdir(parents=True, exist_ok=True)
+    name = filename or _filename_for(url, None)
+    dest = dest_dir / name
+
+    if dest.exists() and not force:
+        sha = sha256_file(dest)
+        return {"ok": True, "status": 200, "url": url, "path": dest,
+                "sha256": sha, "bytes": dest.stat().st_size, "cached": True}
+
+    tmp = dest.with_suffix(dest.suffix + ".part")
+    proc = subprocess.run(
+        ["wget", "-q", f"--timeout={timeout}", f"--tries={tries}", "-O", str(tmp), url],
+        capture_output=True, text=True,
+    )
+    if proc.returncode != 0 or not tmp.exists() or tmp.stat().st_size == 0:
+        tmp.unlink(missing_ok=True)
+        record({
+            "url": url, "retrieved_at": utcstamp(), "sha256": "", "bytes": 0,
+            "agency": agency, "dataset": dataset, "filename": name,
+            "content_type": "", "http_status": f"WGET_{proc.returncode}",
+            "license": license,
+            "notes": f"FAILED (wget): {proc.stderr.strip()[:200]} {notes}".strip(),
+        })
+        return {"ok": False, "status": f"WGET_{proc.returncode}", "url": url, "path": None}
+
+    tmp.replace(dest)
+    sha = sha256_file(dest)
+    size = dest.stat().st_size
+    record({
+        "url": url, "retrieved_at": utcstamp(), "sha256": sha, "bytes": size,
+        "agency": agency, "dataset": dataset, "filename": name,
+        "content_type": "", "http_status": 200, "license": license,
+        "notes": f"direct from agency via wget. {notes}".strip(),
+    })
+    append_manifest(dataset, sha, dest)
+    return {"ok": True, "status": 200, "url": url, "path": dest,
+            "sha256": sha, "bytes": size, "cached": False}
