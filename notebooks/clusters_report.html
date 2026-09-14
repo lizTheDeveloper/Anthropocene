@@ -1,0 +1,380 @@
+<title>Three Ways to Cut the Data</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bitter:wght@400;500;600&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#f8f8f6; --card:#ffffff; --sunk:#f0f1ed;
+  --ink:#191b19; --ink-2:#585c57; --ink-3:#8b8f88;
+  --rule:#dfe1db; --rule-2:#ebece6;
+  --k1:#2a78d6; --k2:#eb6834; --k3:#1baf7a; --k4:#eda100;
+  --flag:#b8352c;
+  --shadow:0 1px 2px rgba(25,27,25,.05),0 10px 28px -16px rgba(25,27,25,.16);
+}
+@media (prefers-color-scheme:dark){
+  :root:where(:not([data-theme="light"])){
+    color-scheme:dark;
+    --bg:#161816; --card:#1e211d; --sunk:#242721;
+    --ink:#eff1ec; --ink-2:#a6aaa2; --ink-3:#787c75;
+    --rule:#30342e; --rule-2:#282c26;
+    --k1:#3987e5; --k2:#d95926; --k3:#199e70; --k4:#c98500;
+    --flag:#e0685c;
+    --shadow:0 1px 2px rgba(0,0,0,.35),0 10px 28px -16px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#161816; --card:#1e211d; --sunk:#242721;
+  --ink:#eff1ec; --ink-2:#a6aaa2; --ink-3:#787c75;
+  --rule:#30342e; --rule-2:#282c26;
+  --k1:#3987e5; --k2:#d95926; --k3:#199e70; --k4:#c98500;
+  --flag:#e0685c;
+  --shadow:0 1px 2px rgba(0,0,0,.35),0 10px 28px -16px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:"Public Sans",system-ui,-apple-system,sans-serif;
+  font-size:16.5px;line-height:1.6;margin:0;
+  padding-block:0;padding-left:20px;padding-right:20px;-webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1120px;margin:0 auto}
+.measure{max-width:650px}
+header{padding-block:58px 34px;border-bottom:2px solid var(--ink)}
+.kick{
+  font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:22px;display:flex;gap:16px;flex-wrap:wrap;
+}
+h1{
+  font-family:Bitter,Georgia,serif;font-weight:600;
+  font-size:clamp(2.2rem,5.2vw,3.7rem);line-height:1.06;letter-spacing:-.02em;
+  margin:0 0 18px;text-wrap:balance;max-width:17ch;
+}
+.deck{font-family:Bitter,Georgia,serif;font-weight:400;
+  font-size:clamp(1.05rem,2.1vw,1.25rem);line-height:1.5;color:var(--ink-2);max-width:63ch;margin:0}
+.deck em{color:var(--ink);font-style:italic}
+
+section{padding-block:52px;border-bottom:1px solid var(--rule)}
+.tag{font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--k1);margin-bottom:13px}
+h2{font-family:Bitter,Georgia,serif;font-weight:600;
+  font-size:clamp(1.55rem,3.2vw,2.15rem);line-height:1.16;letter-spacing:-.012em;
+  margin:0 0 16px;text-wrap:balance;max-width:22ch}
+h3{font-family:"Public Sans",sans-serif;font-weight:600;font-size:.95rem;margin:30px 0 10px}
+p{margin:0 0 15px}
+.measure p:last-child{margin-bottom:0}
+strong{font-weight:600}
+code{font-family:"IBM Plex Mono",monospace;font-size:.86em;color:var(--ink-2)}
+
+.panel{background:var(--card);border:1px solid var(--rule);border-radius:2px;
+  padding:24px 22px 18px;margin:30px 0 0;box-shadow:var(--shadow)}
+.ptitle{font-weight:600;font-size:.97rem;margin:0 0 5px}
+.psub{font-size:13.5px;color:var(--ink-2);margin:0 0 18px;max-width:74ch}
+.scroll{overflow-x:auto}
+svg{display:block;max-width:100%;height:auto}
+.legend{display:flex;gap:20px;flex-wrap:wrap;margin-top:14px;font-size:12.5px;color:var(--ink-2)}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.sw{width:12px;height:12px;border-radius:50%;flex:none}
+.sw.bar{width:14px;height:4px;border-radius:2px}
+
+/* cluster cards */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(248px,1fr));gap:14px;margin-top:26px}
+.card{background:var(--card);border:1px solid var(--rule);border-radius:2px;padding:16px 17px;
+  border-top:3px solid var(--ink-3)}
+.card .n{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--ink-3);margin-bottom:8px}
+.card h4{font-family:"Public Sans",sans-serif;font-size:.97rem;font-weight:600;margin:0 0 9px;line-height:1.3}
+.card .stat{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--ink-2);
+  font-variant-numeric:tabular-nums;margin-bottom:9px}
+.card .stat b{color:var(--ink);font-weight:500}
+.card .items{font-size:12.5px;color:var(--ink-2);line-height:1.5}
+.card.weak{border-top-color:var(--ink-3);opacity:.86}
+.card.weak h4{color:var(--ink-2);font-style:italic}
+
+.note{border-left:2px solid var(--k1);padding:2px 0 2px 16px;margin:26px 0 0;
+  font-size:14.5px;color:var(--ink-2);max-width:63ch}
+.note .h{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--k1);display:block;margin-bottom:6px}
+.note.red{border-left-color:var(--flag)}
+.note.red .h{color:var(--flag)}
+
+details{margin-top:16px;font-size:13.5px}
+summary{cursor:pointer;font-family:"IBM Plex Mono",monospace;font-size:11px;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--ink-3);padding:6px 0;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary::before{content:"▸ ";color:var(--k1)}
+details[open] summary::before{content:"▾ "}
+.tscroll{overflow-x:auto;margin-top:7px}
+table{border-collapse:collapse;width:100%;min-width:420px;font-size:12.5px}
+th,td{text-align:right;padding:5px 13px 5px 0;border-bottom:1px solid var(--rule-2);white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:400;border-bottom:1px solid var(--rule)}
+td.n{font-variant-numeric:tabular-nums;font-family:"IBM Plex Mono",monospace}
+
+.tip{position:fixed;pointer-events:none;z-index:60;opacity:0;transition:opacity .1s;
+  background:var(--ink);color:var(--bg);padding:7px 10px;border-radius:3px;font-size:12px;
+  font-family:"IBM Plex Mono",monospace;line-height:1.55;box-shadow:0 4px 16px rgba(0,0,0,.28);white-space:nowrap}
+.tip.on{opacity:1}
+footer{padding-block:42px 66px;font-size:13.5px;color:var(--ink-3);max-width:70ch}
+.src{font-family:"IBM Plex Mono",monospace;font-size:11.5px;line-height:1.9;margin-top:14px}
+@media(max-width:640px){header{padding-block:40px 26px}section{padding-block:40px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+
+<div class="wrap">
+
+<header>
+  <div class="kick"><span>USDA PDP · USGS PNSP</span><span>Unsupervised clustering</span><span>2018–2024</span></div>
+  <h1>Three ways to cut the data</h1>
+  <p class="deck">Clustering food by residue, farmland by chemistry, and compounds by trajectory. Two of the three mostly confirm what an agronomist would already tell you. <em>The one about food does something more useful — it tells you where the variation is.</em></p>
+</header>
+
+<!-- ===== FOOD ===== -->
+<section>
+  <div class="measure">
+    <div class="tag">Cut 01 — Food</div>
+    <h2>Residue load varies 40-fold across the produce aisle</h2>
+    <p>Clustering 63 commodities on how often each of 51 pesticides is detected pulls out six groups, and the spread between them is large. Frozen strawberries average <strong>5.24 distinct residues per sample</strong>, with something detectable in 94.8% of them. Asparagus averages <strong>0.04</strong>, with a detection in 3.8%.</p>
+    <p>The clusters that form are real chemistry, not artifacts. Apples, pears, tangerines and oranges group on <em>postharvest packing-house fungicides</em> — thiabendazole in 59% of samples, pyrimethanil 44%. Leafy greens group on pyrethroids, the only cluster where those lead. Berries and tomato paste group together because they run the same fungicide-and-pyrethroid program in the field.</p>
+    <p>The most useful number here is not the maximum. It is the <strong>range inside baby food</strong>, where a parent is making a real choice between products on the same shelf.</p>
+  </div>
+
+  <div class="panel">
+    <p class="ptitle">Distinct pesticide residues per sample, by commodity</p>
+    <p class="psub">USDA Pesticide Data Program, 2019–2024, conventional samples only. Measured on a common analyte panel so every commodity was screened for the same compounds — a zero means "looked and found nothing", not "never looked". Baby food items are marked.</p>
+    <div class="scroll"><svg id="c1" role="img" aria-label="Ranked bar chart of pesticide residues per sample across 63 food commodities"></svg></div>
+    <div class="legend">
+      <span><i class="sw bar" style="background:var(--k2)"></i>Baby food</span>
+      <span><i class="sw bar" style="background:var(--k1)"></i>All other commodities</span>
+    </div>
+    <details><summary>Data table — all 63 commodities</summary><div class="tscroll"><table id="t1"></table></div></details>
+  </div>
+
+  <div class="note red">
+    <span class="h">Read this correctly</span>
+    A detection is not a violation and not a hazard. PDP's own headline finding is that <strong>over 99% of samples fall below EPA tolerance</strong>, and nothing here contradicts that. What the chart shows is where residues are <em>more and less common</em> — which is a statement about variation available to someone making a choice, not a safety verdict on any food. Every item on this chart is legal to sell and almost all of it is within tolerance.
+  </div>
+
+  <div class="note">
+    <span class="h">Why the baby-food spread matters</span>
+    Baby food pears show a detection in <strong>87.3%</strong> of samples at 1.79 residues each; baby food sweet potato shows one in <strong>11.2%</strong> at 0.11 residues. That is a roughly <strong>16-fold difference</strong> between two products in the same aisle, aimed at the same child, at similar prices. Elsewhere in this project, children aged 3–11 were found to carry about twice the adult body burden of every pesticide measured. These two facts are consistent with each other, but this data cannot establish that one causes the other — that would need dietary recall linked to the same individuals.
+  </div>
+
+  <div class="cards" id="commodCards"></div>
+</section>
+
+<!-- ===== LAND ===== -->
+<section>
+  <div class="measure">
+    <div class="tag">Cut 02 — Land</div>
+    <h2>American farmland sorts into three chemical regions</h2>
+    <p>Clustering 2,232 counties on the <em>mix</em> of compounds applied — not the amount, which would only rediscover which counties are big — returns three groups that map onto cropping systems anyone in agriculture would recognise.</p>
+    <p>The <strong>Corn Belt</strong> group is 1,349 counties led by Illinois, Iowa and Indiana, running glyphosate at 38% of mass over the corn triad of atrazine, acetochlor and S-metolachlor. The <strong>cotton and Delta South</strong> group is 400 counties led by Texas and Mississippi, distinguished by harvest-aid chemistry — sodium chlorate at 5.6× the national rate, tribufos and ethephon — plus propanil for rice. The <strong>fumigant and specialty-crop</strong> group is 483 counties in North Carolina, Georgia, Florida and Idaho, built on soil fumigants: metam-potassium at 4.5×, 1,3-dichloropropene at 4.2×, chloropicrin at 4.1×.</p>
+    <p>This is the least surprising of the three cuts. Its value is as a stratifier: it gives a defensible way to group counties for any later analysis without hand-drawing regions.</p>
+  </div>
+
+  <div class="panel">
+    <p class="ptitle">Counties in compound-mix space</p>
+    <p class="psub">Each point is a county, positioned by the first two principal components of its centered-log-ratio compound composition (2018). A 900-county random sample is drawn for legibility. The two axes carry 42.6% of total variance, so read this as indicative of the grouping, not as the whole structure.</p>
+    <div class="scroll"><svg id="c2" viewBox="0 0 880 460" role="img" aria-label="Scatter plot of counties in compound composition space, colored by cluster"></svg></div>
+    <div class="legend" id="leg2"></div>
+  </div>
+</section>
+
+<!-- ===== CHEMISTRY ===== -->
+<section>
+  <div class="measure">
+    <div class="tag">Cut 03 — Chemistry over time</div>
+    <h2>Half the mass sits in the one group still climbing</h2>
+    <p>Clustering 179 compounds by the <em>shape</em> of their 1992–2018 national use curve — each normalised to its own peak, so a compound going 1→100 lands with one going 10→1000 — returns four trajectory families.</p>
+    <p>Two of them are the visible history of pesticide regulation. The <strong>phase-out</strong> family (77 compounds, 20.9 M kg left) declines monotonically to 9% of its early-1990s peak; methyl bromide sits here, falling 41.9 to 0.4 M kg under the Montreal Protocol, which is the cleanest confirmation the cluster is real. The <strong>legacy plateau</strong> family (49 compounds, 166.4 M kg) fell by half and then simply stopped falling in 2007 — atrazine, metam, 2,4-D.</p>
+    <p>The fourth family is the one that matters: <strong>45 compounds still at or near peak in 2018, carrying 226 M kg — 54% of all screened mass.</strong> Glyphosate leads it, with S-metolachlor, acetochlor, glufosinate and paraquat.</p>
+  </div>
+
+  <div class="panel">
+    <p class="ptitle">Four trajectory families, 1992–2018</p>
+    <p class="psub">Cluster centroids, each compound scaled to its own peak year before averaging, so the vertical axis reads as "share of that family's own maximum". Labelled directly at the right edge.</p>
+    <div class="scroll"><svg id="c3" viewBox="0 0 880 400" role="img" aria-label="Four normalized pesticide use trajectory curves from 1992 to 2018"></svg></div>
+    <div class="legend" id="leg3"></div>
+  </div>
+
+  <div class="note">
+    <span class="h">One caveat that belongs on the chart</span>
+    Several compounds in the rising family — S-metolachlor, acetochlor, glufosinate — had <strong>zero</strong> US use in 1992 because they were not yet registered. Their peak-normalised curves therefore start at exactly zero and pull the family's early years down. Part of the apparent rise is registration timing rather than intensification of use, and the curve should be read with that in mind.
+  </div>
+</section>
+
+<!-- ===== HONESTY ===== -->
+<section>
+  <div class="measure">
+    <div class="tag">What the clustering does not establish</div>
+    <h2>These are gradients, not natural kinds</h2>
+    <p>All three cuts have <strong>weak separation</strong>. Silhouette scores are 0.40 for commodities, 0.24 for counties, and 0.24 for compound trajectories, against a theoretical maximum of 1.0. Anything in the 0.2s means the data is a continuum that has been cut into pieces, not a set of genuinely distinct populations that clustering discovered.</p>
+    <p>That is worth stating plainly, because cluster labels acquire a false solidity very quickly. "The Corn Belt cluster" is a useful shorthand for a region of a continuous space. It is not evidence that American counties come in three kinds.</p>
+    <p>Two individual clusters should also carry warnings. The 44-commodity group in the food cut is a <em>residual bucket</em> — everything whose fingerprint was too sparse to separate — and it is what holds the overall silhouette up. And the two-member group pairing almonds with baby-food pears is joined by a single shared compound and is <strong>not interpretable as a food category</strong>; it is reported rather than quietly dropped, but no story should be built on it.</p>
+  </div>
+  <div class="note red">
+    <span class="h">A held-out case worth knowing</span>
+    Salmon returned <strong>zero</strong> detections and was excluded from the clustering. That is not evidence salmon is clean: it is screened on a fat-soluble persistent-pollutant panel that shares no informative analyte with produce, so it has no position in this space at all. Reporting it as the lowest-residue food would be a straightforward error.
+  </div>
+</section>
+
+<footer>
+  <p><strong>Reproduce:</strong> <code>scripts/eda_09_county_clusters.py</code>, <code>eda_10_compound_trajectories.py</code>, <code>eda_11_commodity_residues.py</code>. Every input is mirrored locally with a retrieval timestamp and SHA-256.</p>
+  <div class="src">
+    USDA AMS Pesticide Data Program — 59,793 samples / 16.5M result rows, 2019–2024<br>
+    USGS Pesticide National Synthesis Project — county estimates 1992–2018, California excluded throughout<br>
+    Methods: CLR-transformed k-means (counties) · Ward on peak-normalised curves (compounds) · Ward on detection frequency (commodities)
+  </div>
+</footer>
+</div>
+<div class="tip" id="tip"></div>
+
+<script>
+const D={"commod":[{"c":"Pears","k":1,"n":1340,"load":2.78,"det":90.8},{"c":"Apples","k":1,"n":981,"load":2.72,"det":95.4},{"c":"Tangerines","k":1,"n":1373,"load":1.67,"det":92.8},{"c":"Oranges","k":1,"n":689,"load":1.52,"det":90.0},{"c":"Baby Food - Pears","k":2,"n":527,"load":1.79,"det":87.3},{"c":"Almonds","k":2,"n":667,"load":1.19,"det":91.5},{"c":"Grapes","k":3,"n":1363,"load":4.3,"det":95.3},{"c":"Peaches","k":3,"n":904,"load":3.38,"det":98.1},{"c":"Plums","k":3,"n":1142,"load":1.92,"det":93.3},{"c":"Sweet Bell Peppers","k":4,"n":1318,"load":2.89,"det":82.3},{"c":"Cilantro","k":4,"n":166,"load":2.75,"det":88.0},{"c":"Cucumbers","k":4,"n":661,"load":2.72,"det":84.6},{"c":"Tomatoes","k":4,"n":1374,"load":2.57,"det":82.4},{"c":"Cherry Tomatoes","k":4,"n":492,"load":2.31,"det":80.7},{"c":"Green Beans","k":4,"n":1314,"load":1.83,"det":74.4},{"c":"Eggplant","k":4,"n":1327,"load":1.59,"det":71.3},{"c":"Winter Squash","k":4,"n":1244,"load":1.56,"det":70.9},{"c":"Summer Squash","k":4,"n":1313,"load":1.47,"det":67.9},{"c":"Celery","k":4,"n":1316,"load":1.34,"det":76.0},{"c":"Baby Food - Peaches","k":4,"n":679,"load":1.29,"det":46.1},{"c":"Cantaloupe","k":4,"n":1356,"load":1.27,"det":70.6},{"c":"Broccoli","k":4,"n":1333,"load":1.24,"det":68.0},{"c":"Tomatillos","k":4,"n":851,"load":1.14,"det":60.0},{"c":"Potatoes","k":4,"n":1383,"load":0.84,"det":47.7},{"c":"Rice","k":4,"n":519,"load":0.82,"det":43.5},{"c":"Butter","k":4,"n":673,"load":0.76,"det":44.3},{"c":"Cauliflower","k":4,"n":1292,"load":0.63,"det":51.7},{"c":"Baby Food - Applesauce","k":4,"n":570,"load":0.56,"det":29.5},{"c":"Carrots","k":4,"n":1219,"load":0.55,"det":35.8},{"c":"Radishes","k":4,"n":1330,"load":0.51,"det":32.0},{"c":"Mushrooms","k":4,"n":1341,"load":0.5,"det":46.9},{"c":"Baby Food - Green Beans","k":4,"n":702,"load":0.47,"det":42.0},{"c":"Lettuce, Head","k":4,"n":657,"load":0.46,"det":33.3},{"c":"Watermelon","k":4,"n":1367,"load":0.43,"det":32.9},{"c":"Peaches, Frozen","k":4,"n":371,"load":0.4,"det":27.2},{"c":"Sweet Peas, Frozen","k":4,"n":112,"load":0.38,"det":33.9},{"c":"Baby Food - Carrots","k":4,"n":550,"load":0.37,"det":35.8},{"c":"Orange Juice","k":4,"n":642,"load":0.36,"det":31.2},{"c":"Cabbage","k":4,"n":291,"load":0.34,"det":25.4},{"c":"Peanut Butter","k":4,"n":626,"load":0.32,"det":31.6},{"c":"Onions","k":4,"n":847,"load":0.29,"det":25.0},{"c":"Pumpkin, Canned","k":4,"n":592,"load":0.23,"det":20.1},{"c":"Baby Food - Peas","k":4,"n":575,"load":0.18,"det":18.3},{"c":"Sweet Peas, Canned","k":4,"n":339,"load":0.17,"det":16.8},{"c":"Garbanzo Beans, Dried","k":4,"n":584,"load":0.13,"det":12.0},{"c":"Kiwi Fruit","k":4,"n":827,"load":0.13,"det":12.2},{"c":"Avocado","k":4,"n":840,"load":0.13,"det":11.9},{"c":"Baby Food - Sweet Potatoe","k":4,"n":570,"load":0.11,"det":11.2},{"c":"Sweet Corn, Fresh","k":4,"n":749,"load":0.07,"det":6.8},{"c":"Pineapple, Fresh","k":4,"n":634,"load":0.07,"det":6.9},{"c":"Oats","k":4,"n":546,"load":0.05,"det":4.6},{"c":"Asparagus","k":4,"n":287,"load":0.04,"det":3.8},{"c":"Sweet Corn, Frozen","k":4,"n":121,"load":0.03,"det":2.5},{"c":"Basil","k":5,"n":272,"load":5.03,"det":93.4},{"c":"Collard Greens","k":5,"n":607,"load":3.66,"det":88.1},{"c":"Mustard Greens","k":5,"n":533,"load":3.54,"det":81.8},{"c":"Spinach, Frozen","k":5,"n":171,"load":2.74,"det":90.1},{"c":"Spinach, Canned","k":5,"n":375,"load":2.18,"det":96.3},{"c":"Lettuce, Leaf","k":5,"n":659,"load":2.02,"det":82.5},{"c":"Strawberries, Frozen","k":6,"n":501,"load":5.24,"det":94.8},{"c":"Tomato Paste","k":6,"n":614,"load":3.63,"det":91.7},{"c":"Blackberries, Fresh","k":6,"n":885,"load":3.22,"det":86.1},{"c":"Blueberries, Fresh","k":6,"n":1202,"load":2.74,"det":84.5}],"commod_prof":[{"k":1,"n":4,"load":2.17,"det":92.2,"items":"Pears|Apples|Tangerines|Oranges","pest":"Thiabendazole|Pyrimethanil|Fludioxonil|Acetamiprid|Pyraclostrobin"},{"k":2,"n":2,"load":1.49,"det":89.4,"items":"Baby Food - Pears|Almonds","pest":"Methoxyfenozide|Acetamiprid|Fluopyram|Pyrimethanil|Azoxystrobin"},{"k":3,"n":3,"load":3.2,"det":95.6,"items":"Grapes|Peaches|Plums","pest":"Fludioxonil|Fluopyram|Methoxyfenozide|Tebuconazole|Boscalid"},{"k":4,"n":44,"load":0.82,"det":40.9,"items":"Sweet Bell Peppers|Cilantro|Cucumbers|Tomatoes|Cherry Tomatoes|Green Beans|Eggplant|Winter Squash|Summer Squash|Celery|Baby Food - Peaches|Cantaloupe|Broccoli|Tomatillos|Potatoes|Rice|Butter|Cauliflower|Baby Food - Applesauce|Carrots|Radishes|Mushrooms|Baby Food - Green Beans|Lettuce, Head|Watermelon|Peaches, Frozen|Sweet Peas, Frozen|Baby Food - Carrots|Orange Juice|Cabbage|Peanut Butter|Onions|Pumpkin, Canned|Baby Food - Peas|Sweet Peas, Canned|Garbanzo Beans, Dried|Kiwi Fruit|Avocado|Baby Food - Sweet Potatoe|Sweet Corn, Fresh|Pineapple, Fresh|Oats|Asparagus|Sweet Corn, Frozen","pest":"Azoxystrobin|Imidacloprid|Fluopyram|Bifenthrin|Thiamethoxam"},{"k":5,"n":6,"load":3.19,"det":88.7,"items":"Basil|Collard Greens|Mustard Greens|Spinach, Frozen|Spinach, Canned|Lettuce, Leaf","pest":"Cypermethrin|Mandipropamid|Imidacloprid|Azoxystrobin|Cyfluthrin"},{"k":6,"n":4,"load":3.71,"det":89.3,"items":"Strawberries, Frozen|Tomato Paste|Blackberries, Fresh|Blueberries, Fresh","pest":"Azoxystrobin|Bifenthrin|Boscalid|Acetamiprid|Imidacloprid"}],"traj":{"1":{"years":[1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018],"vals":[0.559,0.536,0.671,0.653,0.601,0.532,0.423,0.398,0.359,0.292,0.279,0.263,0.255,0.227,0.207,0.206,0.155,0.138,0.128,0.13,0.121,0.104,0.113,0.101,0.105,0.083,0.085],"n":77},"2":{"years":[1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018],"vals":[0.599,0.572,0.693,0.728,0.781,0.723,0.643,0.615,0.569,0.541,0.525,0.528,0.528,0.507,0.477,0.463,0.462,0.438,0.452,0.491,0.481,0.493,0.502,0.493,0.479,0.518,0.449],"n":49},"3":{"years":[1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018],"vals":[0.091,0.034,0.029,0.088,0.13,0.164,0.384,0.617,0.779,0.749,0.756,0.777,0.809,0.69,0.47,0.541,0.259,0.442,0.42,0.256,0.223,0.215,0.15,0.238,0.175,0.125,0.118],"n":8},"4":{"years":[1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018],"vals":[0.103,0.115,0.151,0.209,0.204,0.225,0.309,0.327,0.334,0.38,0.387,0.377,0.404,0.4,0.384,0.434,0.439,0.457,0.52,0.565,0.642,0.654,0.717,0.732,0.752,0.86,0.799],"n":45}},"traj_mass":{"1":20.9,"2":166.4,"3":3.0,"4":226.0},"traj_top":{"1":["METOLACHLOR","TRIFLURALIN","SODIUM CHLORATE","PROPANIL","BENTAZONE"],"2":["ATRAZINE","METAM","2,4-D","DICHLOROPROPENE","PETROLEUM OIL"],"3":["SULFURIC ACID","SULFCARBAMIDE","FLUFENACET","TEBUPIRIMPHOS","CYCLANILIDE"],"4":["GLYPHOSATE","METOLACHLOR-S","ACETOCHLOR","CHLOROPICRIN","GLUFOSINATE"]},"county":[{"k":0,"n":1349,"mean_kg":161120,"top":"GLYPHOSATE:0.377 | ATRAZINE:0.111 | METOLACHLOR-S:0.095 | 2,4-D:0.089 | ACETOCHLOR:0.077","states":"IL:100 | IA:99 | IN:89 | MO:89 | NE:86 | KS:82"},{"k":1,"n":483,"mean_kg":244607,"top":"GLYPHOSATE:0.175 | 2,4-D:0.136 | DICHLOROPROPENE:0.130 | METAM:0.074 | CHLOROPICRIN:0.062","states":"NC:72 | GA:67 | FL:51 | ID:38 | SC:35 | OR:25"},{"k":2,"n":400,"mean_kg":175693,"top":"GLYPHOSATE:0.329 | 2,4-D:0.146 | METOLACHLOR-S:0.078 | ATRAZINE:0.063 | DICAMBA:0.048","states":"TX:156 | MS:49 | LA:38 | AL:33 | OK:28 | AR:22"}],"county_pts":[{"x":29.019,"y":-5.002,"k":1},{"x":-15.713,"y":3.926,"k":0},{"x":-11.587,"y":1.111,"k":0},{"x":-13.819,"y":-0.177,"k":0},{"x":28.432,"y":21.861,"k":1},{"x":10.084,"y":-17.483,"k":2},{"x":7.599,"y":-6.923,"k":1},{"x":18.748,"y":1.683,"k":1},{"x":-9.407,"y":-0.179,"k":0},{"x":15.227,"y":-7.46,"k":1},{"x":4.35,"y":-0.434,"k":1},{"x":2.086,"y":19.372,"k":0},{"x":-8.684,"y":10.995,"k":0},{"x":1.658,"y":-23.379,"k":2},{"x":-13.098,"y":4.72,"k":0},{"x":7.402,"y":-23.739,"k":2},{"x":-2.8,"y":15.672,"k":0},{"x":18.935,"y":12.491,"k":1},{"x":-2.073,"y":-22.453,"k":2},{"x":1.532,"y":-23.504,"k":2},{"x":-10.457,"y":-9.419,"k":0},{"x":27.015,"y":7.95,"k":1},{"x":-10.736,"y":-8.585,"k":0},{"x":-11.553,"y":-11.97,"k":0},{"x":7.587,"y":-2.549,"k":2},{"x":-15.367,"y":2.849,"k":0},{"x":-1.792,"y":12.133,"k":0},{"x":-15.008,"y":3.589,"k":0},{"x":-12.557,"y":10.079,"k":0},{"x":-11.429,"y":1.978,"k":0},{"x":-12.18,"y":5.011,"k":0},{"x":11.248,"y":7.923,"k":1},{"x":-14.276,"y":2.459,"k":0},{"x":-14.965,"y":-3.457,"k":0},{"x":-15.277,"y":-2.929,"k":0},{"x":-14.029,"y":3.676,"k":0},{"x":-13.987,"y":2.781,"k":0},{"x":0.546,"y":15.902,"k":0},{"x":-3.178,"y":14.816,"k":0},{"x":-3.053,"y":8.95,"k":0},{"x":-2.959,"y":7.379,"k":0},{"x":-12.123,"y":5.527,"k":0},{"x":2.381,"y":10.374,"k":0},{"x":-8.77,"y":-14.419,"k":0},{"x":7.021,"y":12.625,"k":1},{"x":6.269,"y":-26.107,"k":2},{"x":-9.529,"y":-6.765,"k":0},{"x":-1.077,"y":-24.778,"k":2},{"x":14.173,"y":-1.946,"k":1},{"x":-10.544,"y":-14.385,"k":0},{"x":-7.293,"y":-8.941,"k":0},{"x":-9.509,"y":-5.007,"k":0},{"x":9.034,"y":-23.319,"k":2},{"x":-15.98,"y":-4.488,"k":0},{"x":-15.446,"y":3.998,"k":0},{"x":-12.336,"y":-7.478,"k":0},{"x":-2.991,"y":-7.174,"k":0},{"x":13.346,"y":-13.376,"k":2},{"x":-14.565,"y":4.196,"k":0},{"x":-12.311,"y":4.391,"k":0},{"x":15.42,"y":1.425,"k":1},{"x":-14.678,"y":3.279,"k":0},{"x":4.026,"y":14.21,"k":0},{"x":-2.129,"y":-22.625,"k":2},{"x":-2.214,"y":11.42,"k":0},{"x":-9.649,"y":-11.524,"k":0},{"x":-10.877,"y":7.315,"k":0},{"x":-0.344,"y":14.032,"k":0},{"x":11.139,"y":-3.023,"k":2},{"x":12.137,"y":-19.722,"k":2},{"x":-4.9,"y":17.744,"k":0},{"x":7.344,"y":-28.48,"k":2},{"x":15.671,"y":1.823,"k":1},{"x":22.059,"y":5.323,"k":1},{"x":0.54,"y":18.616,"k":0},{"x":-1.266,"y":17.637,"k":0},{"x":-10.775,"y":-4.156,"k":0},{"x":10.722,"y":-2.134,"k":1},{"x":22.539,"y":9.762,"k":1},{"x":-4.808,"y":10.852,"k":0},{"x":-12.59,"y":-1.81,"k":0},{"x":-14.492,"y":-9.947,"k":0},{"x":-12.071,"y":2.592,"k":0},{"x":-11.258,"y":-0.162,"k":0},{"x":16.509,"y":4.032,"k":1},{"x":-10.242,"y":-2.249,"k":0},{"x":-8.594,"y":-8.003,"k":0},{"x":-14.726,"y":4.183,"k":0},{"x":-15.138,"y":-1.703,"k":0},{"x":-15.617,"y":1.853,"k":0},{"x":-3.846,"y":9.933,"k":0},{"x":3.044,"y":-19.342,"k":2},{"x":9.522,"y":17.998,"k":1},{"x":-3.095,"y":7.652,"k":0},{"x":19.208,"y":5.652,"k":1},{"x":-14.323,"y":3.419,"k":0},{"x":-13.603,"y":-5.911,"k":0},{"x":-13.513,"y":4.024,"k":0},{"x":-5.393,"y":-16.313,"k":2},{"x":1.24,"y":18.814,"k":0},{"x":14.63,"y":4.483,"k":1},{"x":10.193,"y":-24.016,"k":2},{"x":-8.457,"y":-6.085,"k":0},{"x":12.264,"y":-0.486,"k":1},{"x":-2.538,"y":8.077,"k":0},{"x":-13.478,"y":6.174,"k":0},{"x":-14.47,"y":5.02,"k":0},{"x":-2.092,"y":8.176,"k":0},{"x":-15.346,"y":1.453,"k":0},{"x":19.2,"y":-0.647,"k":1},{"x":-3.334,"y":9.003,"k":0},{"x":-15.606,"y":2.076,"k":0},{"x":12.661,"y":-21.623,"k":2},{"x":18.722,"y":13.415,"k":1},{"x":-1.231,"y":10.122,"k":0},{"x":8.499,"y":-10.907,"k":2},{"x":8.64,"y":-18.351,"k":2},{"x":12.417,"y":15.337,"k":1},{"x":-15.162,"y":1.76,"k":0},{"x":-13.5,"y":3.609,"k":0},{"x":-10.847,"y":5.327,"k":0},{"x":-11.641,"y":-9.496,"k":0},{"x":17.039,"y":-2.864,"k":1},{"x":32.221,"y":4.228,"k":1},{"x":5.696,"y":-26.247,"k":2},{"x":-12.878,"y":11.124,"k":0},{"x":-2.833,"y":-18.798,"k":2},{"x":11.181,"y":-2.245,"k":1},{"x":10.93,"y":-4.673,"k":1},{"x":-16.044,"y":-5.591,"k":0},{"x":-12.766,"y":-2.388,"k":0},{"x":-11.687,"y":-2.211,"k":0},{"x":-5.231,"y":-18.288,"k":2},{"x":27.917,"y":-8.796,"k":1},{"x":-11.819,"y":-6.07,"k":0},{"x":31.338,"y":21.776,"k":1},{"x":-10.597,"y":-11.522,"k":0},{"x":-12.376,"y":5.657,"k":0},{"x":-12.079,"y":-11.251,"k":0},{"x":-5.042,"y":12.339,"k":0},{"x":-13.724,"y":6.077,"k":0},{"x":2.55,"y":-26.052,"k":2},{"x":9.251,"y":5.15,"k":1},{"x":-6.972,"y":7.925,"k":0},{"x":8.891,"y":-23.599,"k":2},{"x":0.335,"y":-23.489,"k":2},{"x":-8.746,"y":-0.775,"k":0},{"x":-13.884,"y":8.076,"k":0},{"x":4.389,"y":-22.236,"k":2},{"x":-14.529,"y":-1.421,"k":0},{"x":10.294,"y":-23.803,"k":2},{"x":5.087,"y":19.24,"k":0},{"x":-11.239,"y":-2.996,"k":0},{"x":-14.621,"y":-2.589,"k":0},{"x":19.663,"y":16.043,"k":1},{"x":9.053,"y":7.303,"k":1},{"x":-10.188,"y":-11.074,"k":0},{"x":7.297,"y":-26.402,"k":2},{"x":-0.193,"y":13.969,"k":0},{"x":-15.971,"y":-4.404,"k":0},{"x":1.848,"y":-3.193,"k":0},{"x":-9.971,"y":-6.783,"k":0},{"x":2.93,"y":3.429,"k":0},{"x":-7.473,"y":-2.95,"k":0},{"x":-8.45,"y":-11.503,"k":0},{"x":-14.602,"y":3.678,"k":0},{"x":-3.555,"y":6.085,"k":0},{"x":16.92,"y":-7.844,"k":2},{"x":-4.238,"y":11.276,"k":0},{"x":-2.437,"y":15.82,"k":0},{"x":-14.207,"y":2.675,"k":0},{"x":29.525,"y":-6.926,"k":1},{"x":5.545,"y":-0.511,"k":1},{"x":15.934,"y":-17.629,"k":2},{"x":-11.864,"y":-11.625,"k":0},{"x":15.581,"y":1.764,"k":1},{"x":6.058,"y":1.913,"k":1},{"x":-9.949,"y":-11.714,"k":0},{"x":-0.385,"y":15.959,"k":0},{"x":-14.684,"y":-0.907,"k":0},{"x":-3.723,"y":6.089,"k":0},{"x":-1.602,"y":-23.95,"k":2},{"x":8.776,"y":10.5,"k":1},{"x":-16.183,"y":-5.443,"k":0},{"x":-0.026,"y":-3.639,"k":0},{"x":-10.325,"y":1.237,"k":0},{"x":31.149,"y":23.094,"k":1},{"x":6.237,"y":9.797,"k":1},{"x":17.278,"y":8.114,"k":1},{"x":4.629,"y":13.602,"k":1},{"x":-13.139,"y":-8.136,"k":0},{"x":-2.457,"y":13.619,"k":0},{"x":9.555,"y":0.783,"k":1},{"x":24.051,"y":-13.566,"k":2},{"x":18.399,"y":4.875,"k":1},{"x":2.929,"y":15.262,"k":0},{"x":-9.474,"y":-11.357,"k":0},{"x":7.008,"y":20.351,"k":1},{"x":9.774,"y":-12.338,"k":2},{"x":-4.752,"y":10.55,"k":0},{"x":-10.732,"y":-12.128,"k":0},{"x":9.696,"y":-12.643,"k":2},{"x":-7.746,"y":-10.447,"k":0},{"x":-4.199,"y":11.606,"k":0},{"x":27.328,"y":-8.085,"k":1},{"x":6.049,"y":19.385,"k":0},{"x":-1.728,"y":-22.374,"k":2},{"x":-6.346,"y":13.214,"k":0},{"x":-2.103,"y":-21.274,"k":2},{"x":-15.452,"y":1.531,"k":0},{"x":-16.265,"y":-6.164,"k":0},{"x":-15.886,"y":4.057,"k":0},{"x":16.117,"y":-6.098,"k":1},{"x":10.935,"y":-23.563,"k":2},{"x":-9.487,"y":-13.115,"k":0},{"x":-12.046,"y":-4.863,"k":0},{"x":-1.103,"y":9.487,"k":0},{"x":-10.537,"y":-11.495,"k":0},{"x":-4.862,"y":11.72,"k":0},{"x":-1.103,"y":-5.951,"k":0},{"x":-4.75,"y":10.453,"k":0},{"x":-1.799,"y":17.515,"k":0},{"x":-12.962,"y":3.478,"k":0},{"x":-15.001,"y":1.528,"k":0},{"x":-12.746,"y":-10.545,"k":0},{"x":-9.418,"y":-10.696,"k":0},{"x":2.26,"y":-25.656,"k":2},{"x":23.786,"y":-10.929,"k":2},{"x":-15.432,"y":2.36,"k":0},{"x":10.432,"y":14.142,"k":1},{"x":-1.914,"y":15.32,"k":0},{"x":0.369,"y":12.186,"k":0},{"x":-15.175,"y":3.333,"k":0},{"x":-14.13,"y":7.031,"k":0},{"x":27.978,"y":21.926,"k":1},{"x":-15.091,"y":3.696,"k":0},{"x":-4.204,"y":6.792,"k":0},{"x":1.737,"y":-24.431,"k":2},{"x":7.318,"y":-7.537,"k":2},{"x":-9.697,"y":12.511,"k":0},{"x":-1.848,"y":16.316,"k":0},{"x":-15.518,"y":1.701,"k":0},{"x":-3.435,"y":8.024,"k":0},{"x":-15.27,"y":-1.992,"k":0},{"x":-14.15,"y":2.122,"k":0},{"x":-0.464,"y":14.152,"k":0},{"x":2.883,"y":-26.496,"k":2},{"x":-13.914,"y":5.784,"k":0},{"x":-14.762,"y":2.962,"k":0},{"x":-3.133,"y":8.78,"k":0},{"x":-11.185,"y":1.895,"k":0},{"x":26.855,"y":-2.097,"k":1},{"x":-0.832,"y":11.081,"k":0},{"x":-11.109,"y":2.51,"k":0},{"x":-3.941,"y":6.057,"k":0},{"x":-16.071,"y":-5.282,"k":0},{"x":16.08,"y":8.881,"k":1},{"x":-10.979,"y":5.761,"k":0},{"x":-3.034,"y":16.103,"k":0},{"x":-14.275,"y":2.429,"k":0},{"x":-15.136,"y":3.728,"k":0},{"x":-3.673,"y":-22.168,"k":2},{"x":27.019,"y":-7.19,"k":1},{"x":28.857,"y":-5.174,"k":1},{"x":-2.754,"y":16.726,"k":0},{"x":-3.367,"y":10.471,"k":0},{"x":-12.597,"y":5.55,"k":0},{"x":3.566,"y":14.119,"k":0},{"x":-15.832,"y":-5.864,"k":0},{"x":-14.805,"y":5.036,"k":0},{"x":-12.802,"y":4.181,"k":0},{"x":1.505,"y":15.258,"k":0},{"x":-7.65,"y":-0.67,"k":0},{"x":-13.281,"y":1.16,"k":0},{"x":31.346,"y":-2.654,"k":1},{"x":-14.592,"y":5.464,"k":0},{"x":8.085,"y":-6.819,"k":2},{"x":-12.802,"y":7.765,"k":0},{"x":-8.017,"y":-0.644,"k":0},{"x":-12.443,"y":9.187,"k":0},{"x":24.721,"y":-14.199,"k":2},{"x":1.193,"y":-14.032,"k":2},{"x":2.022,"y":-25.211,"k":2},{"x":17.032,"y":13.896,"k":1},{"x":-8.415,"y":4.113,"k":0},{"x":-11.627,"y":9.688,"k":0},{"x":3.745,"y":9.205,"k":0},{"x":-7.761,"y":-11.73,"k":0},{"x":-13.647,"y":-6.696,"k":0},{"x":25.076,"y":-7.899,"k":1},{"x":-10.844,"y":6.105,"k":0},{"x":-1.696,"y":-1.476,"k":0},{"x":-7.042,"y":8.279,"k":0},{"x":8.639,"y":10.423,"k":1},{"x":-10.266,"y":-12.984,"k":0},{"x":21.589,"y":9.056,"k":1},{"x":-0.89,"y":11.827,"k":0},{"x":-11.42,"y":-1.359,"k":0},{"x":2.188,"y":-23.883,"k":2},{"x":16.637,"y":17.295,"k":1},{"x":-3.545,"y":-15.777,"k":2},{"x":12.401,"y":1.843,"k":1},{"x":-10.366,"y":-3.585,"k":0},{"x":-10.053,"y":-6.954,"k":0},{"x":-11.718,"y":-11.553,"k":0},{"x":17.788,"y":15.692,"k":1},{"x":26.848,"y":-2.619,"k":1},{"x":16.697,"y":-0.426,"k":1},{"x":-13.672,"y":-6.239,"k":0},{"x":-6.314,"y":-0.806,"k":0},{"x":-13.568,"y":3.593,"k":0},{"x":-13.906,"y":5.018,"k":0},{"x":-13.191,"y":1.252,"k":0},{"x":9.574,"y":13.754,"k":1},{"x":-0.978,"y":-12.438,"k":2},{"x":-14.712,"y":3.552,"k":0},{"x":-13.406,"y":-0.277,"k":0},{"x":27.124,"y":24.293,"k":1},{"x":15.205,"y":-18.209,"k":2},{"x":-10.947,"y":0.76,"k":0},{"x":15.589,"y":-4.472,"k":2},{"x":-0.152,"y":14.034,"k":0},{"x":-14.569,"y":4.895,"k":0},{"x":-14.132,"y":4.066,"k":0},{"x":-8.441,"y":-0.958,"k":0},{"x":-12.387,"y":7.619,"k":0},{"x":4.575,"y":-0.265,"k":1},{"x":7.323,"y":-11.916,"k":2},{"x":2.27,"y":19.045,"k":0},{"x":-8.164,"y":0.431,"k":0},{"x":12.73,"y":0.17,"k":1},{"x":12.146,"y":-0.612,"k":1},{"x":29.269,"y":-3.532,"k":1},{"x":-13.576,"y":-9.066,"k":0},{"x":-12.305,"y":-3.755,"k":0},{"x":-11.087,"y":-8.509,"k":0},{"x":-10.628,"y":-0.186,"k":0},{"x":17.605,"y":-3.519,"k":1},{"x":6.265,"y":8.686,"k":1},{"x":-6.471,"y":10.447,"k":0},{"x":12.322,"y":-11.896,"k":2},{"x":15.143,"y":-19.822,"k":2},{"x":-2.23,"y":16.555,"k":0},{"x":18.663,"y":12.744,"k":1},{"x":4.451,"y":-25.295,"k":2},{"x":26.277,"y":-3.02,"k":1},{"x":2.972,"y":-2.276,"k":2},{"x":-1.985,"y":16.899,"k":0},{"x":-14.103,"y":-3.304,"k":0},{"x":12.486,"y":1.722,"k":1},{"x":-10.964,"y":-10.525,"k":0},{"x":-4.778,"y":11.32,"k":0},{"x":-15.081,"y":-1.935,"k":0},{"x":7.928,"y":2.671,"k":1},{"x":-15.011,"y":2.021,"k":0},{"x":5.085,"y":-0.185,"k":0},{"x":3.345,"y":10.74,"k":0},{"x":15.237,"y":2.924,"k":1},{"x":-5.573,"y":10.268,"k":0},{"x":-10.692,"y":-4.62,"k":0},{"x":-14.914,"y":2.558,"k":0},{"x":-2.356,"y":11.876,"k":0},{"x":1.295,"y":18.027,"k":0},{"x":15.165,"y":14.488,"k":1},{"x":-10.308,"y":3.724,"k":0},{"x":-4.4,"y":9.791,"k":0},{"x":-15.133,"y":3.813,"k":0},{"x":14.448,"y":2.302,"k":1},{"x":-13.564,"y":-9.367,"k":0},{"x":2.519,"y":-23.503,"k":2},{"x":8.727,"y":-10.134,"k":2},{"x":24.926,"y":-14.077,"k":2},{"x":-14.362,"y":7.772,"k":0},{"x":-15.31,"y":1.797,"k":0},{"x":28.581,"y":-6.003,"k":1},{"x":3.634,"y":7.48,"k":0},{"x":5.886,"y":8.432,"k":1},{"x":10.597,"y":13.108,"k":1},{"x":11.681,"y":-20.748,"k":2},{"x":-11.991,"y":-11.07,"k":0},{"x":-13.865,"y":5.34,"k":0},{"x":2.55,"y":18.152,"k":0},{"x":-12.318,"y":1.225,"k":0},{"x":9.935,"y":-20.794,"k":2},{"x":9.555,"y":17.492,"k":1},{"x":-3.385,"y":15.782,"k":0},{"x":-3.833,"y":7.039,"k":0},{"x":-11.426,"y":-3.187,"k":0},{"x":9.332,"y":2.048,"k":1},{"x":-5.931,"y":-2.421,"k":0},{"x":-10.795,"y":6.881,"k":0},{"x":4.927,"y":11.829,"k":1},{"x":-15.445,"y":1.164,"k":0},{"x":1.043,"y":-22.64,"k":2},{"x":-0.329,"y":18.206,"k":0},{"x":-3.386,"y":15.04,"k":0},{"x":-1.81,"y":12.718,"k":0},{"x":21.914,"y":15.796,"k":1},{"x":-13.219,"y":-8.87,"k":0},{"x":4.076,"y":-21.853,"k":2},{"x":11.125,"y":-20.575,"k":2},{"x":0.036,"y":2.89,"k":0},{"x":-13.293,"y":2.093,"k":0},{"x":-10.317,"y":6.295,"k":0},{"x":-0.422,"y":-19.669,"k":2},{"x":8.029,"y":12.279,"k":1},{"x":-5.398,"y":-0.575,"k":0},{"x":11.315,"y":-5.252,"k":2},{"x":10.856,"y":-22.531,"k":2},{"x":-12.777,"y":6.44,"k":0},{"x":-11.682,"y":-0.604,"k":0},{"x":-13.705,"y":-7.82,"k":0},{"x":15.475,"y":5.901,"k":1},{"x":8.872,"y":9.238,"k":1},{"x":-4.527,"y":9.419,"k":0},{"x":-3.234,"y":11.763,"k":0},{"x":-1.31,"y":17.121,"k":0},{"x":29.266,"y":-2.694,"k":1},{"x":15.467,"y":14.105,"k":1},{"x":13.675,"y":-14.039,"k":2},{"x":14.066,"y":-21.948,"k":2},{"x":14.612,"y":10.593,"k":1},{"x":4.448,"y":-1.321,"k":0},{"x":-7.153,"y":1.41,"k":0},{"x":16.206,"y":6.88,"k":1},{"x":6.775,"y":-25.983,"k":2},{"x":-14.448,"y":4.72,"k":0},{"x":5.359,"y":-17.979,"k":2},{"x":-11.993,"y":8.914,"k":0},{"x":1.2,"y":-10.498,"k":2},{"x":-11.638,"y":-11.601,"k":0},{"x":22.342,"y":7.648,"k":1},{"x":-9.028,"y":-6.332,"k":0},{"x":30.118,"y":20.487,"k":1},{"x":-9.904,"y":-11.365,"k":0},{"x":-10.882,"y":-10.626,"k":0},{"x":1.245,"y":-23.394,"k":2},{"x":9.29,"y":-11.763,"k":2},{"x":-10.95,"y":-4.825,"k":0},{"x":-13.91,"y":-8.743,"k":0},{"x":-12.025,"y":7.583,"k":0},{"x":19.488,"y":-7.966,"k":1},{"x":-11.971,"y":-0.975,"k":0},{"x":3.48,"y":6.563,"k":0},{"x":15.588,"y":3.641,"k":1},{"x":0.866,"y":-23.388,"k":2},{"x":9.143,"y":14.849,"k":1},{"x":-14.055,"y":-9.663,"k":0},{"x":-9.572,"y":-1.347,"k":0},{"x":-10.663,"y":-9.103,"k":0},{"x":1.419,"y":12.183,"k":0},{"x":-11.903,"y":-4.486,"k":0},{"x":-10.866,"y":1.855,"k":0},{"x":-2.184,"y":-7.319,"k":0},{"x":-10.584,"y":-2.854,"k":0},{"x":15.202,"y":-14.819,"k":2},{"x":-4.953,"y":7.312,"k":0},{"x":-14.866,"y":4.397,"k":0},{"x":28.594,"y":25.031,"k":1},{"x":19.857,"y":8.297,"k":1},{"x":-15.421,"y":3.237,"k":0},{"x":-5.832,"y":-14.757,"k":2},{"x":-4.224,"y":12.034,"k":0},{"x":-1.756,"y":-0.163,"k":0},{"x":-1.874,"y":9.245,"k":0},{"x":-11.631,"y":-3.483,"k":0},{"x":-3.79,"y":9.277,"k":0},{"x":3.661,"y":-27.576,"k":2},{"x":-5.152,"y":17.008,"k":0},{"x":-4.799,"y":6.309,"k":0},{"x":19.827,"y":0.914,"k":1},{"x":6.607,"y":1.87,"k":1},{"x":-14.911,"y":4.145,"k":0},{"x":-15.314,"y":3.148,"k":0},{"x":-12.442,"y":-3.452,"k":0},{"x":-5.233,"y":-8.059,"k":0},{"x":27.976,"y":0.951,"k":1},{"x":-6.008,"y":0.94,"k":0},{"x":11.348,"y":1.398,"k":1},{"x":-10.058,"y":-12.446,"k":0},{"x":-2.398,"y":17.979,"k":0},{"x":3.417,"y":14.482,"k":0},{"x":9.862,"y":9.356,"k":1},{"x":-3.768,"y":3.822,"k":0},{"x":-3.197,"y":6.986,"k":0},{"x":-14.101,"y":1.696,"k":0},{"x":-15.026,"y":2.331,"k":0},{"x":-10.65,"y":7.733,"k":0},{"x":-10.846,"y":3.262,"k":0},{"x":-11.285,"y":-1.866,"k":0},{"x":14.365,"y":-6.662,"k":2},{"x":32.788,"y":-5.406,"k":1},{"x":12.555,"y":-18.447,"k":2},{"x":-14.461,"y":3.374,"k":0},{"x":-14.712,"y":-6.281,"k":0},{"x":-12.614,"y":9.03,"k":0},{"x":-10.511,"y":-3.736,"k":0},{"x":14.045,"y":-0.372,"k":1},{"x":11.075,"y":-11.438,"k":2},{"x":-3.379,"y":10.837,"k":0},{"x":2.641,"y":-3.415,"k":0},{"x":13.159,"y":6.826,"k":1},{"x":15.09,"y":-23.439,"k":2},{"x":-12.571,"y":-7.611,"k":0},{"x":-4.334,"y":10.484,"k":0},{"x":-14.813,"y":4.285,"k":0},{"x":-13.661,"y":3.254,"k":0},{"x":20.707,"y":4.424,"k":1},{"x":-6.102,"y":10.375,"k":0},{"x":11.231,"y":-11.114,"k":2},{"x":5.16,"y":10.293,"k":0},{"x":29.144,"y":-5.096,"k":1},{"x":26.599,"y":9.017,"k":1},{"x":15.8,"y":3.47,"k":1},{"x":-10.02,"y":-11.843,"k":0},{"x":-0.982,"y":10.363,"k":0},{"x":-11.68,"y":-11.778,"k":0},{"x":-13.929,"y":5.771,"k":0},{"x":-15.193,"y":3.559,"k":0},{"x":-10.402,"y":-5.804,"k":0},{"x":30.385,"y":19.365,"k":1},{"x":-14.073,"y":4.224,"k":0},{"x":-5.298,"y":16.562,"k":0},{"x":-13.526,"y":-0.196,"k":0},{"x":-4.329,"y":12.099,"k":0},{"x":33.92,"y":5.969,"k":1},{"x":13.475,"y":-18.23,"k":2},{"x":-15.097,"y":-0.28,"k":0},{"x":7.64,"y":-22.345,"k":2},{"x":-10.788,"y":3.678,"k":0},{"x":1.947,"y":-8.719,"k":2},{"x":9.667,"y":-14.984,"k":2},{"x":29.308,"y":4.013,"k":1},{"x":-4.583,"y":10.853,"k":0},{"x":-9.809,"y":-8.981,"k":0},{"x":-15.83,"y":-1.093,"k":0},{"x":-10.374,"y":-12.522,"k":0},{"x":-1.241,"y":-23.658,"k":2},{"x":6.914,"y":6.542,"k":1},{"x":32.822,"y":-4.76,"k":1},{"x":1.239,"y":11.269,"k":0},{"x":-4.211,"y":9.921,"k":0},{"x":4.521,"y":0.462,"k":2},{"x":8.351,"y":-19.366,"k":2},{"x":2.197,"y":-5.494,"k":0},{"x":17.916,"y":2.784,"k":1},{"x":-4.41,"y":-19.512,"k":2},{"x":11.71,"y":11.392,"k":1},{"x":8.807,"y":-8.968,"k":2},{"x":-5.592,"y":9.637,"k":0},{"x":-8.873,"y":-10.275,"k":0},{"x":-4.704,"y":-11.238,"k":0},{"x":-8.799,"y":0.85,"k":0},{"x":8.699,"y":9.886,"k":1},{"x":-11.471,"y":7.306,"k":0},{"x":-8.051,"y":-13.557,"k":0},{"x":12.94,"y":-17.81,"k":2},{"x":8.155,"y":-14.922,"k":2},{"x":14.815,"y":-3.39,"k":1},{"x":1.917,"y":18.824,"k":0},{"x":-7.544,"y":-8.984,"k":0},{"x":-1.387,"y":18.276,"k":0},{"x":-4.507,"y":10.825,"k":0},{"x":2.581,"y":-25.102,"k":2},{"x":15.226,"y":3.886,"k":1},{"x":-11.671,"y":6.445,"k":0},{"x":-3.129,"y":7.038,"k":0},{"x":-8.506,"y":-4.991,"k":0},{"x":-4.929,"y":10.089,"k":0},{"x":-14.683,"y":3.004,"k":0},{"x":6.108,"y":-7.713,"k":2},{"x":-8.201,"y":-5.62,"k":0},{"x":-6.597,"y":8.274,"k":0},{"x":-8.842,"y":-11.903,"k":0},{"x":12.395,"y":-1.822,"k":1},{"x":8.308,"y":-21.36,"k":2},{"x":15.904,"y":-19.19,"k":2},{"x":-11.061,"y":11.056,"k":0},{"x":-13.143,"y":4.344,"k":0},{"x":1.906,"y":16.685,"k":0},{"x":-8.659,"y":-10.462,"k":0},{"x":-7.366,"y":10.598,"k":0},{"x":-7.912,"y":-12.097,"k":0},{"x":-10.314,"y":-6.943,"k":0},{"x":-5.848,"y":0.235,"k":0},{"x":-5.698,"y":12.11,"k":0},{"x":7.949,"y":-7.342,"k":2},{"x":27.813,"y":-8.004,"k":1},{"x":19.718,"y":2.963,"k":1},{"x":0.285,"y":18.501,"k":0},{"x":-14.654,"y":4.981,"k":0},{"x":14.754,"y":-18.06,"k":2},{"x":-1.601,"y":0.163,"k":0},{"x":0.615,"y":0.872,"k":0},{"x":-6.505,"y":7.526,"k":0},{"x":-11.593,"y":-11.85,"k":0},{"x":-15.132,"y":-2.694,"k":0},{"x":-11.731,"y":-11.748,"k":0},{"x":-15.582,"y":2.257,"k":0},{"x":28.891,"y":-6.661,"k":1},{"x":-2.912,"y":11.219,"k":0},{"x":-12.972,"y":3.819,"k":0},{"x":-8.804,"y":-6.107,"k":0},{"x":1.771,"y":-23.697,"k":2},{"x":-11.795,"y":0.304,"k":0},{"x":-13.393,"y":-8.325,"k":0},{"x":10.605,"y":0.452,"k":1},{"x":2.288,"y":-23.03,"k":2},{"x":18.475,"y":0.838,"k":1},{"x":-2.697,"y":16.722,"k":0},{"x":-12.419,"y":-11.898,"k":0},{"x":-11.695,"y":-11.946,"k":0},{"x":-7.495,"y":7.25,"k":0},{"x":2.189,"y":-6.921,"k":2},{"x":-9.753,"y":1.696,"k":0},{"x":-7.554,"y":1.999,"k":0},{"x":27.886,"y":2.051,"k":1},{"x":-13.981,"y":-6.114,"k":0},{"x":30.972,"y":-3.384,"k":1},{"x":-2.707,"y":13.254,"k":0},{"x":-4.879,"y":-1.918,"k":0},{"x":2.072,"y":15.823,"k":0},{"x":-2.485,"y":8.892,"k":0},{"x":-16.258,"y":-5.444,"k":0},{"x":-3.549,"y":14.296,"k":0},{"x":9.139,"y":-9.659,"k":2},{"x":-12.052,"y":3.484,"k":0},{"x":-8.018,"y":-2.516,"k":0},{"x":-13.794,"y":10.119,"k":0},{"x":-9.118,"y":10.445,"k":0},{"x":-2.054,"y":15.33,"k":0},{"x":-15.341,"y":4.794,"k":0},{"x":16.327,"y":6.728,"k":1},{"x":-4.333,"y":15.077,"k":0},{"x":7.311,"y":-17.705,"k":2},{"x":-3.119,"y":6.041,"k":0},{"x":32.003,"y":-1.642,"k":1},{"x":-3.848,"y":-14.499,"k":2},{"x":8.305,"y":12.736,"k":1},{"x":-15.23,"y":4.193,"k":0},{"x":6.898,"y":-12.522,"k":2},{"x":-8.025,"y":-8.431,"k":0},{"x":-2.013,"y":9.585,"k":0},{"x":10.074,"y":0.448,"k":1},{"x":-14.402,"y":3.94,"k":0},{"x":-16.016,"y":2.056,"k":0},{"x":-11.153,"y":0.682,"k":0},{"x":-6.862,"y":-2.521,"k":0},{"x":8.363,"y":-20.582,"k":2},{"x":-8.683,"y":3.973,"k":0},{"x":-12.544,"y":10.386,"k":0},{"x":-10.534,"y":4.849,"k":0},{"x":-13.96,"y":3.871,"k":0},{"x":0.42,"y":-22.095,"k":2},{"x":17.605,"y":-7.454,"k":2},{"x":8.515,"y":-17.612,"k":2},{"x":18.969,"y":9.856,"k":1},{"x":-14.53,"y":4.615,"k":0},{"x":6.772,"y":-6.953,"k":2},{"x":-10.064,"y":10.279,"k":0},{"x":29.564,"y":24.312,"k":1},{"x":8.325,"y":-9.334,"k":2},{"x":-13.568,"y":0.69,"k":0},{"x":-11.717,"y":6.043,"k":0},{"x":-14.46,"y":-7.546,"k":0},{"x":9.825,"y":-7.363,"k":2},{"x":-14.948,"y":-4.027,"k":0},{"x":20.368,"y":10.963,"k":1},{"x":-12.853,"y":-10.354,"k":0},{"x":-10.113,"y":9.126,"k":0},{"x":-10.243,"y":4.945,"k":0},{"x":11.871,"y":-19.804,"k":2},{"x":-14.516,"y":6.583,"k":0},{"x":-3.023,"y":11.67,"k":0},{"x":8.521,"y":-8.703,"k":2},{"x":-14.037,"y":-5.878,"k":0},{"x":-15.43,"y":-6.897,"k":0},{"x":9.886,"y":12.26,"k":1},{"x":-11.23,"y":2.527,"k":0},{"x":12.635,"y":-20.022,"k":2},{"x":-11.17,"y":-2.398,"k":0},{"x":5.907,"y":-22.656,"k":2},{"x":24.686,"y":12.61,"k":1},{"x":13.789,"y":3.144,"k":1},{"x":18.499,"y":7.604,"k":1},{"x":2.239,"y":-22.92,"k":2},{"x":-10.143,"y":0.026,"k":0},{"x":-10.39,"y":-9.382,"k":0},{"x":-11.048,"y":-12.31,"k":0},{"x":-11.37,"y":-1.125,"k":0},{"x":-16.101,"y":2.057,"k":0},{"x":-10.327,"y":-9.48,"k":0},{"x":-8.712,"y":8.24,"k":0},{"x":-1.862,"y":9.845,"k":0},{"x":1.478,"y":-25.168,"k":2},{"x":1.61,"y":-11.364,"k":2},{"x":-13.545,"y":-7.978,"k":0},{"x":-9.219,"y":-11.68,"k":0},{"x":25.148,"y":-5.789,"k":1},{"x":-10.411,"y":-1.476,"k":0},{"x":-12.829,"y":6.36,"k":0},{"x":12.528,"y":-24.534,"k":2},{"x":-8.351,"y":0.813,"k":0},{"x":0.675,"y":-23.55,"k":2},{"x":-3.016,"y":-5.82,"k":0},{"x":-2.12,"y":-21.413,"k":2},{"x":-14.594,"y":2.131,"k":0},{"x":8.22,"y":-8.006,"k":2},{"x":29.348,"y":-7.648,"k":1},{"x":-0.434,"y":13.128,"k":0},{"x":7.196,"y":20.574,"k":1},{"x":-4.567,"y":10.159,"k":0},{"x":-11.744,"y":-6.216,"k":0},{"x":-14.675,"y":1.282,"k":0},{"x":23.686,"y":7.518,"k":1},{"x":-14.245,"y":3.685,"k":0},{"x":-2.592,"y":17.922,"k":0},{"x":0.14,"y":12.456,"k":0},{"x":-3.532,"y":11.693,"k":0},{"x":-7.034,"y":13.03,"k":0},{"x":24.921,"y":-14.182,"k":2},{"x":18.89,"y":3.043,"k":1},{"x":16.777,"y":-2.849,"k":1},{"x":-2.83,"y":15.742,"k":0},{"x":0.376,"y":18.837,"k":0},{"x":2.234,"y":14.05,"k":0},{"x":8.375,"y":-19.085,"k":2},{"x":1.744,"y":-24.04,"k":2},{"x":-11.895,"y":6.081,"k":0},{"x":-3.311,"y":15.249,"k":0},{"x":0.965,"y":14.064,"k":0},{"x":6.705,"y":4.873,"k":0},{"x":-11.807,"y":7.378,"k":0},{"x":-15.061,"y":4.116,"k":0},{"x":26.981,"y":-10.663,"k":1},{"x":-13.879,"y":5.154,"k":0},{"x":-10.904,"y":-9.648,"k":0},{"x":-2.106,"y":-3.59,"k":0},{"x":-3.576,"y":12.519,"k":0},{"x":3.674,"y":2.139,"k":0},{"x":32.101,"y":3.618,"k":1},{"x":29.879,"y":-0.659,"k":1},{"x":-8.904,"y":-11.639,"k":0},{"x":19.451,"y":-4.091,"k":1},{"x":0.031,"y":-8.73,"k":2},{"x":-14.515,"y":0.612,"k":0},{"x":-5.425,"y":10.254,"k":0},{"x":-0.398,"y":-17.912,"k":2},{"x":-5.121,"y":1.806,"k":0},{"x":3.92,"y":-1.066,"k":0},{"x":-10.485,"y":9.754,"k":0},{"x":-10.536,"y":-12.135,"k":0},{"x":3.93,"y":16.39,"k":0},{"x":13.838,"y":1.702,"k":1},{"x":1.305,"y":0.536,"k":0},{"x":15.791,"y":-9.17,"k":1},{"x":-11.665,"y":-11.939,"k":0},{"x":10.436,"y":-17.623,"k":2},{"x":9.989,"y":0.765,"k":1},{"x":-2.744,"y":12.658,"k":0},{"x":-14.109,"y":9.152,"k":0},{"x":13.403,"y":2.507,"k":1},{"x":-16.427,"y":-5.271,"k":0},{"x":15.186,"y":-2.128,"k":1},{"x":-1.16,"y":-21.607,"k":2},{"x":16.686,"y":-9.26,"k":2},{"x":-13.758,"y":-6.033,"k":0},{"x":-10.664,"y":2.8,"k":0},{"x":30.663,"y":-1.083,"k":1},{"x":-2.983,"y":14.717,"k":0},{"x":17.543,"y":12.453,"k":1},{"x":29.736,"y":25.053,"k":1},{"x":-4.943,"y":10.142,"k":0},{"x":-3.117,"y":14.563,"k":0},{"x":-9.673,"y":12.563,"k":0},{"x":-5.831,"y":1.495,"k":0},{"x":25.953,"y":-7.965,"k":1},{"x":30.485,"y":-3.213,"k":1},{"x":-10.864,"y":8.887,"k":0},{"x":-5.659,"y":4.532,"k":0},{"x":-10.542,"y":-1.554,"k":0},{"x":-7.422,"y":7.975,"k":0},{"x":-13.643,"y":4.631,"k":0},{"x":-14.07,"y":7.011,"k":0},{"x":17.609,"y":-8.628,"k":2},{"x":25.506,"y":12.744,"k":1},{"x":25.483,"y":23.382,"k":1},{"x":-13.836,"y":1.687,"k":0},{"x":-14.524,"y":4.028,"k":0},{"x":-13.762,"y":-6.684,"k":0},{"x":15.683,"y":-16.76,"k":2},{"x":9.484,"y":-15.483,"k":2},{"x":-7.498,"y":11.317,"k":0},{"x":13.788,"y":4.514,"k":1},{"x":1.649,"y":-22.858,"k":2},{"x":-0.23,"y":-4.664,"k":0},{"x":-13.265,"y":2.245,"k":0},{"x":19.167,"y":-11.377,"k":2},{"x":-8.519,"y":-13.831,"k":0},{"x":-10.856,"y":-10.605,"k":0},{"x":-1.107,"y":12.224,"k":0},{"x":15.241,"y":-11.811,"k":2},{"x":-11.505,"y":1.919,"k":0},{"x":3.887,"y":-23.335,"k":2},{"x":-14.374,"y":-6.086,"k":0},{"x":9.363,"y":-7.475,"k":2},{"x":-15.148,"y":3.747,"k":0},{"x":-0.502,"y":-20.141,"k":2},{"x":7.015,"y":-10.328,"k":2},{"x":-10.614,"y":-9.125,"k":0},{"x":-1.8,"y":6.083,"k":0},{"x":-14.073,"y":4.117,"k":0},{"x":-0.766,"y":-25.362,"k":2},{"x":26.666,"y":13.528,"k":1},{"x":24.056,"y":3.955,"k":1},{"x":-7.011,"y":12.987,"k":0},{"x":-3.861,"y":-21.23,"k":2},{"x":11.627,"y":18.126,"k":1},{"x":10.47,"y":10.479,"k":1},{"x":-15.257,"y":4.234,"k":0},{"x":-15.536,"y":2.783,"k":0},{"x":1.537,"y":2.82,"k":0},{"x":-5.144,"y":-9.109,"k":0},{"x":13.054,"y":-22.346,"k":2},{"x":12.153,"y":2.354,"k":1},{"x":-4.229,"y":-2.612,"k":0},{"x":-6.945,"y":-2.76,"k":0},{"x":-10.728,"y":-11.277,"k":0},{"x":-13.836,"y":2.035,"k":0},{"x":-2.801,"y":-19.448,"k":2},{"x":-1.679,"y":17.085,"k":0},{"x":10.365,"y":-18.483,"k":2},{"x":4.75,"y":16.208,"k":0},{"x":1.192,"y":-22.223,"k":2},{"x":27.853,"y":18.027,"k":1},{"x":-7.014,"y":12.958,"k":0},{"x":15.243,"y":-19.334,"k":2},{"x":9.61,"y":0.812,"k":1},{"x":1.716,"y":-23.478,"k":2},{"x":-5.281,"y":1.114,"k":0},{"x":-9.921,"y":-7.597,"k":0},{"x":-13.815,"y":2.249,"k":0},{"x":19.095,"y":12.623,"k":1},{"x":26.372,"y":-9.576,"k":1},{"x":8.613,"y":-23.333,"k":2},{"x":-9.2,"y":-0.784,"k":0},{"x":23.834,"y":-5.001,"k":1},{"x":16.601,"y":12.247,"k":1},{"x":15.914,"y":-14.041,"k":2},{"x":-2.833,"y":-6.331,"k":0},{"x":-9.655,"y":-11.743,"k":0},{"x":-10.276,"y":1.784,"k":0},{"x":-13.43,"y":7.775,"k":0},{"x":16.851,"y":13.659,"k":1},{"x":-5.211,"y":11.383,"k":0},{"x":-1.28,"y":13.881,"k":0},{"x":12.276,"y":-3.263,"k":2},{"x":29.377,"y":-0.428,"k":1},{"x":8.004,"y":17.158,"k":1},{"x":-4.238,"y":11.45,"k":0},{"x":24.628,"y":-14.573,"k":2},{"x":6.294,"y":-3.451,"k":1},{"x":-4.977,"y":1.126,"k":0},{"x":14.887,"y":7.382,"k":1},{"x":15.541,"y":5.68,"k":1},{"x":-2.43,"y":9.758,"k":0},{"x":13.248,"y":-1.153,"k":1},{"x":-14.453,"y":-9.961,"k":0},{"x":-13.858,"y":4.316,"k":0},{"x":-4.006,"y":15.543,"k":0},{"x":-16.026,"y":-5.313,"k":0},{"x":7.411,"y":0.625,"k":1},{"x":23.763,"y":11.274,"k":1},{"x":-16.675,"y":1.699,"k":0},{"x":-2.275,"y":11.238,"k":0},{"x":4.917,"y":-3.265,"k":0},{"x":-8.408,"y":-12.424,"k":0},{"x":29.799,"y":0.697,"k":1},{"x":23.036,"y":-5.307,"k":1},{"x":-10.613,"y":-4.872,"k":0},{"x":6.147,"y":1.343,"k":0},{"x":15.679,"y":6.056,"k":1},{"x":7.216,"y":-27.807,"k":2},{"x":1.876,"y":3.454,"k":0},{"x":-16.063,"y":-0.575,"k":0},{"x":10.971,"y":-9.48,"k":2},{"x":-13.979,"y":-2.532,"k":0},{"x":-14.211,"y":9.631,"k":0},{"x":3.289,"y":-27.976,"k":2},{"x":-10.822,"y":6.935,"k":0},{"x":-15.61,"y":4.218,"k":0},{"x":-14.023,"y":4.106,"k":0},{"x":-12.046,"y":-10.559,"k":0},{"x":-11.784,"y":-9.716,"k":0},{"x":24.953,"y":12.58,"k":1},{"x":-15.328,"y":4.222,"k":0},{"x":-7.846,"y":16.144,"k":0},{"x":-6.158,"y":10.398,"k":0},{"x":-9.923,"y":-9.196,"k":0},{"x":19.751,"y":8.535,"k":1}]};
+const NS="http://www.w3.org/2000/svg";
+const el=(n,a={})=>{const e=document.createElementNS(NS,n);for(const k in a)e.setAttribute(k,a[k]);return e;};
+const cs=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+const tip=document.getElementById("tip");
+function show(e,h){tip.innerHTML=h;tip.classList.add("on");
+  const r=tip.getBoundingClientRect();let x=e.clientX+14,y=e.clientY-12;
+  if(x+r.width>innerWidth-8)x=e.clientX-r.width-14;
+  if(y<8)y=8;if(y+r.height>innerHeight-8)y=innerHeight-r.height-8;
+  tip.style.left=x+"px";tip.style.top=y+"px";}
+function hide(){tip.classList.remove("on");}
+function txt(s,x,y,t,o={}){
+  const n=el("text",{x,y,"text-anchor":o.a||"middle","font-size":o.s||11.5,
+    fill:o.f||cs("--ink-3"),"font-family":o.ff||'"IBM Plex Mono",monospace',"font-weight":o.w||400});
+  n.textContent=t;s.appendChild(n);return n;}
+
+/* 1 — commodity ranked bars */
+function c1(){
+  const s=document.getElementById("c1");s.innerHTML="";
+  const rows=[...D.commod].sort((a,b)=>b.load-a.load);
+  const W=880,L=176,R=96,T=30,B=42,bh=13,gap=4;
+  const H=T+B+rows.length*(bh+gap);
+  s.setAttribute("viewBox",`0 0 ${W} ${H}`);
+  const max=5.5,xs=v=>(W-L-R)*v/max;
+  for(let v=0;v<=5;v++){
+    s.appendChild(el("line",{x1:L+xs(v),x2:L+xs(v),y1:T-10,y2:H-B+2,stroke:cs("--rule-2"),"stroke-width":1}));
+    txt(s,L+xs(v),T-16,v);
+  }
+  txt(s,L,H-B+22,"distinct residues detected per sample","start",{a:"start",s:11.5});
+  rows.forEach((r,i)=>{
+    const y=T+i*(bh+gap);
+    const baby=/^Baby Food/.test(r.c);
+    const col=baby?cs("--k2"):cs("--k1");
+    const g=el("g");
+    g.appendChild(el("rect",{x:L,y,width:Math.max(xs(r.load),1.5),height:bh,fill:col,rx:2}));
+    const lt=el("text",{x:L-10,y:y+bh-2.5,"text-anchor":"end","font-size":11.5,
+      fill:baby?cs("--k2"):cs("--ink-2"),"font-family":'"Public Sans",sans-serif',
+      "font-weight":baby?600:400});
+    lt.textContent=r.c.length>26?r.c.slice(0,25)+"…":r.c;g.appendChild(lt);
+    txt(s,L+Math.max(xs(r.load),1.5)+8,y+bh-2.5,r.load.toFixed(2)+"  ·  "+r.det.toFixed(0)+"%",
+      {a:"start",s:10.5,f:cs("--ink-3")});
+    g.addEventListener("mousemove",e=>show(e,
+      `<b>${r.c}</b><br>${r.load.toFixed(2)} residues/sample<br>${r.det.toFixed(1)}% with a detection<br>n=${r.n.toLocaleString()} samples`));
+    g.addEventListener("mouseleave",hide);
+    s.appendChild(g);
+  });
+}
+
+/* 2 — county PCA scatter */
+function c2(){
+  const s=document.getElementById("c2");s.innerHTML="";
+  const W=880,H=460,L=56,R=30,T=26,B=54;
+  const xs_=D.county_pts.map(p=>p.x),ys_=D.county_pts.map(p=>p.y);
+  const xmin=Math.min(...xs_),xmax=Math.max(...xs_),ymin=Math.min(...ys_),ymax=Math.max(...ys_);
+  const X=v=>L+(W-L-R)*(v-xmin)/(xmax-xmin), Y=v=>T+(H-T-B)*(1-(v-ymin)/(ymax-ymin));
+  s.appendChild(el("line",{x1:L,x2:W-R,y1:Y(0),y2:Y(0),stroke:cs("--rule-2"),"stroke-width":1}));
+  s.appendChild(el("line",{x1:X(0),x2:X(0),y1:T,y2:H-B,stroke:cs("--rule-2"),"stroke-width":1}));
+  const COL=[cs("--k1"),cs("--k3"),cs("--k2")];
+  const NAME=["Corn Belt","Fumigant / specialty crop","Cotton & Delta South"];
+  D.county_pts.forEach(p=>{
+    const c=el("circle",{cx:X(p.x),cy:Y(p.y),r:3.4,fill:COL[p.k],opacity:.62});
+    c.addEventListener("mousemove",e=>show(e,`<b>${NAME[p.k]}</b>`));
+    c.addEventListener("mouseleave",hide);
+    s.appendChild(c);
+  });
+  txt(s,(L+W-R)/2,H-B+38,"PC1 (23.5% of variance)",{s:11.5});
+  txt(s,L-42,T+(H-T-B)/2,"PC2 (19.2%)",{s:11.5});
+  const leg=document.getElementById("leg2");leg.innerHTML="";
+  D.county.forEach((c,i)=>leg.insertAdjacentHTML("beforeend",
+    `<span><i class="sw" style="background:${COL[c.k]}"></i>${NAME[c.k]} — ${c.n.toLocaleString()} counties</span>`));
+}
+
+/* 3 — trajectory centroids */
+function c3(){
+  const s=document.getElementById("c3");s.innerHTML="";
+  const W=880,H=400,L=56,R=232,T=26,B=52;
+  const keys=Object.keys(D.traj).sort();
+  const yrs=D.traj[keys[0]].years;
+  const X=i=>L+(W-L-R)*i/(yrs.length-1), Y=v=>T+(H-T-B)*(1-v);
+  for(let v=0;v<=1;v+=0.25){
+    s.appendChild(el("line",{x1:L,x2:W-R,y1:Y(v),y2:Y(v),stroke:cs("--rule-2"),"stroke-width":1}));
+    txt(s,L-10,Y(v)+4,(v*100)+"%",{a:"end"});
+  }
+  txt(s,L-10,Y(1)-14,"of peak",{a:"end",s:10});
+  yrs.forEach((y,i)=>{if(y%4===0||y===2018)txt(s,X(i),H-B+20,y);});
+  const COL={"1":cs("--k3"),"2":cs("--k1"),"3":cs("--k4"),"4":cs("--k2")};
+  const NAME={"1":"Phase-out","2":"Legacy plateau","3":"Boom then collapse","4":"Still rising"};
+  const leg=document.getElementById("leg3");leg.innerHTML="";
+  keys.forEach(k=>{
+    const t=D.traj[k],col=COL[k];
+    s.appendChild(el("path",{d:t.vals.map((v,i)=>(i?"L":"M")+X(i)+" "+Y(v)).join(" "),
+      fill:"none",stroke:col,"stroke-width":k==="4"?3:2,"stroke-linejoin":"round"}));
+    t.vals.forEach((v,i)=>{
+      if(i%3&&i!==t.vals.length-1)return;
+      const c=el("circle",{cx:X(i),cy:Y(v),r:4,fill:col,stroke:cs("--card"),"stroke-width":1.5});
+      c.addEventListener("mousemove",e=>show(e,
+        `<b>${NAME[k]}</b><br>${t.years[i]}<br>${(v*100).toFixed(0)}% of peak`));
+      c.addEventListener("mouseleave",hide);s.appendChild(c);
+    });
+    const last=t.vals.length-1;
+    const n=el("text",{x:X(last)+12,y:Y(t.vals[last])+3,"font-size":12.5,fill:col,
+      "font-weight":600,"font-family":'"Public Sans",sans-serif'});
+    n.textContent=NAME[k];s.appendChild(n);
+    txt(s,X(last)+12,Y(t.vals[last])+19,`${t.n} compounds · ${D.traj_mass[k]} M kg`,
+      {a:"start",s:10.5,f:cs("--ink-3")});
+    leg.insertAdjacentHTML("beforeend",
+      `<span><i class="sw bar" style="background:${col}"></i>${NAME[k]} — ${D.traj_top[k].slice(0,3).join(", ").toLowerCase()}</span>`);
+  });
+}
+
+/* commodity cluster cards */
+(function cards(){
+  const NAMES={1:"Postharvest-fungicide pome & citrus",2:"Not interpretable as a food group",
+    3:"Fludioxonil stone fruit & grapes",4:"Low-residue catch-all",
+    5:"High-residue leafy greens",6:"High-residue soft fruit"};
+  const box=document.getElementById("commodCards");
+  const COL={1:"--k1",2:"--ink-3",3:"--k3",4:"--ink-3",5:"--k4",6:"--k2"};
+  D.commod_prof.sort((a,b)=>b.load-a.load).forEach(p=>{
+    const weak=(p.k===2||p.k===4);
+    const items=p.items.split("|").map(x=>x.trim());
+    const shown=items.slice(0,6).join(", ")+(items.length>6?`, +${items.length-6} more`:"");
+    box.insertAdjacentHTML("beforeend",`
+      <div class="card${weak?" weak":""}" style="border-top-color:var(${COL[p.k]})">
+        <div class="n">Cluster ${p.k} · ${p.n} commodit${p.n===1?"y":"ies"}</div>
+        <h4>${NAMES[p.k]}</h4>
+        <div class="stat"><b>${p.load.toFixed(2)}</b> residues/sample · <b>${p.det.toFixed(0)}%</b> with a detection</div>
+        <div class="items">${shown}</div>
+      </div>`);
+  });
+})();
+
+/* table */
+(function t1(){
+  const t=document.getElementById("t1");
+  const rows=[...D.commod].sort((a,b)=>b.load-a.load);
+  t.innerHTML="<thead><tr><th>Commodity</th><th>Cluster</th><th>Residues/sample</th><th>% with detection</th><th>Samples</th></tr></thead><tbody>"+
+    rows.map(r=>`<tr><td>${r.c}</td><td class="n">${r.k}</td><td class="n">${r.load.toFixed(2)}</td><td class="n">${r.det.toFixed(1)}%</td><td class="n">${r.n.toLocaleString()}</td></tr>`).join("")+"</tbody>";
+})();
+
+function draw(){c1();c2();c3();}
+draw();
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change",draw);
+new MutationObserver(draw).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+addEventListener("resize",()=>{clearTimeout(window.__t);window.__t=setTimeout(draw,180);});
+</script>
