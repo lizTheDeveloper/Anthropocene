@@ -111,7 +111,8 @@ def region_to_notes(lines: list[str], s: int) -> tuple[int, int]:
 
 
 def last_national_block(lines: list[str], header: str, year_on: str,
-                        n_values: int) -> dict[int, list[float]]:
+                        n_values: int, years: list[int] | None = None
+                        ) -> dict[int, list[float]]:
     """
     The national 'Total' block is the final nine year-rows of a by-State table.
 
@@ -126,15 +127,16 @@ def last_national_block(lines: list[str], header: str, year_on: str,
     sometimes a stray line-wrapped fragment sitting above the notes block, so
     candidate page-starts are tried newest-first until one validates.
     """
+    years = years or NRI_YEARS
     for s in reversed(header_starts(lines, header)):
-        block = _block_from(lines, s, year_on, n_values)
+        block = _block_from(lines, s, year_on, n_values, years)
         if block is not None:
             return block
-    raise SystemExit(f"{header}: no page yielded the national year sequence {NRI_YEARS}")
+    raise SystemExit(f"{header}: no page yielded the national year sequence {years}")
 
 
 def _block_from(lines: list[str], s: int, year_on: str,
-                n_values: int) -> dict[int, list[float]] | None:
+                n_values: int, years: list[int]) -> dict[int, list[float]] | None:
     s, e = region_to_notes(lines, s)
     rows: list[tuple[int, list[float]]] = []
 
@@ -164,8 +166,8 @@ def _block_from(lines: list[str], s: int, year_on: str,
     else:
         raise ValueError(year_on)
 
-    tail = rows[-len(NRI_YEARS):]
-    if [y for y, _ in tail] != NRI_YEARS:
+    tail = rows[-len(years):]
+    if [y for y, _ in tail] != years:
         return None
     return {y: v for y, v in tail}
 
@@ -385,6 +387,9 @@ def main() -> int:
                 "water_erosion_t_per_ac_yr": round(water, 2),
                 "wind_erosion_t_per_ac_yr": round(wind, 2),
                 "total_erosion_t_per_ac_yr": round(water + wind, 2),
+                # 1 short ton/acre = 2.24170 Mg/ha.  The soil-carbon literature
+                # this analysis is framed against works in Mg/ha.
+                "total_erosion_Mg_per_ha_yr": round((water + wind) * 2.24170, 2),
                 "acres_thousands": acres,
                 "acres_above_T_water_thousands": round(above_w, 1),
                 "pct_acres_above_T_water": round(100 * above_w / acres, 2),
@@ -479,7 +484,8 @@ def main() -> int:
     print("  National sheet & rill rate, cultivated cropland (t/ac/yr)")
     old = pdf_text(ROOT / "data/raw/usda-nrcs/nri/2026-09-14/reports/2017NRISummary_Final.pdf")
     t14_2017 = last_national_block(
-        old, "Table 14 - Estimated average annual sheet and rill erosion", "same", 6)
+        old, "Table 14 - Estimated average annual sheet and rill erosion", "same", 6,
+        years=NRI_YEARS[:-1])   # the 2017 release ends at 2017
     print("    year   2017 release   2022 release   revision")
     nrev = 0
     for y in NRI_YEARS[:-1]:          # the 2017 release stops at 2017

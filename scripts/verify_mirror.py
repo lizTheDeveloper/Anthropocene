@@ -131,7 +131,37 @@ def inventory():
           "that never succeeded by any route; 'archive' = retrieved via Internet Archive)")
 
 
+
+def verify_attestation():
+    """Every file in the mirror must have a ledger row carrying its sha256.
+
+    Checksum verification asks "did a file I recorded change?". This asks the
+    complementary question, which is the one that was missed: "is there a file
+    here I never recorded?" A file present but unattested has no URL, no
+    retrieval timestamp and no provenance -- it is indistinguishable from
+    something dropped into the directory by hand, which is exactly what a
+    contested citation cannot afford.
+
+    This was a real defect: the fetchers returned early on an already-present
+    file without recording it, so anything written outside the library (or by a
+    run whose ledger was later lost) sat in the mirror unattested.
+    """
+    ledger = set()
+    with open(ROOT / "data" / "provenance.csv") as fh:
+        for row in csv.DictReader(fh):
+            if row.get("sha256"):
+                ledger.add(row["sha256"])
+    files = [p for p in (ROOT / "data" / "raw").rglob("*")
+             if p.is_file() and p.stat().st_size > 0 and "_discovery" not in str(p)]
+    unattested = [p for p in files if sha256_file(p) not in ledger]
+    print(f"\nattestation: {len(files) - len(unattested)} of {len(files)} files have a provenance row")
+    for p in unattested:
+        print(f"  UNATTESTED  {p.relative_to(ROOT)} ({p.stat().st_size:,} bytes)")
+    return not unattested
+
+
 if __name__ == "__main__":
     inventory()
     validate_structure()
     verify_checksums()
+    verify_attestation()

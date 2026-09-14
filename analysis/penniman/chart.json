@@ -1,0 +1,81 @@
+{
+  "title": "Counted, but not landed",
+  "subtitle": "Share of U.S. farm operations vs. share of U.S. farmland, by producer race and ethnicity, 2022 Census of Agriculture. Farms with at least one Black producer are 1.51% of operations and hold 0.49% of the land.",
+  "chart_type": "dumbbell",
+  "orientation": "horizontal",
+  "x": {
+    "field": "percent",
+    "label": "Percent of U.S. total (log scale)",
+    "scale": "log",
+    "domain": [0.05, 120],
+    "ticks": [0.1, 0.3, 1, 3, 10, 30, 100],
+    "format": "0.##'%'"
+  },
+  "y": {
+    "field": "producer_group",
+    "label": null,
+    "order": [
+      "White",
+      "Hispanic (any race)",
+      "American Indian or Alaska Native",
+      "Black or African American",
+      "Multi-race",
+      "Asian",
+      "Native Hawaiian or Other Pacific Islander"
+    ]
+  },
+  "series": [
+    {
+      "name": "Share of farm operations",
+      "field": "share_of_operations_pct",
+      "role": "counted",
+      "mark": "circle-open"
+    },
+    {
+      "name": "Share of farmland (acres operated)",
+      "field": "share_of_acres_pct",
+      "role": "landed",
+      "mark": "circle-filled"
+    }
+  ],
+  "connector": {
+    "from": "share_of_operations_pct",
+    "to": "share_of_acres_pct",
+    "encode_direction": true,
+    "direction_note": "Segment points LEFT when a group's land share falls short of its share of farms, RIGHT when it exceeds it. Direction, not just length, carries the claim."
+  },
+  "data_file": "data/derived/lens_penniman_land_access_by_race.csv",
+  "data_filter": "year == 2022",
+  "label_field": "acres_share_over_ops_share",
+  "label_format": "ratio, e.g. 0.33x",
+  "annotations": [
+    {
+      "target": "Black or African American",
+      "text": "0.49% of farmland on 1.51% of farms — a land share 3.1x smaller than the farm-count share. Average 150 acres vs. 463 for the U.S. as a whole."
+    },
+    {
+      "target": "American Indian or Alaska Native",
+      "text": "The one reversal: 6.34% of farmland on 2.14% of farms. 37% of those acres are in Arizona alone — largely arid reservation rangeland, not an indicator of comparable land security."
+    },
+    {
+      "target": "White",
+      "text": "96.3% of operations, 93.6% of acres. The reference point, not a residual."
+    },
+    {
+      "target": "chart",
+      "position": "footer",
+      "text": "Trend, same series 2002→2022: the Black land share rose 0.409% → 0.491% while Black-operated farms fell 30,605 → 28,723. The land-share-to-farm-share ratio sat at 0.27–0.28 for fifteen years and reached 0.33 only in 2022 — partly consolidation, not only access."
+    },
+    {
+      "target": "chart",
+      "position": "footer",
+      "text": "Groups OVERLAP and must never be stacked: a farm with a Black and a White producer is counted in both rows."
+    },
+    {
+      "target": "chart",
+      "position": "footer",
+      "text": "Definitional break at 2017: the Census switched from 'operators' (≤3/farm) to 'producers' (≤4/farm). Producer head-counts jump across the break; operations and acres — the two series charted here — do not."
+    }
+  ],
+  "source_note": "USDA NASS Census of Agriculture, 2022 (QuickStats bulk mirror, qs.census2022.txt.gz), national level, DOMAIN_DESC = TOTAL. Series: 'PRODUCERS, <group> - NUMBER OF OPERATIONS' and '- ACRES OPERATED'; denominators 'FARM OPERATIONS - ...' (1,900,487 farms; 880,100,848 acres). Computed by analysis/penniman/compute.py."
+}

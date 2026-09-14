@@ -236,6 +236,14 @@ def main():
     line("[excluded] insects",    soil[soil["class"].eq("Insecta")])
     line("[excluded] plants",     soil[soil.kingdom.eq("Plantae")])
 
+    in_four = pd.concat([sel(soil) for sel in GROUPS.values()], axis=1).any(axis=1)
+    fld = soil[soil.tier >= 4]
+    in_four_f = pd.concat([sel(fld) for sel in GROUPS.values()], axis=1).any(axis=1)
+    print(f"\n  the four non-target soil groups are {in_four.sum():,} of {len(soil):,} "
+          f"endpoint-bearing soil tests ({100 * in_four.mean():.2f}%)")
+    print(f"  and {in_four_f.sum():,} of {len(fld):,} field tests ({100 * in_four_f.mean():.2f}%); "
+          f"terrestrial plants are {100 * fld.kingdom.eq('Plantae').mean():.2f}% of field tests")
+
     bact = soil_all[soil_all.kingdom.isin(["Monera", "Protista"])
                     | soil_all.phylum_division.eq("Cyanophycota")]
     print(f"\n  the entire soil bacteria/protozoa record: {len(bact)} tests, "
@@ -354,15 +362,24 @@ def main():
     print(f"(b) 2018 total from the panel {total_hi:,.3f} M kg vs published "
           f"pnsp_national_corrected {n18:,.3f} M kg (diff {abs(total_hi - n18):.4f})")
 
-    fam5 = soil.family.fillna("").str.contains(
+    # independent reproduction of established repo finding #4: glyphosate has
+    # 106 soil-fauna records and zero comparable acute endpoints.
+    fam5 = soil_all.family.fillna("").str.contains(
         "Lumbricidae|Isotomidae|Onychiuridae|Enchytraeidae|Megascolecidae",
         case=False, na=False)
-    strict = soil[fam5 & soil.cas.eq(1071836)]
-    fam = soil[fam5 & soil.cas.isin(cas_sets.get("GLYPHOSATE", set()))]
-    print(f"(c) glyphosate, the repo's five-family soil-fauna filter: "
-          f"{len(strict)} endpoint-bearing tests on the parent CAS alone, "
-          f"{len(fam)} across the {len(cas_sets['GLYPHOSATE'])}-member CAS family "
-          f"(repo EDA reports 106 records before the endpoint filter)")
+    repo_style = results.merge(soil_all[fam5], on="test_id", how="inner")
+    repo_style["cas"] = pd.to_numeric(repo_style.test_cas, errors="coerce")
+    n106 = int((repo_style.cas == 1071836).sum())
+    print(f"(c) reproducing the repo's established glyphosate figure from this "
+          f"pipeline: {n106} soil-fauna result rows (repo EDA reports 106)")
+    fam5s = soil.family.fillna("").str.contains(
+        "Lumbricidae|Isotomidae|Onychiuridae|Enchytraeidae|Megascolecidae",
+        case=False, na=False)
+    n_parent = soil[fam5s & soil.cas.eq(1071836)].test_id.nunique()
+    n_family = soil[fam5s & soil.cas.isin(cas_sets.get("GLYPHOSATE", set()))].test_id.nunique()
+    print(f"    those rows come from {n_parent} distinct endpoint-bearing tests on the "
+          f"parent CAS; {n_family} tests across the "
+          f"{len(cas_sets['GLYPHOSATE'])}-member glyphosate CAS family")
 
     print("(d) every tier-5 (>=1 yr field) credit, and the studies behind it:")
     any5 = comp[comp.tier == 5]
@@ -388,6 +405,37 @@ def main():
     for c in top10:
         cells = "  ".join(f"{str(piv.loc[c, h]):>6}/{str(pig.loc[c, h]):<7}" for h in hdr)
         print(f"      {c:<18}{use_hi[c]:>7,.1f}  {cells}")
+
+    # (f) sensitivity of the headline "no field evidence" shares
+    print("(f) sensitivity of the 'no field evidence at all' share, by group:")
+    hdr2 = list(GROUPS)
+    print(f"      {'variant':<34}" + "".join(f"{h[:13]:>15}" for h in hdr2))
+    for tag, kk, mix in [("headline: k=2 studies", 2, False),
+                         ("k=1 (single test row counts)", 1, False),
+                         ("k=3 studies", 3, False),
+                         ("k=2, MIX media counted as soil", 2, True)]:
+        media = SOIL_MEDIA | {"MIX"} if mix else SOIL_MEDIA
+        med = soil.media_type.astype(str).str.rstrip("/")
+        ttype = soil.test_type.astype(str).str.rstrip("/")
+        fieldm = soil.test_location.astype(str).str.rstrip("/").str.startswith("FIELD")
+        in_soil = med.isin(media)
+        chronic = ttype.isin(CHRONIC_TYPES) | (soil.duration_d > 14)
+        tt = pd.Series(1, index=soil.index).mask(in_soil, 2).mask(in_soil & chronic, 3)
+        tt = tt.mask(fieldm, 4).mask(fieldm & (soil.duration_d >= 365), 5)
+        tmp = soil.assign(tier=tt)
+        cells = []
+        for g, sel in GROUPS.items():
+            pr = tmp[sel(tmp)].groupby(["cas", "reference_number"]).tier.max()
+            m = 0.0
+            for c in use_hi.index:
+                cs = sorted(cas_sets[c])
+                if not cs:
+                    continue
+                rt = pr[pr.index.get_level_values("cas").isin(cs)]
+                if highest_tier(rt, kk) < 4:
+                    m += float(use_hi[c])
+            cells.append(f"{100 * m / total_hi:>14.2f}%")
+        print(f"      {tag:<34}" + "".join(cells))
 
     print(f"\nwrote {OUT_LADDER.relative_to(ROOT)}")
     print(f"wrote {OUT_COMPOUND.relative_to(ROOT)}")

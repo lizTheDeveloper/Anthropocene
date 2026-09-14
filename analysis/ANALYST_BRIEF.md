@@ -94,6 +94,21 @@ Raw sources in `data/raw/` (open with pandas; several are large, chunk them):
    reference table. Joining them yields descriptive association, not causation.
    Label it honestly.
 
+5. **PNSP breaks at 2015: seed treatments were dropped.** The mirror's own
+   metadata (`Metadata4PreliminaryPestUse*.xml`, in every preliminary zip) states:
+   *"Beginning 2015, the provider of the surveyed pesticide data used to derive
+   the county-level use estimates discontinued making estimates for seed
+   treatment application of pesticides... Pesticide use estimates prior to 2015
+   include estimates with seed treatment application."* Neonicotinoids are
+   overwhelmingly seed treatments on corn and soy, so this is not a small
+   correction: neonicotinoid EPest-high mass falls 85.3% in one step 2014->2015
+   (clothianidin -99.4%, thiamethoxam -80.7%, imidacloprid -66.1%), and total
+   insecticide mass drops ~20% across the same step. **Any insecticide trend
+   crossing 2014/2015 is measuring a survey decision, not the field.** Confine
+   insecticide comparisons to <=2014, or state the break explicitly. Found
+   independently by two analysts; verified verbatim in all five metadata files.
+
+
 ## What to produce
 
 Write to `analysis/<your-slug>/`:

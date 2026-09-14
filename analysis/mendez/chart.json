@@ -1,0 +1,74 @@
+{
+  "title": "Federal pesticide measurement is fitted to one farming system",
+  "subtitle": "Share of a county's cropland that sits inside the NASS Agricultural Chemical Use Program's published 2013-2025 frame, by how diversified that county's cropland is. Coverage peaks at 92% on the two-crop corn-soybean rotation and falls away in both directions.",
+  "chart_type": "line",
+  "x": {
+    "field": "eff_crops_median",
+    "label": "Crop diversity of the county (effective number of crops, exp(Shannon) of acreage shares)",
+    "scale": "linear",
+    "domain": [1.0, 6.5],
+    "note": "One point per decile of counties, positioned at the decile's median. Deciles are equal-count (295-296 counties each), not equal-width; eff_crops_min / eff_crops_max give each decile's true span and may be drawn as horizontal whiskers."
+  },
+  "y": {
+    "field": "cov_recent",
+    "label": "Share of the county's census crop acres inside the published survey frame",
+    "format": "percent",
+    "domain": [0, 1]
+  },
+  "series": [
+    {
+      "id": "coverage",
+      "field": "cov_recent",
+      "label": "Cropland inside the federal pesticide-use survey frame, 2013-2025",
+      "role": "primary",
+      "emphasis": "strong",
+      "marks": "line + circles",
+      "point_size_field": "acres",
+      "point_size_note": "Size each decile's marker by `acres` (6.1M to 42.4M) so the reader can see that the peak decile is also the largest block of cropland in the country."
+    },
+    {
+      "id": "hay_share",
+      "field": "hay_share",
+      "label": "Share of those same acres in hay and haylage - a crop never once surveyed",
+      "role": "context",
+      "emphasis": "muted",
+      "marks": "line (dashed) or low-opacity area",
+      "axis": "same y-axis (both are shares of the same acreage), drawn subordinate to the primary series"
+    }
+  ],
+  "annotations": [
+    {
+      "type": "point",
+      "target": {"series": "coverage", "decile": 3},
+      "at": {"x": 2.23, "y": 0.920},
+      "text": "Peak coverage: 92%. Effective crops 2.11-2.38 - a corn-soybean rotation. 42.4M acres, the single largest block of US cropland."
+    },
+    {
+      "type": "point",
+      "target": {"series": "coverage", "decile": 1},
+      "at": {"x": 1.30, "y": 0.058},
+      "text": "Least diverse counties: 5.8% coverage. 95% of their cropland is hay - grown by 612,946 farms, a third of all US farms, and never surveyed for pesticide use in 36 years."
+    },
+    {
+      "type": "point",
+      "target": {"series": "coverage", "decile": 10},
+      "at": {"x": 5.97, "y": 0.589},
+      "text": "Most diverse counties: 58.9%. Mixed fruit, vegetable and forage systems fall outside the frame crop by crop."
+    },
+    {
+      "type": "caption",
+      "text": "Not a monotone decline. Spearman rho = +0.272 across counties, but the curve is an inverted U: the instrument is not biased against complexity in general, it is tuned to one cropping system. Shape holds under all three coverage definitions (cov_ever, cov_recent_us) in the same file."
+    },
+    {
+      "type": "caption",
+      "text": "12 states have zero coverage (AK CT DE HI MA MD NH NV RI UT VT WV); WY 4.4%, NJ 8.5%. Illinois 97%, Iowa 95%."
+    }
+  ],
+  "source_note": "USDA NASS QuickStats bulk, mirrored 2026-09-14: qs.environmental_20260912.txt.gz (Agricultural Chemical Use Program, SOURCE_DESC=SURVEY, DOMAIN_DESC~CHEMICAL, 1990-2025) and qs.census2022.txt.gz (2022 Census of Agriculture, SECTOR_DESC=CROPS). 2,951 counties with >=1,000 census crop acres, 302.1M acres = 98.8% of the national crop base. Coverage = a crop acre counts as measured only if NASS published a chemical-use estimate for that commodity in that county's own state. Computed by analysis/mendez/compute.py.",
+  "data_file": "data/derived/lens_mendez_diversity_bins.csv",
+  "optional_background_layer": {
+    "data_file": "data/derived/lens_mendez_county_coverage.csv",
+    "marks": "scatter, 2,951 points, x = eff_crops, y = cov_recent, very low opacity",
+    "purpose": "Shows the dispersion behind the decile line - counties pile up at 0 and at 1. Include only if it does not obscure the primary line."
+  }
+}

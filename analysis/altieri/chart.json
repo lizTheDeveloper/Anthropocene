@@ -1,0 +1,96 @@
+{
+  "title": "Substitution, not redesign",
+  "subtitle": "The applied pesticide mixture in the median US county concentrated from 9.0 to 4.8 effective compounds as glyphosate took a third of all applied mass. The one federal indicator of agroecosystem redesign — cover crops — reached 4.7% of cropland.",
+  "chart_type": "dual_axis_line",
+  "x": {
+    "field": "year",
+    "type": "temporal_year",
+    "domain": [1992, 2022],
+    "label": "Year"
+  },
+  "y": [
+    {
+      "axis": "left",
+      "label": "Effective number of compounds (inverse Simpson), median county",
+      "domain": [0, 10],
+      "note": "The number of equally-used pesticides that would produce the observed concentration of applied mass. Insensitive to rare compounds, so a growing compound roster cannot produce the decline."
+    },
+    {
+      "axis": "right",
+      "label": "Percent",
+      "domain": [0, 40],
+      "unit": "%"
+    }
+  ],
+  "series": [
+    {
+      "id": "eff_compounds_county_median",
+      "label": "Effective number of compounds, median county",
+      "axis": "left",
+      "mark": "line",
+      "emphasis": "primary",
+      "years": "1992-2018",
+      "filter": "metric == 'eff_compounds_county_median'"
+    },
+    {
+      "id": "glyphosate_share_pct",
+      "label": "Glyphosate, % of all applied mass",
+      "axis": "right",
+      "mark": "line",
+      "emphasis": "secondary",
+      "years": "1992-2018",
+      "filter": "metric == 'glyphosate_share_pct'"
+    },
+    {
+      "id": "cover_crop_pct_cropland",
+      "label": "Cover crops, % of cropland (Census of Agriculture)",
+      "axis": "right",
+      "mark": "line_with_points",
+      "emphasis": "contrast",
+      "years": "2012, 2017, 2022 only",
+      "filter": "metric == 'cover_crop_pct_cropland'",
+      "note": "Only three observations exist; draw the points prominently and the connecting line as a dashed segment so the sparse sampling is visible."
+    }
+  ],
+  "annotations": [
+    {
+      "type": "point_label",
+      "at": {"year": 1992, "series": "eff_compounds_county_median"},
+      "text": "1992: 8 compounds make up half of all applied mass"
+    },
+    {
+      "type": "point_label",
+      "at": {"year": 2012, "series": "eff_compounds_county_median"},
+      "text": "2012: 5 compounds make up half"
+    },
+    {
+      "type": "callout",
+      "at": {"year": 2018},
+      "text": "The median county still applies ~89–125 different compounds. Richness held; the mass concentrated."
+    },
+    {
+      "type": "callout",
+      "at": {"year": 2022, "series": "cover_crop_pct_cropland"},
+      "text": "Cover crops: 2.64% → 4.70% of cropland in a decade (+74.9% of acreage). At the realised rate, half of US cropland in ~225 years."
+    },
+    {
+      "type": "rule",
+      "at": {"year": 2015},
+      "text": "2015: USGS stops estimating seed-treatment applications — the insecticide series breaks here, the glyphosate and diversity series do not."
+    },
+    {
+      "type": "footnote",
+      "text": "Between-state association only: no-till share of cropland vs glyphosate share of applied mass, ρ = +0.62 (2012), +0.56 (2017), p < 0.0001 — a regional co-occurrence, not a farm-level effect. Cover-crop expansion 2012→2017 vs change in chemical diversity: ρ = +0.12, p = 0.42."
+    }
+  ],
+  "source_note": "USGS Pesticide National Synthesis Project, county pesticide use 1992–2018 (EPest-high), corrected: California removed from every year and the double-counted METOLACHLOR & METOLACHLOR-S / DIMETHENAMID & DIMETHENAMID-P aggregate rows dropped. USDA Census of Agriculture 2012, 2017, 2022. Association only — the two sources are different sampling frames.",
+  "data_file": "data/derived/lens_altieri_simplification.csv",
+  "data_file_schema": {
+    "year": "int",
+    "metric": "string; one of eff_compounds_county_median, eff_compounds_national, n_compounds_county_median, glyphosate_share_pct, top1_compound_share_pct, herbicide_share_pct, insecticide_share_pct, fungicide_share_pct, pct_counties_glyphosate_over_25pct, total_applied_Mkg, cover_crop_pct_cropland, notill_pct_cropland, constill_pct_cropland",
+    "value": "float",
+    "unit": "string",
+    "source": "string"
+  },
+  "one_claim": "For 26 years the US agricultural pesticide record shows input substitution — flat mass, a mixture concentrating onto one compound and one function — and no visible redesign phase."
+}

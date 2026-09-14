@@ -114,6 +114,31 @@ def append_manifest(dataset: str, sha: str, path: Path) -> None:
         fh.write(line)
 
 
+
+def _ensure_attested(url, dest, sha, agency, dataset, filename, license, notes):
+    """Guarantee a ledger row and manifest line exist for a file already on disk.
+
+    Idempotent: if this exact sha256 is already recorded for this dataset,
+    nothing is written, so re-running an acquisition does not bloat the ledger.
+    """
+    try:
+        if PROVENANCE.exists():
+            with open(PROVENANCE) as fh:
+                for row in csv.DictReader(fh):
+                    if row.get("sha256") == sha and row.get("dataset") == dataset:
+                        append_manifest(dataset, sha, dest)
+                        return
+    except Exception:
+        pass
+    record({
+        "url": url, "retrieved_at": utcstamp(), "sha256": sha,
+        "bytes": dest.stat().st_size, "agency": agency, "dataset": dataset,
+        "filename": filename, "content_type": "", "http_status": 200,
+        "license": license, "notes": notes,
+    })
+    append_manifest(dataset, sha, dest)
+
+
 def fetch(
     url: str,
     agency: str,
@@ -161,6 +186,14 @@ def fetch(
 
                 if dest.exists() and not force:
                     sha = sha256_file(dest)
+                    # A present file is not necessarily an ATTESTED file. It may
+                    # have been written by something outside this library, or by
+                    # a run whose ledger was lost. Returning early without
+                    # recording lets a file sit in the mirror with no provenance
+                    # row -- which silently defeats the one property this whole
+                    # apparatus exists to provide. Back-fill instead.
+                    _ensure_attested(url, dest, sha, agency, dataset, name,
+                                     license, f"{notes} (present on disk; provenance back-filled)".strip())
                     return {"ok": True, "status": 200, "url": url, "path": dest,
                             "sha256": sha, "bytes": dest.stat().st_size, "cached": True}
 
@@ -356,6 +389,8 @@ def fetch_via_wget(url: str, agency: str, dataset: str, *,
 
     if dest.exists() and not force:
         sha = sha256_file(dest)
+        _ensure_attested(url, dest, sha, agency, dataset, name, license,
+                         f"{notes} (present on disk; provenance back-filled)".strip())
         return {"ok": True, "status": 200, "url": url, "path": dest,
                 "sha256": sha, "bytes": dest.stat().st_size, "cached": True}
 
