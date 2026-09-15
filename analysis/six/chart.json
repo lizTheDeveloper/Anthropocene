@@ -1,0 +1,61 @@
+{
+  "title": "Same counties, same year, five different answers",
+  "subtitle": "Estimated difference in applied herbicide mass per hectare of harvested cropland associated with a county having 10 percentage points more of its tilled cropland in no-till (US counties, 2017). The only thing that changes between rows is which counties are treated as comparable.",
+  "chart_type": "grouped_dot_with_error_bars",
+  "orientation": "horizontal",
+  "x": {
+    "field": "pct_change_per_10pp_notill",
+    "label": "% difference in applied mass per hectare, per +10 pp no-till share",
+    "error_low": "ci_low",
+    "error_high": "ci_high",
+    "zero_reference_line": true,
+    "note": "95% confidence intervals, heteroskedasticity-robust (HC1)"
+  },
+  "y": {
+    "field": "specification",
+    "label": "Comparison group",
+    "order": [
+      "1. Pooled, no controls",
+      "2. + state fixed effects",
+      "3. + Crop Reporting District FE",
+      "4. + crop mix (10 shares)",
+      "5. + crop mix AND CRD FE"
+    ],
+    "note": "Row 1 compares every county to every other county. Row 5 compares a county only to its neighbours inside the same USDA Crop Reporting District growing the same mix of crops."
+  },
+  "series": {
+    "field": "outcome",
+    "values": ["all herbicides", "glyphosate", "burndown group"],
+    "label": "Applied mass measured as",
+    "note": "'burndown group' = glyphosate, paraquat, 2,4-D, dicamba, glufosinate, saflufenacil, carfentrazone - the actives that would actually substitute for the seedbed tillage pass, and therefore the sharpest available test of the hypothesised trade-off."
+  },
+  "annotations": [
+    {
+      "target": "row 1, series glyphosate",
+      "text": "Pooled: a county at the 75th percentile of no-till (60%) carries 15.3% more glyphosate per hectare than one at the 25th (18%)."
+    },
+    {
+      "target": "row 5, series glyphosate",
+      "text": "Within the same Crop Reporting District and crop mix: -2.3%. The trade-off disappears, and the point estimate changes sign."
+    },
+    {
+      "target": "rows 3 and 4",
+      "text": "Geography alone (row 3) removes the whole association; crop mix alone (row 4) enlarges it. The two confounders push in opposite directions, so 'partially controlled' is not a safe halfway house."
+    },
+    {
+      "target": "figure",
+      "text": "Crop mix alone explains R2 = 0.535 of county log herbicide intensity. USGS EPest county estimates are built by multiplying Crop Reporting District survey rates by county crop acreage (Thelin & Stone 2013), so this axis partly measures the crop-acreage input rather than an independent observation of spraying."
+    },
+    {
+      "target": "figure",
+      "text": "Within-CRD Spearman rho computed separately in 204 districts: median -0.059, IQR -0.400 to +0.240; 45 districts above +0.3, 60 below -0.3. There is no single national sign."
+    },
+    {
+      "target": "figure",
+      "text": "Same exercise with cover-crop share instead of no-till: -13.4% per +10 pp pooled (t = -9.0), -0.9% (t = -0.8) fully controlled. Both the apparent penalty and the apparent benefit are geography."
+    }
+  ],
+  "source_note": "USDA NASS Census of Agriculture 2017 (county tillage and cover-crop acreage, harvested cropland, crop acreage) and USGS Pesticide National Synthesis Project EPest-low county estimates for 2017, California excluded on both sides. 2,087 counties holding 95.4% of national harvested cropland and 96.5% of national applied herbicide mass. Herbicide classification taken from NASS's own DOMAINCAT_DESC chemical classes. Cross-sectional association only; no causal claim.",
+  "data_file": "data/derived/lens_six_notill_herbicide_tradeoff.csv",
+  "supporting_data_file": "data/derived/lens_six_county_panel_2017.csv"
+}

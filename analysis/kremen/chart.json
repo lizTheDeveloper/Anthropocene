@@ -1,0 +1,64 @@
+{
+  "title": "In the federal record, \"more crops\" means more insecticide, not less",
+  "subtitle": "County crop diversity vs. insecticide applied per harvested acre. The rising national line is crop identity, not landscape structure: among counties that grow no cotton, vegetable, orchard, berry, rice, peanut, tobacco, sugar or hop acreage, the gradient disappears.",
+  "chart_type": "line_with_iqr_band",
+  "x": {
+    "field": "enc_median",
+    "label": "Effective number of crops in the county (exp of Shannon entropy over harvested acres)",
+    "scale": "linear",
+    "note": "Rows are binned on effective_n_crops; enc_bin gives the bin edges and enc_median the within-bin median. Bins are shared across series so the three lines are directly comparable."
+  },
+  "y": {
+    "field": "insecticide_g_per_acre_median",
+    "label": "Insecticide + acaricide applied, grams per acre of harvested cropland (median county)",
+    "scale": "log",
+    "band": ["insecticide_g_per_acre_p25", "insecticide_g_per_acre_p75"],
+    "note": "Log scale because the national series spans 7.7 to 116 g/acre. The p25-p75 band should be drawn for 'All counties' and 'No high-input crop grown'; drawing all three bands is too busy."
+  },
+  "series": {
+    "field": "series",
+    "values": [
+      {
+        "name": "All counties",
+        "emphasis": "primary",
+        "n_counties": 2416,
+        "annotation": "Spearman rho = +0.413, p = 3.8e-100"
+      },
+      {
+        "name": "Corn / soybean dominant",
+        "emphasis": "secondary",
+        "n_counties": 1060,
+        "annotation": "Spearman rho = +0.292, p = 3.3e-22"
+      },
+      {
+        "name": "No high-input crop grown",
+        "emphasis": "primary-contrast",
+        "n_counties": 263,
+        "annotation": "Spearman rho = +0.057, p = 0.36 - not significant"
+      }
+    ]
+  },
+  "annotations": [
+    {
+      "type": "callout",
+      "target": {"series": "All counties", "enc_bin": "6.0+"},
+      "text": "116 g/acre. Median 28% of harvested cropland in a high-input crop."
+    },
+    {
+      "type": "callout",
+      "target": {"series": "All counties", "enc_bin": "1.0-1.5"},
+      "text": "7.7 g/acre. 270 of these 284 'simplest' counties are hay-dominated rangeland, not industrial monoculture."
+    },
+    {
+      "type": "callout",
+      "target": {"series": "No high-input crop grown", "enc_bin": "5.0-6.0"},
+      "text": "Flat. Once crop identity is held out, county crop diversity carries no information about insecticide intensity."
+    },
+    {
+      "type": "footnote",
+      "text": "USGS builds each county pesticide estimate by multiplying Census of Agriculture county harvested acreage of each crop by a Crop Reporting District median pesticide-by-crop application rate (Thelin & Stone 2013, USGS SIR 2013-5009). The x and y axes are therefore partly the same measurement. Neither axis contains any information about field size, edge density, patch configuration or seminatural habitat."
+    }
+  ],
+  "source_note": "USDA NASS Census of Agriculture 2017 (Quick Stats bulk, county level) and USGS Pesticide National Synthesis Project EPest-high county estimates for 2018, corrected basis (California excluded in every year, aggregate rows removed). 2,416 counties, 303.5 million harvested acres = 97.2% of non-California US harvested cropland. Insecticide = a 70-compound roster of conventional synthetic insecticides, acaricides and insect-active nematicides; soil fumigants, oils, sulfur and microbials excluded. Computed by analysis/kremen/compute.py.",
+  "data_file": "data/derived/lens_kremen_cropdiversity_vs_insecticide.csv"
+}

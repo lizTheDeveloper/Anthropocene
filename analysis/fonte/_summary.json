@@ -1,0 +1,322 @@
+{
+  "window": [
+    1982,
+    2022
+  ],
+  "n_years": 41,
+  "timepoints_per_outcome": {
+    "Yield": 41,
+    "Profitability": 5,
+    "Erosion control": 9,
+    "Nutrient cycling": 0,
+    "Carbon sequestration": 1,
+    "Pest regulation": 0,
+    "Water capture": 0,
+    "Soil macrofauna": 0
+  },
+  "observation_cells_per_outcome": {
+    "Yield": 108970,
+    "Profitability": 15214,
+    "Erosion control": 450,
+    "Nutrient cycling": 0,
+    "Carbon sequestration": 17,
+    "Pest regulation": 0,
+    "Water capture": 0,
+    "Soil macrofauna": 0
+  },
+  "outcome_years_possible": 287,
+  "outcome_years_filled": 56,
+  "outcome_years_pct": 19.5,
+  "share_of_filled_that_is_yield": 73.2,
+  "pairs_total": 21,
+  "pairs_jointly_observable": 4,
+  "pairs": [
+    {
+      "a": "Yield",
+      "b": "Profitability",
+      "joinable": true,
+      "n_common_years": 5,
+      "common_years": [
+        2002,
+        2007,
+        2012,
+        2017,
+        2022
+      ]
+    },
+    {
+      "a": "Yield",
+      "b": "Erosion control",
+      "joinable": true,
+      "n_common_years": 9,
+      "common_years": [
+        1982,
+        1987,
+        1992,
+        1997,
+        2002,
+        2007,
+        2012,
+        2017,
+        2022
+      ]
+    },
+    {
+      "a": "Yield",
+      "b": "Nutrient cycling",
+      "joinable": false,
+      "n_common_years": 0,
+      "common_years": []
+    },
+    {
+      "a": "Yield",
+      "b": "Carbon sequestration",
+      "joinable": true,
+      "n_common_years": 1,
+      "common_years": [
+        2011
+      ]
+    },
+    {
+      "a": "Yield",
+      "b": "Pest regulation",
+      "joinable": false,
+      "n_common_years": 0,
+      "common_years": []
+    },
+    {
+      "a": "Yield",
+      "b": "Water capture",
+      "joinable": false,
+      "n_common_years": 0,
+      "common_years": []
+    },
+    {
+      "a": "Profitability",
+      "b": "Erosion control",
+      "joinable": true,
+      "n_common_years": 5,
+      "common_years": [
+        2002,
+        2007,
+        2012,
+        2017,
+        2022
+      ]
+    },
+    {
+      "a": "Profitability",
+      "b": "Nutrient cycling",
+      "joinable": false,
+      "n_common_years": 0,
+      "common_years": []
+    },
+    {
+      "a": "Profitability",
+      "b": "Carbon sequestration",
+      "joinable": false,
+      "n_common_years": 0,
+      "common_years": []
+    },
+    {
+      "a": "Profitability",
+      "b": "Pest regulation",
+      "joinable": false,
+      "n_common_years": 0,
+      "common_years": []
+    },
+    {
+      "a": "Profitability",
+      "b": "Water capture",
+      "joinable": false,
+      "n_common_years": 0,
+      "common_years": []
+    },
+    {
+      "a": "Erosion control",
+      "b": "Nutrient cycling",
+      "joinable": false,
+      "n_common_years": 0,
+      "common_years": []
+    },
+    {
+      "a": "Erosion control",
+      "b": "Carbon sequestration",
+      "joinable": false,
+      "n_common_years": 0,
+      "common_years": []
+    },
+    {
+      "a": "Erosion control",
+      "b": "Pest regulation",
+      "joinable": false,
+      "n_common_years": 0,
+      "common_years": []
+    },
+    {
+      "a": "Erosion control",
+      "b": "Water capture",
+      "joinable": false,
+      "n_common_years": 0,
+      "common_years": []
+    },
+    {
+      "a": "Nutrient cycling",
+      "b": "Carbon sequestration",
+      "joinable": false,
+      "n_common_years": 0,
+      "common_years": []
+    },
+    {
+      "a": "Nutrient cycling",
+      "b": "Pest regulation",
+      "joinable": false,
+      "n_common_years": 0,
+      "common_years": []
+    },
+    {
+      "a": "Nutrient cycling",
+      "b": "Water capture",
+      "joinable": false,
+      "n_common_years": 0,
+      "common_years": []
+    },
+    {
+      "a": "Carbon sequestration",
+      "b": "Pest regulation",
+      "joinable": false,
+      "n_common_years": 0,
+      "common_years": []
+    },
+    {
+      "a": "Carbon sequestration",
+      "b": "Water capture",
+      "joinable": false,
+      "n_common_years": 0,
+      "common_years": []
+    },
+    {
+      "a": "Pest regulation",
+      "b": "Water capture",
+      "joinable": false,
+      "n_common_years": 0,
+      "common_years": []
+    }
+  ],
+  "max_simultaneous_state": 3,
+  "years_at_max_state": 5,
+  "max_simultaneous_county": 2,
+  "years_at_max_county": 5,
+  "nri": {
+    "n_units": 50,
+    "years": [
+      1982,
+      1987,
+      1992,
+      1997,
+      2002,
+      2007,
+      2012,
+      2017,
+      2022
+    ],
+    "n_rows": 459,
+    "entity_labels_seen": [
+      "Alabama",
+      "Arizona",
+      "Caribbean",
+      "Colorado",
+      "Connecticut",
+      "Delaware",
+      "Florida",
+      "Georgia",
+      "Hampshire",
+      "Hawaii",
+      "Idaho",
+      "Illinois",
+      "Indiana",
+      "Iowa",
+      "Kansas",
+      "Kentucky",
+      "Louisiana",
+      "Maine",
+      "Maryland",
+      "Massachusetts",
+      "Michigan",
+      "Minnesota",
+      "Mississippi",
+      "Missouri",
+      "Montana",
+      "Nebraska",
+      "Nevada",
+      "New",
+      "New Mexico",
+      "New York",
+      "North Carolina",
+      "North Dakota",
+      "Oklahoma",
+      "Oregon",
+      "Pennsylvania",
+      "Rhode Island",
+      "South Carolina",
+      "South Dakota",
+      "Tennessee",
+      "Texas",
+      "Vermont",
+      "Virginia",
+      "Washington",
+      "West Virginia",
+      "Wisconsin",
+      "Wyoming"
+    ],
+    "alaska_present": false,
+    "national_1982_t_ac_yr": 3.89,
+    "national_2022_t_ac_yr": 2.67
+  },
+  "raca": {
+    "n_regions": 17,
+    "sites_in_table2": 6418,
+    "n_lulc_classes": 6,
+    "single_point_in_time": true,
+    "campaign_field_seasons": [
+      2010,
+      2011
+    ],
+    "campaign_years": [
+      2011
+    ]
+  },
+  "ecotox": {
+    "all_tests": 725635,
+    "all_with_latitude": 10090,
+    "macrofauna_species": 460,
+    "macrofauna_tests": 9402,
+    "macrofauna_by_group": {
+      "earthworm": 7560,
+      "ant": 1272,
+      "termite": 570
+    },
+    "macrofauna_field_tests": 1505,
+    "macrofauna_with_latitude": 112,
+    "macrofauna_us_geocoded": 344
+  },
+  "yield_any_crop_counties_2022": 2027,
+  "yield_corn_counties_2022": 1543,
+  "census_corn_acres_counties_2022": 2322,
+  "census_practice_years": [
+    2017,
+    2022
+  ],
+  "census_profitability_years": [
+    2002,
+    2007,
+    2012,
+    2017,
+    2022
+  ],
+  "pnsp_years": [
+    1992,
+    2018
+  ],
+  "pnsp_counties_median": 3003
+}

@@ -1,0 +1,74 @@
+[
+  {
+    "url": "https://www.epa.gov/ejscreen",
+    "verdict": "INDEX UNREACHABLE",
+    "now": "404",
+    "note": ""
+  },
+  {
+    "url": "https://ejscreen.epa.gov/mapper/",
+    "verdict": "UNREACHABLE / unresolved",
+    "captures": 92,
+    "first_200": "20150813",
+    "last_200": "20250101",
+    "first_404": null,
+    "now": "000",
+    "note": ""
+  },
+  {
+    "url": "https://www.usda.gov/climate-solutions",
+    "verdict": "UNREACHABLE / unresolved",
+    "captures": 52,
+    "first_200": "20220301",
+    "last_200": "20241203",
+    "first_404": null,
+    "now": "403",
+    "note": ""
+  },
+  {
+    "url": "https://www.nrcs.usda.gov/resources/data-and-reports/soil-carbon-monitoring-network",
+    "verdict": "INDEX UNREACHABLE",
+    "now": "000",
+    "note": ""
+  },
+  {
+    "url": "https://ncsslabdatamart.sc.egov.usda.gov/",
+    "verdict": "live",
+    "captures": 133,
+    "first_200": "20120304",
+    "last_200": "20260906",
+    "first_404": null,
+    "now": "200",
+    "note": ""
+  },
+  {
+    "url": "https://ltar.ars.usda.gov/",
+    "verdict": "live",
+    "captures": 77,
+    "first_200": "20181210",
+    "last_200": "20260909",
+    "first_404": null,
+    "now": "200",
+    "note": ""
+  },
+  {
+    "url": "https://nassgeodata.gmu.edu/CropScape/",
+    "verdict": "live",
+    "captures": 181,
+    "first_200": "20110111",
+    "last_200": "20250801",
+    "first_404": null,
+    "now": "200",
+    "note": ""
+  },
+  {
+    "url": "https://water.usgs.gov/nawqa/pnsp/usage/maps/county-level/",
+    "verdict": "live",
+    "captures": 70,
+    "first_200": "20160313",
+    "last_200": "20260901",
+    "first_404": null,
+    "now": "200",
+    "note": ""
+  }
+]

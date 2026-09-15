@@ -1,0 +1,16 @@
+outcome,specification,n_counties,n_groups,pct_change_per_10pp_notill,ci_low,ci_high,pct_change_p25_to_p75,t_stat,r_squared
+all herbicides,"1. Pooled, no controls",2087,0,1.6554,0.402,2.9244,7.1383,2.5937,0.0032
+all herbicides,2. + state fixed effects,2087,45,-0.1197,-1.735,1.5222,-0.5016,-0.144,0.0
+all herbicides,3. + Crop Reporting District FE,2067,267,-0.2998,-1.6669,1.0863,-1.253,-0.4262,0.0001
+all herbicides,4. + crop mix (10 shares),2087,0,3.6619,2.6459,4.688,16.3041,7.1565,0.5474
+all herbicides,5. + crop mix AND CRD FE,2067,267,0.2429,-0.8089,1.3058,1.0239,0.4508,0.3719
+glyphosate,"1. Pooled, no controls",2087,0,3.444,1.9752,4.9339,15.2807,4.6407,0.0089
+glyphosate,2. + state fixed effects,2087,45,0.1734,-1.9426,2.3351,0.7302,0.159,0.0
+glyphosate,3. + Crop Reporting District FE,2067,267,-0.3682,-2.0289,1.3207,-1.5372,-0.4301,0.0001
+glyphosate,4. + crop mix (10 shares),2087,0,5.1932,4.057,6.3418,23.6915,9.1373,0.5561
+glyphosate,5. + crop mix AND CRD FE,2067,267,-0.5587,-1.7381,0.6349,-2.3254,-0.9203,0.4198
+burndown group,"1. Pooled, no controls",2087,0,4.1801,2.8378,5.5399,18.7655,6.1894,0.017
+burndown group,2. + state fixed effects,2087,45,2.384,0.5952,4.2046,10.4006,2.6199,0.0042
+burndown group,3. + Crop Reporting District FE,2067,267,0.8595,-0.5174,2.2555,3.6597,1.2203,0.0011
+burndown group,4. + crop mix (10 shares),2087,0,4.9305,3.798,6.0753,22.3994,8.6929,0.4787
+burndown group,5. + crop mix AND CRD FE,2067,267,0.6097,-0.4601,1.6911,2.5858,1.1145,0.336

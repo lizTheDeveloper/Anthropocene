@@ -1,0 +1,11 @@
+# Raw data is mirrored locally and can be large; provenance + manifests are tracked instead.
+data/raw/**
+!data/raw/**/
+!data/raw/**/.gitkeep
+data/codebooks/**/*.zip
+data/codebooks/**/*.pdf
+logs/*.log
+__pycache__/
+*.pyc
+.venv/
+.ipynb_checkpoints/

@@ -1,0 +1,329 @@
+outcome,outcome_order,year,direct_available,spatial_support,n_spatial_units,measurement_basis,source,proxy_available,proxy_spatial_support,proxy_n_spatial_units,proxy_source,proxy_measurement_basis
+Yield,1,1982,1,county,2945,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,1982,0,,0,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,1982,1,state,50,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,1982,0,,0,no federal series,,0,,0,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,1982,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,1982,0,,0,no federal series,,0,,0,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,1982,0,,0,no federal series,,0,,0,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,1982,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,1983,1,county,2948,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,1983,0,,0,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,1983,0,,0,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,1983,0,,0,no federal series,,0,,0,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,1983,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,1983,0,,0,no federal series,,0,,0,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,1983,0,,0,no federal series,,0,,0,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,1983,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,1984,1,county,2947,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,1984,0,,0,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,1984,0,,0,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,1984,0,,0,no federal series,,0,,0,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,1984,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,1984,0,,0,no federal series,,0,,0,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,1984,0,,0,no federal series,,0,,0,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,1984,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,1985,1,county,2946,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,1985,0,,0,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,1985,0,,0,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,1985,0,,0,no federal series,,0,,0,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,1985,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,1985,0,,0,no federal series,,0,,0,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,1985,0,,0,no federal series,,0,,0,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,1985,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,1986,1,county,2928,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,1986,0,,0,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,1986,0,,0,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,1986,0,,0,no federal series,,0,,0,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,1986,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,1986,0,,0,no federal series,,0,,0,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,1986,0,,0,no federal series,,0,,0,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,1986,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,1987,1,county,2896,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,1987,0,,0,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,1987,1,state,50,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,1987,0,,0,no federal series,,0,,0,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,1987,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,1987,0,,0,no federal series,,0,,0,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,1987,0,,0,no federal series,,0,,0,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,1987,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,1988,1,county,2882,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,1988,0,,0,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,1988,0,,0,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,1988,0,,0,no federal series,,0,,0,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,1988,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,1988,0,,0,no federal series,,0,,0,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,1988,0,,0,no federal series,,0,,0,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,1988,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,1989,1,county,2872,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,1989,0,,0,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,1989,0,,0,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,1989,0,,0,no federal series,,0,,0,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,1989,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,1989,0,,0,no federal series,,0,,0,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,1989,0,,0,no federal series,,0,,0,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,1989,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,1990,1,county,2875,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,1990,0,,0,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,1990,0,,0,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,1990,0,,0,no federal series,,0,,0,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,1990,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,1990,0,,0,no federal series,,0,,0,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,1990,0,,0,no federal series,,0,,0,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,1990,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,1991,1,county,2855,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,1991,0,,0,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,1991,0,,0,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,1991,0,,0,no federal series,,0,,0,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,1991,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,1991,0,,0,no federal series,,0,,0,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,1991,0,,0,no federal series,,0,,0,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,1991,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,1992,1,county,2850,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,1992,0,,0,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,1992,1,state,50,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,1992,0,,0,no federal series,,0,,0,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,1992,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,1992,0,,0,no federal series,,1,county,3002,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,1992,0,,0,no federal series,,0,,0,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,1992,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,1993,1,county,2820,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,1993,0,,0,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,1993,0,,0,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,1993,0,,0,no federal series,,0,,0,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,1993,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,1993,0,,0,no federal series,,1,county,3002,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,1993,0,,0,no federal series,,0,,0,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,1993,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,1994,1,county,2830,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,1994,0,,0,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,1994,0,,0,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,1994,0,,0,no federal series,,0,,0,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,1994,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,1994,0,,0,no federal series,,1,county,3003,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,1994,0,,0,no federal series,,0,,0,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,1994,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,1995,1,county,2816,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,1995,0,,0,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,1995,0,,0,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,1995,0,,0,no federal series,,0,,0,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,1995,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,1995,0,,0,no federal series,,1,county,3003,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,1995,0,,0,no federal series,,0,,0,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,1995,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,1996,1,county,2815,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,1996,0,,0,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,1996,0,,0,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,1996,0,,0,no federal series,,0,,0,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,1996,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,1996,0,,0,no federal series,,1,county,3003,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,1996,0,,0,no federal series,,0,,0,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,1996,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,1997,1,county,2814,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,1997,0,,0,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,1997,1,state,50,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,1997,0,,0,no federal series,,1,county,3045,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,1997,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,1997,0,,0,no federal series,,1,county,3004,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,1997,0,,0,no federal series,,0,,0,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,1997,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,1998,1,county,2784,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,1998,0,,0,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,1998,0,,0,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,1998,0,,0,no federal series,,0,,0,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,1998,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,1998,0,,0,no federal series,,1,county,2997,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,1998,0,,0,no federal series,,0,,0,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,1998,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,1999,1,county,2777,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,1999,0,,0,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,1999,0,,0,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,1999,0,,0,no federal series,,0,,0,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,1999,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,1999,0,,0,no federal series,,1,county,2998,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,1999,0,,0,no federal series,,0,,0,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,1999,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,2000,1,county,2759,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,2000,0,,0,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,2000,0,,0,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,2000,0,,0,no federal series,,0,,0,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,2000,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,2000,0,,0,no federal series,,1,county,2997,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,2000,0,,0,no federal series,,0,,0,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,2000,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,2001,1,county,2752,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,2001,0,,0,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,2001,0,,0,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,2001,0,,0,no federal series,,0,,0,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,2001,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,2001,0,,0,no federal series,,1,county,2997,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,2001,0,,0,no federal series,,0,,0,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,2001,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,2002,1,county,2753,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,2002,1,county,3041,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,2002,1,state,50,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,2002,0,,0,no federal series,,1,county,3043,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,2002,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,2002,0,,0,no federal series,,1,county,2996,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,2002,0,,0,no federal series,,1,county,2189,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,2002,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,2003,1,county,2742,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,2003,0,,0,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,2003,0,,0,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,2003,0,,0,no federal series,,0,,0,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,2003,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,2003,0,,0,no federal series,,1,county,2996,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,2003,0,,0,no federal series,,0,,0,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,2003,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,2004,1,county,2758,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,2004,0,,0,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,2004,0,,0,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,2004,0,,0,no federal series,,0,,0,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,2004,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,2004,0,,0,no federal series,,1,county,2998,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,2004,0,,0,no federal series,,0,,0,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,2004,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,2005,1,county,2720,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,2005,0,,0,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,2005,0,,0,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,2005,0,,0,no federal series,,0,,0,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,2005,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,2005,0,,0,no federal series,,1,county,2997,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,2005,0,,0,no federal series,,0,,0,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,2005,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,2006,1,county,2726,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,2006,0,,0,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,2006,0,,0,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,2006,0,,0,no federal series,,0,,0,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,2006,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,2006,0,,0,no federal series,,1,county,2997,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,2006,0,,0,no federal series,,0,,0,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,2006,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,2007,1,county,2649,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,2007,1,county,3034,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,2007,1,state,50,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,2007,0,,0,no federal series,,1,county,3049,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,2007,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,2007,0,,0,no federal series,,1,county,2998,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,2007,0,,0,no federal series,,1,county,2154,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,2007,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,2008,1,county,2536,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,2008,0,,0,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,2008,0,,0,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,2008,0,,0,no federal series,,0,,0,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,2008,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,2008,0,,0,no federal series,,1,county,3005,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,2008,0,,0,no federal series,,0,,0,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,2008,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,2009,1,county,2504,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,2009,0,,0,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,2009,0,,0,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,2009,0,,0,no federal series,,0,,0,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,2009,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,2009,0,,0,no federal series,,1,county,3006,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,2009,0,,0,no federal series,,0,,0,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,2009,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,2010,1,county,2550,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,2010,0,,0,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,2010,0,,0,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,2010,0,,0,no federal series,,0,,0,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,2010,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,2010,0,,0,no federal series,,1,county,3005,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,2010,0,,0,no federal series,,0,,0,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,2010,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,2011,1,county,2549,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,2011,0,,0,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,2011,0,,0,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,2011,0,,0,no federal series,,0,,0,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,2011,1,RaCA region,17,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,2011,0,,0,no federal series,,1,county,3006,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,2011,0,,0,no federal series,,0,,0,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,2011,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,2012,1,county,2538,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,2012,1,county,3050,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,2012,1,state,50,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,2012,0,,0,no federal series,,1,county,3041,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,2012,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,2012,0,,0,no federal series,,1,county,3006,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,2012,0,,0,no federal series,,1,county,2092,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,2012,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,2013,1,county,2500,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,2013,0,,0,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,2013,0,,0,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,2013,0,,0,no federal series,,0,,0,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,2013,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,2013,0,,0,no federal series,,1,county,3005,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,2013,0,,0,no federal series,,0,,0,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,2013,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,2014,1,county,2522,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,2014,0,,0,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,2014,0,,0,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,2014,0,,0,no federal series,,0,,0,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,2014,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,2014,0,,0,no federal series,,1,county,3005,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,2014,0,,0,no federal series,,0,,0,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,2014,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,2015,1,county,2488,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,2015,0,,0,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,2015,0,,0,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,2015,0,,0,no federal series,,0,,0,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,2015,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,2015,0,,0,no federal series,,1,county,3005,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,2015,0,,0,no federal series,,0,,0,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,2015,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,2016,1,county,2442,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,2016,0,,0,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,2016,0,,0,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,2016,0,,0,no federal series,,0,,0,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,2016,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,2016,0,,0,no federal series,,1,county,3005,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,2016,0,,0,no federal series,,0,,0,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,2016,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,2017,1,county,2435,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,2017,1,county,3043,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,2017,1,state,50,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,2017,0,,0,no federal series,,1,county,3057,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,2017,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,2017,0,,0,no federal series,,1,county,3005,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,2017,0,,0,no federal series,,1,county,2169,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,2017,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,2018,1,county,2346,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,2018,0,,0,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,2018,0,,0,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,2018,0,,0,no federal series,,0,,0,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,2018,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,2018,0,,0,no federal series,,1,county,3006,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,2018,0,,0,no federal series,,0,,0,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,2018,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,2019,1,county,1916,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,2019,0,,0,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,2019,0,,0,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,2019,0,,0,no federal series,,0,,0,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,2019,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,2019,0,,0,no federal series,,0,,0,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,2019,0,,0,no federal series,,0,,0,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,2019,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,2020,1,county,2123,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,2020,0,,0,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,2020,0,,0,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,2020,0,,0,no federal series,,0,,0,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,2020,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,2020,0,,0,no federal series,,0,,0,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,2020,0,,0,no federal series,,0,,0,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,2020,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,2021,1,county,2035,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,2021,0,,0,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,2021,0,,0,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,2021,0,,0,no federal series,,0,,0,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,2021,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,2021,0,,0,no federal series,,0,,0,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,2021,0,,0,no federal series,,0,,0,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,2021,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat
+Yield,1,2022,1,county,2027,survey enumeration (published county estimate),"NASS QuickStats, county crop yield",0,,0,,
+Profitability,2,2022,1,county,3046,census enumeration (net cash farm income),NASS Census of Agriculture,0,,0,,
+Erosion control,3,2022,1,state,50,model output (RUSLE2 / WEQ on panel points),"NRCS NRI 2022 Summary Report, Tables 15-16",0,,0,,
+Nutrient cycling,4,2022,0,,0,no federal series,,1,county,3050,NASS Census: cropland acres receiving fertilizer,"input applied, not a cycling rate"
+Carbon sequestration,5,2022,0,,0,single national campaign (field seasons 2010-2011); satellite-pedon SOC predicted from VNIR spectra,NRCS Rapid Carbon Assessment (RaCA),0,,0,,
+Pest regulation,6,2022,0,,0,no federal series,,0,,0,USGS PNSP county pesticide use (corrected panel),"modelled chemical pressure, not the regulating service"
+Water capture,7,2022,0,,0,no federal series,,1,county,2188,NASS Census: irrigated harvested cropland,"water applied, not infiltration or storage"
+Soil macrofauna,8,2022,0,,0,no federal series,,0,,0,ECOTOX: lab bioassays only,hazard endpoints with no place and no repeat

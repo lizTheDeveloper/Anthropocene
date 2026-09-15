@@ -1,0 +1,95 @@
+{
+  "title": "The federal record can see one outcome well, three not at all",
+  "subtitle": "Direct national measurement of each outcome in the whole-bundle agroecosystem framework, 1982-2022. Of 287 outcome-years (7 outcomes x 41 years), 56 are filled - and 41 of those 56 are yield. A practice mandate justified on soil carbon rests on a single national snapshot at a spatial grain that joins to nothing else in the bundle.",
+  "chart_type": "availability matrix (categorical dot/heat grid), one row per outcome, one column per year",
+  "x": {
+    "field": "year",
+    "type": "ordinal",
+    "domain": [1982, 2022],
+    "title": "Year",
+    "note": "Every year 1982-2022 is a column, so empty spans read as gaps, not as compressed axes. Label 1982, 1992, 2002, 2012, 2022."
+  },
+  "y": {
+    "field": "outcome",
+    "type": "ordinal",
+    "sort_by": "outcome_order",
+    "domain": [
+      "Yield",
+      "Profitability",
+      "Erosion control",
+      "Nutrient cycling",
+      "Carbon sequestration",
+      "Pest regulation",
+      "Water capture",
+      "Soil macrofauna"
+    ],
+    "title": "Outcome in the bundle",
+    "note": "Rows 1-7 are the outcome bundle the Fonte lab's research programme insists on measuring together (yields and profitability with erosion control, nutrient cycling and provision, carbon sequestration, pest regulation, water capture and storage). Row 8, soil macrofauna, is the functional indicator central to that programme; it is shown as a diagnostic, separated by a rule from the seven.",
+    "row_annotation": {
+      "text": "Right-side label per row giving finest published spatial support and number of repeat timepoints",
+      "values": {
+        "Yield": "county - 41 timepoints",
+        "Profitability": "county - 5 timepoints",
+        "Erosion control": "state - 9 timepoints",
+        "Nutrient cycling": "no series - 0",
+        "Carbon sequestration": "RaCA region - 1 timepoint",
+        "Pest regulation": "no series - 0",
+        "Water capture": "no series - 0",
+        "Soil macrofauna": "no series - 0"
+      }
+    }
+  },
+  "series": [
+    {
+      "name": "Direct measurement of the outcome",
+      "filter": "direct_available == 1",
+      "encoding": "filled cell",
+      "size_or_label_field": "n_spatial_units",
+      "note": "n_spatial_units is the number of places reported that year: ~2,000-2,950 counties for yield, ~3,045 counties for profitability, 50 state units for erosion, 17 regions for carbon. Encode it as cell height, opacity or an inline number so the reader sees that a filled cell is not the same thing across rows - the grain differs by two orders of magnitude.",
+      "emphasis": "primary"
+    },
+    {
+      "name": "Proxy only (input, pressure or hazard, not the outcome)",
+      "filter": "direct_available == 0 and proxy_available == 1",
+      "encoding": "hollow / hatched cell, visibly weaker than the filled cell",
+      "tooltip_fields": ["proxy_source", "proxy_measurement_basis", "proxy_n_spatial_units"],
+      "note": "Nutrient cycling gets fertilised-acreage; pest regulation gets modelled pesticide use; water capture gets irrigated acreage. None of these is a measurement of the service. They must not be drawn in the same ink as the filled cells.",
+      "emphasis": "secondary"
+    },
+    {
+      "name": "Nothing",
+      "filter": "direct_available == 0 and proxy_available == 0",
+      "encoding": "empty cell, background only",
+      "emphasis": "background"
+    }
+  ],
+  "annotations": [
+    {
+      "type": "row_span",
+      "target": "Erosion control",
+      "text": "40-year panel, 9 repeats, one release (NRI 2022) - the deepest ecosystem-service series in the bundle, and still only state-level and model-derived"
+    },
+    {
+      "type": "point",
+      "target": {"outcome": "Carbon sequestration", "year": 2011},
+      "text": "The entire national soil-carbon record: one campaign (RaCA, field seasons 2010-11), 6,418 sites, 17 regions, explicitly 'a single point in time'. No second timepoint exists, so no change can be differenced."
+    },
+    {
+      "type": "row_group",
+      "target": ["Nutrient cycling", "Pest regulation", "Water capture", "Soil macrofauna"],
+      "text": "Four outcomes with zero federal measurement in 41 years. ECOTOX holds 9,402 toxicity tests on earthworms, ants and termites, but only 112 of them (1.2%) carry a latitude at all."
+    },
+    {
+      "type": "column_marker",
+      "target": [2002, 2007, 2012, 2017, 2022],
+      "text": "The only 5 years in 41 in which as many as 3 of the 7 outcomes are jointly observable - and only after aggregating county data up to states. 4 of 21 outcome pairs can ever be observed in the same place in the same year."
+    },
+    {
+      "type": "row_trend",
+      "target": "Yield",
+      "text": "Even the best-measured row is thinning: 2,943 counties per year in 1982-86, 2,089 in 2018-22 (-29%)"
+    }
+  ],
+  "source_note": "USDA NASS QuickStats (county crop yields, 1982-2022; Census of Agriculture 2002-2022); USDA NRCS National Resources Inventory, 2022 Summary Report, Tables 15-16 (all 9 years taken from the single 2022 release); USDA NRCS Rapid Carbon Assessment, Methodology, Sampling and Summary; USGS PNSP corrected county panel; EPA ECOTOX release 09/15/2026. Cell counts computed in analysis/fonte/compute.py from the local mirror; see data/provenance.csv for SHA-256 of every source file.",
+  "data_file": "data/derived/lens_fonte_bundle_coverage.csv"
+}
